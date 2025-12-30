@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Credentials (sensitive)
+credentials.json
+
+# User data
+user_preferences.json
+
+# Debug/temporary files
+*.html
+test_*.py
+analyze_*.py
+explore_*.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
