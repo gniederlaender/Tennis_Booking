@@ -89,6 +89,18 @@ class TimeframeParser:
 
     def _extract_time_range(self, text):
         """Extract time range from text."""
+        # Check for "at HH:MM" pattern first (specific single time)
+        at_pattern = r'\bat\s+(\d{1,2}):(\d{2})'
+        at_match = re.search(at_pattern, text)
+        if at_match:
+            hour = int(at_match.group(1))
+            minute = at_match.group(2)
+            start = f"{hour:02d}:{minute}"
+            # For "at X", show X to X+1 hour
+            end_hour = (hour + 1) % 24
+            end = f"{end_hour:02d}:{minute}"
+            return (start, end)
+
         # Pattern for time ranges like "6-8pm", "15:00-18:00", "6pm-8pm"
         time_patterns = [
             # HH:MM-HH:MM (24-hour format)

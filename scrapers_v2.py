@@ -17,11 +17,13 @@ class DasSpielScraperV2:
         results = []
 
         try:
-            print(f"Fetching {self.URL}...")
+            # Fetch with date parameter to get booking data
+            url_with_date = f"{self.URL}?date={date.strftime('%Y-%m-%d')}"
+            print(f"Fetching {url_with_date}...")
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
             }
-            response = requests.get(self.URL, headers=headers, timeout=10)
+            response = requests.get(url_with_date, headers=headers, timeout=10)
             response.raise_for_status()
 
             # Parse HTML
@@ -37,30 +39,27 @@ class DasSpielScraperV2:
 
                 print(f"Found {len(calendar_data)} courts")
 
-                # Get CSRF token for API requests
-                csrf_meta = soup.find('meta', {'name': 'csrf-token'})
-                csrf_token = csrf_meta['content'] if csrf_meta else None
-
-                # Try to fetch booking data for the specific date
-                bookings = self._fetch_bookings(date, csrf_token, headers)
-
                 # Process each court
                 for court in calendar_data:
                     court_name = court.get('name', 'Unknown')
-                    court_uuid = court.get('uuid')
                     time_start = court.get('time_start', '07:00:00')
                     time_end = court.get('time_end', '22:00:00')
                     timeblock = court.get('timeblock', 60)  # minutes
+                    rentals = court.get('rentals', [])
 
-                    print(f"  - {court_name}: {time_start} - {time_end}")
-
-                    # Get booked slots for this court
+                    # Build set of booked time slots from rentals
                     booked_times = set()
-                    if bookings and court_uuid in bookings:
-                        for booking in bookings[court_uuid]:
-                            booked_times.add(booking.get('time'))
+                    for rental in rentals:
+                        rental_start = rental.get('time_start', '')
+                        rental_end = rental.get('time_end', '')
+                        # Add all hours in this rental period
+                        if rental_start and rental_end:
+                            start_hour = int(rental_start.split(':')[0])
+                            end_hour = int(rental_end.split(':')[0])
+                            for hour in range(start_hour, end_hour):
+                                booked_times.add(f"{hour:02d}:00")
 
-                    # Generate available slots
+                    # Generate available slots (only free ones)
                     slots = self._generate_available_slots(
                         court_name,
                         date,
@@ -73,7 +72,7 @@ class DasSpielScraperV2:
                     )
                     results.extend(slots)
 
-            print(f"Total available slots found: {len(results)}")
+            print(f"Total available FREE slots found: {len(results)}")
 
         except Exception as e:
             print(f"Error scraping Das Spiel: {e}")
@@ -82,33 +81,6 @@ class DasSpielScraperV2:
 
         return results
 
-    def _fetch_bookings(self, date, csrf_token, headers):
-        """Try to fetch booking data from API."""
-        try:
-            # Try common API patterns
-            api_urls = [
-                f"{self.URL}api/bookings?date={date.strftime('%Y-%m-%d')}",
-                f"{self.URL}api/rentals?date={date.strftime('%Y-%m-%d')}",
-                f"{self.URL}bookings/{date.strftime('%Y-%m-%d')}",
-            ]
-
-            headers_with_csrf = headers.copy()
-            if csrf_token:
-                headers_with_csrf['X-CSRF-TOKEN'] = csrf_token
-
-            for api_url in api_urls:
-                try:
-                    response = requests.get(api_url, headers=headers_with_csrf, timeout=5)
-                    if response.status_code == 200:
-                        print(f"Found API endpoint: {api_url}")
-                        return response.json()
-                except:
-                    continue
-
-        except Exception as e:
-            print(f"Could not fetch bookings from API: {e}")
-
-        return {}
 
     def _generate_available_slots(self, court_name, date, user_start, user_end,
                                    court_start, court_end, timeblock, booked_times):
