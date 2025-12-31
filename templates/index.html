@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Court Finder - Vienna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+               background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+               min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .search-box { background: white; border-radius: 12px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .input-group { display: flex; gap: 10px; margin-bottom: 10px; }
+        input[type="text"] { flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 8px;
+                            font-size: 16px; transition: border 0.3s; }
+        input[type="text"]:focus { outline: none; border-color: #667eea; }
+        button { background: #667eea; color: white; border: none; padding: 15px 40px;
+                border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer;
+                transition: background 0.3s; }
+        button:hover { background: #5568d3; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .examples { color: #666; font-size: 14px; margin-top: 10px; }
+        .loading { text-align: center; padding: 40px; color: #667eea; display: none; }
+        .results { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                  display: none; }
+        .result-header { border-bottom: 2px solid #e0e0e0; padding-bottom: 15px; margin-bottom: 20px; }
+        .result-header h2 { color: #333; font-size: 1.8em; }
+        .result-info { color: #666; margin-top: 5px; }
+        .slot { background: #f8f9fa; border-left: 4px solid #667eea; padding: 15px;
+               margin-bottom: 15px; border-radius: 8px; transition: transform 0.2s; }
+        .slot:hover { transform: translateX(5px); }
+        .slot.preferred { background: #fff3cd; border-left-color: #ffc107; }
+        .slot.preferred::before { content: "⭐ PREFERRED"; display: block; color: #ff6b6b;
+                                 font-weight: bold; margin-bottom: 5px; }
+        .slot-venue { font-weight: bold; color: #667eea; font-size: 1.1em; margin-bottom: 5px; }
+        .slot-detail { color: #555; margin: 3px 0; }
+        .slot-time { font-size: 1.2em; font-weight: bold; color: #333; }
+        .error { background: #fee; color: #c00; padding: 15px; border-radius: 8px;
+                border-left: 4px solid #c00; margin-bottom: 20px; display: none; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .search-box, .results { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎾 Tennis Court Finder</h1>
+            <p>Find available tennis courts in Vienna</p>
+        </div>
+
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" id="timeframe" placeholder='Try: "tomorrow at 17:00" or "7.1.2026 between 15:00 and 18:00"'>
+                <button onclick="search()">Search</button>
+            </div>
+            <div class="examples">
+                Examples: "next Monday 6-8pm" • "at 17:00" • "between 15:00 and 18:00"
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <h3>🔍 Searching courts...</h3>
+            <p>This may take up to 60 seconds</p>
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="results" id="results">
+            <div class="result-header">
+                <h2>Available Courts</h2>
+                <div class="result-info" id="result-info"></div>
+            </div>
+            <div id="slots"></div>
+        </div>
+    </div>
+
+    <script>
+        async function search() {
+            const timeframe = document.getElementById('timeframe').value.trim();
+            if (!timeframe) return;
+
+            // Show loading, hide results/errors
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+            document.querySelector('button').disabled = true;
+
+            try {
+                const response = await fetch('/tennis/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ timeframe })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Search failed');
+                }
+
+                displayResults(data);
+            } catch (error) {
+                document.getElementById('error').textContent = error.message;
+                document.getElementById('error').style.display = 'block';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('button').disabled = false;
+            }
+        }
+
+        function displayResults(data) {
+            const info = `${data.total} slot(s) found for ${data.timeframe.day}, ${data.timeframe.date} (${data.timeframe.start} - ${data.timeframe.end})`;
+            document.getElementById('result-info').textContent = info;
+
+            const slotsHtml = data.slots.map((slot, idx) => {
+                const preferred = idx === data.preferred_index ? 'preferred' : '';
+                return `
+                    <div class="slot ${preferred}">
+                        <div class="slot-venue">${slot.venue}</div>
+                        <div class="slot-time">⏰ ${slot.time}</div>
+                        <div class="slot-detail">📍 ${slot.court_name}</div>
+                        <div class="slot-detail">📅 ${slot.date} (${slot.day_of_week})</div>
+                        <div class="slot-detail">💰 ${slot.price}</div>
+                        <div class="slot-detail">📍 ${slot.location}</div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('slots').innerHTML = slotsHtml || '<p>No courts available</p>';
+            document.getElementById('results').style.display = 'block';
+        }
+
+        // Enter key to search
+        document.getElementById('timeframe').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') search();
+        });
+    </script>
+</body>
+</html>
