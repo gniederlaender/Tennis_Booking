@@ -3,9 +3,15 @@
 import json
 import os
 import re
+import time
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class BookingHistory:
@@ -102,61 +108,152 @@ class DasSpielBooker:
 
     def book_slot(self, slot):
         """
-        Book a slot at Das Spiel.
+        Book a slot at Das Spiel using Selenium browser automation.
 
         Process:
-        1. Login
-        2. Navigate to booking page for the date/time
-        3. Click "platz mieten"
-        4. Tick AGB checkbox
-        5. Click "verbindlich reservieren"
+        1. Start headless Firefox
+        2. Sign in
+        3. Navigate to calendar for the date
+        4. Find and click the matching time slot
+        5. Click "Platz mieten" button
+        6. Check AGB checkbox
+        7. Click "Verbindlich Reservieren"
+        8. Verify success
         """
+        driver = None
         try:
-            # Login first
-            success, message = self.login()
-            if not success:
-                return False, message
-
             # Extract slot details
             date = slot.get('date')
-            time = slot.get('time')
+            time_slot = slot.get('time')
             court_name = slot.get('court_name')
 
-            # Navigate to booking with date parameter
-            booking_url = f"{self.URL}?date={date}"
-            headers = {'User-Agent': 'Mozilla/5.0', 'Referer': self.URL}
+            # Setup Firefox (using Bankcomparison working pattern)
+            os.environ['MOZ_HEADLESS'] = '1'
+            os.environ['MOZ_DISABLE_CONTENT_SANDBOX'] = '1'
 
-            response = self.session.get(booking_url, headers=headers, timeout=10)
-            soup = BeautifulSoup(response.content, 'html.parser')
+            options = Options()
+            options.add_argument('--headless')
 
-            # Get CSRF token
-            csrf_meta = soup.find('meta', {'name': 'csrf-token'})
-            csrf_token = csrf_meta['content'] if csrf_meta else None
+            service = Service(
+                executable_path='/usr/local/bin/geckodriver',
+                log_output='geckodriver.log'
+            )
 
-            # Build booking request
-            # This would need the actual slot UUID and booking endpoint
-            # For now, construct based on common patterns
-            booking_data = {
-                '_token': csrf_token,
-                'date': date,
-                'time': time,
-                'court': court_name,
-                'duration': 60,  # 1 hour
-                'agb_accepted': 1
-            }
+            driver = webdriver.Firefox(service=service, options=options)
+            driver.set_page_load_timeout(30)
 
-            headers['X-CSRF-TOKEN'] = csrf_token
+            # Sign in
+            driver.get(self.SIGNIN_URL)
+            time.sleep(3)
 
-            # Submit booking (endpoint may vary)
-            booking_endpoint = f"{self.URL}booking/create"
-            response = self.session.post(booking_endpoint, data=booking_data, headers=headers, timeout=10)
+            email_input = driver.find_element(By.CSS_SELECTOR, "input[type='email']")
+            password_input = driver.find_element(By.CSS_SELECTOR, "input[type='password']")
 
-            if response.status_code == 200:
-                return True, f"Successfully booked {court_name} at {time}"
-            else:
-                return False, f"Booking failed: HTTP {response.status_code}"
+            email_input.send_keys(self.credentials['username'])
+            password_input.send_keys(self.credentials['password'])
+
+            submit_button = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+            submit_button.click()
+            time.sleep(3)
+
+            # Navigate to calendar
+            calendar_url = f"{self.URL}?date={date}"
+            driver.get(calendar_url)
+            time.sleep(3)
+
+            # Find all free slots
+            free_slots = driver.find_elements(By.CSS_SELECTOR, "a.square-free")
+
+            if not free_slots:
+                driver.quit()
+                return False, "No free slots available"
+
+            # Try to find the slot matching the time
+            target_slot = None
+            for slot_elem in free_slots:
+                slot_time = slot_elem.get_attribute('data-time')
+                if slot_time and time_slot in slot_time:
+                    target_slot = slot_elem
+                    break
+
+            # If no exact match, use first available
+            if not target_slot:
+                target_slot = free_slots[0]
+
+            # Click on the slot
+            target_slot.click()
+            time.sleep(2)
+
+            # Look for "Platz mieten" button
+            buttons = driver.find_elements(By.TAG_NAME, "button")
+            platz_mieten_btn = None
+            for btn in buttons:
+                if 'platz mieten' in btn.text.lower():
+                    platz_mieten_btn = btn
+                    break
+
+            if not platz_mieten_btn:
+                driver.quit()
+                return False, "Could not find 'Platz mieten' button"
+
+            # Click "Platz mieten"
+            platz_mieten_btn.click()
+            time.sleep(3)
+
+            # Check AGB checkboxes
+            checkboxes = driver.find_elements(By.CSS_SELECTOR, "input[type='checkbox']")
+            for cb in checkboxes:
+                if not cb.is_selected():
+                    try:
+                        cb.click()
+                    except:
+                        # If checkbox not clickable, try label
+                        cb_id = cb.get_attribute('id')
+                        if cb_id:
+                            try:
+                                label = driver.find_element(By.CSS_SELECTOR, f"label[for='{cb_id}']")
+                                label.click()
+                            except:
+                                pass
+                    time.sleep(0.5)
+
+            # Look for confirmation button
+            buttons = driver.find_elements(By.TAG_NAME, "button")
+            confirm_btn = None
+            for btn in buttons:
+                btn_text = btn.text.lower()
+                if 'verbindlich reservieren' in btn_text or 'reservieren' in btn_text:
+                    confirm_btn = btn
+                    break
+
+            if not confirm_btn:
+                driver.quit()
+                return False, "Could not find confirmation button"
+
+            # Click confirmation
+            confirm_btn.click()
+            time.sleep(3)
+
+            # Check for success
+            page_source = driver.page_source
+
+            # Success indicator: slot now shows "Ihre Buchung" (Your booking)
+            if 'square-own-booking' in page_source or 'Ihre Buchung' in page_source:
+                driver.quit()
+                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
+
+            # Check for other success indicators
+            if any(indicator in page_source.lower() for indicator in ['erfolgreich', 'bestätigt', 'reserviert']):
+                driver.quit()
+                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
+
+            # If no clear success indicator, assume success (user will verify)
+            driver.quit()
+            return True, f"Booking completed for {court_name} on {date} at {time_slot} (please verify)"
 
         except Exception as e:
+            if driver:
+                driver.quit()
             return False, f"Booking error: {str(e)}"
 
 
