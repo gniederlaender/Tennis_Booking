@@ -276,6 +276,7 @@ class PostSVScraperV2:
                                                         'duration': '60 min',
                                                         'location': 'Post SV Wien, Roggendorfgasse 2',
                                                         'price': f"€ {price}",
+                                                        'booking_link': href,  # Store for booking
                                                     }
                                                     results.append(slot)
 

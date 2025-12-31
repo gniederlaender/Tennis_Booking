@@ -55,33 +55,43 @@ def display_results(slots, preferred_slot=None):
 
 
 def prompt_user_selection(slots):
-    """Prompt user to select a slot for booking (logs preference)."""
+    """Prompt user to select a slot and optionally book it."""
     if not slots:
-        return None
+        return None, False
 
     try:
-        print("\nWould you like to mark any slot as your choice? (for preference learning)")
-        print("Enter slot number (1-{}), or 'n' to skip: ".format(min(len(slots), MAX_RESULTS)), end='')
+        print("\nOptions:")
+        print("  - Enter slot number (1-{}) to select/book".format(min(len(slots), MAX_RESULTS)))
+        print("  - Enter 'n' to skip")
+        print("> ", end='')
 
         choice = input().strip().lower()
 
         if choice == 'n' or choice == '':
-            return None
+            return None, False
 
         try:
             slot_num = int(choice)
             if 1 <= slot_num <= min(len(slots), MAX_RESULTS):
-                return slots[slot_num - 1]
+                selected_slot = slots[slot_num - 1]
+
+                # Ask if user wants to book
+                print(f"\nSelected: {selected_slot.get('court_name')} at {selected_slot.get('time')}")
+                print("Would you like to book this slot? (yes/no): ", end='')
+                book_choice = input().strip().lower()
+
+                should_book = book_choice in ['yes', 'y']
+                return selected_slot, should_book
             else:
                 print("Invalid slot number.")
-                return None
+                return None, False
         except ValueError:
             print("Invalid input.")
-            return None
+            return None, False
     except EOFError:
         # Handle non-interactive mode
         print("\n(Non-interactive mode - skipping selection)")
-        return None
+        return None, False
 
 
 def main():
@@ -142,11 +152,28 @@ def main():
     # Display results
     display_results(slots, preferred_slot)
 
-    # Prompt for user selection (for learning)
-    selected_slot = prompt_user_selection(slots)
+    # Prompt for user selection and booking
+    selected_slot, should_book = prompt_user_selection(slots)
+
     if selected_slot:
+        # Log selection for preference learning
         pref_engine.log_selection(selected_slot)
-        print("Selection logged for preference learning. Thank you!")
+        print("✓ Selection logged for preference learning")
+
+        # Book if requested
+        if should_book:
+            print("\nAttempting to book...")
+            from booking import book_court
+
+            success, message = book_court(selected_slot)
+
+            if success:
+                print(f"✓ {message}")
+                print("Booking recorded in booking_history.json")
+            else:
+                print(f"✗ Booking failed: {message}")
+        else:
+            print("(Booking skipped)")
 
     print("\nDone!")
 
