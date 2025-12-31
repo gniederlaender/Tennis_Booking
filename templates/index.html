@@ -38,6 +38,14 @@
         .slot-venue { font-weight: bold; color: #667eea; font-size: 1.1em; margin-bottom: 5px; }
         .slot-detail { color: #555; margin: 3px 0; }
         .slot-time { font-size: 1.2em; font-weight: bold; color: #333; }
+        .slot-actions { margin-top: 10px; }
+        .book-btn { background: #28a745; color: white; border: none; padding: 8px 20px;
+                   border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer;
+                   transition: background 0.3s; }
+        .book-btn:hover { background: #218838; }
+        .book-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .success { background: #d4edda; color: #155724; padding: 15px; border-radius: 8px;
+                  border-left: 4px solid #28a745; margin-bottom: 20px; display: none; }
         .error { background: #fee; color: #c00; padding: 15px; border-radius: 8px;
                 border-left: 4px solid #c00; margin-bottom: 20px; display: none; }
         @media (max-width: 768px) {
@@ -68,6 +76,7 @@
             <p>This may take up to 60 seconds</p>
         </div>
 
+        <div class="success" id="success"></div>
         <div class="error" id="error"></div>
 
         <div class="results" id="results">
@@ -119,6 +128,7 @@
 
             const slotsHtml = data.slots.map((slot, idx) => {
                 const preferred = idx === data.preferred_index ? 'preferred' : '';
+                const slotData = JSON.stringify(slot).replace(/"/g, '&quot;');
                 return `
                     <div class="slot ${preferred}">
                         <div class="slot-venue">${slot.venue}</div>
@@ -127,12 +137,58 @@
                         <div class="slot-detail">📅 ${slot.date} (${slot.day_of_week})</div>
                         <div class="slot-detail">💰 ${slot.price}</div>
                         <div class="slot-detail">📍 ${slot.location}</div>
+                        <div class="slot-actions">
+                            <button class="book-btn" onclick='bookSlot(${slotData})'>Book This Court</button>
+                        </div>
                     </div>
                 `;
             }).join('');
 
             document.getElementById('slots').innerHTML = slotsHtml || '<p>No courts available</p>';
             document.getElementById('results').style.display = 'block';
+        }
+
+        async function bookSlot(slot) {
+            // Confirm booking
+            const confirmMsg = `Book ${slot.court_name} on ${slot.date} at ${slot.time}?`;
+            if (!confirm(confirmMsg)) return;
+
+            // Hide previous messages
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+
+            // Disable all booking buttons
+            document.querySelectorAll('.book-btn').forEach(btn => btn.disabled = true);
+
+            try {
+                const response = await fetch('/tennis/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slot })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Booking failed');
+                }
+
+                // Show success message
+                const successMsg = `✓ ${data.message}`;
+                document.getElementById('success').textContent = successMsg;
+                document.getElementById('success').style.display = 'block';
+
+                // Scroll to success message
+                document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                document.getElementById('error').textContent = `✗ ${error.message}`;
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                // Re-enable booking buttons
+                document.querySelectorAll('.book-btn').forEach(btn => btn.disabled = false);
+            }
         }
 
         // Enter key to search

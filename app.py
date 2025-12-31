@@ -5,6 +5,7 @@ from datetime import datetime
 from timeframe_parser import TimeframeParser
 from scrapers_v2 import scrape_all_portals
 from preference_engine import PreferenceEngine
+from booking import book_court
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'tennis-booking-secret-key-change-in-production'
@@ -57,6 +58,41 @@ def search():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/book', methods=['POST'])
+def book():
+    """Handle booking request."""
+    try:
+        slot = request.json.get('slot', {})
+
+        if not slot:
+            return jsonify({'error': 'No slot data provided'}), 400
+
+        # Validate required fields
+        required_fields = ['venue', 'date', 'time', 'court_name']
+        missing_fields = [f for f in required_fields if not slot.get(f)]
+        if missing_fields:
+            return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
+
+        # Attempt booking
+        success, message = book_court(slot)
+
+        if success:
+            return jsonify({
+                'success': True,
+                'message': message,
+                'booking': {
+                    'venue': slot.get('venue'),
+                    'court': slot.get('court_name'),
+                    'date': slot.get('date'),
+                    'time': slot.get('time')
+                }
+            })
+        else:
+            return jsonify({'error': message}), 400
+
+    except Exception as e:
+        return jsonify({'error': f'Booking error: {str(e)}'}), 500
 
 @app.route('/health')
 def health():
