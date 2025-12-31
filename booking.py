@@ -47,8 +47,7 @@ class DasSpielBooker:
     """Handles booking for Das Spiel (Arsenal)."""
 
     URL = "https://reservierung.dasspiel.at/"
-    LOGIN_URL = f"{URL}login"
-    API_LOGIN_URL = f"{URL}api/login"  # Try API endpoint
+    SIGNIN_URL = f"{URL}signin"
 
     def __init__(self):
         self.session = requests.Session()
@@ -63,49 +62,40 @@ class DasSpielBooker:
         return {}
 
     def login(self):
-        """Login to Das Spiel."""
+        """Sign in to Das Spiel using the /signin endpoint."""
         if not self.credentials:
             return False, "No credentials found"
 
         try:
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
 
-            # Get login page
-            response = self.session.get(self.LOGIN_URL, headers=headers, timeout=10)
+            # Get signin page for CSRF token
+            response = self.session.get(self.SIGNIN_URL, headers=headers, timeout=10)
 
             # Parse CSRF token
             soup = BeautifulSoup(response.content, 'html.parser')
             csrf_meta = soup.find('meta', {'name': 'csrf-token'})
             csrf_token = csrf_meta['content'] if csrf_meta else None
 
-            if not csrf_token:
-                # Try to find hidden input with token
-                token_input = soup.find('input', {'name': '_token'})
-                if token_input:
-                    csrf_token = token_input.get('value')
-
-            # Login - this is a SPA, so we need to send JSON, not form data
-            login_data = {
+            # Sign in with correct field names: 'email' and 'pw'
+            signin_data = {
                 'email': self.credentials['username'],
-                'password': self.credentials['password']
+                'pw': self.credentials['password']  # Note: 'pw' not 'password'
             }
 
-            headers['Referer'] = self.LOGIN_URL
+            headers['Referer'] = self.SIGNIN_URL
             headers['Content-Type'] = 'application/json'
             headers['Accept'] = 'application/json'
             if csrf_token:
                 headers['X-CSRF-TOKEN'] = csrf_token
 
-            response = self.session.post(self.LOGIN_URL, json=login_data, headers=headers, timeout=10, allow_redirects=False)
+            response = self.session.post(self.SIGNIN_URL, json=signin_data, headers=headers, timeout=10, allow_redirects=False)
 
-            # Check success - if we're redirected away from login page
-            if 'login' not in response.url.lower() and response.status_code == 200:
+            # Check for success - Das Spiel returns plain text "signed-in"
+            if response.status_code == 200 and response.text == 'signed-in':
                 return True, "Login successful"
             else:
-                # Check if we have a logged-in session by looking for logout link
-                if 'logout' in response.text.lower() or 'abmelden' in response.text.lower():
-                    return True, "Login successful"
-                return False, f"Login failed (Das Spiel uses JavaScript - may require browser automation)"
+                return False, f"Login failed: {response.text}"
 
         except Exception as e:
             return False, f"Login error: {str(e)}"

@@ -30,3 +30,8 @@ explore_*.py
 # OS
 .DS_Store
 Thumbs.db
+
+logs/
+booking_history.json
+preferences.json
+test_*.py
