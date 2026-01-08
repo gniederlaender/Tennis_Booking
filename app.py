@@ -6,6 +6,7 @@ from timeframe_parser import TimeframeParser
 from scrapers_v2 import scrape_all_portals
 from preference_engine import PreferenceEngine
 from booking import book_court
+from trainer_finder import find_trainers
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'tennis-booking-secret-key-change-in-production'
@@ -20,6 +21,8 @@ def search():
     """Handle search request."""
     try:
         timeframe = request.json.get('timeframe', '')
+        include_trainers = request.json.get('includeTrainers', False)
+        trainer_name = request.json.get('trainerName', None)
 
         if not timeframe:
             return jsonify({'error': 'Please enter a timeframe'}), 400
@@ -42,8 +45,17 @@ def search():
             if preferred_slot:
                 preferred = slots.index(preferred_slot)
 
+        # Search for trainers if requested
+        trainers = []
+        if include_trainers:
+            print(f"\n{'='*60}")
+            print("Searching for trainers...")
+            print(f"{'='*60}")
+            trainers = find_trainers(date, start_time, end_time, trainer_name)
+            print(f"Found {len(trainers)} trainer slots\n")
+
         # Format response
-        return jsonify({
+        response_data = {
             'success': True,
             'timeframe': {
                 'date': date.strftime('%Y-%m-%d'),
@@ -54,7 +66,13 @@ def search():
             'slots': slots[:20],  # Top 20
             'total': len(slots),
             'preferred_index': preferred
-        })
+        }
+
+        # Add trainer data if available
+        if trainers:
+            response_data['trainers'] = trainers
+
+        return jsonify(response_data)
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
