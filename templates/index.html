@@ -148,13 +148,18 @@
             }
         }
 
+        // Store slots data globally for booking
+        let currentSlots = [];
+
         function displayResults(data) {
             const info = `${data.total} slot(s) found for ${data.timeframe.day}, ${data.timeframe.date} (${data.timeframe.start} - ${data.timeframe.end})`;
             document.getElementById('result-info').textContent = info;
 
+            // Store slots for access by booking function
+            currentSlots = data.slots;
+
             const slotsHtml = data.slots.map((slot, idx) => {
                 const preferred = idx === data.preferred_index ? 'preferred' : '';
-                const slotData = JSON.stringify(slot).replace(/"/g, '&quot;');
                 return `
                     <div class="slot ${preferred}">
                         <div class="slot-venue">${slot.venue}</div>
@@ -164,7 +169,7 @@
                         <div class="slot-detail">💰 ${slot.price}</div>
                         <div class="slot-detail">📍 ${slot.location}</div>
                         <div class="slot-actions">
-                            <button class="book-btn" onclick='bookSlot(${slotData})'>Book This Court</button>
+                            <button class="book-btn" onclick="bookSlotByIndex(${idx})">Book This Court</button>
                         </div>
                     </div>
                 `;
@@ -208,6 +213,16 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        function bookSlotByIndex(index) {
+            // Get slot from stored data by index
+            const slot = currentSlots[index];
+            if (!slot) {
+                alert('Slot data not found');
+                return;
+            }
+            bookSlot(slot);
         }
 
         async function bookSlot(slot) {
