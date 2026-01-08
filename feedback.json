@@ -19,12 +19,23 @@
       "description": "I do not see the agreed UI elements for trainer booking, although it seeems from the report, that the functionality has been implemented.\n\nPlease review the status and fix it",
       "created_at": "2026-01-08T19:43:28.131505",
       "updated_at": "2026-01-08T19:46:00.000000",
-      "resolution": "The UI elements were already present in templates/index.html but weren't visible because the PM2-managed Flask application (running for 8 days) needed to be restarted to reload the template changes. Restarted PM2 process 'tennis-booking' to apply the previously committed template updates. UI now shows: 1) 'Including trainer' checkbox and 2) 'Trainer name' text field (appears when checkbox is checked)."
+      "resolution": "The UI elements were already present in templates/index.html but weren't visible because the PM2-managed Flask application (running for 8 days) needed to be restarted to reload the template changes. Restarted PM2 process 'tennis-booking' to apply the previously committed template updates. UI now shows: 1) 'Including trainer' checkbox and 2) 'Trainer name' text field (appears when checkbox is checked).",
+      "completion_notes": "Completed by agent in run 20260108_194336\n\u2713 Verification: PASSED\nCommit: 8fb297d",
+      "completed_at": "2026-01-08T19:48:41.999192"
+    },
+    {
+      "id": "task-20260108-203613",
+      "type": "bug",
+      "status": "open",
+      "priority": "medium",
+      "title": "The string did not match the expected pattern.",
+      "description": "I get the exception \u201e The string did not match the expected pattern.\u201c.\n\nPlease review",
+      "created_at": "2026-01-08T20:36:13.242974"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-08T19:43:28.131513"
+    "last_updated": "2026-01-08T20:36:13.242983"
   }
 }
