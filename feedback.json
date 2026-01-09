@@ -33,11 +33,20 @@
       "created_at": "2026-01-08T20:36:13.242974",
       "completion_notes": "Completed by agent in run 20260108_232154\n\u2713 Verification: PASSED\nCommit: ac6fe26",
       "completed_at": "2026-01-08T23:29:17.338932"
+    },
+    {
+      "id": "task-20260109-142402",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Adapt Trainer_finder functionality",
+      "description": "When the trainer_finder functionality is checked, than the application should ONLY look for available trainers (and not courts).\nThe checkbox \"including trainer\" shall be changed to a switcher \"Court\" or \"Trainer\". The application shall search EITHER courts OR Trainers\n\n",
+      "created_at": "2026-01-09T14:24:02.794473"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-08T23:29:17.338936"
+    "last_updated": "2026-01-09T14:24:02.794494"
   }
 }
