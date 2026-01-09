@@ -21,7 +21,7 @@ def search():
     """Handle search request."""
     try:
         timeframe = request.json.get('timeframe', '')
-        include_trainers = request.json.get('includeTrainers', False)
+        search_mode = request.json.get('searchMode', 'court')  # 'court' or 'trainer'
         trainer_name = request.json.get('trainerName', None)
 
         if not timeframe:
@@ -34,27 +34,7 @@ def search():
         start_time = parsed['start_time']
         end_time = parsed['end_time']
 
-        # Scrape portals
-        slots = scrape_all_portals(date, start_time, end_time)
-
-        # Get preferred slot if available
-        pref_engine = PreferenceEngine()
-        preferred = None
-        if pref_engine.has_confidence() and slots:
-            preferred_slot = pref_engine.get_preferred_slot(slots)
-            if preferred_slot:
-                preferred = slots.index(preferred_slot)
-
-        # Search for trainers if requested
-        trainers = []
-        if include_trainers:
-            print(f"\n{'='*60}")
-            print("Searching for trainers...")
-            print(f"{'='*60}")
-            trainers = find_trainers(date, start_time, end_time, trainer_name)
-            print(f"Found {len(trainers)} trainer slots\n")
-
-        # Format response
+        # Initialize response data
         response_data = {
             'success': True,
             'timeframe': {
@@ -63,14 +43,37 @@ def search():
                 'start': start_time,
                 'end': end_time
             },
-            'slots': slots[:20],  # Top 20
-            'total': len(slots),
-            'preferred_index': preferred
+            'searchMode': search_mode
         }
 
-        # Add trainer data if available
-        if trainers:
+        # Search based on mode: EITHER courts OR trainers
+        if search_mode == 'trainer':
+            # Search for trainers only
+            print(f"\n{'='*60}")
+            print("Searching for trainers...")
+            print(f"{'='*60}")
+            trainers = find_trainers(date, start_time, end_time, trainer_name)
+            print(f"Found {len(trainers)} trainer slots\n")
+
             response_data['trainers'] = trainers
+            response_data['slots'] = []
+            response_data['total'] = len(trainers)
+            response_data['preferred_index'] = None
+        else:
+            # Search for courts only (default)
+            slots = scrape_all_portals(date, start_time, end_time)
+
+            # Get preferred slot if available
+            pref_engine = PreferenceEngine()
+            preferred = None
+            if pref_engine.has_confidence() and slots:
+                preferred_slot = pref_engine.get_preferred_slot(slots)
+                if preferred_slot:
+                    preferred = slots.index(preferred_slot)
+
+            response_data['slots'] = slots[:20]  # Top 20
+            response_data['total'] = len(slots)
+            response_data['preferred_index'] = preferred
 
         return jsonify(response_data)
 

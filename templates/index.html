@@ -70,10 +70,19 @@
                 Examples: "next Monday 6-8pm" • "at 17:00" • "between 15:00 and 18:00"
             </div>
             <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 10px;">
-                    <input type="checkbox" id="includeTrainers" style="width: 18px; height: 18px; cursor: pointer;">
-                    <span style="font-weight: 500; color: #333;">Including trainer</span>
-                </label>
+                <div style="margin-bottom: 10px;">
+                    <label style="font-weight: 500; color: #333; margin-bottom: 8px; display: block;">Search for:</label>
+                    <div style="display: inline-flex; background: #f0f0f0; border-radius: 8px; padding: 4px;">
+                        <button type="button" id="searchModeCourt" onclick="setSearchMode('court')"
+                                style="padding: 10px 30px; border: none; border-radius: 6px; background: #667eea; color: white; font-weight: 500; cursor: pointer; transition: all 0.3s;">
+                            Court
+                        </button>
+                        <button type="button" id="searchModeTrainer" onclick="setSearchMode('trainer')"
+                                style="padding: 10px 30px; border: none; border-radius: 6px; background: transparent; color: #666; font-weight: 500; cursor: pointer; transition: all 0.3s;">
+                            Trainer
+                        </button>
+                    </div>
+                </div>
                 <div id="trainerNameField" style="display: none;">
                     <input type="text" id="trainerName" placeholder="Trainer name (optional)" style="width: 100%;">
                 </div>
@@ -98,11 +107,30 @@
     </div>
 
     <script>
-        // Show/hide trainer name field based on checkbox
-        document.getElementById('includeTrainers').addEventListener('change', function() {
+        // Track current search mode (default: 'court')
+        let searchMode = 'court';
+
+        // Function to set search mode and update UI
+        function setSearchMode(mode) {
+            searchMode = mode;
+            const courtBtn = document.getElementById('searchModeCourt');
+            const trainerBtn = document.getElementById('searchModeTrainer');
             const trainerNameField = document.getElementById('trainerNameField');
-            trainerNameField.style.display = this.checked ? 'block' : 'none';
-        });
+
+            if (mode === 'court') {
+                courtBtn.style.background = '#667eea';
+                courtBtn.style.color = 'white';
+                trainerBtn.style.background = 'transparent';
+                trainerBtn.style.color = '#666';
+                trainerNameField.style.display = 'none';
+            } else {
+                courtBtn.style.background = 'transparent';
+                courtBtn.style.color = '#666';
+                trainerBtn.style.background = '#667eea';
+                trainerBtn.style.color = 'white';
+                trainerNameField.style.display = 'block';
+            }
+        }
 
         // Normalize input text to handle mobile keyboard variations
         function normalizeInput(text) {
@@ -134,22 +162,25 @@
             // Normalize input for mobile compatibility
             timeframe = normalizeInput(timeframe);
 
-            const includeTrainers = document.getElementById('includeTrainers').checked;
             const trainerName = document.getElementById('trainerName').value.trim();
 
             // Show loading, hide results/errors
-            document.getElementById('loading').style.display = 'block';
+            const loadingEl = document.getElementById('loading');
+            loadingEl.innerHTML = searchMode === 'court'
+                ? '<h3>🔍 Searching courts...</h3><p>This may take up to 60 seconds</p>'
+                : '<h3>🔍 Searching trainers...</h3><p>This may take up to 60 seconds</p>';
+            loadingEl.style.display = 'block';
             document.getElementById('results').style.display = 'none';
             document.getElementById('error').style.display = 'none';
             document.querySelector('button').disabled = true;
 
             try {
-                const requestData = { timeframe };
-                if (includeTrainers) {
-                    requestData.includeTrainers = true;
-                    if (trainerName) {
-                        requestData.trainerName = trainerName;
-                    }
+                const requestData = {
+                    timeframe,
+                    searchMode: searchMode
+                };
+                if (searchMode === 'trainer' && trainerName) {
+                    requestData.trainerName = trainerName;
                 }
 
                 const response = await fetch('search', {
@@ -178,43 +209,48 @@
         let currentSlots = [];
 
         function displayResults(data) {
+            const resultHeader = document.querySelector('.result-header h2');
             const info = `${data.total} slot(s) found for ${data.timeframe.day}, ${data.timeframe.date} (${data.timeframe.start} - ${data.timeframe.end})`;
             document.getElementById('result-info').textContent = info;
 
-            // Store slots for access by booking function
-            currentSlots = data.slots;
+            // Clear any previous results
+            document.getElementById('slots').innerHTML = '';
 
-            const slotsHtml = data.slots.map((slot, idx) => {
-                const preferred = idx === data.preferred_index ? 'preferred' : '';
-                return `
-                    <div class="slot ${preferred}">
-                        <div class="slot-venue">${slot.venue}</div>
-                        <div class="slot-time">⏰ ${slot.time}</div>
-                        <div class="slot-detail">📍 ${slot.court_name}</div>
-                        <div class="slot-detail">📅 ${slot.date} (${slot.day_of_week})</div>
-                        <div class="slot-detail">💰 ${slot.price}</div>
-                        <div class="slot-detail">📍 ${slot.location}</div>
-                        <div class="slot-actions">
-                            <button class="book-btn" onclick="bookSlotByIndex(${idx})">Book This Court</button>
+            // Display based on search mode
+            if (data.searchMode === 'trainer') {
+                // Show trainer results only
+                resultHeader.textContent = 'Available Trainers';
+
+                if (data.trainers && data.trainers.length > 0) {
+                    document.getElementById('slots').innerHTML = generateTrainerSlots(data.trainers);
+                } else {
+                    document.getElementById('slots').innerHTML = '<p>No trainers available</p>';
+                }
+            } else {
+                // Show court results only (default)
+                resultHeader.textContent = 'Available Courts';
+
+                // Store slots for access by booking function
+                currentSlots = data.slots;
+
+                const slotsHtml = data.slots.map((slot, idx) => {
+                    const preferred = idx === data.preferred_index ? 'preferred' : '';
+                    return `
+                        <div class="slot ${preferred}">
+                            <div class="slot-venue">${slot.venue}</div>
+                            <div class="slot-time">⏰ ${slot.time}</div>
+                            <div class="slot-detail">📍 ${slot.court_name}</div>
+                            <div class="slot-detail">📅 ${slot.date} (${slot.day_of_week})</div>
+                            <div class="slot-detail">💰 ${slot.price}</div>
+                            <div class="slot-detail">📍 ${slot.location}</div>
+                            <div class="slot-actions">
+                                <button class="book-btn" onclick="bookSlotByIndex(${idx})">Book This Court</button>
+                            </div>
                         </div>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
 
-            document.getElementById('slots').innerHTML = slotsHtml || '<p>No courts available</p>';
-
-            // Display trainer data if present
-            if (data.trainers && data.trainers.length > 0) {
-                const trainersSection = document.createElement('div');
-                trainersSection.style.marginTop = '30px';
-                trainersSection.innerHTML = `
-                    <div class="result-header" style="margin-top: 30px;">
-                        <h2>Available Trainers</h2>
-                        <div class="result-info">${data.trainers.length} trainer slot(s) found</div>
-                    </div>
-                    <div id="trainer-slots">${generateTrainerSlots(data.trainers)}</div>
-                `;
-                document.getElementById('results').appendChild(trainersSection);
+                document.getElementById('slots').innerHTML = slotsHtml || '<p>No courts available</p>';
             }
 
             document.getElementById('results').style.display = 'block';
