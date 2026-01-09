@@ -104,9 +104,35 @@
             trainerNameField.style.display = this.checked ? 'block' : 'none';
         });
 
+        // Normalize input text to handle mobile keyboard variations
+        function normalizeInput(text) {
+            // Replace smart/curly quotes with straight quotes
+            text = text.replace(/[""]/g, '"');  // Curly double quotes
+            text = text.replace(/['']/g, "'");  // Curly single quotes
+            text = text.replace(/[„"]/g, '"');  // German quotes
+
+            // Replace various dash characters with standard hyphen
+            text = text.replace(/[–—−]/g, '-');  // En dash, em dash, minus sign
+
+            // Replace non-breaking spaces with regular spaces
+            text = text.replace(/[\u00A0\u202F]/g, ' ');
+
+            // Normalize multiple spaces to single space
+            text = text.replace(/\s+/g, ' ');
+
+            return text;
+        }
+
         async function search() {
-            const timeframe = document.getElementById('timeframe').value.trim();
-            if (!timeframe) return;
+            let timeframe = document.getElementById('timeframe').value.trim();
+            if (!timeframe) {
+                document.getElementById('error').textContent = 'Please enter a timeframe';
+                document.getElementById('error').style.display = 'block';
+                return;
+            }
+
+            // Normalize input for mobile compatibility
+            timeframe = normalizeInput(timeframe);
 
             const includeTrainers = document.getElementById('includeTrainers').checked;
             const trainerName = document.getElementById('trainerName').value.trim();

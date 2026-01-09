@@ -414,3 +414,54 @@
 2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220889] [INFO] Using worker: sync
 2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220890] [INFO] Booting worker with pid: 2220890
 2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220891] [INFO] Booting worker with pid: 2220891
+2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220889] [INFO] Handling signal: int
+2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220890] [INFO] Worker exiting (pid: 2220890)
+2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220891] [INFO] Worker exiting (pid: 2220891)
+2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220889] [INFO] Shutting down: Master
+2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230386] [INFO] Starting gunicorn 23.0.0
+2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230386] [INFO] Listening at: http://0.0.0.0:5001 (2230386)
+2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230386] [INFO] Using worker: sync
+2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230388] [INFO] Booting worker with pid: 2230388
+2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230389] [INFO] Booting worker with pid: 2230389
+2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2230386] [CRITICAL] WORKER TIMEOUT (pid:2230389)
+2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2230389] [ERROR] Error handling request (no URI read)
+2026-01-09 06:04:21 +01:00: Traceback (most recent call last):
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
+2026-01-09 06:04:21 +01:00:     req = next(parser)
+2026-01-09 06:04:21 +01:00:           ^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
+2026-01-09 06:04:21 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+2026-01-09 06:04:21 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
+2026-01-09 06:04:21 +01:00:     super().__init__(cfg, unreader, peer_addr)
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+2026-01-09 06:04:21 +01:00:     unused = self.parse(self.unreader)
+2026-01-09 06:04:21 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
+2026-01-09 06:04:21 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
+2026-01-09 06:04:21 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
+2026-01-09 06:04:21 +01:00:     self.get_data(unreader, buf)
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
+2026-01-09 06:04:21 +01:00:     data = unreader.read()
+2026-01-09 06:04:21 +01:00:            ^^^^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
+2026-01-09 06:04:21 +01:00:     d = self.chunk()
+2026-01-09 06:04:21 +01:00:         ^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+2026-01-09 06:04:21 +01:00:     return self.sock.recv(self.mxchunk)
+2026-01-09 06:04:21 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+2026-01-09 06:04:21 +01:00:     sys.exit(1)
+2026-01-09 06:04:21 +01:00: SystemExit: 1
+2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2230389] [INFO] Worker exiting (pid: 2230389)
+2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2238545] [INFO] Booting worker with pid: 2238545
+2026-01-09 07:12:00 +01:00: [2026-01-09 07:12:00 +0100] [2230386] [INFO] Handling signal: int
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2238545] [INFO] Worker exiting (pid: 2238545)
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2230388] [INFO] Worker exiting (pid: 2230388)
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2230386] [INFO] Shutting down: Master
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241828] [INFO] Starting gunicorn 23.0.0
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241828] [INFO] Listening at: http://0.0.0.0:5001 (2241828)
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241828] [INFO] Using worker: sync
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241829] [INFO] Booting worker with pid: 2241829
+2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241831] [INFO] Booting worker with pid: 2241831

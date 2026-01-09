@@ -30,6 +30,9 @@ class TimeframeParser:
         """
         text = text.lower().strip()
 
+        # Normalize input to handle mobile keyboard smart characters
+        text = self._normalize_input(text)
+
         # Try to extract date
         date_obj = self._extract_date(text)
 
@@ -41,6 +44,28 @@ class TimeframeParser:
             'start_time': start_time,
             'end_time': end_time
         }
+
+    def _normalize_input(self, text):
+        """Normalize input text to handle mobile keyboard variations."""
+        # Replace smart/curly quotes with straight quotes
+        text = text.replace('"', '"').replace('"', '"')  # Curly double quotes
+        text = text.replace(''', "'").replace(''', "'")  # Curly single quotes
+        text = text.replace('„', '"').replace('"', '"')  # German quotes
+
+        # Replace various dash characters with standard hyphen
+        text = text.replace('–', '-')  # En dash
+        text = text.replace('—', '-')  # Em dash
+        text = text.replace('−', '-')  # Minus sign
+
+        # Replace non-breaking spaces with regular spaces
+        text = text.replace('\u00A0', ' ')  # Non-breaking space
+        text = text.replace('\u202F', ' ')  # Narrow no-break space
+
+        # Normalize multiple spaces to single space
+        import re
+        text = re.sub(r'\s+', ' ', text)
+
+        return text
 
     def _extract_date(self, text):
         """Extract date from text."""

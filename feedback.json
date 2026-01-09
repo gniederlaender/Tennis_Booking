@@ -26,16 +26,18 @@
     {
       "id": "task-20260108-203613",
       "type": "bug",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "The string did not match the expected pattern.",
       "description": "I get the exception \u201e The string did not match the expected pattern.\u201c.\n\nPlease review",
-      "created_at": "2026-01-08T20:36:13.242974"
+      "created_at": "2026-01-08T20:36:13.242974",
+      "completion_notes": "Completed by agent in run 20260108_232154\n\u2713 Verification: PASSED\nCommit: ac6fe26",
+      "completed_at": "2026-01-08T23:29:17.338932"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-08T20:36:13.242983"
+    "last_updated": "2026-01-08T23:29:17.338936"
   }
 }
