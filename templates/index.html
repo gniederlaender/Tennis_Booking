@@ -152,7 +152,7 @@
                     }
                 }
 
-                const response = await fetch('/search', {
+                const response = await fetch('search', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(requestData)
@@ -264,7 +264,7 @@
             document.querySelectorAll('.book-btn').forEach(btn => btn.disabled = true);
 
             try {
-                const response = await fetch('/book', {
+                const response = await fetch('book', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ slot })
