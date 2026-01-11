@@ -49,11 +49,13 @@
     {
       "id": "task-20260110-215758",
       "type": "bug",
-      "status": "open",
+      "status": "done",
       "priority": "critical",
       "title": "Review Booking step",
       "description": "Etwas mit der Platz Buchung im Arsenal scheint nicht in Ordnung zu sein. Meine Suche am 21. Januar ergab einen freien Platz von 18 bis 19:00 Uhr. Ich hab auf den Knopf gedr\u00fcckt \u201e Platz buchen\u201c. Gebucht wurde aber der Platz von 7:00 bis 8:00 Uhr in der Fr\u00fch. Bitte schau was nicht in Ordnung ist und teste es mit einer erfolgreichen Buchung. Ich werde es nachher stornieren",
-      "created_at": "2026-01-10T21:57:58.758185"
+      "created_at": "2026-01-10T21:57:58.758185",
+      "completion_notes": "Completed by agent in run 20260111_084001\n\u2713 Verification: PASSED\nCommit: 9a99cc4",
+      "completed_at": "2026-01-11T08:48:43.749757"
     },
     {
       "id": "task-20260110-224700",
@@ -68,6 +70,6 @@
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-10T22:47:00.450194"
+    "last_updated": "2026-01-11T08:48:43.749763"
   }
 }
