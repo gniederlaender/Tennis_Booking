@@ -42,14 +42,32 @@
       "title": "Adapt Trainer_finder functionality",
       "description": "When the trainer_finder functionality is checked, than the application should ONLY look for available trainers (and not courts).\nThe checkbox \"including trainer\" shall be changed to a switcher \"Court\" or \"Trainer\". The application shall search EITHER courts OR Trainers\n\n",
       "created_at": "2026-01-09T14:24:02.794473",
-      "completion_notes": "Completed by autonomous agent (verification skipped per user request)\n\u2713 Implementation: Changed checkbox to search mode switcher\n\u2713 App now searches EITHER courts OR trainers (not both)\n\u2713 Added searchMode parameter to API ('court' or 'trainer')\nCommit: 2eb2791",
-      "completed_at": "2026-01-09T15:00:00.000000",
+      "completion_notes": "Completed by agent in run 20260109_151053",
+      "completed_at": "2026-01-09T15:14:04.169294",
       "updated_at": "2026-01-09T15:09:17.511682"
+    },
+    {
+      "id": "task-20260110-215758",
+      "type": "bug",
+      "status": "open",
+      "priority": "critical",
+      "title": "Review Booking step",
+      "description": "Etwas mit der Platz Buchung im Arsenal scheint nicht in Ordnung zu sein. Meine Suche am 21. Januar ergab einen freien Platz von 18 bis 19:00 Uhr. Ich hab auf den Knopf gedr\u00fcckt \u201e Platz buchen\u201c. Gebucht wurde aber der Platz von 7:00 bis 8:00 Uhr in der Fr\u00fch. Bitte schau was nicht in Ordnung ist und teste es mit einer erfolgreichen Buchung. Ich werde es nachher stornieren",
+      "created_at": "2026-01-10T21:57:58.758185"
+    },
+    {
+      "id": "task-20260110-224700",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Court selector",
+      "description": "Please add a selector with the two available locations (Arsenal, PostSV) with checkboxes for the user to decide, where they want to search for courts. Default is both checked.\n\nFor trainer search, the location selection shall be hidden.",
+      "created_at": "2026-01-10T22:47:00.450153"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-09T15:09:17.511691"
+    "last_updated": "2026-01-10T22:47:00.450194"
   }
 }
