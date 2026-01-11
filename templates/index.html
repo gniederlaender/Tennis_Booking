@@ -83,6 +83,21 @@
                         </button>
                     </div>
                 </div>
+                <div id="locationSelector" style="margin-top: 15px;">
+                    <label style="font-weight: 500; color: #333; margin-bottom: 8px; display: block;">Locations:</label>
+                    <div style="display: flex; gap: 15px;">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="locationArsenal" value="arsenal" checked
+                                   style="width: 18px; height: 18px; margin-right: 8px; cursor: pointer;">
+                            <span style="color: #555;">Arsenal (Das Spiel)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="locationPostSV" value="postsv" checked
+                                   style="width: 18px; height: 18px; margin-right: 8px; cursor: pointer;">
+                            <span style="color: #555;">Post SV Wien</span>
+                        </label>
+                    </div>
+                </div>
                 <div id="trainerNameField" style="display: none;">
                     <input type="text" id="trainerName" placeholder="Trainer name (optional)" style="width: 100%;">
                 </div>
@@ -116,6 +131,7 @@
             const courtBtn = document.getElementById('searchModeCourt');
             const trainerBtn = document.getElementById('searchModeTrainer');
             const trainerNameField = document.getElementById('trainerNameField');
+            const locationSelector = document.getElementById('locationSelector');
 
             if (mode === 'court') {
                 courtBtn.style.background = '#667eea';
@@ -123,12 +139,14 @@
                 trainerBtn.style.background = 'transparent';
                 trainerBtn.style.color = '#666';
                 trainerNameField.style.display = 'none';
+                locationSelector.style.display = 'block';
             } else {
                 courtBtn.style.background = 'transparent';
                 courtBtn.style.color = '#666';
                 trainerBtn.style.background = '#667eea';
                 trainerBtn.style.color = 'white';
                 trainerNameField.style.display = 'block';
+                locationSelector.style.display = 'none';
             }
         }
 
@@ -181,6 +199,16 @@
                 };
                 if (searchMode === 'trainer' && trainerName) {
                     requestData.trainerName = trainerName;
+                }
+
+                // Get selected locations for court search
+                if (searchMode === 'court') {
+                    const arsenalChecked = document.getElementById('locationArsenal').checked;
+                    const postsvChecked = document.getElementById('locationPostSV').checked;
+                    requestData.locations = {
+                        arsenal: arsenalChecked,
+                        postsv: postsvChecked
+                    };
                 }
 
                 const response = await fetch('search', {

@@ -312,26 +312,40 @@ class PostSVScraperV2:
             return False
 
 
-def scrape_all_portals(date, start_time, end_time):
+def scrape_all_portals(date, start_time, end_time, locations=None):
     """Scrape all configured portals and return combined results."""
     all_results = []
 
-    # Das Spiel
-    print("\n" + "="*60)
-    print("Scraping Das Spiel (Tenniszentrum Arsenal)...")
-    print("="*60)
-    dasspiel = DasSpielScraperV2()
-    dasspiel_results = dasspiel.scrape(date, start_time, end_time)
-    all_results.extend(dasspiel_results)
-    print(f"Found {len(dasspiel_results)} slots from Das Spiel\n")
+    # Default to both locations if not specified
+    if locations is None:
+        locations = {'arsenal': True, 'postsv': True}
+
+    # Das Spiel (Arsenal)
+    if locations.get('arsenal', True):
+        print("\n" + "="*60)
+        print("Scraping Das Spiel (Tenniszentrum Arsenal)...")
+        print("="*60)
+        dasspiel = DasSpielScraperV2()
+        dasspiel_results = dasspiel.scrape(date, start_time, end_time)
+        all_results.extend(dasspiel_results)
+        print(f"Found {len(dasspiel_results)} slots from Das Spiel\n")
+    else:
+        print("\n" + "="*60)
+        print("Skipping Das Spiel (Arsenal) - not selected")
+        print("="*60)
 
     # Post SV
-    print("\n" + "="*60)
-    print("Scraping Post SV Wien...")
-    print("="*60)
-    postsv = PostSVScraperV2()
-    postsv_results = postsv.scrape(date, start_time, end_time)
-    all_results.extend(postsv_results)
-    print(f"Found {len(postsv_results)} slots from Post SV Wien\n")
+    if locations.get('postsv', True):
+        print("\n" + "="*60)
+        print("Scraping Post SV Wien...")
+        print("="*60)
+        postsv = PostSVScraperV2()
+        postsv_results = postsv.scrape(date, start_time, end_time)
+        all_results.extend(postsv_results)
+        print(f"Found {len(postsv_results)} slots from Post SV Wien\n")
+    else:
+        print("\n" + "="*60)
+        print("Skipping Post SV Wien - not selected")
+        print("="*60)
 
     return all_results

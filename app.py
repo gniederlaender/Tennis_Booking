@@ -23,6 +23,7 @@ def search():
         timeframe = request.json.get('timeframe', '')
         search_mode = request.json.get('searchMode', 'court')  # 'court' or 'trainer'
         trainer_name = request.json.get('trainerName', None)
+        locations = request.json.get('locations', {'arsenal': True, 'postsv': True})
 
         if not timeframe:
             return jsonify({'error': 'Please enter a timeframe'}), 400
@@ -61,7 +62,7 @@ def search():
             response_data['preferred_index'] = None
         else:
             # Search for courts only (default)
-            slots = scrape_all_portals(date, start_time, end_time)
+            slots = scrape_all_portals(date, start_time, end_time, locations)
 
             # Get preferred slot if available
             pref_engine = PreferenceEngine()
