@@ -114,11 +114,15 @@ class DasSpielBooker:
         1. Start headless Firefox
         2. Sign in
         3. Navigate to calendar for the date
-        4. Find and click the matching time slot
+        4. Find and click the matching time slot (exact match using startswith)
         5. Click "Platz mieten" button
         6. Check AGB checkbox
         7. Click "Verbindlich Reservieren"
         8. Verify success
+
+        IMPORTANT: This method uses exact time matching (startswith) to ensure
+        the correct slot is booked. If the requested time is not found, it will
+        return an error instead of booking a different time slot.
         """
         driver = None
         try:
@@ -168,17 +172,27 @@ class DasSpielBooker:
                 driver.quit()
                 return False, "No free slots available"
 
-            # Try to find the slot matching the time
+            # Try to find the slot matching the time - use exact match with startswith
             target_slot = None
+            matched_time = None
+            available_times = []
             for slot_elem in free_slots:
                 slot_time = slot_elem.get_attribute('data-time')
-                if slot_time and time_slot in slot_time:
+                available_times.append(slot_time)
+                # Check if slot time starts with our target time (e.g., "18:00" matches "18:00:00")
+                if slot_time and slot_time.startswith(time_slot):
                     target_slot = slot_elem
+                    matched_time = slot_time
                     break
 
-            # If no exact match, use first available
+            # If no exact match found, return error instead of booking wrong slot
             if not target_slot:
-                target_slot = free_slots[0]
+                driver.quit()
+                available_str = ', '.join(str(t) for t in available_times if t)
+                return False, f"Could not find slot at {time_slot}. Available times: {available_str}"
+
+            # Log which slot we're booking
+            print(f"Booking slot: {matched_time} (requested: {time_slot})")
 
             # Click on the slot
             target_slot.click()
