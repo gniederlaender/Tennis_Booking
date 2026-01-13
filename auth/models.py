@@ -85,7 +85,8 @@ class User:
 
     def update_last_login(self):
         """Update last login timestamp."""
-        self.last_login = datetime.now().isoformat()
+        # Use SQLite timestamp format (YYYY-MM-DD HH:MM:SS) not ISO format
+        self.last_login = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         db = get_db()
         cursor = db.cursor()
         cursor.execute('UPDATE users SET last_login = ? WHERE id = ?',
