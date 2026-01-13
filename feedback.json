@@ -60,16 +60,58 @@
     {
       "id": "task-20260110-224700",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Court selector",
       "description": "Please add a selector with the two available locations (Arsenal, PostSV) with checkboxes for the user to decide, where they want to search for courts. Default is both checked.\n\nFor trainer search, the location selection shall be hidden.",
-      "created_at": "2026-01-10T22:47:00.450153"
+      "created_at": "2026-01-10T22:47:00.450153",
+      "completion_notes": "Completed by agent in run 20260111_084001\n\u2717 Verification: FAILED - Unknown\nCommit: 1b6655e",
+      "completed_at": "2026-01-11T08:52:13.495570"
+    },
+    {
+      "id": "task-20260113-080803",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Create a specification for a  registration and login functionality",
+      "description": "Create a specification for a registration and login flow. Do not implement anything in this sesssion, just think about the specification, weite it and append it to this todo. Keep the status of this Todo open, in order to be automatically implemented with the next run",
+      "created_at": "2026-01-13T08:08:03.330116",
+      "specification_file": "REGISTRATION_LOGIN_SPECIFICATION.md",
+      "specification_completed_at": "2026-01-13T08:15:00.000000",
+      "specification_summary": "Comprehensive 19-section specification covering: architecture (Flask + SQLite + SQLAlchemy), database schema (7 tables), security (bcrypt, encryption, CSRF, rate limiting), user flows (registration, login, profile management), UI/UX designs, 5 implementation phases, testing strategy, and rollout plan. Designed for multi-user support while maintaining backward compatibility with existing single-user data.",
+      "next_steps": [
+        "Review and validate the specification document",
+        "Prioritize implementation phases based on business needs",
+        "Set up development environment (dependencies, database)",
+        "Begin Phase 1: Core Authentication (registration, login, session management)",
+        "Phase 2: Portal Credentials Management (encrypt and store per-user credentials)",
+        "Phase 3: User-Specific Data (preferences and booking history per user)",
+        "Phase 4: Security Hardening (rate limiting, CSRF, audit logging)",
+        "Phase 5: Enhanced Features (email verification, password reset, remember me)"
+      ],
+      "key_decisions": {
+        "database": "SQLite (migrate to PostgreSQL when scaling needed)",
+        "authentication": "Flask-Login with session-based auth",
+        "password_hashing": "Werkzeug/bcrypt (PBKDF2-SHA256)",
+        "credentials_encryption": "Fernet symmetric encryption",
+        "session_timeout": "7 days (30 days with remember me)",
+        "rate_limiting": "5 login attempts per 15 minutes per IP",
+        "email_verification": "Phase 2 feature (not in MVP)"
+      },
+      "migration_strategy": {
+        "approach": "Create default admin user and migrate existing single-user data",
+        "files_to_migrate": [
+          "credentials.json -> portal_credentials table",
+          "user_preferences.json -> user_selections table",
+          "booking_history.json -> booking_history table"
+        ],
+        "rollback_plan": "Backups created, can restore previous version if needed"
+      }
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-11T08:48:43.749763"
+    "last_updated": "2026-01-13T08:08:03.330125"
   }
 }
