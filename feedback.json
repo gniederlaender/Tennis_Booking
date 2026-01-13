@@ -71,7 +71,7 @@
     {
       "id": "task-20260113-080803",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Create a specification for a  registration and login functionality",
       "description": "Create a specification for a registration and login flow. Do not implement anything in this sesssion, just think about the specification, weite it and append it to this todo. Keep the status of this Todo open, in order to be automatically implemented with the next run",
@@ -106,12 +106,23 @@
           "booking_history.json -> booking_history table"
         ],
         "rollback_plan": "Backups created, can restore previous version if needed"
-      }
+      },
+      "completion_notes": "Completed by agent in run 20260113_084001\n\u2717 Verification: FAILED - Unknown\nCommit: 5ccd15c",
+      "completed_at": "2026-01-13T08:44:37.921303"
+    },
+    {
+      "id": "task-20260113-150331",
+      "type": "feature",
+      "status": "open",
+      "priority": "critical",
+      "title": "Implement Registration and Login functionality - Phase 1",
+      "description": "Please implement Registration and Login functionality - Phase 1 as planned in REGISTRATION_LOGIN_SPECIFICATION.md.\nThe answers to the open questions are 100%, as you proposed and recommended.\n",
+      "created_at": "2026-01-13T15:03:31.606835"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-13T08:08:03.330125"
+    "last_updated": "2026-01-13T15:03:31.606843"
   }
 }
