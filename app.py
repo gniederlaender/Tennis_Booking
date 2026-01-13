@@ -1,22 +1,37 @@
 """Flask web application for Tennis Court Booking Finder."""
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, g
 from datetime import datetime
 from timeframe_parser import TimeframeParser
 from scrapers_v2 import scrape_all_portals
 from preference_engine import PreferenceEngine
 from booking import book_court
 from trainer_finder import find_trainers
+import config
+from database.db import init_db, close_db
+from auth import auth_bp, login_required
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'tennis-booking-secret-key-change-in-production'
+app.config['SECRET_KEY'] = config.SECRET_KEY
+app.config['SESSION_COOKIE_SECURE'] = config.SESSION_COOKIE_SECURE
+app.config['SESSION_COOKIE_HTTPONLY'] = config.SESSION_COOKIE_HTTPONLY
+app.config['SESSION_COOKIE_SAMESITE'] = config.SESSION_COOKIE_SAMESITE
+app.config['PERMANENT_SESSION_LIFETIME'] = config.PERMANENT_SESSION_LIFETIME
+
+# Register authentication blueprint
+app.register_blueprint(auth_bp)
+
+# Register database teardown
+app.teardown_appcontext(close_db)
 
 @app.route('/')
+@login_required
 def index():
     """Main search page."""
     return render_template('index.html')
 
 @app.route('/search', methods=['POST'])
+@login_required
 def search():
     """Handle search request."""
     try:
@@ -82,6 +97,7 @@ def search():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/book', methods=['POST'])
+@login_required
 def book():
     """Handle booking request."""
     try:
