@@ -149,7 +149,7 @@
             </form>
 
             <div class="footer-link">
-                Don't have an account? <a href="/auth/register">Register here</a>
+                Don't have an account? <a href="{{ url_for('auth.register_page') }}">Register here</a>
             </div>
         </div>
     </div>
@@ -171,7 +171,7 @@
             loginBtn.textContent = 'Logging in...';
 
             try {
-                const response = await fetch('/auth/login', {
+                const response = await fetch('login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password, remember_me })
@@ -184,7 +184,7 @@
                 }
 
                 // Login successful - redirect to home
-                window.location.href = '/';
+                window.location.href = '{{ url_for("index") }}';
 
             } catch (error) {
                 document.getElementById('error').textContent = error.message;

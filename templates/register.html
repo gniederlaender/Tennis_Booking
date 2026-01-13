@@ -167,7 +167,7 @@
             </form>
 
             <div class="footer-link">
-                Already have an account? <a href="/auth/login">Login here</a>
+                Already have an account? <a href="{{ url_for('auth.login_page') }}">Login here</a>
             </div>
         </div>
     </div>
@@ -223,7 +223,7 @@
             registerBtn.textContent = 'Creating account...';
 
             try {
-                const response = await fetch('/auth/register', {
+                const response = await fetch('register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password, confirm_password, first_name, last_name })
@@ -236,7 +236,7 @@
                 }
 
                 // Registration successful - redirect to home
-                window.location.href = '/';
+                window.location.href = '{{ url_for("index") }}';
 
             } catch (error) {
                 document.getElementById('error').textContent = error.message;
