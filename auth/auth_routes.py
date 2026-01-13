@@ -146,7 +146,7 @@ def login():
 def logout():
     """Handle logout."""
     session.clear()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.login_page'))
 
 @auth_bp.route('/status', methods=['GET'])
 def status():
