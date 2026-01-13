@@ -63,7 +63,7 @@
         <div class="header">
             <div class="user-menu">
                 <span class="user-email" id="userEmail"></span>
-                <a href="/auth/logout" class="logout-btn">Logout</a>
+                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
             </div>
             <h1>🎾 Tennis Court Finder</h1>
             <p>Find available tennis courts in Vienna</p>
@@ -133,11 +133,11 @@
         // Check authentication status on page load
         async function checkAuth() {
             try {
-                const response = await fetch('/auth/status');
+                const response = await fetch('auth/status');
                 const data = await response.json();
 
                 if (!response.ok || !data.authenticated) {
-                    window.location.href = '/auth/login';
+                    window.location.href = '{{ url_for("auth.login_page") }}';
                     return;
                 }
 
@@ -147,7 +147,7 @@
                 }
             } catch (error) {
                 console.error('Auth check failed:', error);
-                window.location.href = '/auth/login';
+                window.location.href = '{{ url_for("auth.login_page") }}';
             }
         }
 
