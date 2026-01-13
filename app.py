@@ -1,6 +1,7 @@
 """Flask web application for Tennis Court Booking Finder."""
 
 from flask import Flask, render_template, request, jsonify, g
+from werkzeug.middleware.proxy_fix import ProxyFix
 from datetime import datetime
 from timeframe_parser import TimeframeParser
 from scrapers_v2 import scrape_all_portals
@@ -17,6 +18,11 @@ app.config['SESSION_COOKIE_SECURE'] = config.SESSION_COOKIE_SECURE
 app.config['SESSION_COOKIE_HTTPONLY'] = config.SESSION_COOKIE_HTTPONLY
 app.config['SESSION_COOKIE_SAMESITE'] = config.SESSION_COOKIE_SAMESITE
 app.config['PERMANENT_SESSION_LIFETIME'] = config.PERMANENT_SESSION_LIFETIME
+
+# Configure app to work behind reverse proxy
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
 
 # Register authentication blueprint
 app.register_blueprint(auth_bp)

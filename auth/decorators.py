@@ -8,6 +8,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'user_id' not in session:
-            return redirect(url_for('auth.login', next=request.url))
+            # Use relative path for 'next' parameter to work with reverse proxy
+            return redirect(url_for('auth.login_page', next=request.path))
         return f(*args, **kwargs)
     return decorated_function
