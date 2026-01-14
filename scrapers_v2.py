@@ -42,7 +42,10 @@ class DasSpielScraperV2:
                 # Process each court
                 for court in calendar_data:
                     court_name = court.get('name', 'Unknown')
-                    square_id = court.get('id', '')  # Get the court UUID for booking
+
+                    # Get the court UUID for booking (field is named 'uuid' not 'id')
+                    square_id = court.get('uuid', '')
+
                     time_start = court.get('time_start', '07:00:00')
                     time_end = court.get('time_end', '22:00:00')
                     timeblock = court.get('timeblock', 60)  # minutes
