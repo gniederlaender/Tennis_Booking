@@ -163,48 +163,13 @@ class DasSpielBooker:
             submit_button.click()
             time.sleep(3)
 
-            # Navigate to calendar
-            calendar_url = f"{self.URL}?date={date}"
-            driver.get(calendar_url)
+            # Navigate directly to booking-data URL with square_id
+            # The website changed - data-time attributes no longer work
+            # Instead, we use the booking API URL directly
+            booking_url = f"{self.URL}calendar/booking-data/?date={date}&time_start={time_slot}&square_id={square_id}&is_half_hour=0"
+            print(f"BOOKING: Navigating to booking URL: {booking_url}", file=sys.stderr, flush=True)
+            driver.get(booking_url)
             time.sleep(3)
-
-            # Find all free slots
-            free_slots = driver.find_elements(By.CSS_SELECTOR, "a.square-free")
-            print(f"BOOKING DEBUG: Found {len(free_slots)} free slots on page", file=sys.stderr, flush=True)
-
-            if not free_slots:
-                driver.quit()
-                return False, "No free slots available"
-
-            # Try to find the slot matching the time - use exact match with startswith
-            target_slot = None
-            matched_time = None
-            available_times = []
-            for slot_elem in free_slots:
-                slot_time = slot_elem.get_attribute('data-time')
-                print(f"BOOKING DEBUG: Slot data-time attribute: {slot_time}", file=sys.stderr, flush=True)
-                available_times.append(slot_time)
-                # Check if slot time starts with our target time (e.g., "18:00" matches "18:00:00")
-                if slot_time and slot_time.startswith(time_slot):
-                    target_slot = slot_elem
-                    matched_time = slot_time
-                    break
-
-            print(f"BOOKING DEBUG: Looking for time: {time_slot}", file=sys.stderr, flush=True)
-            print(f"BOOKING DEBUG: Available times: {available_times}", file=sys.stderr, flush=True)
-
-            # If no exact match found, return error instead of booking wrong slot
-            if not target_slot:
-                driver.quit()
-                available_str = ', '.join(str(t) for t in available_times if t)
-                return False, f"Could not find slot at {time_slot}. Available times: {available_str}"
-
-            # Log which slot we're booking
-            print(f"BOOKING: Found matching slot: {matched_time} (requested: {time_slot})", file=sys.stderr, flush=True)
-
-            # Click on the slot
-            target_slot.click()
-            time.sleep(2)
 
             # Look for "Platz mieten" button
             buttons = driver.find_elements(By.TAG_NAME, "button")
