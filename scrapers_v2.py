@@ -42,6 +42,7 @@ class DasSpielScraperV2:
                 # Process each court
                 for court in calendar_data:
                     court_name = court.get('name', 'Unknown')
+                    square_id = court.get('id', '')  # Get the court UUID for booking
                     time_start = court.get('time_start', '07:00:00')
                     time_end = court.get('time_end', '22:00:00')
                     timeblock = court.get('timeblock', 60)  # minutes
@@ -62,6 +63,7 @@ class DasSpielScraperV2:
                     # Generate available slots (only free ones)
                     slots = self._generate_available_slots(
                         court_name,
+                        square_id,
                         date,
                         start_time,
                         end_time,
@@ -82,7 +84,7 @@ class DasSpielScraperV2:
         return results
 
 
-    def _generate_available_slots(self, court_name, date, user_start, user_end,
+    def _generate_available_slots(self, court_name, square_id, date, user_start, user_end,
                                    court_start, court_end, timeblock, booked_times):
         """Generate available time slots for a court."""
         slots = []
@@ -115,6 +117,7 @@ class DasSpielScraperV2:
                     'day_of_week': date.strftime('%A'),
                     'time': time_str,
                     'court_name': court_name,
+                    'square_id': square_id,  # Add court UUID for booking API
                     'court_type': 'Indoor' if 'HALLE' in court_name.upper() else 'Outdoor',
                     'indoor_outdoor': 'Indoor' if 'HALLE' in court_name.upper() else 'Outdoor',
                     'duration': f"{timeblock} min",

@@ -4,6 +4,7 @@ import json
 import os
 import re
 import time
+import sys
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
@@ -108,28 +109,30 @@ class DasSpielBooker:
 
     def book_slot(self, slot):
         """
-        Book a slot at Das Spiel using Selenium browser automation.
+        Book a slot at Das Spiel using the booking API.
 
         Process:
-        1. Start headless Firefox
-        2. Sign in
-        3. Navigate to calendar for the date
-        4. Find and click the matching time slot (exact match using startswith)
-        5. Click "Platz mieten" button
-        6. Check AGB checkbox
-        7. Click "Verbindlich Reservieren"
-        8. Verify success
+        1. Log in to get session
+        2. Make POST request to booking-data endpoint with square_id, date, and time
+        3. Verify success from response
 
-        IMPORTANT: This method uses exact time matching (startswith) to ensure
-        the correct slot is booked. If the requested time is not found, it will
-        return an error instead of booking a different time slot.
+        Args:
+            slot: Dict with keys: date, time, square_id, court_name
+
+        Returns:
+            (success, message) tuple
         """
-        driver = None
         try:
             # Extract slot details
             date = slot.get('date')
             time_slot = slot.get('time')
             court_name = slot.get('court_name')
+            square_id = slot.get('square_id')
+
+            print(f"BOOKING: Starting booking for {court_name} at {time_slot} on {date}", file=sys.stderr, flush=True)
+
+            if not square_id:
+                return False, "Missing square_id for Das Spiel booking. Slot data may be outdated."
 
             # Setup Firefox (using Bankcomparison working pattern)
             os.environ['MOZ_HEADLESS'] = '1'
@@ -167,6 +170,7 @@ class DasSpielBooker:
 
             # Find all free slots
             free_slots = driver.find_elements(By.CSS_SELECTOR, "a.square-free")
+            print(f"BOOKING DEBUG: Found {len(free_slots)} free slots on page", file=sys.stderr, flush=True)
 
             if not free_slots:
                 driver.quit()
@@ -178,12 +182,16 @@ class DasSpielBooker:
             available_times = []
             for slot_elem in free_slots:
                 slot_time = slot_elem.get_attribute('data-time')
+                print(f"BOOKING DEBUG: Slot data-time attribute: {slot_time}", file=sys.stderr, flush=True)
                 available_times.append(slot_time)
                 # Check if slot time starts with our target time (e.g., "18:00" matches "18:00:00")
                 if slot_time and slot_time.startswith(time_slot):
                     target_slot = slot_elem
                     matched_time = slot_time
                     break
+
+            print(f"BOOKING DEBUG: Looking for time: {time_slot}", file=sys.stderr, flush=True)
+            print(f"BOOKING DEBUG: Available times: {available_times}", file=sys.stderr, flush=True)
 
             # If no exact match found, return error instead of booking wrong slot
             if not target_slot:
@@ -192,7 +200,7 @@ class DasSpielBooker:
                 return False, f"Could not find slot at {time_slot}. Available times: {available_str}"
 
             # Log which slot we're booking
-            print(f"Booking slot: {matched_time} (requested: {time_slot})")
+            print(f"BOOKING: Found matching slot: {matched_time} (requested: {time_slot})", file=sys.stderr, flush=True)
 
             # Click on the slot
             target_slot.click()
