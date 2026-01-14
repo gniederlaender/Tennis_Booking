@@ -1,692 +1,175 @@
-2025-12-31 12:25:15 +01:00: [2025-12-31 12:25:15 +0100] [1854001] [INFO] Starting gunicorn 23.0.0
-2025-12-31 12:25:15 +01:00: [2025-12-31 12:25:15 +0100] [1854001] [INFO] Listening at: http://0.0.0.0:5001 (1854001)
-2025-12-31 12:25:15 +01:00: [2025-12-31 12:25:15 +0100] [1854001] [INFO] Using worker: sync
-2025-12-31 12:25:15 +01:00: [2025-12-31 12:25:15 +0100] [1854003] [INFO] Booting worker with pid: 1854003
-2025-12-31 12:25:15 +01:00: [2025-12-31 12:25:15 +0100] [1854004] [INFO] Booting worker with pid: 1854004
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1854001] [INFO] Handling signal: int
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1854004] [INFO] Worker exiting (pid: 1854004)
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1854003] [INFO] Worker exiting (pid: 1854003)
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1854001] [INFO] Shutting down: Master
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1862041] [INFO] Starting gunicorn 23.0.0
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1862041] [INFO] Listening at: http://0.0.0.0:5001 (1862041)
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1862041] [INFO] Using worker: sync
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1862048] [INFO] Booting worker with pid: 1862048
-2025-12-31 16:41:19 +01:00: [2025-12-31 16:41:19 +0100] [1862049] [INFO] Booting worker with pid: 1862049
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1862041] [INFO] Handling signal: int
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1862049] [INFO] Worker exiting (pid: 1862049)
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1862048] [INFO] Worker exiting (pid: 1862048)
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1862041] [INFO] Shutting down: Master
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1865167] [INFO] Starting gunicorn 23.0.0
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1865167] [INFO] Listening at: http://0.0.0.0:5001 (1865167)
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1865167] [INFO] Using worker: sync
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1865169] [INFO] Booting worker with pid: 1865169
-2025-12-31 17:22:48 +01:00: [2025-12-31 17:22:48 +0100] [1865170] [INFO] Booting worker with pid: 1865170
-2026-01-01 11:33:54 +01:00: [2026-01-01 11:33:54 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1865170)
-2026-01-01 11:33:54 +01:00: [2026-01-01 11:33:54 +0100] [1865170] [ERROR] Error handling request (no URI read)
-2026-01-01 11:33:54 +01:00: Traceback (most recent call last):
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-01 11:33:54 +01:00:     req = next(parser)
-2026-01-01 11:33:54 +01:00:           ^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-01 11:33:54 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-01 11:33:54 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-01 11:33:54 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-01 11:33:54 +01:00:     unused = self.parse(self.unreader)
-2026-01-01 11:33:54 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-01 11:33:54 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-01 11:33:54 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-01 11:33:54 +01:00:     self.get_data(unreader, buf)
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-01 11:33:54 +01:00:     data = unreader.read()
-2026-01-01 11:33:54 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-01 11:33:54 +01:00:     d = self.chunk()
-2026-01-01 11:33:54 +01:00:         ^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-01 11:33:54 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-01 11:33:54 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 11:33:54 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-01 11:33:54 +01:00:     sys.exit(1)
-2026-01-01 11:33:54 +01:00: SystemExit: 1
-2026-01-01 11:33:54 +01:00: [2026-01-01 11:33:54 +0100] [1865170] [INFO] Worker exiting (pid: 1865170)
-2026-01-01 11:33:54 +01:00: [2026-01-01 11:33:54 +0100] [1892097] [INFO] Booting worker with pid: 1892097
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1865169)
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1892097)
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1865169] [ERROR] Error handling request (no URI read)
-2026-01-01 23:53:42 +01:00: Traceback (most recent call last):
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-01 23:53:42 +01:00:     req = next(parser)
-2026-01-01 23:53:42 +01:00:           ^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-01 23:53:42 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-01 23:53:42 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-01 23:53:42 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-01 23:53:42 +01:00:     unused = self.parse(self.unreader)
-2026-01-01 23:53:42 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-01 23:53:42 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-01 23:53:42 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-01 23:53:42 +01:00:     self.get_data(unreader, buf)
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-01 23:53:42 +01:00:     data = unreader.read()
-2026-01-01 23:53:42 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-01 23:53:42 +01:00:     d = self.chunk()
-2026-01-01 23:53:42 +01:00:         ^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-01 23:53:42 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-01 23:53:42 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-01 23:53:42 +01:00:     sys.exit(1)
-2026-01-01 23:53:42 +01:00: SystemExit: 1
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1865169] [INFO] Worker exiting (pid: 1865169)
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1892097] [ERROR] Error handling request (no URI read)
-2026-01-01 23:53:42 +01:00: Traceback (most recent call last):
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-01 23:53:42 +01:00:     req = next(parser)
-2026-01-01 23:53:42 +01:00:           ^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-01 23:53:42 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-01 23:53:42 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-01 23:53:42 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-01 23:53:42 +01:00:     unused = self.parse(self.unreader)
-2026-01-01 23:53:42 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-01 23:53:42 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-01 23:53:42 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-01 23:53:42 +01:00:     self.get_data(unreader, buf)
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-01 23:53:42 +01:00:     data = unreader.read()
-2026-01-01 23:53:42 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-01 23:53:42 +01:00:     d = self.chunk()
-2026-01-01 23:53:42 +01:00:         ^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-01 23:53:42 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-01 23:53:42 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:53:42 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-01 23:53:42 +01:00:     sys.exit(1)
-2026-01-01 23:53:42 +01:00: SystemExit: 1
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1892097] [INFO] Worker exiting (pid: 1892097)
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1914761] [INFO] Booting worker with pid: 1914761
-2026-01-01 23:53:42 +01:00: [2026-01-01 23:53:42 +0100] [1914762] [INFO] Booting worker with pid: 1914762
-2026-01-01 23:55:44 +01:00: [2026-01-01 23:55:44 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1914761)
-2026-01-01 23:55:44 +01:00: [2026-01-01 23:55:44 +0100] [1914761] [ERROR] Error handling request (no URI read)
-2026-01-01 23:55:44 +01:00: Traceback (most recent call last):
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-01 23:55:44 +01:00:     req = next(parser)
-2026-01-01 23:55:44 +01:00:           ^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-01 23:55:44 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-01 23:55:44 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-01 23:55:44 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-01 23:55:44 +01:00:     unused = self.parse(self.unreader)
-2026-01-01 23:55:44 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-01 23:55:44 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-01 23:55:44 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-01 23:55:44 +01:00:     self.get_data(unreader, buf)
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-01 23:55:44 +01:00:     data = unreader.read()
-2026-01-01 23:55:44 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-01 23:55:44 +01:00:     d = self.chunk()
-2026-01-01 23:55:44 +01:00:         ^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-01 23:55:44 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-01 23:55:44 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-01 23:55:44 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-01 23:55:44 +01:00:     sys.exit(1)
-2026-01-01 23:55:44 +01:00: SystemExit: 1
-2026-01-01 23:55:44 +01:00: [2026-01-01 23:55:44 +0100] [1914761] [INFO] Worker exiting (pid: 1914761)
-2026-01-01 23:55:44 +01:00: [2026-01-01 23:55:44 +0100] [1914818] [INFO] Booting worker with pid: 1914818
-2026-01-02 00:38:57 +01:00: [2026-01-02 00:38:57 +0100] [1914762] [WARNING] Invalid request from ip=66.132.153.136: Invalid HTTP Version: (2, 0)
-2026-01-02 09:55:58 +01:00: [2026-01-02 09:55:58 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1914818)
-2026-01-02 09:55:58 +01:00: [2026-01-02 09:55:58 +0100] [1914818] [ERROR] Error handling request (no URI read)
-2026-01-02 09:55:58 +01:00: Traceback (most recent call last):
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-02 09:55:58 +01:00:     req = next(parser)
-2026-01-02 09:55:58 +01:00:           ^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-02 09:55:58 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-02 09:55:58 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-02 09:55:58 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-02 09:55:58 +01:00:     unused = self.parse(self.unreader)
-2026-01-02 09:55:58 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-02 09:55:58 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-02 09:55:58 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-02 09:55:58 +01:00:     self.get_data(unreader, buf)
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-02 09:55:58 +01:00:     data = unreader.read()
-2026-01-02 09:55:58 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-02 09:55:58 +01:00:     d = self.chunk()
-2026-01-02 09:55:58 +01:00:         ^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-02 09:55:58 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-02 09:55:58 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-02 09:55:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-02 09:55:58 +01:00:     sys.exit(1)
-2026-01-02 09:55:58 +01:00: SystemExit: 1
-2026-01-02 09:55:58 +01:00: [2026-01-02 09:55:58 +0100] [1914818] [INFO] Worker exiting (pid: 1914818)
-2026-01-02 09:55:58 +01:00: [2026-01-02 09:55:58 +0100] [1940903] [INFO] Booting worker with pid: 1940903
-2026-01-03 01:00:32 +01:00: [2026-01-03 01:00:32 +0100] [1940903] [WARNING] Invalid request from ip=162.142.125.127: Invalid HTTP Version: (2, 0)
-2026-01-03 09:17:41 +01:00: [2026-01-03 09:17:41 +0100] [1940903] [WARNING] Invalid request from ip=199.45.155.107: Invalid HTTP Version: (2, 0)
-2026-01-03 10:11:24 +01:00: [2026-01-03 10:11:24 +0100] [1940903] [WARNING] Invalid request from ip=167.94.146.52: Invalid HTTP Version: (2, 0)
-2026-01-03 10:26:33 +01:00: [2026-01-03 10:26:33 +0100] [1914762] [WARNING] Invalid request from ip=3.134.148.59: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-03 11:21:57 +01:00: [2026-01-03 11:21:57 +0100] [1940903] [WARNING] Invalid request from ip=161.35.51.100: Invalid HTTP request line: ''
-2026-01-04 04:41:33 +01:00: [2026-01-04 04:41:33 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1940903)
-2026-01-04 04:41:33 +01:00: [2026-01-04 04:41:33 +0100] [1940903] [ERROR] Error handling request (no URI read)
-2026-01-04 04:41:33 +01:00: Traceback (most recent call last):
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-04 04:41:33 +01:00:     req = next(parser)
-2026-01-04 04:41:33 +01:00:           ^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-04 04:41:33 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-04 04:41:33 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-04 04:41:33 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-04 04:41:33 +01:00:     unused = self.parse(self.unreader)
-2026-01-04 04:41:33 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-04 04:41:33 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-04 04:41:33 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-04 04:41:33 +01:00:     self.get_data(unreader, buf)
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-04 04:41:33 +01:00:     data = unreader.read()
-2026-01-04 04:41:33 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-04 04:41:33 +01:00:     d = self.chunk()
-2026-01-04 04:41:33 +01:00:         ^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-04 04:41:33 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-04 04:41:33 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-04 04:41:33 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-04 04:41:33 +01:00:     sys.exit(1)
-2026-01-04 04:41:33 +01:00: SystemExit: 1
-2026-01-04 04:41:33 +01:00: [2026-01-04 04:41:33 +0100] [1940903] [INFO] Worker exiting (pid: 1940903)
-2026-01-04 04:41:33 +01:00: [2026-01-04 04:41:33 +0100] [2012580] [INFO] Booting worker with pid: 2012580
-2026-01-04 11:07:44 +01:00: [2026-01-04 11:07:44 +0100] [2012580] [WARNING] Invalid request from ip=3.143.33.63: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-04 11:09:45 +01:00: [2026-01-04 11:09:45 +0100] [2012580] [WARNING] Invalid request from ip=206.168.34.217: Invalid HTTP Version: (2, 0)
-2026-01-04 11:12:28 +01:00: [2026-01-04 11:12:28 +0100] [1914762] [WARNING] Invalid request from ip=167.94.138.166: Invalid HTTP Version: (2, 0)
-2026-01-05 07:23:04 +01:00: [2026-01-05 07:23:04 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:2012580)
-2026-01-05 07:23:04 +01:00: [2026-01-05 07:23:04 +0100] [2012580] [ERROR] Error handling request (no URI read)
-2026-01-05 07:23:04 +01:00: Traceback (most recent call last):
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-05 07:23:04 +01:00:     req = next(parser)
-2026-01-05 07:23:04 +01:00:           ^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-05 07:23:04 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-05 07:23:04 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-05 07:23:04 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-05 07:23:04 +01:00:     unused = self.parse(self.unreader)
-2026-01-05 07:23:04 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-05 07:23:04 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-05 07:23:04 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-05 07:23:04 +01:00:     self.get_data(unreader, buf)
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-05 07:23:04 +01:00:     data = unreader.read()
-2026-01-05 07:23:04 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-05 07:23:04 +01:00:     d = self.chunk()
-2026-01-05 07:23:04 +01:00:         ^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-05 07:23:04 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-05 07:23:04 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-05 07:23:04 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-05 07:23:04 +01:00:     sys.exit(1)
-2026-01-05 07:23:04 +01:00: SystemExit: 1
-2026-01-05 07:23:04 +01:00: [2026-01-05 07:23:04 +0100] [2012580] [INFO] Worker exiting (pid: 2012580)
-2026-01-05 07:23:04 +01:00: [2026-01-05 07:23:04 +0100] [2052677] [INFO] Booting worker with pid: 2052677
-2026-01-05 12:01:59 +01:00: [2026-01-05 12:01:59 +0100] [2052677] [WARNING] Invalid request from ip=167.94.138.50: Invalid HTTP Version: (2, 0)
-2026-01-05 12:13:49 +01:00: [2026-01-05 12:13:49 +0100] [1914762] [WARNING] Invalid request from ip=3.134.148.59: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-06 01:44:55 +01:00: [2026-01-06 01:44:55 +0100] [1914762] [WARNING] Invalid request from ip=172.235.181.217: Invalid HTTP request line: ''
-2026-01-06 01:44:56 +01:00: [2026-01-06 01:44:56 +0100] [1914762] [WARNING] Invalid request from ip=172.235.181.217: Invalid HTTP Version: 'RTSP/1.0'
-2026-01-06 01:45:11 +01:00: [2026-01-06 01:45:11 +0100] [1914762] [WARNING] Invalid request from ip=172.235.181.217: Invalid HTTP request line: 'HELP'
-2026-01-06 01:45:16 +01:00: [2026-01-06 01:45:16 +0100] [2052677] [WARNING] Invalid request from ip=172.235.181.217: Invalid HTTP request line: '\x03\x00\x00*%à\x00\x00\x00\x00\x00Cookie: mstshash=nmap'
-2026-01-06 01:45:51 +01:00: [2026-01-06 01:45:51 +0100] [1914762] [WARNING] Invalid request from ip=172.235.181.217: Invalid HTTP Version: 'SIP/2.0'
-2026-01-06 13:00:31 +01:00: [2026-01-06 13:00:31 +0100] [1914762] [WARNING] Invalid request from ip=206.168.34.216: Invalid HTTP Version: (2, 0)
-2026-01-06 13:59:37 +01:00: [2026-01-06 13:59:37 +0100] [2052677] [WARNING] Invalid request from ip=3.149.59.26: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-06 16:46:58 +01:00: [2026-01-06 16:46:58 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:2052677)
-2026-01-06 16:46:58 +01:00: [2026-01-06 16:46:58 +0100] [2052677] [ERROR] Error handling request (no URI read)
-2026-01-06 16:46:58 +01:00: Traceback (most recent call last):
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-06 16:46:58 +01:00:     req = next(parser)
-2026-01-06 16:46:58 +01:00:           ^^^^^^^^^^^^
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-06 16:46:58 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-06 16:46:58 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-06 16:46:58 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-06 16:46:58 +01:00:     unused = self.parse(self.unreader)
-2026-01-06 16:46:58 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 271, in parse
-2026-01-06 16:46:58 +01:00:     self.get_data(unreader, buf, stop=True)
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-06 16:46:58 +01:00:     data = unreader.read()
-2026-01-06 16:46:58 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-06 16:46:58 +01:00:     d = self.chunk()
-2026-01-06 16:46:58 +01:00:         ^^^^^^^^^^^^
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-06 16:46:58 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-06 16:46:58 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-06 16:46:58 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-06 16:46:58 +01:00:     sys.exit(1)
-2026-01-06 16:46:58 +01:00: SystemExit: 1
-2026-01-06 16:46:58 +01:00: [2026-01-06 16:46:58 +0100] [2052677] [INFO] Worker exiting (pid: 2052677)
-2026-01-06 16:46:59 +01:00: [2026-01-06 16:46:59 +0100] [2133772] [INFO] Booting worker with pid: 2133772
-2026-01-07 13:22:46 +01:00: [2026-01-07 13:22:46 +0100] [1914762] [WARNING] Invalid request from ip=206.168.34.41: Invalid HTTP Version: (2, 0)
-2026-01-07 13:54:54 +01:00: [2026-01-07 13:54:54 +0100] [2133772] [WARNING] Invalid request from ip=167.94.138.170: Invalid HTTP Version: (2, 0)
-2026-01-07 14:23:46 +01:00: [2026-01-07 14:23:46 +0100] [1914762] [WARNING] Invalid request from ip=3.134.148.59: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-07 21:01:48 +01:00: [2026-01-07 21:01:48 +0100] [1914762] [WARNING] Invalid request from ip=87.251.75.163: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
-2026-01-07 21:59:03 +01:00: [2026-01-07 21:59:03 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:1914762)
-2026-01-07 21:59:03 +01:00: [2026-01-07 21:59:03 +0100] [1914762] [ERROR] Error handling request (no URI read)
-2026-01-07 21:59:03 +01:00: Traceback (most recent call last):
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-07 21:59:03 +01:00:     req = next(parser)
-2026-01-07 21:59:03 +01:00:           ^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-07 21:59:03 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-07 21:59:03 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-07 21:59:03 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-07 21:59:03 +01:00:     unused = self.parse(self.unreader)
-2026-01-07 21:59:03 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-07 21:59:03 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-07 21:59:03 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-07 21:59:03 +01:00:     self.get_data(unreader, buf)
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-07 21:59:03 +01:00:     data = unreader.read()
-2026-01-07 21:59:03 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-07 21:59:03 +01:00:     d = self.chunk()
-2026-01-07 21:59:03 +01:00:         ^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-07 21:59:03 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-07 21:59:03 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-07 21:59:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-07 21:59:03 +01:00:     sys.exit(1)
-2026-01-07 21:59:03 +01:00: SystemExit: 1
-2026-01-07 21:59:03 +01:00: [2026-01-07 21:59:03 +0100] [1914762] [INFO] Worker exiting (pid: 1914762)
-2026-01-07 21:59:04 +01:00: [2026-01-07 21:59:04 +0100] [2182649] [INFO] Booting worker with pid: 2182649
-2026-01-08 08:49:57 +01:00: [2026-01-08 08:49:57 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:2133772)
-2026-01-08 08:49:57 +01:00: [2026-01-08 08:49:57 +0100] [2133772] [ERROR] Error handling request (no URI read)
-2026-01-08 08:49:57 +01:00: Traceback (most recent call last):
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-08 08:49:57 +01:00:     req = next(parser)
-2026-01-08 08:49:57 +01:00:           ^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-08 08:49:57 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-08 08:49:57 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-08 08:49:57 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-08 08:49:57 +01:00:     unused = self.parse(self.unreader)
-2026-01-08 08:49:57 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-08 08:49:57 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-08 08:49:57 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-08 08:49:57 +01:00:     self.get_data(unreader, buf)
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-08 08:49:57 +01:00:     data = unreader.read()
-2026-01-08 08:49:57 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-08 08:49:57 +01:00:     d = self.chunk()
-2026-01-08 08:49:57 +01:00:         ^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-08 08:49:57 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-08 08:49:57 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:49:57 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-08 08:49:57 +01:00:     sys.exit(1)
-2026-01-08 08:49:57 +01:00: SystemExit: 1
-2026-01-08 08:49:57 +01:00: [2026-01-08 08:49:57 +0100] [2133772] [INFO] Worker exiting (pid: 2133772)
-2026-01-08 08:49:57 +01:00: [2026-01-08 08:49:57 +0100] [2202253] [INFO] Booting worker with pid: 2202253
-2026-01-08 08:50:00 +01:00: [2026-01-08 08:50:00 +0100] [1865167] [CRITICAL] WORKER TIMEOUT (pid:2182649)
-2026-01-08 08:50:00 +01:00: [2026-01-08 08:50:00 +0100] [2182649] [ERROR] Error handling request (no URI read)
-2026-01-08 08:50:00 +01:00: Traceback (most recent call last):
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-08 08:50:00 +01:00:     req = next(parser)
-2026-01-08 08:50:00 +01:00:           ^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-08 08:50:00 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-08 08:50:00 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-08 08:50:00 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-08 08:50:00 +01:00:     unused = self.parse(self.unreader)
-2026-01-08 08:50:00 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-08 08:50:00 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-08 08:50:00 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-08 08:50:00 +01:00:     self.get_data(unreader, buf)
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-08 08:50:00 +01:00:     data = unreader.read()
-2026-01-08 08:50:00 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-08 08:50:00 +01:00:     d = self.chunk()
-2026-01-08 08:50:00 +01:00:         ^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-08 08:50:00 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-08 08:50:00 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-08 08:50:00 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-08 08:50:00 +01:00:     sys.exit(1)
-2026-01-08 08:50:00 +01:00: SystemExit: 1
-2026-01-08 08:50:00 +01:00: [2026-01-08 08:50:00 +0100] [2182649] [INFO] Worker exiting (pid: 2182649)
-2026-01-08 08:50:00 +01:00: [2026-01-08 08:50:00 +0100] [2202256] [INFO] Booting worker with pid: 2202256
-2026-01-08 14:03:24 +01:00: [2026-01-08 14:03:24 +0100] [2202253] [WARNING] Invalid request from ip=3.130.96.91: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-08 15:09:22 +01:00: [2026-01-08 15:09:22 +0100] [2202253] [WARNING] Invalid request from ip=206.168.34.212: Invalid HTTP Version: (2, 0)
-2026-01-08 19:44:59 +01:00: [2026-01-08 19:44:59 +0100] [1865167] [INFO] Handling signal: int
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2202256] [INFO] Worker exiting (pid: 2202256)
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2202253] [INFO] Worker exiting (pid: 2202253)
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [1865167] [INFO] Shutting down: Master
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220889] [INFO] Starting gunicorn 23.0.0
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220889] [INFO] Listening at: http://0.0.0.0:5001 (2220889)
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220889] [INFO] Using worker: sync
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220890] [INFO] Booting worker with pid: 2220890
-2026-01-08 19:45:00 +01:00: [2026-01-08 19:45:00 +0100] [2220891] [INFO] Booting worker with pid: 2220891
-2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220889] [INFO] Handling signal: int
-2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220890] [INFO] Worker exiting (pid: 2220890)
-2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220891] [INFO] Worker exiting (pid: 2220891)
-2026-01-08 23:45:09 +01:00: [2026-01-08 23:45:09 +0100] [2220889] [INFO] Shutting down: Master
-2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230386] [INFO] Starting gunicorn 23.0.0
-2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230386] [INFO] Listening at: http://0.0.0.0:5001 (2230386)
-2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230386] [INFO] Using worker: sync
-2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230388] [INFO] Booting worker with pid: 2230388
-2026-01-08 23:45:10 +01:00: [2026-01-08 23:45:10 +0100] [2230389] [INFO] Booting worker with pid: 2230389
-2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2230386] [CRITICAL] WORKER TIMEOUT (pid:2230389)
-2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2230389] [ERROR] Error handling request (no URI read)
-2026-01-09 06:04:21 +01:00: Traceback (most recent call last):
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-09 06:04:21 +01:00:     req = next(parser)
-2026-01-09 06:04:21 +01:00:           ^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-09 06:04:21 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-09 06:04:21 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-09 06:04:21 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-09 06:04:21 +01:00:     unused = self.parse(self.unreader)
-2026-01-09 06:04:21 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-09 06:04:21 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-09 06:04:21 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-09 06:04:21 +01:00:     self.get_data(unreader, buf)
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-09 06:04:21 +01:00:     data = unreader.read()
-2026-01-09 06:04:21 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-09 06:04:21 +01:00:     d = self.chunk()
-2026-01-09 06:04:21 +01:00:         ^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-09 06:04:21 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-09 06:04:21 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-09 06:04:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-09 06:04:21 +01:00:     sys.exit(1)
-2026-01-09 06:04:21 +01:00: SystemExit: 1
-2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2230389] [INFO] Worker exiting (pid: 2230389)
-2026-01-09 06:04:21 +01:00: [2026-01-09 06:04:21 +0100] [2238545] [INFO] Booting worker with pid: 2238545
-2026-01-09 07:12:00 +01:00: [2026-01-09 07:12:00 +0100] [2230386] [INFO] Handling signal: int
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2238545] [INFO] Worker exiting (pid: 2238545)
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2230388] [INFO] Worker exiting (pid: 2230388)
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2230386] [INFO] Shutting down: Master
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241828] [INFO] Starting gunicorn 23.0.0
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241828] [INFO] Listening at: http://0.0.0.0:5001 (2241828)
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241828] [INFO] Using worker: sync
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241829] [INFO] Booting worker with pid: 2241829
-2026-01-09 07:12:01 +01:00: [2026-01-09 07:12:01 +0100] [2241831] [INFO] Booting worker with pid: 2241831
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2241828] [INFO] Handling signal: int
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2241831] [INFO] Worker exiting (pid: 2241831)
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2241829] [INFO] Worker exiting (pid: 2241829)
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2241828] [INFO] Shutting down: Master
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2242119] [INFO] Starting gunicorn 23.0.0
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2242119] [INFO] Listening at: http://0.0.0.0:5001 (2242119)
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2242119] [INFO] Using worker: sync
-2026-01-09 07:16:08 +01:00: [2026-01-09 07:16:08 +0100] [2242120] [INFO] Booting worker with pid: 2242120
-2026-01-09 07:16:09 +01:00: [2026-01-09 07:16:09 +0100] [2242121] [INFO] Booting worker with pid: 2242121
-2026-01-09 07:17:30 +01:00: [2026-01-09 07:17:30 +0100] [2242119] [INFO] Handling signal: int
-2026-01-09 07:17:31 +01:00: [2026-01-09 07:17:31 +0100] [2242121] [INFO] Worker exiting (pid: 2242121)
-2026-01-09 07:17:31 +01:00: [2026-01-09 07:17:31 +0100] [2242120] [INFO] Worker exiting (pid: 2242120)
-2026-01-09 07:17:31 +01:00: [2026-01-09 07:17:31 +0100] [2242119] [INFO] Shutting down: Master
-2026-01-09 07:17:45 +01:00: [2026-01-09 07:17:45 +0100] [2242163] [INFO] Starting gunicorn 23.0.0
-2026-01-09 07:17:45 +01:00: [2026-01-09 07:17:45 +0100] [2242163] [INFO] Listening at: http://0.0.0.0:5001 (2242163)
-2026-01-09 07:17:45 +01:00: [2026-01-09 07:17:45 +0100] [2242163] [INFO] Using worker: sync
-2026-01-09 07:17:45 +01:00: [2026-01-09 07:17:45 +0100] [2242164] [INFO] Booting worker with pid: 2242164
-2026-01-09 07:17:45 +01:00: [2026-01-09 07:17:45 +0100] [2242165] [INFO] Booting worker with pid: 2242165
-2026-01-09 08:54:10 +01:00: [2026-01-09 08:54:10 +0100] [2242163] [INFO] Handling signal: int
-2026-01-09 08:54:10 +01:00: [2026-01-09 08:54:10 +0100] [2242165] [INFO] Worker exiting (pid: 2242165)
-2026-01-09 08:54:10 +01:00: [2026-01-09 08:54:10 +0100] [2242164] [INFO] Worker exiting (pid: 2242164)
-2026-01-09 08:54:11 +01:00: [2026-01-09 08:54:11 +0100] [2242163] [INFO] Shutting down: Master
-2026-01-09 08:54:11 +01:00: [2026-01-09 08:54:11 +0100] [2246193] [INFO] Starting gunicorn 23.0.0
-2026-01-09 08:54:11 +01:00: [2026-01-09 08:54:11 +0100] [2246193] [INFO] Listening at: http://0.0.0.0:5001 (2246193)
-2026-01-09 08:54:11 +01:00: [2026-01-09 08:54:11 +0100] [2246193] [INFO] Using worker: sync
-2026-01-09 08:54:11 +01:00: [2026-01-09 08:54:11 +0100] [2246194] [INFO] Booting worker with pid: 2246194
-2026-01-09 08:54:11 +01:00: [2026-01-09 08:54:11 +0100] [2246196] [INFO] Booting worker with pid: 2246196
-2026-01-09 15:14:50 +01:00: [2026-01-09 15:14:50 +0100] [2246193] [INFO] Handling signal: int
-2026-01-09 15:14:50 +01:00: [2026-01-09 15:14:50 +0100] [2246196] [INFO] Worker exiting (pid: 2246196)
-2026-01-09 15:14:50 +01:00: [2026-01-09 15:14:50 +0100] [2246194] [INFO] Worker exiting (pid: 2246194)
-2026-01-09 15:14:51 +01:00: [2026-01-09 15:14:51 +0100] [2246193] [INFO] Shutting down: Master
-2026-01-09 15:14:51 +01:00: [2026-01-09 15:14:51 +0100] [2269071] [INFO] Starting gunicorn 23.0.0
-2026-01-09 15:14:51 +01:00: [2026-01-09 15:14:51 +0100] [2269071] [INFO] Listening at: http://0.0.0.0:5001 (2269071)
-2026-01-09 15:14:51 +01:00: [2026-01-09 15:14:51 +0100] [2269071] [INFO] Using worker: sync
-2026-01-09 15:14:51 +01:00: [2026-01-09 15:14:51 +0100] [2269072] [INFO] Booting worker with pid: 2269072
-2026-01-09 15:14:51 +01:00: [2026-01-09 15:14:51 +0100] [2269073] [INFO] Booting worker with pid: 2269073
-2026-01-09 15:21:33 +01:00: [2026-01-09 15:21:33 +0100] [2269072] [WARNING] Invalid request from ip=3.134.148.59: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-09 16:01:42 +01:00: [2026-01-09 16:01:42 +0100] [2269072] [WARNING] Invalid request from ip=167.94.138.114: Invalid HTTP Version: (2, 0)
-2026-01-09 20:41:09 +01:00: [2026-01-09 20:41:09 +0100] [2269072] [WARNING] Invalid request from ip=87.251.75.163: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
-2026-01-10 03:18:46 +01:00: [2026-01-10 03:18:46 +0100] [2269073] [WARNING] Invalid request from ip=198.235.24.73: Invalid HTTP request line: '\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03\x06\x0bEËd@ÖË\x84ú(\x04ç©?ØºÆÛÿ'
-2026-01-10 14:55:46 +01:00: [2026-01-10 14:55:46 +0100] [2269073] [WARNING] Invalid request from ip=206.168.34.213: Invalid HTTP Version: (2, 0)
-2026-01-10 16:26:33 +01:00: [2026-01-10 16:26:33 +0100] [2269073] [WARNING] Invalid request from ip=3.130.96.91: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-10 16:34:01 +01:00: [2026-01-10 16:34:01 +0100] [2269071] [CRITICAL] WORKER TIMEOUT (pid:2269072)
-2026-01-10 16:34:01 +01:00: [2026-01-10 16:34:01 +0100] [2269072] [ERROR] Error handling request (no URI read)
-2026-01-10 16:34:01 +01:00: Traceback (most recent call last):
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-10 16:34:01 +01:00:     req = next(parser)
-2026-01-10 16:34:01 +01:00:           ^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-10 16:34:01 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-10 16:34:01 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-10 16:34:01 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-10 16:34:01 +01:00:     unused = self.parse(self.unreader)
-2026-01-10 16:34:01 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-10 16:34:01 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-10 16:34:01 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-10 16:34:01 +01:00:     self.get_data(unreader, buf)
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-10 16:34:01 +01:00:     data = unreader.read()
-2026-01-10 16:34:01 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-10 16:34:01 +01:00:     d = self.chunk()
-2026-01-10 16:34:01 +01:00:         ^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-10 16:34:01 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-10 16:34:01 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 16:34:01 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-10 16:34:01 +01:00:     sys.exit(1)
-2026-01-10 16:34:01 +01:00: SystemExit: 1
-2026-01-10 16:34:01 +01:00: [2026-01-10 16:34:01 +0100] [2269072] [INFO] Worker exiting (pid: 2269072)
-2026-01-10 16:34:01 +01:00: [2026-01-10 16:34:01 +0100] [2308625] [INFO] Booting worker with pid: 2308625
-2026-01-10 19:39:25 +01:00: [2026-01-10 19:39:25 +0100] [2269071] [CRITICAL] WORKER TIMEOUT (pid:2269073)
-2026-01-10 19:39:25 +01:00: [2026-01-10 19:39:25 +0100] [2269073] [ERROR] Error handling request (no URI read)
-2026-01-10 19:39:25 +01:00: Traceback (most recent call last):
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-10 19:39:25 +01:00:     req = next(parser)
-2026-01-10 19:39:25 +01:00:           ^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-10 19:39:25 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-10 19:39:25 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-10 19:39:25 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-10 19:39:25 +01:00:     unused = self.parse(self.unreader)
-2026-01-10 19:39:25 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-10 19:39:25 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-10 19:39:25 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-10 19:39:25 +01:00:     self.get_data(unreader, buf)
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-10 19:39:25 +01:00:     data = unreader.read()
-2026-01-10 19:39:25 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-10 19:39:25 +01:00:     d = self.chunk()
-2026-01-10 19:39:25 +01:00:         ^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-10 19:39:25 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-10 19:39:25 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-10 19:39:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-10 19:39:25 +01:00:     sys.exit(1)
-2026-01-10 19:39:25 +01:00: SystemExit: 1
-2026-01-10 19:39:25 +01:00: [2026-01-10 19:39:25 +0100] [2269073] [INFO] Worker exiting (pid: 2269073)
-2026-01-10 19:39:25 +01:00: [2026-01-10 19:39:25 +0100] [2312884] [INFO] Booting worker with pid: 2312884
-2026-01-11 08:58:18 +01:00: [2026-01-11 08:58:18 +0100] [2269071] [INFO] Handling signal: int
-2026-01-11 08:58:18 +01:00: [2026-01-11 08:58:18 +0100] [2312884] [INFO] Worker exiting (pid: 2312884)
-2026-01-11 08:58:18 +01:00: [2026-01-11 08:58:18 +0100] [2308625] [INFO] Worker exiting (pid: 2308625)
-2026-01-11 08:58:18 +01:00: [2026-01-11 08:58:18 +0100] [2269071] [INFO] Shutting down: Master
-2026-01-11 08:58:19 +01:00: [2026-01-11 08:58:19 +0100] [2341391] [INFO] Starting gunicorn 23.0.0
-2026-01-11 08:58:19 +01:00: [2026-01-11 08:58:19 +0100] [2341391] [INFO] Listening at: http://0.0.0.0:5001 (2341391)
-2026-01-11 08:58:19 +01:00: [2026-01-11 08:58:19 +0100] [2341391] [INFO] Using worker: sync
-2026-01-11 08:58:19 +01:00: [2026-01-11 08:58:19 +0100] [2341392] [INFO] Booting worker with pid: 2341392
-2026-01-11 08:58:19 +01:00: [2026-01-11 08:58:19 +0100] [2341393] [INFO] Booting worker with pid: 2341393
-2026-01-11 09:08:03 +01:00: [2026-01-11 09:08:03 +0100] [2341391] [CRITICAL] WORKER TIMEOUT (pid:2341393)
-2026-01-11 09:08:03 +01:00: [2026-01-11 09:08:03 +0100] [2341393] [ERROR] Error handling request (no URI read)
-2026-01-11 09:08:03 +01:00: Traceback (most recent call last):
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-11 09:08:03 +01:00:     req = next(parser)
-2026-01-11 09:08:03 +01:00:           ^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-11 09:08:03 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-11 09:08:03 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-11 09:08:03 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-11 09:08:03 +01:00:     unused = self.parse(self.unreader)
-2026-01-11 09:08:03 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-11 09:08:03 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-11 09:08:03 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-11 09:08:03 +01:00:     self.get_data(unreader, buf)
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-11 09:08:03 +01:00:     data = unreader.read()
-2026-01-11 09:08:03 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-11 09:08:03 +01:00:     d = self.chunk()
-2026-01-11 09:08:03 +01:00:         ^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-11 09:08:03 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-11 09:08:03 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-11 09:08:03 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-11 09:08:03 +01:00:     sys.exit(1)
-2026-01-11 09:08:03 +01:00: SystemExit: 1
-2026-01-11 09:08:03 +01:00: [2026-01-11 09:08:03 +0100] [2341393] [INFO] Worker exiting (pid: 2341393)
-2026-01-11 09:08:03 +01:00: [2026-01-11 09:08:03 +0100] [2341665] [INFO] Booting worker with pid: 2341665
-2026-01-11 13:47:02 +01:00: [2026-01-11 13:47:02 +0100] [2341665] [WARNING] Invalid request from ip=64.227.136.93: Invalid HTTP request line: ''
-2026-01-11 13:47:02 +01:00: [2026-01-11 13:47:02 +0100] [2341665] [WARNING] Invalid request from ip=64.227.136.93: Invalid HTTP request line: ''
-2026-01-11 15:40:56 +01:00: [2026-01-11 15:40:56 +0100] [2341665] [WARNING] Invalid request from ip=199.45.154.118: Invalid HTTP Version: (2, 0)
-2026-01-11 16:14:25 +01:00: [2026-01-11 16:14:25 +0100] [2341665] [WARNING] Invalid request from ip=3.137.73.221: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-11 17:59:29 +01:00: [2026-01-11 17:59:29 +0100] [2341665] [WARNING] Invalid request from ip=167.94.138.113: Invalid HTTP Version: (2, 0)
-2026-01-12 00:21:47 +01:00: [2026-01-12 00:21:47 +0100] [2341391] [CRITICAL] WORKER TIMEOUT (pid:2341665)
-2026-01-12 00:21:47 +01:00: [2026-01-12 00:21:47 +0100] [2341665] [ERROR] Error handling request (no URI read)
-2026-01-12 00:21:47 +01:00: Traceback (most recent call last):
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-12 00:21:47 +01:00:     req = next(parser)
-2026-01-12 00:21:47 +01:00:           ^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-12 00:21:47 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-12 00:21:47 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-12 00:21:47 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-12 00:21:47 +01:00:     unused = self.parse(self.unreader)
-2026-01-12 00:21:47 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-12 00:21:47 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-12 00:21:47 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-12 00:21:47 +01:00:     self.get_data(unreader, buf)
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-12 00:21:47 +01:00:     data = unreader.read()
-2026-01-12 00:21:47 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-12 00:21:47 +01:00:     d = self.chunk()
-2026-01-12 00:21:47 +01:00:         ^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-12 00:21:47 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-12 00:21:47 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-12 00:21:47 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-12 00:21:47 +01:00:     sys.exit(1)
-2026-01-12 00:21:47 +01:00: SystemExit: 1
-2026-01-12 00:21:47 +01:00: [2026-01-12 00:21:47 +0100] [2341665] [INFO] Worker exiting (pid: 2341665)
-2026-01-12 00:21:47 +01:00: [2026-01-12 00:21:47 +0100] [2372989] [INFO] Booting worker with pid: 2372989
-2026-01-12 08:12:35 +01:00: [2026-01-12 08:12:35 +0100] [2372989] [WARNING] Invalid request from ip=80.94.95.75: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
-2026-01-12 09:38:42 +01:00: [2026-01-12 09:38:42 +0100] [2372989] [WARNING] Invalid request from ip=80.94.95.75: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
-2026-01-12 15:29:14 +01:00: [2026-01-12 15:29:14 +0100] [2341392] [WARNING] Invalid request from ip=3.134.148.59: Invalid HTTP request line: 'SSH-2.0-Go'
-2026-01-12 19:00:48 +01:00: [2026-01-12 19:00:48 +0100] [2372989] [WARNING] Invalid request from ip=167.94.138.182: Invalid HTTP Version: (2, 0)
-2026-01-13 10:28:19 +01:00: [2026-01-13 10:28:19 +0100] [2341391] [CRITICAL] WORKER TIMEOUT (pid:2341392)
-2026-01-13 10:28:19 +01:00: [2026-01-13 10:28:19 +0100] [2341392] [ERROR] Error handling request (no URI read)
-2026-01-13 10:28:19 +01:00: Traceback (most recent call last):
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
-2026-01-13 10:28:19 +01:00:     req = next(parser)
-2026-01-13 10:28:19 +01:00:           ^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
-2026-01-13 10:28:19 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
-2026-01-13 10:28:19 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
-2026-01-13 10:28:19 +01:00:     super().__init__(cfg, unreader, peer_addr)
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
-2026-01-13 10:28:19 +01:00:     unused = self.parse(self.unreader)
-2026-01-13 10:28:19 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
-2026-01-13 10:28:19 +01:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
-2026-01-13 10:28:19 +01:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
-2026-01-13 10:28:19 +01:00:     self.get_data(unreader, buf)
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
-2026-01-13 10:28:19 +01:00:     data = unreader.read()
-2026-01-13 10:28:19 +01:00:            ^^^^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
-2026-01-13 10:28:19 +01:00:     d = self.chunk()
-2026-01-13 10:28:19 +01:00:         ^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
-2026-01-13 10:28:19 +01:00:     return self.sock.recv(self.mxchunk)
-2026-01-13 10:28:19 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-01-13 10:28:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
-2026-01-13 10:28:19 +01:00:     sys.exit(1)
-2026-01-13 10:28:19 +01:00: SystemExit: 1
-2026-01-13 10:28:19 +01:00: [2026-01-13 10:28:19 +0100] [2341392] [INFO] Worker exiting (pid: 2341392)
-2026-01-13 10:28:19 +01:00: [2026-01-13 10:28:19 +0100] [2444940] [INFO] Booting worker with pid: 2444940
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2466499] [INFO] Handling signal: int
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2468620] [INFO] Worker exiting (pid: 2468620)
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2466500] [INFO] Worker exiting (pid: 2466500)
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2466499] [INFO] Shutting down: Master
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2470378] [INFO] Starting gunicorn 23.0.0
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2470378] [INFO] Listening at: http://0.0.0.0:5001 (2470378)
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2470378] [INFO] Using worker: sync
+2026-01-13 19:48:46 +01:00: [2026-01-13 19:48:46 +0100] [2470380] [INFO] Booting worker with pid: 2470380
+2026-01-13 19:48:47 +01:00: [2026-01-13 19:48:47 +0100] [2470381] [INFO] Booting worker with pid: 2470381
+2026-01-13 19:48:54 +01:00: Traceback (most recent call last):
+2026-01-13 19:48:54 +01:00:   File "/opt/Tennis_Booking/auth/auth_routes.py", line 113, in login
+2026-01-13 19:48:54 +01:00:     user = User.get_by_email(email)
+2026-01-13 19:48:54 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-13 19:48:54 +01:00:   File "/opt/Tennis_Booking/auth/models.py", line 49, in get_by_email
+2026-01-13 19:48:54 +01:00:     row = cursor.fetchone()
+2026-01-13 19:48:54 +01:00:           ^^^^^^^^^^^^^^^^^
+2026-01-13 19:48:54 +01:00:   File "/usr/lib/python3.12/sqlite3/dbapi2.py", line 77, in convert_timestamp
+2026-01-13 19:48:54 +01:00:     datepart, timepart = val.split(b" ")
+2026-01-13 19:48:54 +01:00:     ^^^^^^^^^^^^^^^^^^
+2026-01-13 19:48:54 +01:00: ValueError: not enough values to unpack (expected 2, got 1)
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470378] [INFO] Handling signal: int
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470380] [INFO] Worker exiting (pid: 2470380)
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470381] [INFO] Worker exiting (pid: 2470381)
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470378] [INFO] Shutting down: Master
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470551] [INFO] Starting gunicorn 23.0.0
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470551] [INFO] Listening at: http://0.0.0.0:5001 (2470551)
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470551] [INFO] Using worker: sync
+2026-01-13 19:49:38 +01:00: [2026-01-13 19:49:38 +0100] [2470553] [INFO] Booting worker with pid: 2470553
+2026-01-13 19:49:39 +01:00: [2026-01-13 19:49:39 +0100] [2470554] [INFO] Booting worker with pid: 2470554
+2026-01-13 19:49:48 +01:00: Traceback (most recent call last):
+2026-01-13 19:49:48 +01:00:   File "/opt/Tennis_Booking/auth/auth_routes.py", line 113, in login
+2026-01-13 19:49:48 +01:00:     user = User.get_by_email(email)
+2026-01-13 19:49:48 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-13 19:49:48 +01:00:   File "/opt/Tennis_Booking/auth/models.py", line 49, in get_by_email
+2026-01-13 19:49:48 +01:00:     row = cursor.fetchone()
+2026-01-13 19:49:48 +01:00:           ^^^^^^^^^^^^^^^^^
+2026-01-13 19:49:48 +01:00:   File "/usr/lib/python3.12/sqlite3/dbapi2.py", line 77, in convert_timestamp
+2026-01-13 19:49:48 +01:00:     datepart, timepart = val.split(b" ")
+2026-01-13 19:49:48 +01:00:     ^^^^^^^^^^^^^^^^^^
+2026-01-13 19:49:48 +01:00: ValueError: not enough values to unpack (expected 2, got 1)
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470551] [INFO] Handling signal: int
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470554] [INFO] Worker exiting (pid: 2470554)
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470553] [INFO] Worker exiting (pid: 2470553)
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470551] [INFO] Shutting down: Master
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470871] [INFO] Starting gunicorn 23.0.0
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470871] [INFO] Listening at: http://0.0.0.0:5001 (2470871)
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470871] [INFO] Using worker: sync
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470872] [INFO] Booting worker with pid: 2470872
+2026-01-13 19:51:24 +01:00: [2026-01-13 19:51:24 +0100] [2470874] [INFO] Booting worker with pid: 2470874
+2026-01-13 19:56:52 +01:00: [2026-01-13 19:56:52 +0100] [2470874] [WARNING] Invalid request from ip=162.142.125.223: Invalid HTTP Version: (2, 0)
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2470871] [INFO] Handling signal: int
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2470872] [INFO] Worker exiting (pid: 2470872)
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2470874] [INFO] Worker exiting (pid: 2470874)
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2470871] [INFO] Shutting down: Master
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2472588] [INFO] Starting gunicorn 23.0.0
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2472588] [INFO] Listening at: http://0.0.0.0:5001 (2472588)
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2472588] [INFO] Using worker: sync
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2472590] [INFO] Booting worker with pid: 2472590
+2026-01-13 21:05:20 +01:00: [2026-01-13 21:05:20 +0100] [2472591] [INFO] Booting worker with pid: 2472591
+2026-01-13 21:22:27 +01:00: [2026-01-13 21:22:27 +0100] [2472588] [INFO] Handling signal: int
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2472591] [INFO] Worker exiting (pid: 2472591)
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2472590] [INFO] Worker exiting (pid: 2472590)
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2472588] [INFO] Shutting down: Master
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2474008] [INFO] Starting gunicorn 23.0.0
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2474008] [INFO] Listening at: http://0.0.0.0:5001 (2474008)
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2474008] [INFO] Using worker: sync
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2474010] [INFO] Booting worker with pid: 2474010
+2026-01-13 21:22:28 +01:00: [2026-01-13 21:22:28 +0100] [2474011] [INFO] Booting worker with pid: 2474011
+2026-01-13 21:26:17 +01:00: [2026-01-13 21:26:17 +0100] [2474008] [INFO] Handling signal: int
+2026-01-13 21:26:17 +01:00: [2026-01-13 21:26:17 +0100] [2474010] [INFO] Worker exiting (pid: 2474010)
+2026-01-13 21:26:17 +01:00: [2026-01-13 21:26:17 +0100] [2474011] [INFO] Worker exiting (pid: 2474011)
+2026-01-13 21:26:17 +01:00: [2026-01-13 21:26:17 +0100] [2474008] [INFO] Shutting down: Master
+2026-01-13 21:26:18 +01:00: [2026-01-13 21:26:18 +0100] [2474487] [INFO] Starting gunicorn 23.0.0
+2026-01-13 21:26:18 +01:00: [2026-01-13 21:26:18 +0100] [2474487] [INFO] Listening at: http://0.0.0.0:5001 (2474487)
+2026-01-13 21:26:18 +01:00: [2026-01-13 21:26:18 +0100] [2474487] [INFO] Using worker: sync
+2026-01-13 21:26:18 +01:00: [2026-01-13 21:26:18 +0100] [2474489] [INFO] Booting worker with pid: 2474489
+2026-01-13 21:26:18 +01:00: [2026-01-13 21:26:18 +0100] [2474490] [INFO] Booting worker with pid: 2474490
+2026-01-13 21:28:59 +01:00: BOOKING: Starting booking for Platz 2 HALLE at 12:00 on 2026-01-20
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Found 58 free slots on page
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Looking for time: 12:00
+2026-01-13 21:29:14 +01:00: BOOKING DEBUG: Available times: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+2026-01-13 21:33:48 +01:00: [2026-01-13 21:33:48 +0100] [2474490] [WARNING] Invalid request from ip=87.251.75.163: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
+2026-01-13 22:33:22 +01:00: [2026-01-13 22:33:22 +0100] [2474489] [WARNING] Invalid request from ip=172.235.181.226: Invalid HTTP request line: ''
+2026-01-13 22:33:23 +01:00: [2026-01-13 22:33:23 +0100] [2474489] [WARNING] Invalid request from ip=172.235.181.226: Invalid HTTP Version: 'RTSP/1.0'
+2026-01-13 22:33:38 +01:00: [2026-01-13 22:33:38 +0100] [2474489] [WARNING] Invalid request from ip=172.235.181.226: Invalid HTTP request line: 'HELP'
+2026-01-13 22:33:43 +01:00: [2026-01-13 22:33:43 +0100] [2474490] [WARNING] Invalid request from ip=172.235.181.226: Invalid HTTP request line: '\x03\x00\x00*%à\x00\x00\x00\x00\x00Cookie: mstshash=nmap'
+2026-01-13 22:34:18 +01:00: [2026-01-13 22:34:18 +0100] [2474490] [WARNING] Invalid request from ip=172.235.181.226: Invalid HTTP Version: 'SIP/2.0'
+2026-01-14 08:23:15 +01:00: [2026-01-14 08:23:15 +0100] [2474487] [CRITICAL] WORKER TIMEOUT (pid:2474489)
+2026-01-14 08:23:15 +01:00: [2026-01-14 08:23:15 +0100] [2474489] [ERROR] Error handling request (no URI read)
+2026-01-14 08:23:15 +01:00: Traceback (most recent call last):
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
+2026-01-14 08:23:15 +01:00:     req = next(parser)
+2026-01-14 08:23:15 +01:00:           ^^^^^^^^^^^^
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
+2026-01-14 08:23:15 +01:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+2026-01-14 08:23:15 +01:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
+2026-01-14 08:23:15 +01:00:     super().__init__(cfg, unreader, peer_addr)
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+2026-01-14 08:23:15 +01:00:     unused = self.parse(self.unreader)
+2026-01-14 08:23:15 +01:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 271, in parse
+2026-01-14 08:23:15 +01:00:     self.get_data(unreader, buf, stop=True)
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
+2026-01-14 08:23:15 +01:00:     data = unreader.read()
+2026-01-14 08:23:15 +01:00:            ^^^^^^^^^^^^^^^
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
+2026-01-14 08:23:15 +01:00:     d = self.chunk()
+2026-01-14 08:23:15 +01:00:         ^^^^^^^^^^^^
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+2026-01-14 08:23:15 +01:00:     return self.sock.recv(self.mxchunk)
+2026-01-14 08:23:15 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-14 08:23:15 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+2026-01-14 08:23:15 +01:00:     sys.exit(1)
+2026-01-14 08:23:15 +01:00: SystemExit: 1
+2026-01-14 08:23:15 +01:00: [2026-01-14 08:23:15 +0100] [2474489] [INFO] Worker exiting (pid: 2474489)
+2026-01-14 08:23:15 +01:00: [2026-01-14 08:23:15 +0100] [2489151] [INFO] Booting worker with pid: 2489151
