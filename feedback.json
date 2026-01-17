@@ -124,16 +124,27 @@
     {
       "id": "task-20260116-135620",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Finalize Booking process and test it",
       "description": "I let Claude Chrome to do the booking for me and analyse all technical details of the booking.\nThis is the result: Maybe it will help fixing the issue, why the simple API call does not result in a booking.\nPlease fix the booking process.\nAfter the fix test it with trying to book Platz 5 on 21.January at 10:00 o clock. I authorize you to book it.\n\nVollst\u00e4ndige technische Dokumentation des Buchungsmechanismus\n1. API-Endpoints\n1.1 Slot-Details abrufen (beim Klick auf einen freien Slot)\nGET /calendar/booking-data/\nQuery-Parameter:\nParameterWertBeschreibungdate2026-01-21Datum (YYYY-MM-DD)time_start18:00Startzeit (HH:MM)square_id9892e07c-3d52-437a-94db-d474c640b2faUUID des Platzesis_half_hour00 = volle Stunde, 1 = halbe Stunde\n1.2 Buchung erstellen\nPOST /user/booking/rent\nRequest-Typ: Form-Submit (Content-Type: application/x-www-form-urlencoded)\nFormular-Felder:\nFeldTypBeschreibungtimeslotSelectIndex des Timeslots (0 = erste Option)agbCheckboxAGB-Zustimmung (erforderlich)rulesCheckboxRegeln-Zustimmung (erforderlich)\n\n2. Authentifizierung & Sicherheit\n2.1 CSRF-Schutz\n\nMeta-Tag: <meta name=\"csrf-token\" content=\"...\">\nToken-Format: 40-stelliger alphanumerischer String\nBeispiel: luZHPPty3216MEEEHpyQ0Ka3vVW7Fl4WCBlT6YR5\n\n2.2 Session-Cookies\nCookieBeschreibungXSRF-TOKENCross-Site Request Forgery Tokentenniszentrum_arsenal_sessionSession-ID\n\n3. Platz-IDs (square_id)\nBasierend auf der Struktur der API ist 9892e07c-3d52-437a-94db-d474c640b2fa die UUID f\u00fcr Platz 3 HALLE. Die anderen Pl\u00e4tze haben entsprechend andere UUIDs.\n\n4. JavaScript/Frontend-Architektur\n\nFramework: Vanilla JavaScript (kein Vue, React, jQuery)\nCSS-Framework: Bootstrap (erkennbar an needs-validation, btn-outline-primary)\nScripts:\n\n/js/app.js?id=5de5a8657aef250e9a800321e15b1793\n/js/welcome.js?id=48040e904b472323192474f4ce5eee13\n\n\n\n\n5. Buchungsablauf (Flow)\n1. Kalenderansicht laden\n   \u2514\u2500\u2500 GET /?date=2026-01-21\n\n2. Auf freien Slot klicken\n   \u2514\u2500\u2500 GET /calendar/booking-data/?date=...&time_start=...&square_id=...&is_half_hour=0\n   \u2514\u2500\u2500 Response: Formular mit Preisen und Optionen\n\n3. Formular ausf\u00fcllen\n   \u251c\u2500\u2500 timeslot ausw\u00e4hlen\n   \u251c\u2500\u2500 AGB akzeptieren (checkbox)\n   \u2514\u2500\u2500 Regeln akzeptieren (checkbox)\n\n4. \"Verbindlich Reservieren\" klicken\n   \u2514\u2500\u2500 POST /user/booking/rent\n   \u2514\u2500\u2500 Response: Redirect zu Kalender mit aktualisiertem Status\n\n5. Kalender neu laden\n   \u2514\u2500\u2500 GET /?date=2026-01-21\n   \u2514\u2500\u2500 Slot zeigt \"Ihre Buchung\"\n\n6. F\u00fcr Nachbau ben\u00f6tigte Komponenten\n\nAuthentifizierung: Session-basiert mit CSRF-Token\nKalender-API: REST-Endpoint f\u00fcr Slot-Verf\u00fcgbarkeit\nBuchungs-API: POST-Endpoint f\u00fcr Reservierungen\nFrontend: Bootstrap + Vanilla JS (oder leichtes Framework)\nDatenbank: Pl\u00e4tze mit UUIDs, Buchungen mit Zeitslots",
-      "created_at": "2026-01-16T13:56:20.291472"
+      "created_at": "2026-01-16T13:56:20.291472",
+      "completion_notes": "Completed by agent in run 20260117_084001",
+      "completed_at": "2026-01-17T08:44:36.131926"
+    },
+    {
+      "id": "task-20260117-091930",
+      "type": "bug",
+      "status": "open",
+      "priority": "medium",
+      "title": "API based booking - status 0",
+      "description": "Still getting status 0.\nDo not implenent any changes now but think hard and propose me a manual way to figure out the solution\n\n3|tennis-b | 2026-01-17 09:15:15 +01:00: BOOKING: Attempting API-based booking...\n3|tennis-b | 2026-01-17 09:15:15 +01:00: BOOKING API: Starting booking for Platz 1 HALLE at 09:00 on 2026-01-23\n3|tennis-b | 2026-01-17 09:15:16 +01:00: BOOKING API: Login successful, CSRF token obtained\n3|tennis-b | 2026-01-17 09:15:16 +01:00: BOOKING API: Getting booking data from https://reservierung.dasspiel.at/calendar/booking-data/\n3|tennis-b | 2026-01-17 09:15:16 +01:00: BOOKING API: Params: {'date': '2026-01-23', 'time_start': '09:00', 'square_id': '401dbeb5-d503-481b-9834-5f9849c92499', 'is_half_hour': '0'}\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Booking-data response status: 200\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Form data: {'timeslot': '0', 'agb': 'on', 'rules': 'on'}\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Response status: 200\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Response text: {\"status\":0}",
+      "created_at": "2026-01-17T09:19:30.529910"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-16T13:56:20.291480"
+    "last_updated": "2026-01-17T09:19:30.529919"
   }
 }
