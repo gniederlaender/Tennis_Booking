@@ -1,0 +1,125 @@
+# TENNIS COURT BOOKING SYSTEM - TECHNICAL SPECIFICATION
+# Tenniszentrum Arsenal (reservierung.dasspiel.at)
+# Successfully executed booking: Platz 4 from 10:00-11:00 on 2026-01-19
+
+## API ENDPOINTS
+
+### 1. GET /calendar/booking-data/
+Retrieve booking details for a court and time slot
+
+Parameters:
+- date: YYYY-MM-DD (e.g., 2026-01-19)
+- time_start: HH:MM (e.g., 10:00)
+- square_id: UUID (e.g., e4c7ab07-9f17-4290-bc5e-ad8d35a7e9f2)
+- is_half_hour: 0 or 1
+
+Example:
+GET /calendar/booking-data/?date=2026-01-19&time_start=10:00&square_id=e4c7ab07-9f17-4290-bc5e-ad8d35a7e9f2&is_half_hour=0
+
+Response: 200 OK - JSON with booking information
+
+### 2. POST /user/booking/rent
+Create a new court booking
+
+Headers:
+- Content-Type: application/json (or form-data)
+- CSRF Token: (required, embedded in form)
+
+Request Parameters:
+- date: Booking date (YYYY-MM-DD)
+- time_start: Start time (HH:MM)
+- square_id: Court UUID
+- agb_accepted: Boolean (Terms acceptance - REQUIRED)
+- rules_accepted: Boolean (Rules acceptance - REQUIRED)
+
+Response: 200 OK
+
+## FRONTEND FORM ELEMENTS
+
+Booking Modal:
+1. Time Slot Combobox
+   - Format: "HH:MM - HH:MM (€price)"
+   - Example: "10:00 - 11:00 (26.00€)"
+   - Element ref: ref_336
+
+2. AGB Checkbox (Terms & Conditions)
+   - Text: "Ich habe die AGB gelesen und akzeptiert"
+   - Required: YES
+   - Element ref: ref_337
+
+3. Rules & Hints Checkbox
+   - Text: "Ich habe die Regeln und Hinweise gelesen und akzeptiert"
+   - Required: YES
+   - Element ref: ref_338
+
+4. Buttons
+   - "Verbindlich Reservieren" (ref_339) - Confirm Booking
+   - "Bezahlen" (ref_340) - Pay
+
+## BOOKING EXECUTION FLOW
+
+1. Click time slot (e.g., Platz 4, 10:00)
+2. System retrieves booking-data via GET request
+3. Modal opens with booking form
+4. User checks both checkboxes (mandatory)
+5. User clicks "Verbindlich Reservieren"
+6. POST /user/booking/rent is submitted
+7. Server responds with 200 OK
+8. Page reloads automatically
+9. Calendar updates: slot shows "Ihre Buchung" (Your Booking)
+
+## CALENDAR STATES
+
+Each slot displays:
+- "Frei" = Available for booking
+- "Belegt" = Already booked
+- "Ihre Buchung" = Booked by current user
+
+Time window: 07:00 - 22:00 (15 hours daily)
+Courts: Platz 1-6 HALLE + Warteliste (1 & 2)
+
+## DEMO SESSION DETAILS
+
+User: Gabor Niederlaender
+Date: Monday, 19.01.2026
+Court: Platz 4 HALLE
+Time: 10:00 - 11:00
+Duration: 1 hour
+Price: €26.00
+Status: ✓ Successfully booked
+
+## KEY BUSINESS RULES
+
+- Cancellations: Up to 48 hours before booking
+- Half-hour bookings: Phone only (01 799 01 01)
+- Automatic confirmation email sent
+- Unpaid bookings may be charged to account
+
+## NETWORK REQUESTS CAPTURED
+
+1. GET /calendar/booking-data/ (Status: 200, 503 on reload)
+2. POST /user/booking/rent (Status: 200 - SUCCESS)
+3. GET /? (page reload with updated calendar)
+
+## AUTHENTICATION
+
+- Login required (via user account system)
+- Session maintained with cookies
+- CSRF protection enabled
+- Links to user details and sign-out available
+
+## PRICING STRUCTURE
+
+Winter Season 2025/2026 pricing observed:
+- Peak hours: €26.00/hour
+- Off-peak hours may vary
+- Flutlicht (floodlights): +€2.00
+- Different rates for indoor vs outdoor
+
+## TECHNICAL OBSERVATIONS
+
+- Frontend: Responsive design, JavaScript-based modal forms
+- Backend: RESTful API design
+- Security: CSRF tokens, form validation
+- Caching: Versioned CSS/JS assets with query parameters
+- Rate limiting: 503 error observed on rapid requests

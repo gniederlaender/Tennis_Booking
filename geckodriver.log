@@ -3897,3 +3897,1443 @@ roperly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/tool
 (firefox:2474522): dconf-CRITICAL **: 21:29:15.120: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
 console.error: "Failed to fetch https://ads.mozilla.org/v1/delete_user:" "NetworkError when attempting to fetch resource."
 console.warn: TopSitesFeed: Failed to fetch data from MARS server: NetworkError when attempting to fetch resource.
+1768394334332	geckodriver	INFO	Listening on 127.0.0.1:46697
+1768394334336	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "51347" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile9ODaXB"
+[2497497] Sandbox: CanCreateUserNamespace() unshare(CLONE_NEWPID): EPERM
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.332172) [GFX1-]: glxtest: Unable to open a connection to the X server
+1768394334707	Marionette	INFO	Marionette enabled
+1768394334873	Marionette	INFO	Listening on port 35085
+WebDriver BiDi listening on ws://127.0.0.1:51347
+Read port: 35085
+1768394335071	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.223: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.224: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.224: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.224: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Unnamed thread f295f0485280] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.225: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.311: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.311: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.332172) |[1][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=1.29218) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.691: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.691: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.772: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:55.772: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.269: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.269: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.524: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.525: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.569: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.569: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: CustomizableUI: 
+  Could not localize property 'fxms-bmb-button.tooltiptext'.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.836: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.836: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.931: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.932: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.984: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:56.984: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.030: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.030: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.042: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.042: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.095: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.096: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.231: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.232: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.310: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.310: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.312: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.312: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.313: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.313: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.313: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.313: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.318: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.318: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.368: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.368: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.425: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.425: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.450: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.450: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.476: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.476: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.489: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.489: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.494: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.496: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.510: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.510: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.655: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.655: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.681: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.682: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: RSLoader: Recipe new-tab-145120251009134757-to-release-144 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-147020251114194929-to-release-145 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-beta not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-release not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.706: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.706: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.743: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.744: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.825: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.825: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.902: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.902: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.942: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:57.942: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.094: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.094: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.118: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.118: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.135: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.135: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.155: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.155: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.166: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.166: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.189: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.189: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.206: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.206: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.224: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:38:58.224: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:00.936: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:00.936: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.036: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.036: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.047: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.047: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.191: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.191: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.192: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.192: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.193: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.193: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.646: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:01.646: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.655: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.655: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.656: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.656: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.814: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.814: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.816: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:04.816: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:05.252: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:05.252: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+1768394348682	Marionette	INFO	Stopped listening on port 35085
+[Parent 2497494, Main Thread] WARNING: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGU5T0RhWEI_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.323" (uid=0 pid=2497494 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus): 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): GLib-GIO-WARNING **: 13:39:09.081: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGU5T0RhWEI_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.323" (uid=0 pid=2497494 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus)
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:09.140: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:09.140: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:09.141: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2497494, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2497494): dconf-CRITICAL **: 13:39:09.141: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: "Failed to fetch https://ads.mozilla.org/v1/delete_user:" "NetworkError when attempting to fetch resource."
+console.warn: TopSitesFeed: Failed to fetch data from MARS server: NetworkError when attempting to fetch resource.
+1768400704260	geckodriver	INFO	Listening on 127.0.0.1:58737
+1768400704271	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "52469" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileG8f1xF"
+[2501709] Sandbox: CanCreateUserNamespace() unshare(CLONE_NEWPID): EPERM
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.343713) [GFX1-]: glxtest: Unable to open a connection to the X server
+1768400704644	Marionette	INFO	Marionette enabled
+1768400704802	Marionette	INFO	Listening on port 33439
+WebDriver BiDi listening on ws://127.0.0.1:52469
+Read port: 33439
+1768400705052	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.232: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.232: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.233: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.233: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Unnamed thread f6d017269040] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.233: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.293: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.293: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.343713) |[1][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=1.34072) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.668: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.668: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.748: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:05.748: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.247: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.247: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.470: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.470: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.500: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.500: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.704: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.704: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: CustomizableUI: 
+  Could not localize property 'fxms-bmb-button.tooltiptext'.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.805: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.805: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.884: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.885: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.993: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:06.995: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.008: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.008: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.076: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.077: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.221: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.221: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.305: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.305: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.306: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.307: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.308: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.309: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.309: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.309: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.315: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.315: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.356: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.356: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.417: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.417: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.441: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.441: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.457: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.457: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.473: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.473: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.640: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.640: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.646: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.647: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.651: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.651: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: RSLoader: Recipe new-tab-145120251009134757-to-release-144 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-147020251114194929-to-release-145 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-beta not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-release not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.676: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.677: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.709: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.709: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.783: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.783: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.825: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.825: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.921: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.921: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.972: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:07.973: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.150: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.151: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.169: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.169: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.184: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.184: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.205: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.205: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.217: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.217: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.227: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.227: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.240: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.240: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.248: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:08.249: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.053: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.053: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.167: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.167: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.180: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.180: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.319: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.319: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.320: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.320: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.321: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.321: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.747: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:11.749: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:14.755: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:14.755: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:14.758: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:14.758: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:16.124: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:16.124: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+1768400719295	Marionette	INFO	Stopped listening on port 33439
+[Parent 2501706, Main Thread] WARNING: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGVHOGYxeEY_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.324" (uid=0 pid=2501706 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus): 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): GLib-GIO-WARNING **: 15:25:19.698: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGVHOGYxeEY_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.324" (uid=0 pid=2501706 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus)
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:19.756: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:19.756: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:19.757: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2501706, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2501706): dconf-CRITICAL **: 15:25:19.757: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: "Failed to fetch https://ads.mozilla.org/v1/delete_user:" "NetworkError when attempting to fetch resource."
+console.warn: TopSitesFeed: Failed to fetch data from MARS server: NetworkError when attempting to fetch resource.
+1768402697641	geckodriver	INFO	Listening on 127.0.0.1:34197
+1768402697643	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "41527" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZt9C97"
+[2502945] Sandbox: CanCreateUserNamespace() unshare(CLONE_NEWPID): EPERM
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.312095) [GFX1-]: glxtest: Unable to open a connection to the X server
+1768402697992	Marionette	INFO	Marionette enabled
+1768402698146	Marionette	INFO	Listening on port 44307
+WebDriver BiDi listening on ws://127.0.0.1:41527
+Read port: 44307
+1768402698354	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.514: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.515: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Unnamed thread e812de226ca0] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.515: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.516: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.516: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.585: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.585: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.312095) |[1][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=1.2771) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.986: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:18.986: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.066: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.066: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.584: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.584: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.849: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.850: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.886: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:19.886: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: CustomizableUI: 
+  Could not localize property 'fxms-bmb-button.tooltiptext'.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.107: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.107: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.226: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.226: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.307: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.307: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.324: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.324: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.477: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.477: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.563: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.563: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.565: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.565: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.566: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.566: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.567: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.567: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.592: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.592: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.655: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.655: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.707: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.707: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.736: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.736: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.748: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.748: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.758: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.758: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.761: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.761: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.771: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.771: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.773: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.773: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.824: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.824: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.872: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:20.872: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.223: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.223: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: RSLoader: Recipe new-tab-145120251009134757-to-release-144 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-147020251114194929-to-release-145 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-beta not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-release not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.266: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.266: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.289: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.289: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.314: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.314: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.327: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.327: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.364: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.364: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.486: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.487: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.506: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.506: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.516: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.516: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.549: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.550: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.565: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.565: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.573: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.574: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.582: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.582: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.595: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:21.596: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.119: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.119: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.218: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.218: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.232: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.232: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.379: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.379: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.380: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.380: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.381: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.381: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.790: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:24.790: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:27.857: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:27.857: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:27.859: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:27.859: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:29.124: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:29.128: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+1768402712364	Marionette	INFO	Stopped listening on port 44307
+[Parent 2502942, Main Thread] WARNING: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGVadDlDOTc_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.325" (uid=0 pid=2502942 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus): 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): GLib-GIO-WARNING **: 15:58:32.774: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGVadDlDOTc_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.325" (uid=0 pid=2502942 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus)
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:32.830: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:32.830: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:32.832: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2502942, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2502942): dconf-CRITICAL **: 15:58:32.832: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: "Failed to fetch https://ads.mozilla.org/v1/delete_user:" "NetworkError when attempting to fetch resource."
+console.warn: TopSitesFeed: Failed to fetch data from MARS server: NetworkError when attempting to fetch resource.
+1768403847933	geckodriver	INFO	Listening on 127.0.0.1:48225
+1768403847935	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... ss" "--remote-debugging-port" "50427" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileeeYvIB"
+[2503616] Sandbox: CanCreateUserNamespace() unshare(CLONE_NEWPID): EPERM
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.309805) [GFX1-]: glxtest: Unable to open a connection to the X server
+1768403848283	Marionette	INFO	Marionette enabled
+1768403848443	Marionette	INFO	Listening on port 41093
+WebDriver BiDi listening on ws://127.0.0.1:50427
+Read port: 41093
+1768403848648	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.775: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.776: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.776: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.776: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Unnamed thread fdbaf7093940] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.783: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.885: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:28.885: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+Crash Annotation GraphicsCriticalError: |[0][GFX1-]: glxtest: Unable to open a connection to the X server (t=0.309805) |[1][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=1.27081) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:29.278: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:29.278: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:29.361: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:29.361: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:29.851: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:29.851: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.126: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.126: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.158: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.158: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.312: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.312: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: CustomizableUI: 
+  Could not localize property 'fxms-bmb-button.tooltiptext'.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.418: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.418: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.465: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.465: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.506: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.507: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.630: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.630: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.704: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.705: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.707: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.707: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.871: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.871: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.954: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.954: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.955: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.955: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.956: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.956: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.956: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.957: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.958: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:30.958: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.029: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.029: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.074: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.074: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.096: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.096: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.120: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.120: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.140: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.140: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.293: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.293: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.302: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.302: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: RSLoader: Recipe new-tab-145120251009134757-to-release-144 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-147020251114194929-to-release-145 not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-beta not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+console.warn: RSLoader: Recipe new-tab-14802025121163751-to-release not returned from collection nimbus-secure-experiments because it contains feature newtabTrainhopAddon, which is disallowed for that collection.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.356: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.356: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.359: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.359: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.445: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.446: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.574: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.574: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.594: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.595: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.635: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.636: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.792: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.792: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.816: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.816: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.837: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.837: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.851: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.851: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.862: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.863: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.879: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.879: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.920: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.920: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.939: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:31.939: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.624: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.624: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://reservierung.dasspiel.at."
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.723: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.723: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.736: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.737: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.869: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.869: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.870: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.870: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.871: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:34.871: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:35.255: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:35.256: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.279: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.279: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.288: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.288: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.439: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.439: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.440: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.441: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.909: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:38.909: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+1768403861923	Marionette	INFO	Stopped listening on port 41093
+[Parent 2503613, Main Thread] WARNING: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGVlZVl2SUI_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.326" (uid=0 pid=2503613 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus): 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): GLib-GIO-WARNING **: 16:17:42.347: Error releasing name org.mozilla.firefox.L3RtcC9ydXN0X21venByb2ZpbGVlZVl2SUI_: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: An AppArmor policy prevents this sender from sending this message to this recipient; type="method_call", sender=":1.326" (uid=0 pid=2503613 comm="/usr/lib/firefox/firefox --marionette --headless -" label="firefox (enforce)") interface="org.freedesktop.DBus" member="ReleaseName" error name="(unset)" requested_reply="0" destination="org.freedesktop.DBus" (bus)
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:42.412: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:42.413: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:42.414: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+[Parent 2503613, Main Thread] WARNING: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.: 'glib warning', file /build/firefox-SzxqQM/firefox-140.0.2+build1/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox:2503613): dconf-CRITICAL **: 16:17:42.414: unable to create directory '/run/user/0/dconf': Permission denied.  dconf will not work properly.
+console.error: "Failed to fetch https://ads.mozilla.org/v1/delete_user:" "NetworkError when attempting to fetch resource."
+console.warn: TopSitesFeed: Failed to fetch data from MARS server: NetworkError when attempting to fetch resource.

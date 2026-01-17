@@ -55,10 +55,12 @@ class DasSpielBooker:
 
     URL = "https://reservierung.dasspiel.at/"
     SIGNIN_URL = f"{URL}signin"
+    BOOKING_URL = f"{URL}user/booking/rent"
 
     def __init__(self):
         self.session = requests.Session()
         self.credentials = self._load_credentials()
+        self.csrf_token = None
 
     def _load_credentials(self):
         """Load credentials from file."""
@@ -68,38 +70,55 @@ class DasSpielBooker:
                 return data.get('dasspiel', {})
         return {}
 
+    def _get_csrf_token(self, html_content):
+        """Extract CSRF token from HTML page."""
+        soup = BeautifulSoup(html_content, 'html.parser')
+        # Try meta tag first
+        csrf_meta = soup.find('meta', {'name': 'csrf-token'})
+        if csrf_meta and csrf_meta.get('content'):
+            return csrf_meta['content']
+        # Try hidden input field
+        csrf_input = soup.find('input', {'name': '_token'})
+        if csrf_input and csrf_input.get('value'):
+            return csrf_input['value']
+        return None
+
     def login(self):
         """Sign in to Das Spiel using the /signin endpoint."""
         if not self.credentials:
             return False, "No credentials found"
 
         try:
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+            }
 
             # Get signin page for CSRF token
             response = self.session.get(self.SIGNIN_URL, headers=headers, timeout=10)
-
-            # Parse CSRF token
-            soup = BeautifulSoup(response.content, 'html.parser')
-            csrf_meta = soup.find('meta', {'name': 'csrf-token'})
-            csrf_token = csrf_meta['content'] if csrf_meta else None
+            self.csrf_token = self._get_csrf_token(response.content)
 
             # Sign in with correct field names: 'email' and 'pw'
             signin_data = {
                 'email': self.credentials['username'],
-                'pw': self.credentials['password']  # Note: 'pw' not 'password'
+                'pw': self.credentials['password']
             }
 
             headers['Referer'] = self.SIGNIN_URL
             headers['Content-Type'] = 'application/json'
             headers['Accept'] = 'application/json'
-            if csrf_token:
-                headers['X-CSRF-TOKEN'] = csrf_token
+            if self.csrf_token:
+                headers['X-CSRF-TOKEN'] = self.csrf_token
 
             response = self.session.post(self.SIGNIN_URL, json=signin_data, headers=headers, timeout=10, allow_redirects=False)
 
             # Check for success - Das Spiel returns plain text "signed-in"
             if response.status_code == 200 and response.text == 'signed-in':
+                # Refresh CSRF token after login by visiting main page
+                main_response = self.session.get(self.URL, headers={'User-Agent': headers['User-Agent']}, timeout=10)
+                new_token = self._get_csrf_token(main_response.content)
+                if new_token:
+                    self.csrf_token = new_token
                 return True, "Login successful"
             else:
                 return False, f"Login failed: {response.text}"
@@ -107,14 +126,11 @@ class DasSpielBooker:
         except Exception as e:
             return False, f"Login error: {str(e)}"
 
-    def book_slot(self, slot):
+    def book_slot_api(self, slot):
         """
-        Book a slot at Das Spiel using the booking API.
+        Book a slot at Das Spiel using direct API calls.
 
-        Process:
-        1. Log in to get session
-        2. Make POST request to booking-data endpoint with square_id, date, and time
-        3. Verify success from response
+        This is the fast, lightweight approach using HTTP POST to /user/booking/rent.
 
         Args:
             slot: Dict with keys: date, time, square_id, court_name
@@ -122,19 +138,151 @@ class DasSpielBooker:
         Returns:
             (success, message) tuple
         """
+        date = slot.get('date')
+        time_slot = slot.get('time')
+        court_name = slot.get('court_name')
+        square_id = slot.get('square_id')
+
+        print(f"BOOKING API: Starting booking for {court_name} at {time_slot} on {date}", file=sys.stderr, flush=True)
+
+        if not square_id:
+            return False, "Missing square_id for Das Spiel booking. Slot data may be outdated."
+
+        # Login first
+        success, message = self.login()
+        if not success:
+            return False, f"Login failed: {message}"
+
+        print(f"BOOKING API: Login successful, CSRF token obtained", file=sys.stderr, flush=True)
+
+        # Step 1: Get booking data to retrieve available timeslots
+        booking_data_url = f"{self.URL}calendar/booking-data/"
+        params = {
+            'date': date,
+            'time_start': time_slot,
+            'square_id': square_id,
+            'is_half_hour': '0'
+        }
+
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Referer': f"{self.URL}?date={date}"
+        }
+
+        print(f"BOOKING API: Getting booking data from {booking_data_url}", file=sys.stderr, flush=True)
+        print(f"BOOKING API: Params: {params}", file=sys.stderr, flush=True)
+
         try:
-            # Extract slot details
+            response = self.session.get(
+                booking_data_url,
+                params=params,
+                headers=headers,
+                timeout=15
+            )
+
+            print(f"BOOKING API: Booking-data response status: {response.status_code}", file=sys.stderr, flush=True)
+
+            if response.status_code != 200:
+                return False, f"Failed to get booking data: HTTP {response.status_code}"
+
+            # Step 2: Submit booking with form data
+            # According to spec: timeslot=0 (first option), agb=checked, rules=checked
+            headers_post = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Referer': f"{self.URL}?date={date}",
+                'Origin': self.URL.rstrip('/')
+            }
+
+            if self.csrf_token:
+                headers_post['X-CSRF-TOKEN'] = self.csrf_token
+
+            # Form data as per specification
+            form_data = {
+                'timeslot': '0',  # Index of timeslot (0 = first option)
+                'agb': 'on',      # AGB checkbox
+                'rules': 'on'     # Rules checkbox
+            }
+
+            print(f"BOOKING API: Sending POST to {self.BOOKING_URL}", file=sys.stderr, flush=True)
+            print(f"BOOKING API: Form data: {form_data}", file=sys.stderr, flush=True)
+
+            response = self.session.post(
+                self.BOOKING_URL,
+                data=form_data,
+                headers=headers_post,
+                timeout=15,
+                allow_redirects=False
+            )
+
+            print(f"BOOKING API: Response status: {response.status_code}", file=sys.stderr, flush=True)
+            print(f"BOOKING API: Response text: {response.text[:500] if response.text else 'empty'}", file=sys.stderr, flush=True)
+
+            # Check for success - typically redirects to calendar or returns 200
+            if response.status_code in [200, 302, 303]:
+                # Check response content for error indicators
+                response_text = response.text.lower() if response.text else ''
+                if 'error' in response_text or 'fehler' in response_text:
+                    return False, f"Booking rejected: {response.text[:200]}"
+
+                # Check redirect location if present
+                if response.status_code in [302, 303]:
+                    location = response.headers.get('Location', '')
+                    print(f"BOOKING API: Redirected to: {location}", file=sys.stderr, flush=True)
+
+                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
+
+            elif response.status_code == 422:
+                # Validation error - parse message
+                try:
+                    error_data = response.json()
+                    error_msg = error_data.get('message', response.text)
+                except:
+                    error_msg = response.text
+                return False, f"Validation error: {error_msg}"
+
+            elif response.status_code == 401:
+                return False, "Authentication failed - session may have expired"
+
+            elif response.status_code == 403:
+                return False, "Access denied - CSRF token may be invalid"
+
+            else:
+                return False, f"Booking failed with HTTP {response.status_code}: {response.text[:200]}"
+
+        except requests.exceptions.Timeout:
+            return False, "Booking request timed out"
+        except Exception as e:
+            return False, f"API booking error: {str(e)}"
+
+    def book_slot_selenium(self, slot):
+        """
+        Book a slot at Das Spiel using Selenium browser automation.
+
+        This is the fallback approach when API booking fails.
+        Slower but more reliable for complex page interactions.
+
+        Args:
+            slot: Dict with keys: date, time, square_id, court_name
+
+        Returns:
+            (success, message) tuple
+        """
+        driver = None
+        try:
             date = slot.get('date')
             time_slot = slot.get('time')
             court_name = slot.get('court_name')
             square_id = slot.get('square_id')
 
-            print(f"BOOKING: Starting booking for {court_name} at {time_slot} on {date}", file=sys.stderr, flush=True)
+            print(f"BOOKING SELENIUM: Starting booking for {court_name} at {time_slot} on {date}", file=sys.stderr, flush=True)
 
             if not square_id:
-                return False, "Missing square_id for Das Spiel booking. Slot data may be outdated."
+                return False, "Missing square_id for Das Spiel booking."
 
-            # Setup Firefox (using Bankcomparison working pattern)
+            # Setup Firefox headless
             os.environ['MOZ_HEADLESS'] = '1'
             os.environ['MOZ_DISABLE_CONTENT_SANDBOX'] = '1'
 
@@ -163,19 +311,43 @@ class DasSpielBooker:
             submit_button.click()
             time.sleep(3)
 
-            # Navigate directly to booking-data URL with square_id
-            # The website changed - data-time attributes no longer work
-            # Instead, we use the booking API URL directly
-            booking_url = f"{self.URL}calendar/booking-data/?date={date}&time_start={time_slot}&square_id={square_id}&is_half_hour=0"
-            print(f"BOOKING: Navigating to booking URL: {booking_url}", file=sys.stderr, flush=True)
-            driver.get(booking_url)
+            # Check if login was successful
+            if 'signin' in driver.current_url.lower():
+                driver.quit()
+                return False, "Login failed - check credentials"
+
+            # Navigate to calendar page
+            calendar_url = f"{self.URL}?date={date}"
+            driver.get(calendar_url)
             time.sleep(3)
 
-            # Look for "Platz mieten" button
+            # Find and click the correct slot
+            click_script = f"""
+                var slots = document.querySelectorAll('a.square-free');
+                for (var i = 0; i < slots.length; i++) {{
+                    var slot = slots[i];
+                    var onclick = slot.getAttribute('onclick') || '';
+                    var href = slot.getAttribute('href') || '';
+                    if (onclick.includes('{square_id}') || href.includes('{square_id}')) {{
+                        slot.click();
+                        return true;
+                    }}
+                }}
+                return false;
+            """
+
+            clicked = driver.execute_script(click_script)
+            if not clicked:
+                driver.quit()
+                return False, "Could not find time slot on calendar"
+
+            time.sleep(2)
+
+            # Click "Platz mieten" button
             buttons = driver.find_elements(By.TAG_NAME, "button")
             platz_mieten_btn = None
             for btn in buttons:
-                if 'platz mieten' in btn.text.lower():
+                if 'platz mieten' in btn.text.strip().lower():
                     platz_mieten_btn = btn
                     break
 
@@ -183,7 +355,6 @@ class DasSpielBooker:
                 driver.quit()
                 return False, "Could not find 'Platz mieten' button"
 
-            # Click "Platz mieten"
             platz_mieten_btn.click()
             time.sleep(3)
 
@@ -194,7 +365,6 @@ class DasSpielBooker:
                     try:
                         cb.click()
                     except:
-                        # If checkbox not clickable, try label
                         cb_id = cb.get_attribute('id')
                         if cb_id:
                             try:
@@ -204,7 +374,7 @@ class DasSpielBooker:
                                 pass
                     time.sleep(0.5)
 
-            # Look for confirmation button
+            # Click confirmation button
             buttons = driver.find_elements(By.TAG_NAME, "button")
             confirm_btn = None
             for btn in buttons:
@@ -217,31 +387,56 @@ class DasSpielBooker:
                 driver.quit()
                 return False, "Could not find confirmation button"
 
-            # Click confirmation
             confirm_btn.click()
             time.sleep(3)
 
             # Check for success
             page_source = driver.page_source
-
-            # Success indicator: slot now shows "Ihre Buchung" (Your booking)
-            if 'square-own-booking' in page_source or 'Ihre Buchung' in page_source:
-                driver.quit()
-                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
-
-            # Check for other success indicators
-            if any(indicator in page_source.lower() for indicator in ['erfolgreich', 'bestätigt', 'reserviert']):
-                driver.quit()
-                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
-
-            # If no clear success indicator, assume success (user will verify)
             driver.quit()
+
+            if 'square-own-booking' in page_source or 'Ihre Buchung' in page_source:
+                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
+
+            if any(ind in page_source.lower() for ind in ['erfolgreich', 'bestätigt', 'reserviert']):
+                return True, f"Successfully booked {court_name} on {date} at {time_slot}"
+
             return True, f"Booking completed for {court_name} on {date} at {time_slot} (please verify)"
 
         except Exception as e:
             if driver:
                 driver.quit()
-            return False, f"Booking error: {str(e)}"
+            return False, f"Selenium booking error: {str(e)}"
+
+    def book_slot(self, slot):
+        """
+        Book a slot at Das Spiel.
+
+        Tries the fast API approach first, falls back to Selenium if needed.
+
+        Args:
+            slot: Dict with keys: date, time, square_id, court_name
+
+        Returns:
+            (success, message) tuple
+        """
+        # Try API approach first (fast, <1 second)
+        print(f"BOOKING: Attempting API-based booking...", file=sys.stderr, flush=True)
+        success, message = self.book_slot_api(slot)
+
+        if success:
+            return success, message
+
+        # If API failed, check if it's a recoverable error
+        print(f"BOOKING: API booking failed: {message}", file=sys.stderr, flush=True)
+
+        # Don't retry with Selenium for certain errors
+        non_retryable = ['Missing square_id', 'No credentials', 'Validation error']
+        if any(err in message for err in non_retryable):
+            return False, message
+
+        # Fall back to Selenium approach
+        print(f"BOOKING: Falling back to Selenium-based booking...", file=sys.stderr, flush=True)
+        return self.book_slot_selenium(slot)
 
 
 class PostSVBooker:

@@ -173,3 +173,151 @@
 2026-01-14 08:23:15 +01:00: SystemExit: 1
 2026-01-14 08:23:15 +01:00: [2026-01-14 08:23:15 +0100] [2474489] [INFO] Worker exiting (pid: 2474489)
 2026-01-14 08:23:15 +01:00: [2026-01-14 08:23:15 +0100] [2489151] [INFO] Booting worker with pid: 2489151
+2026-01-14 08:47:37 +01:00: [2026-01-14 08:47:37 +0100] [2489151] [WARNING] Invalid request from ip=167.94.138.201: Invalid HTTP Version: (2, 0)
+2026-01-14 08:47:37 +01:00: [2026-01-14 08:47:37 +0100] [2489151] [WARNING] Invalid request from ip=167.94.138.201: Invalid HTTP Version: (2, 0)
+2026-01-14 13:38:54 +01:00: BOOKING: Starting booking for Platz 4 HALLE at 20:00 on 2026-01-18
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Found 41 free slots on page
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Slot data-time attribute: None
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Looking for time: 20:00
+2026-01-14 13:39:08 +01:00: BOOKING DEBUG: Available times: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+2026-01-14 14:08:01 +01:00: [2026-01-14 14:08:01 +0100] [2474487] [INFO] Handling signal: int
+2026-01-14 14:08:01 +01:00: [2026-01-14 14:08:01 +0100] [2474490] [INFO] Worker exiting (pid: 2474490)
+2026-01-14 14:08:01 +01:00: [2026-01-14 14:08:01 +0100] [2489151] [INFO] Worker exiting (pid: 2489151)
+2026-01-14 14:08:02 +01:00: [2026-01-14 14:08:02 +0100] [2474487] [INFO] Shutting down: Master
+2026-01-14 14:08:02 +01:00: [2026-01-14 14:08:02 +0100] [2499161] [INFO] Starting gunicorn 23.0.0
+2026-01-14 14:08:02 +01:00: [2026-01-14 14:08:02 +0100] [2499161] [INFO] Listening at: http://0.0.0.0:5001 (2499161)
+2026-01-14 14:08:02 +01:00: [2026-01-14 14:08:02 +0100] [2499161] [INFO] Using worker: sync
+2026-01-14 14:08:02 +01:00: [2026-01-14 14:08:02 +0100] [2499163] [INFO] Booting worker with pid: 2499163
+2026-01-14 14:08:02 +01:00: [2026-01-14 14:08:02 +0100] [2499164] [INFO] Booting worker with pid: 2499164
+2026-01-14 14:11:53 +01:00: BOOKING: Starting booking for Platz 3 HALLE at 14:00 on 2026-01-19
+2026-01-14 15:04:44 +01:00: BOOKING: Starting booking for Platz 1 HALLE at 10:00 on 2026-01-19
+2026-01-14 15:12:14 +01:00: [2026-01-14 15:12:14 +0100] [2499161] [INFO] Handling signal: int
+2026-01-14 15:12:14 +01:00: [2026-01-14 15:12:14 +0100] [2499164] [INFO] Worker exiting (pid: 2499164)
+2026-01-14 15:12:14 +01:00: [2026-01-14 15:12:14 +0100] [2499163] [INFO] Worker exiting (pid: 2499163)
+2026-01-14 15:12:14 +01:00: [2026-01-14 15:12:14 +0100] [2499161] [INFO] Shutting down: Master
+2026-01-14 15:12:15 +01:00: [2026-01-14 15:12:15 +0100] [2500963] [INFO] Starting gunicorn 23.0.0
+2026-01-14 15:12:15 +01:00: [2026-01-14 15:12:15 +0100] [2500963] [INFO] Listening at: http://0.0.0.0:5001 (2500963)
+2026-01-14 15:12:15 +01:00: [2026-01-14 15:12:15 +0100] [2500963] [INFO] Using worker: sync
+2026-01-14 15:12:15 +01:00: [2026-01-14 15:12:15 +0100] [2500967] [INFO] Booting worker with pid: 2500967
+2026-01-14 15:12:15 +01:00: [2026-01-14 15:12:15 +0100] [2500968] [INFO] Booting worker with pid: 2500968
+2026-01-14 15:23:09 +01:00: [2026-01-14 15:23:09 +0100] [2500963] [INFO] Handling signal: int
+2026-01-14 15:23:09 +01:00: [2026-01-14 15:23:09 +0100] [2500967] [INFO] Worker exiting (pid: 2500967)
+2026-01-14 15:23:09 +01:00: [2026-01-14 15:23:09 +0100] [2500968] [INFO] Worker exiting (pid: 2500968)
+2026-01-14 15:23:10 +01:00: [2026-01-14 15:23:10 +0100] [2500963] [INFO] Shutting down: Master
+2026-01-14 15:23:10 +01:00: [2026-01-14 15:23:10 +0100] [2501493] [INFO] Starting gunicorn 23.0.0
+2026-01-14 15:23:10 +01:00: [2026-01-14 15:23:10 +0100] [2501493] [INFO] Listening at: http://0.0.0.0:5001 (2501493)
+2026-01-14 15:23:10 +01:00: [2026-01-14 15:23:10 +0100] [2501493] [INFO] Using worker: sync
+2026-01-14 15:23:10 +01:00: [2026-01-14 15:23:10 +0100] [2501495] [INFO] Booting worker with pid: 2501495
+2026-01-14 15:23:10 +01:00: [2026-01-14 15:23:10 +0100] [2501496] [INFO] Booting worker with pid: 2501496
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501493] [INFO] Handling signal: int
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501496] [INFO] Worker exiting (pid: 2501496)
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501495] [INFO] Worker exiting (pid: 2501495)
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501493] [INFO] Shutting down: Master
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501618] [INFO] Starting gunicorn 23.0.0
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501618] [INFO] Listening at: http://0.0.0.0:5001 (2501618)
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501618] [INFO] Using worker: sync
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501620] [INFO] Booting worker with pid: 2501620
+2026-01-14 15:23:50 +01:00: [2026-01-14 15:23:50 +0100] [2501621] [INFO] Booting worker with pid: 2501621
+2026-01-14 15:25:04 +01:00: BOOKING: Starting booking for Platz 1 HALLE at 10:00 on 2026-01-19
+2026-01-14 15:25:14 +01:00: BOOKING: Navigating to booking URL: https://reservierung.dasspiel.at/calendar/booking-data/?date=2026-01-19&time_start=10:00&square_id=401dbeb5-d503-481b-9834-5f9849c92499&is_half_hour=0
+2026-01-14 15:28:35 +01:00: [2026-01-14 15:28:35 +0100] [2501618] [INFO] Handling signal: int
+2026-01-14 15:28:35 +01:00: [2026-01-14 15:28:35 +0100] [2501620] [INFO] Worker exiting (pid: 2501620)
+2026-01-14 15:28:35 +01:00: [2026-01-14 15:28:35 +0100] [2501621] [INFO] Worker exiting (pid: 2501621)
+2026-01-14 15:28:36 +01:00: [2026-01-14 15:28:36 +0100] [2501618] [INFO] Shutting down: Master
+2026-01-14 15:28:36 +01:00: [2026-01-14 15:28:36 +0100] [2502079] [INFO] Starting gunicorn 23.0.0
+2026-01-14 15:28:36 +01:00: [2026-01-14 15:28:36 +0100] [2502079] [INFO] Listening at: http://0.0.0.0:5001 (2502079)
+2026-01-14 15:28:36 +01:00: [2026-01-14 15:28:36 +0100] [2502079] [INFO] Using worker: sync
+2026-01-14 15:28:36 +01:00: [2026-01-14 15:28:36 +0100] [2502080] [INFO] Booting worker with pid: 2502080
+2026-01-14 15:28:36 +01:00: [2026-01-14 15:28:36 +0100] [2502081] [INFO] Booting worker with pid: 2502081
+2026-01-14 15:58:17 +01:00: BOOKING: Starting booking for Platz 1 HALLE at 10:00 on 2026-01-19
+2026-01-14 15:58:27 +01:00: BOOKING DEBUG: After login, current URL: https://reservierung.dasspiel.at/
+2026-01-14 15:58:27 +01:00: BOOKING: Navigating to booking URL: https://reservierung.dasspiel.at/calendar/booking-data/?date=2026-01-19&time_start=10:00&square_id=401dbeb5-d503-481b-9834-5f9849c92499&is_half_hour=0
+2026-01-14 15:58:32 +01:00: BOOKING DEBUG: After navigation, current URL: https://reservierung.dasspiel.at/calendar/booking-data/?date=2026-01-19&time_start=10:00&square_id=401dbeb5-d503-481b-9834-5f9849c92499&is_half_hour=0
+2026-01-14 15:58:32 +01:00: BOOKING DEBUG: Found 5 buttons on page
+2026-01-14 15:58:32 +01:00: BOOKING DEBUG: Button 0: 'Save'
+2026-01-14 15:58:32 +01:00: BOOKING DEBUG: Button 1: 'Copy'
+2026-01-14 15:58:32 +01:00: BOOKING DEBUG: Button 2: 'Collapse All'
+2026-01-14 15:58:32 +01:00: BOOKING DEBUG: Button 3: 'Expand All'
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2502079] [INFO] Handling signal: int
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2502080] [INFO] Worker exiting (pid: 2502080)
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2502081] [INFO] Worker exiting (pid: 2502081)
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2502079] [INFO] Shutting down: Master
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2503468] [INFO] Starting gunicorn 23.0.0
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2503468] [INFO] Listening at: http://0.0.0.0:5001 (2503468)
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2503468] [INFO] Using worker: sync
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2503470] [INFO] Booting worker with pid: 2503470
+2026-01-14 16:07:12 +01:00: [2026-01-14 16:07:12 +0100] [2503471] [INFO] Booting worker with pid: 2503471
+2026-01-14 16:17:27 +01:00: BOOKING: Starting booking for Platz 1 HALLE at 10:00 on 2026-01-19
+2026-01-14 16:17:38 +01:00: BOOKING DEBUG: After login, current URL: https://reservierung.dasspiel.at/
+2026-01-14 16:17:38 +01:00: BOOKING: Navigating to calendar page: https://reservierung.dasspiel.at/?date=2026-01-19
+2026-01-14 16:17:41 +01:00: BOOKING: Attempting to click slot with square_id: 401dbeb5-d503-481b-9834-5f9849c92499
+2026-01-14 16:17:41 +01:00: BOOKING DEBUG: Could not find slot to click
+2026-01-14 18:08:08 +01:00: [2026-01-14 18:08:08 +0100] [2503468] [INFO] Handling signal: int
+2026-01-14 18:08:08 +01:00: [2026-01-14 18:08:08 +0100] [2503471] [INFO] Worker exiting (pid: 2503471)
+2026-01-14 18:08:08 +01:00: [2026-01-14 18:08:08 +0100] [2503470] [INFO] Worker exiting (pid: 2503470)
+2026-01-14 18:08:08 +01:00: [2026-01-14 18:08:08 +0100] [2503468] [INFO] Shutting down: Master
+2026-01-14 18:08:09 +01:00: [2026-01-14 18:08:09 +0100] [2506396] [INFO] Starting gunicorn 23.0.0
+2026-01-14 18:08:09 +01:00: [2026-01-14 18:08:09 +0100] [2506396] [INFO] Listening at: http://0.0.0.0:5001 (2506396)
+2026-01-14 18:08:09 +01:00: [2026-01-14 18:08:09 +0100] [2506396] [INFO] Using worker: sync
+2026-01-14 18:08:09 +01:00: [2026-01-14 18:08:09 +0100] [2506398] [INFO] Booting worker with pid: 2506398
+2026-01-14 18:08:09 +01:00: [2026-01-14 18:08:09 +0100] [2506399] [INFO] Booting worker with pid: 2506399
+2026-01-14 18:37:59 +01:00: BOOKING: Attempting API-based booking...
+2026-01-14 18:37:59 +01:00: BOOKING API: Starting booking for Platz 6 HALLE at 10:00 on 2026-01-19
+2026-01-14 18:37:59 +01:00: BOOKING API: Login successful, CSRF token obtained
+2026-01-14 18:37:59 +01:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent
+2026-01-14 18:37:59 +01:00: BOOKING API: Payload: {'date': '2026-01-19', 'time_start': '10:00', 'square_id': '35a8aa1f-cadc-431e-9465-26d7f54b0e1f', 'agb_accepted': True, 'rules_accepted': True}
+2026-01-14 18:37:59 +01:00: BOOKING API: Response status: 200
+2026-01-14 18:37:59 +01:00: BOOKING API: Response text: {"status":0}
+2026-01-14 21:51:44 +01:00: [2026-01-14 21:51:44 +0100] [2506398] [WARNING] Invalid request from ip=162.142.125.202: Invalid HTTP Version: (2, 0)
+2026-01-14 21:53:55 +01:00: [2026-01-14 21:53:55 +0100] [2506398] [WARNING] Invalid request from ip=167.94.138.50: Invalid HTTP Version: (2, 0)
+2026-01-15 03:35:05 +01:00: [2026-01-15 03:35:05 +0100] [2506399] [WARNING] Invalid request from ip=3.137.73.221: Invalid HTTP request line: 'SSH-2.0-Go'
+2026-01-15 14:25:21 +01:00: [2026-01-15 14:25:21 +0100] [2506399] [WARNING] Invalid request from ip=45.140.17.52: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
+2026-01-15 20:14:39 +01:00: [2026-01-15 20:14:39 +0100] [2506398] [WARNING] Invalid request from ip=45.140.17.52: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
+2026-01-15 23:04:52 +01:00: [2026-01-15 23:04:52 +0100] [2506399] [WARNING] Invalid request from ip=162.142.125.206: Invalid HTTP Version: (2, 0)
+2026-01-16 05:23:25 +01:00: [2026-01-16 05:23:25 +0100] [2506399] [WARNING] Invalid request from ip=3.143.33.63: Invalid HTTP request line: 'SSH-2.0-Go'
+2026-01-16 11:50:45 +01:00: [2026-01-16 11:50:45 +0100] [2506399] [WARNING] Invalid request from ip=167.94.138.51: Invalid HTTP Version: (2, 0)
+2026-01-16 11:51:39 +01:00: [2026-01-16 11:51:39 +0100] [2506398] [WARNING] Invalid request from ip=162.142.125.121: Invalid HTTP Version: (2, 0)
+2026-01-16 11:53:51 +01:00: [2026-01-16 11:53:51 +0100] [2506398] [WARNING] Invalid request from ip=45.140.17.52: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
+2026-01-17 00:51:34 +01:00: [2026-01-17 00:51:34 +0100] [2506398] [WARNING] Invalid request from ip=206.168.34.58: Invalid HTTP Version: (2, 0)
+2026-01-17 00:52:28 +01:00: [2026-01-17 00:52:28 +0100] [2506399] [WARNING] Invalid request from ip=162.142.125.47: Invalid HTTP Version: (2, 0)
+2026-01-17 07:19:25 +01:00: [2026-01-17 07:19:25 +0100] [2506399] [WARNING] Invalid request from ip=3.149.59.26: Invalid HTTP request line: 'SSH-2.0-Go'
