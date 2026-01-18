@@ -506,3 +506,25 @@
 2026-01-18 08:46:47 +01:00: [2026-01-18 08:46:47 +0100] [2656183] [WARNING] Invalid request from ip=3.149.59.26: Invalid HTTP request line: 'SSH-2.0-Go'
 2026-01-18 14:50:59 +01:00: [2026-01-18 14:50:59 +0100] [2629850] [WARNING] Invalid request from ip=162.142.125.217: Invalid HTTP Version: (2, 0)
 2026-01-18 14:51:59 +01:00: [2026-01-18 14:51:59 +0100] [2656183] [WARNING] Invalid request from ip=167.94.138.117: Invalid HTTP Version: (2, 0)
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2597213] [INFO] Handling signal: int
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2656183] [INFO] Worker exiting (pid: 2656183)
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2597213] [INFO] Shutting down: Master
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2682024] [INFO] Starting gunicorn 23.0.0
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2682024] [INFO] Listening at: http://0.0.0.0:5001 (2682024)
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2682024] [INFO] Using worker: sync
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2682026] [INFO] Booting worker with pid: 2682026
+2026-01-18 17:55:30 +01:00: [2026-01-18 17:55:30 +0100] [2682027] [INFO] Booting worker with pid: 2682027
+2026-01-18 17:56:24 +01:00: BOOKING: Attempting API-based booking...
+2026-01-18 17:56:24 +01:00: BOOKING API: Starting booking for Platz 6 HALLE at 12:00 on 2026-01-21
+2026-01-18 17:56:25 +01:00: BOOKING API: Login successful, CSRF token obtained
+2026-01-18 17:56:25 +01:00: BOOKING API: Getting booking data from https://reservierung.dasspiel.at/calendar/booking-data/
+2026-01-18 17:56:25 +01:00: BOOKING API: Params: {'date': '2026-01-21', 'time_start': '12:00', 'square_id': '35a8aa1f-cadc-431e-9465-26d7f54b0e1f', 'is_half_hour': '0'}
+2026-01-18 17:56:26 +01:00: BOOKING API: Booking-data response status: 200
+2026-01-18 17:56:26 +01:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent?date=2026-01-21&time_start=12:00&square_id=35a8aa1f-cadc-431e-9465-26d7f54b0e1f&is_half_hour=0
+2026-01-18 17:56:26 +01:00: BOOKING API: Form data: {'timeslot': '0', 'agb': 'on', 'rules': 'on'}
+2026-01-18 17:56:26 +01:00: BOOKING API: Response status: 200
+2026-01-18 17:56:26 +01:00: BOOKING API: Response text: {"status":0}
+2026-01-18 17:56:26 +01:00: BOOKING API: Failure - status=0
+2026-01-18 17:56:26 +01:00: BOOKING: API booking failed: Booking failed - server returned status 0 (slot may be unavailable or missing context)
+2026-01-18 17:56:26 +01:00: BOOKING: Falling back to Selenium-based booking...
+2026-01-18 17:56:26 +01:00: BOOKING SELENIUM: Starting booking for Platz 6 HALLE at 12:00 on 2026-01-21
