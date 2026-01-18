@@ -155,69 +155,49 @@ class DasSpielBooker:
 
         print(f"BOOKING API: Login successful, CSRF token obtained", file=sys.stderr, flush=True)
 
-        # Step 1: Get booking data to retrieve available timeslots
-        booking_data_url = f"{self.URL}calendar/booking-data/"
-        params = {
+        # Parse time slot to extract start and end times
+        # time_slot format is typically "HH:MM" for the start time
+        # Assuming 1-hour booking by default
+        time_start = time_slot
+        try:
+            # Parse hour and calculate end time (1 hour later)
+            hour = int(time_start.split(':')[0])
+            minute = time_start.split(':')[1]
+            end_hour = hour + 1
+            time_end = f"{end_hour:02d}:{minute}"
+        except:
+            # Fallback: if parsing fails, assume end is 1 hour after start
+            time_end = f"{int(time_slot.split(':')[0]) + 1:02d}:00"
+
+        # Prepare JSON payload for the new API format
+        booking_payload = {
+            'square_uuid': square_id,
+            'time_start': time_start,
+            'time_end': time_end,
+            'nof_players': 1,
             'date': date,
-            'time_start': time_slot,
-            'square_id': square_id,
-            'is_half_hour': '0'
+            'is_paid': False
         }
 
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Referer': f"{self.URL}?date={date}"
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Referer': f"{self.URL}?date={date}",
+            'Origin': self.URL.rstrip('/')
         }
 
-        print(f"BOOKING API: Getting booking data from {booking_data_url}", file=sys.stderr, flush=True)
-        print(f"BOOKING API: Params: {params}", file=sys.stderr, flush=True)
+        if self.csrf_token:
+            headers['X-CSRF-TOKEN'] = self.csrf_token
+
+        print(f"BOOKING API: Sending POST to {self.BOOKING_URL}", file=sys.stderr, flush=True)
+        print(f"BOOKING API: Payload: {booking_payload}", file=sys.stderr, flush=True)
 
         try:
-            response = self.session.get(
-                booking_data_url,
-                params=params,
-                headers=headers,
-                timeout=15
-            )
-
-            print(f"BOOKING API: Booking-data response status: {response.status_code}", file=sys.stderr, flush=True)
-
-            # Note: According to investigation, booking-data can return 503 but booking still succeeds
-            # So we continue even if booking-data fails
-            if response.status_code != 200:
-                print(f"BOOKING API: Warning - booking-data returned {response.status_code}, continuing anyway", file=sys.stderr, flush=True)
-
-            # Step 2: Submit booking with form data
-            # According to spec: timeslot=0 (first option), agb=checked, rules=checked
-            headers_post = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Referer': f"{self.URL}?date={date}",
-                'Origin': self.URL.rstrip('/')
-            }
-
-            if self.csrf_token:
-                headers_post['X-CSRF-TOKEN'] = self.csrf_token
-
-            # Form data as per specification
-            form_data = {
-                'timeslot': '0',  # Index of timeslot (0 = first option)
-                'agb': 'on',      # AGB checkbox
-                'rules': 'on'     # Rules checkbox
-            }
-
-            # Add slot identification as query parameters to POST URL
-            booking_url_with_params = f"{self.BOOKING_URL}?date={date}&time_start={time_slot}&square_id={square_id}&is_half_hour=0"
-
-            print(f"BOOKING API: Sending POST to {booking_url_with_params}", file=sys.stderr, flush=True)
-            print(f"BOOKING API: Form data: {form_data}", file=sys.stderr, flush=True)
-
             response = self.session.post(
-                booking_url_with_params,
-                data=form_data,
-                headers=headers_post,
+                self.BOOKING_URL,
+                json=booking_payload,
+                headers=headers,
                 timeout=15,
                 allow_redirects=False
             )
@@ -225,32 +205,37 @@ class DasSpielBooker:
             print(f"BOOKING API: Response status: {response.status_code}", file=sys.stderr, flush=True)
             print(f"BOOKING API: Response text: {response.text[:500] if response.text else 'empty'}", file=sys.stderr, flush=True)
 
-            # Check for success - typically redirects to calendar or returns 200
-            if response.status_code in [200, 302, 303]:
-                # Check for JSON response with status field
+            # Check for success - typically returns 200 with JSON
+            if response.status_code in [200, 201]:
+                # Check for JSON response
                 try:
                     json_response = response.json()
-                    if isinstance(json_response, dict) and 'status' in json_response:
-                        if json_response['status'] == 1:
-                            print(f"BOOKING API: Success - status=1", file=sys.stderr, flush=True)
+                    print(f"BOOKING API: JSON response: {json_response}", file=sys.stderr, flush=True)
+
+                    if isinstance(json_response, dict):
+                        # Check for success indicators
+                        if json_response.get('status') == 1 or json_response.get('success') == True:
+                            print(f"BOOKING API: Success confirmed", file=sys.stderr, flush=True)
                             return True, f"Successfully booked {court_name} on {date} at {time_slot}"
-                        elif json_response['status'] == 0:
-                            print(f"BOOKING API: Failure - status=0", file=sys.stderr, flush=True)
-                            return False, "Booking failed - server returned status 0 (slot may be unavailable or missing context)"
+                        elif json_response.get('status') == 0 or json_response.get('success') == False:
+                            error_msg = json_response.get('message', 'Slot may be unavailable')
+                            print(f"BOOKING API: Failure - {error_msg}", file=sys.stderr, flush=True)
+                            return False, f"Booking failed - {error_msg}"
+
+                    # If no clear status indicator, assume success for 200/201
+                    return True, f"Successfully booked {court_name} on {date} at {time_slot}"
                 except:
-                    # Not JSON or doesn't have status field, continue with other checks
-                    pass
+                    # Not JSON response, check text content
+                    response_text = response.text.lower() if response.text else ''
+                    if 'error' in response_text or 'fehler' in response_text:
+                        return False, f"Booking rejected: {response.text[:200]}"
+                    # Assume success for 200/201
+                    return True, f"Successfully booked {court_name} on {date} at {time_slot}"
 
-                # Check response content for error indicators
-                response_text = response.text.lower() if response.text else ''
-                if 'error' in response_text or 'fehler' in response_text:
-                    return False, f"Booking rejected: {response.text[:200]}"
-
-                # Check redirect location if present
-                if response.status_code in [302, 303]:
-                    location = response.headers.get('Location', '')
-                    print(f"BOOKING API: Redirected to: {location}", file=sys.stderr, flush=True)
-
+            elif response.status_code in [302, 303]:
+                # Redirect indicates success
+                location = response.headers.get('Location', '')
+                print(f"BOOKING API: Redirected to: {location}", file=sys.stderr, flush=True)
                 return True, f"Successfully booked {court_name} on {date} at {time_slot}"
 
             elif response.status_code == 422:
