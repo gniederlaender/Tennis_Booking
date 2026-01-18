@@ -135,18 +135,28 @@
     {
       "id": "task-20260117-091930",
       "type": "bug",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "API based booking - status 0",
       "description": "Still getting status 0.\nDo not implenent any changes now but think hard and propose me a manual way to figure out the solution\n\n3|tennis-b | 2026-01-17 09:15:15 +01:00: BOOKING: Attempting API-based booking...\n3|tennis-b | 2026-01-17 09:15:15 +01:00: BOOKING API: Starting booking for Platz 1 HALLE at 09:00 on 2026-01-23\n3|tennis-b | 2026-01-17 09:15:16 +01:00: BOOKING API: Login successful, CSRF token obtained\n3|tennis-b | 2026-01-17 09:15:16 +01:00: BOOKING API: Getting booking data from https://reservierung.dasspiel.at/calendar/booking-data/\n3|tennis-b | 2026-01-17 09:15:16 +01:00: BOOKING API: Params: {'date': '2026-01-23', 'time_start': '09:00', 'square_id': '401dbeb5-d503-481b-9834-5f9849c92499', 'is_half_hour': '0'}\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Booking-data response status: 200\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Form data: {'timeslot': '0', 'agb': 'on', 'rules': 'on'}\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Response status: 200\n3|tennis-b | 2026-01-17 09:15:17 +01:00: BOOKING API: Response text: {\"status\":0}",
       "created_at": "2026-01-17T09:19:30.529910",
-      "completion_notes": "Completed by agent in run 20260117_213315\n\u2717 Verification: FAILED - Unknown\nCommit: 0353e33",
-      "updated_at": "2026-01-17T22:28:05.764900"
+      "completion_notes": "Completed by agent in run 20260117_222837\n\u2717 Verification: FAILED - Unknown\nCommit: 5da0aba",
+      "updated_at": "2026-01-17T22:28:05.764900",
+      "completed_at": "2026-01-17T22:29:54.114912"
+    },
+    {
+      "id": "task-20260118-174805",
+      "type": "bug",
+      "status": "open",
+      "priority": "medium",
+      "title": "Booking Fix findings",
+      "description": "We analysed thoroughly the booking mechanisms as proposed. The findings and the solution is included in BOOKING_FIX_FINDINGS.md. Please implement the fix.",
+      "created_at": "2026-01-18T17:48:05.246517"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-17T22:28:05.764910"
+    "last_updated": "2026-01-18T17:48:05.246525"
   }
 }
