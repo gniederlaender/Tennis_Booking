@@ -183,8 +183,10 @@ class DasSpielBooker:
 
             print(f"BOOKING API: Booking-data response status: {response.status_code}", file=sys.stderr, flush=True)
 
+            # Note: According to investigation, booking-data can return 503 but booking still succeeds
+            # So we continue even if booking-data fails
             if response.status_code != 200:
-                return False, f"Failed to get booking data: HTTP {response.status_code}"
+                print(f"BOOKING API: Warning - booking-data returned {response.status_code}, continuing anyway", file=sys.stderr, flush=True)
 
             # Step 2: Submit booking with form data
             # According to spec: timeslot=0 (first option), agb=checked, rules=checked
@@ -206,11 +208,14 @@ class DasSpielBooker:
                 'rules': 'on'     # Rules checkbox
             }
 
-            print(f"BOOKING API: Sending POST to {self.BOOKING_URL}", file=sys.stderr, flush=True)
+            # Add slot identification as query parameters to POST URL
+            booking_url_with_params = f"{self.BOOKING_URL}?date={date}&time_start={time_slot}&square_id={square_id}&is_half_hour=0"
+
+            print(f"BOOKING API: Sending POST to {booking_url_with_params}", file=sys.stderr, flush=True)
             print(f"BOOKING API: Form data: {form_data}", file=sys.stderr, flush=True)
 
             response = self.session.post(
-                self.BOOKING_URL,
+                booking_url_with_params,
                 data=form_data,
                 headers=headers_post,
                 timeout=15,
@@ -222,6 +227,20 @@ class DasSpielBooker:
 
             # Check for success - typically redirects to calendar or returns 200
             if response.status_code in [200, 302, 303]:
+                # Check for JSON response with status field
+                try:
+                    json_response = response.json()
+                    if isinstance(json_response, dict) and 'status' in json_response:
+                        if json_response['status'] == 1:
+                            print(f"BOOKING API: Success - status=1", file=sys.stderr, flush=True)
+                            return True, f"Successfully booked {court_name} on {date} at {time_slot}"
+                        elif json_response['status'] == 0:
+                            print(f"BOOKING API: Failure - status=0", file=sys.stderr, flush=True)
+                            return False, "Booking failed - server returned status 0 (slot may be unavailable or missing context)"
+                except:
+                    # Not JSON or doesn't have status field, continue with other checks
+                    pass
+
                 # Check response content for error indicators
                 response_text = response.text.lower() if response.text else ''
                 if 'error' in response_text or 'fehler' in response_text:
