@@ -158,16 +158,27 @@
     {
       "id": "task-20260118-221711",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Rent API",
       "description": "I found out, how the Submit Booking API works. Please update it Now it will work.\n\n*Method:** `POST`  \n**URL:** `https://reservierung.dasspiel.at/user/booking/rent`\n\nThe following data must be sent in the request body (the below values are exemplary. We need to send the square_id, date, start-time and end-time - which was previously selected by the user!)\n{\n    \"square_uuid\": \"35a8aa1f-cadc-431e-9465-26d7f54b0e1f\",\n    \"time_start\": \"10:00\",\n    \"time_end\": \"11:00\",\n    \"nof_players\": 1,\n    \"date\": \"2026-01-23\",\n    \"is_paid\": false\n}\n\nNow it will work.\nPlease implement this!",
-      "created_at": "2026-01-18T22:17:11.628850"
+      "created_at": "2026-01-18T22:17:11.628850",
+      "completion_notes": "Completed by agent in run 20260118_221737\n\u2717 Verification: FAILED - Unknown\nCommit: cfe9da9",
+      "completed_at": "2026-01-18T22:20:32.526946"
+    },
+    {
+      "id": "task-20260118-223730",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Summarize, what has been done so far",
+      "description": "Please summarize, what was done so far. Do not implement anything",
+      "created_at": "2026-01-18T22:37:30.021556"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-18T22:17:11.628859"
+    "last_updated": "2026-01-18T22:37:30.021584"
   }
 }

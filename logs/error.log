@@ -528,3 +528,35 @@
 2026-01-18 17:56:26 +01:00: BOOKING: API booking failed: Booking failed - server returned status 0 (slot may be unavailable or missing context)
 2026-01-18 17:56:26 +01:00: BOOKING: Falling back to Selenium-based booking...
 2026-01-18 17:56:26 +01:00: BOOKING SELENIUM: Starting booking for Platz 6 HALLE at 12:00 on 2026-01-21
+2026-01-18 22:23:38 +01:00: BOOKING: Attempting API-based booking...
+2026-01-18 22:23:38 +01:00: BOOKING API: Starting booking for Platz 5 HALLE at 10:00 on 2026-01-23
+2026-01-18 22:23:38 +01:00: BOOKING API: Login successful, CSRF token obtained
+2026-01-18 22:23:38 +01:00: BOOKING API: Getting booking data from https://reservierung.dasspiel.at/calendar/booking-data/
+2026-01-18 22:23:38 +01:00: BOOKING API: Params: {'date': '2026-01-23', 'time_start': '10:00', 'square_id': '3c3895e4-111f-4387-b815-7506ffe26607', 'is_half_hour': '0'}
+2026-01-18 22:23:39 +01:00: BOOKING API: Booking-data response status: 200
+2026-01-18 22:23:39 +01:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent?date=2026-01-23&time_start=10:00&square_id=3c3895e4-111f-4387-b815-7506ffe26607&is_half_hour=0
+2026-01-18 22:23:39 +01:00: BOOKING API: Form data: {'timeslot': '0', 'agb': 'on', 'rules': 'on'}
+2026-01-18 22:23:39 +01:00: BOOKING API: Response status: 200
+2026-01-18 22:23:39 +01:00: BOOKING API: Response text: {"status":0}
+2026-01-18 22:23:39 +01:00: BOOKING API: Failure - status=0
+2026-01-18 22:23:39 +01:00: BOOKING: API booking failed: Booking failed - server returned status 0 (slot may be unavailable or missing context)
+2026-01-18 22:23:39 +01:00: BOOKING: Falling back to Selenium-based booking...
+2026-01-18 22:23:39 +01:00: BOOKING SELENIUM: Starting booking for Platz 5 HALLE at 10:00 on 2026-01-23
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2682024] [INFO] Handling signal: int
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2682027] [INFO] Worker exiting (pid: 2682027)
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2682026] [INFO] Worker exiting (pid: 2682026)
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2682024] [INFO] Shutting down: Master
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2689351] [INFO] Starting gunicorn 23.0.0
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2689351] [INFO] Listening at: http://0.0.0.0:5001 (2689351)
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2689351] [INFO] Using worker: sync
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2689353] [INFO] Booting worker with pid: 2689353
+2026-01-18 22:24:08 +01:00: [2026-01-18 22:24:08 +0100] [2689354] [INFO] Booting worker with pid: 2689354
+2026-01-18 22:24:39 +01:00: BOOKING: Attempting API-based booking...
+2026-01-18 22:24:39 +01:00: BOOKING API: Starting booking for Platz 5 HALLE at 10:00 on 2026-01-23
+2026-01-18 22:24:39 +01:00: BOOKING API: Login successful, CSRF token obtained
+2026-01-18 22:24:39 +01:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent
+2026-01-18 22:24:39 +01:00: BOOKING API: Payload: {'square_uuid': '3c3895e4-111f-4387-b815-7506ffe26607', 'time_start': '10:00', 'time_end': '11:00', 'nof_players': 1, 'date': '2026-01-23', 'is_paid': False}
+2026-01-18 22:24:40 +01:00: BOOKING API: Response status: 200
+2026-01-18 22:24:40 +01:00: BOOKING API: Response text: {"status":1,"uuid":"40426693-d2c6-4d1d-9cf6-0e8742f8d89a","is_queue":false}
+2026-01-18 22:24:40 +01:00: BOOKING API: JSON response: {'status': 1, 'uuid': '40426693-d2c6-4d1d-9cf6-0e8742f8d89a', 'is_queue': False}
+2026-01-18 22:24:40 +01:00: BOOKING API: Success confirmed
