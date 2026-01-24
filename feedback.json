@@ -204,14 +204,24 @@
       "type": "bug",
       "status": "open",
       "priority": "medium",
-      "title": "500 - internal error",
-      "description": "The application delivers an internal error after login. Please check",
-      "created_at": "2026-01-24T10:15:05.972963"
+      "title": "Another bug",
+      "description": "The internal error after login is solved Please check the next error (see screenshot)",
+      "created_at": "2026-01-24T10:15:05.972963",
+      "completion_notes": "Completed by agent in run 20260124_102856\n\u2717 Verification: FAILED - Unknown\nCommit: 13c2f3b",
+      "updated_at": "2026-01-24T10:55:51.360686",
+      "images": [
+        {
+          "id": "40bbe2fc8d854e12a8ff9405e51560bb",
+          "filename": "b4b568dd55644c4790f1930066e1bd76.png",
+          "uploaded_at": "2026-01-24T10:55:49.316139",
+          "original_name": "IMG_3274.png"
+        }
+      ]
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-24T10:15:05.972971"
+    "last_updated": "2026-01-24T10:55:51.360698"
   }
 }
