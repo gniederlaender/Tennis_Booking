@@ -1,6 +1,6 @@
 """Flask web application for Tennis Court Booking Finder."""
 
-from flask import Flask, render_template, request, jsonify, g
+from flask import Flask, render_template, request, jsonify, g, session
 from werkzeug.middleware.proxy_fix import ProxyFix
 from datetime import datetime
 from timeframe_parser import TimeframeParser
@@ -8,9 +8,11 @@ from scrapers_v2 import scrape_all_portals
 from preference_engine import PreferenceEngine
 from booking import book_court
 from trainer_finder import find_trainers
+from chat_engine import ChatEngine
 import config
 from database.db import init_db, close_db
 from auth import auth_bp, login_required
+import uuid
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config.SECRET_KEY
@@ -138,6 +140,91 @@ def book():
 
     except Exception as e:
         return jsonify({'error': f'Booking error: {str(e)}'}), 500
+
+@app.route('/chat')
+@login_required
+def chat_interface():
+    """Conversational interface page."""
+    return render_template('chat.html')
+
+@app.route('/api/chat', methods=['POST'])
+@login_required
+def chat_message():
+    """Handle chat messages."""
+    try:
+        data = request.json
+        message = data.get('message', '').strip()
+        session_id = data.get('session_id')
+
+        if not message:
+            return jsonify({'error': 'Message is required'}), 400
+
+        # Initialize chat engine
+        chat_engine = ChatEngine()
+
+        # Get or create session context
+        if not session_id:
+            session_id = str(uuid.uuid4())
+
+        # Get context from Flask session (keyed by session_id)
+        session_key = f'chat_context_{session_id}'
+        context = session.get(session_key, {
+            'state': 'IDLE',
+            'last_results': [],
+            'last_search': {},
+            'conversation_history': []
+        })
+
+        # Process message
+        response = chat_engine.process_message(message, context)
+
+        # Add message to history
+        response['context']['conversation_history'].append({
+            'role': 'user',
+            'message': message,
+            'timestamp': datetime.now().isoformat()
+        })
+        response['context']['conversation_history'].append({
+            'role': 'assistant',
+            'message': response['reply'],
+            'timestamp': datetime.now().isoformat()
+        })
+
+        # Keep only last 20 messages
+        if len(response['context']['conversation_history']) > 20:
+            response['context']['conversation_history'] = response['context']['conversation_history'][-20:]
+
+        # Save context back to session
+        session[session_key] = response['context']
+        session.modified = True
+
+        # Return response
+        return jsonify({
+            'reply': response['reply'],
+            'suggestions': response.get('suggestions', []),
+            'session_id': session_id,
+            'action': response.get('action'),
+            'results_count': len(response.get('results', []))
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'Chat error: {str(e)}'}), 500
+
+@app.route('/api/chat/clear', methods=['POST'])
+@login_required
+def clear_chat():
+    """Clear chat session."""
+    try:
+        session_id = request.json.get('session_id')
+        if session_id:
+            session_key = f'chat_context_{session_id}'
+            if session_key in session:
+                del session[session_key]
+                session.modified = True
+
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/health')
 def health():

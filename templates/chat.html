@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Booking Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .header h1 { font-size: 2em; margin-bottom: 5px; }
+        .header p { opacity: 0.9; font-size: 0.95em; }
+        .user-menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mode-switch {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .mode-switch:hover { background: rgba(255,255,255,0.3); }
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .logout-btn:hover { background: rgba(255,255,255,0.3); }
+
+        .chat-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 200px);
+            min-height: 500px;
+            max-height: 700px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .message.user .message-bubble {
+            background: #667eea;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant .message-bubble {
+            background: #f1f3f5;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            padding-left: 10px;
+        }
+
+        .suggestion-btn {
+            background: white;
+            border: 1px solid #667eea;
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #f1f3f5;
+            border-radius: 18px;
+            width: fit-content;
+        }
+
+        .typing-indicator.show { display: flex; }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            background: #fafafa;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 24px;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+
+        .send-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #5568d3;
+        }
+
+        .send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .clear-btn {
+            background: transparent;
+            border: 1px solid #ccc;
+            color: #666;
+            padding: 8px 16px;
+            border-radius: 18px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+            border-color: #999;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                height: calc(100vh - 150px);
+            }
+            .message-bubble {
+                max-width: 85%;
+            }
+            .user-menu {
+                position: static;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            .header h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="user-menu">
+                <a href="{{ url_for('index') }}" class="mode-switch">Classic Mode</a>
+                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+            </div>
+            <h1>🎾 Tennis Booking Assistant</h1>
+            <p>Chat with me to find and book tennis courts and trainers</p>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome message -->
+                <div class="message assistant">
+                    <div>
+                        <div class="message-bubble">
+                            <strong>Hi! I'm your tennis booking assistant. 🎾</strong>
+
+I can help you:
+• Find available tennis courts at Arsenal and Post SV
+• Search for trainers at Arsenal
+• Book courts and trainer sessions
+
+Just tell me what you'd like to do! For example:
+- 'Find a court tomorrow at 6pm'
+- 'I need a trainer next Monday morning'
+- 'Show available courts this weekend'
+                        </div>
+                        <div class="suggestions" id="initialSuggestions">
+                            <button class="suggestion-btn" onclick="sendSuggestion('Find a court tomorrow at 6pm')">Find court tomorrow 6pm</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Find a trainer')">Find a trainer</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Help')">Help</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <input type="text" id="chatInput" class="chat-input"
+                           placeholder="Type your message..."
+                           onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()" id="sendBtn" class="send-btn">Send</button>
+                </div>
+                <div style="margin-top: 10px; text-align: center;">
+                    <button onclick="clearChat()" class="clear-btn">Clear conversation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sessionId = null;
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendSuggestion(text) {
+            document.getElementById('chatInput').value = text;
+            sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage('user', message);
+
+            // Clear input
+            input.value = '';
+
+            // Show typing indicator
+            showTyping();
+
+            // Disable send button
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = true;
+
+            try {
+                // Send to API
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId
+                    })
+                });
+
+                const data = await response.json();
+
+                // Hide typing indicator
+                hideTyping();
+
+                if (data.error) {
+                    addMessage('assistant', '❌ ' + data.error);
+                } else {
+                    // Update session ID
+                    sessionId = data.session_id;
+
+                    // Add assistant response
+                    addMessage('assistant', data.reply, data.suggestions);
+                }
+            } catch (error) {
+                hideTyping();
+                addMessage('assistant', '❌ Sorry, something went wrong. Please try again.');
+                console.error('Error:', error);
+            } finally {
+                sendBtn.disabled = false;
+                input.focus();
+            }
+        }
+
+        function addMessage(role, text, suggestions = []) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            let html = `
+                <div>
+                    <div class="message-bubble">${escapeHtml(text).replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/_(.*?)_/g, '<em>$1</em>')}</div>
+            `;
+
+            if (suggestions && suggestions.length > 0) {
+                html += '<div class="suggestions">';
+                suggestions.forEach(suggestion => {
+                    html += `<button class="suggestion-btn" onclick="sendSuggestion('${escapeHtml(suggestion)}')">${escapeHtml(suggestion)}</button>`;
+                });
+                html += '</div>';
+            }
+
+            html += '</div>';
+
+            messageDiv.innerHTML = html;
+            messagesDiv.appendChild(messageDiv);
+
+            // Scroll to bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showTyping() {
+            const messagesDiv = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message assistant';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="typing-indicator show">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) {
+                typing.remove();
+            }
+        }
+
+        async function clearChat() {
+            if (!confirm('Clear conversation history?')) {
+                return;
+            }
+
+            try {
+                await fetch('/api/chat/clear', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId
+                    })
+                });
+
+                // Clear messages
+                const messagesDiv = document.getElementById('chatMessages');
+                messagesDiv.innerHTML = `
+                    <div class="message assistant">
+                        <div>
+                            <div class="message-bubble">
+                                <strong>Conversation cleared! 🎾</strong>
+
+How can I help you find a court or trainer?
+                            </div>
+                            <div class="suggestions">
+                                <button class="suggestion-btn" onclick="sendSuggestion('Find a court tomorrow at 6pm')">Find court tomorrow 6pm</button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('Find a trainer')">Find a trainer</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Reset session
+                sessionId = null;
+            } catch (error) {
+                console.error('Error clearing chat:', error);
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Focus input on load
+        window.onload = function() {
+            document.getElementById('chatInput').focus();
+        };
+    </script>
+</body>
+</html>
