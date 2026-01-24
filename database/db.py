@@ -7,10 +7,9 @@ import config
 def get_db():
     """Get database connection."""
     if 'db' not in g:
-        g.db = sqlite3.connect(
-            config.DATABASE_PATH,
-            detect_types=sqlite3.PARSE_DECLTYPES
-        )
+        # Don't use PARSE_DECLTYPES to avoid timestamp parsing errors
+        # Timestamps will be returned as strings, which is safer
+        g.db = sqlite3.connect(config.DATABASE_PATH)
         g.db.row_factory = sqlite3.Row
     return g.db
 
