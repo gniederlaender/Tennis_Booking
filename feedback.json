@@ -180,16 +180,27 @@
     {
       "id": "task-20260120-232648",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Create a concept for a conversational interface for the app",
       "description": "Think about, how a conversational interface would work for our app. It should feel like ChatGPT or Claude, but it\u2019s mission shall be solely focused on searching available tennis courts, and booking them, as well as trainers. It should be using the functionalities what we developed for the Tennis app do not employment. Anything at the moment, just let me know what this could look like.",
-      "created_at": "2026-01-20T23:26:48.520560"
+      "created_at": "2026-01-20T23:26:48.520560",
+      "completion_notes": "Completed by agent in run 20260121_084001\n\u2717 Verification: FAILED - Unknown\nCommit: 57089f8",
+      "completed_at": "2026-01-21T08:43:46.286755"
+    },
+    {
+      "id": "task-20260123-234253",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Conversional interface",
+      "description": "Please build the interface as outlined in the task task-20260120-232648",
+      "created_at": "2026-01-23T23:42:53.074895"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-20T23:26:48.520570"
+    "last_updated": "2026-01-23T23:42:53.074903"
   }
 }
