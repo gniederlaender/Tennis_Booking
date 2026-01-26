@@ -6,6 +6,20 @@
 
 ---
 
+## 🚀 Quick Fix (Apache Users)
+
+**An automated setup is now available!**
+
+```bash
+sudo bash /opt/Tennis_Booking/setup_apache_proxy.sh
+```
+
+See **`APACHE_PROXY_SETUP.md`** for complete Apache configuration documentation.
+
+For other proxies (nginx, Caddy, etc.), continue reading below.
+
+---
+
 ## Problem Description
 
 When accessing the chat interface through the external domain/proxy, the following error occurs:
