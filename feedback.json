@@ -202,12 +202,12 @@
     {
       "id": "task-20260124-101505",
       "type": "bug",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Another bug",
       "description": "The internal error after login is solved Please check the next error (see screenshot)",
       "created_at": "2026-01-24T10:15:05.972963",
-      "completion_notes": "Completed by agent in run 20260124_102856\n\u2717 Verification: FAILED - Unknown\nCommit: 13c2f3b",
+      "completion_notes": "Completed by agent in run 20260124_105611\n\u2717 Verification: FAILED - Unknown\nCommit: 5fd4ef6",
       "updated_at": "2026-01-24T10:55:51.360686",
       "images": [
         {
@@ -216,12 +216,22 @@
           "uploaded_at": "2026-01-24T10:55:49.316139",
           "original_name": "IMG_3274.png"
         }
-      ]
+      ],
+      "completed_at": "2026-01-24T10:58:44.241748"
+    },
+    {
+      "id": "task-20260126-190002",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "404",
+      "description": "The chat endpoint is throwing a 404. I think it is the proxy again\n{\n    \"success\": false,\n    \"error\": {\n        \"code\": \"NOT_FOUND\",\n        \"message\": \"API endpoint not found\"\n    }\n}",
+      "created_at": "2026-01-26T19:00:02.234209"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-24T10:55:51.360698"
+    "last_updated": "2026-01-26T19:00:02.234218"
   }
 }
