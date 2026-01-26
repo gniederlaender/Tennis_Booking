@@ -589,3 +589,45 @@
 2026-01-20 05:58:31 +01:00: Found 9 unique trainer slots
 2026-01-20 05:58:31 +01:00: Found 9 trainer slots
 2026-01-20 05:58:31 +01:00: 
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Scraping Das Spiel (Tenniszentrum Arsenal)...
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Fetching https://reservierung.dasspiel.at/?date=2026-01-26...
+2026-01-26 19:24:17 +01:00: Found 8 courts
+2026-01-26 19:24:17 +01:00: Total available FREE slots found: 25
+2026-01-26 19:24:17 +01:00: Found 25 slots from Das Spiel
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Scraping Post SV Wien...
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Fetching https://buchen.postsv-wien.at/tennis.html...
+2026-01-26 19:24:17 +01:00: Note: This portal requires login for full access.
+2026-01-26 19:24:17 +01:00: Attempting login with provided credentials...
+2026-01-26 19:24:17 +01:00: Login successful!
+2026-01-26 19:24:17 +01:00: Successfully fetched booking page for 2026-01-26
+2026-01-26 19:24:17 +01:00: Found 33 slots in requested timeframe
+2026-01-26 19:24:17 +01:00: Found 33 slots from Post SV Wien
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Scraping Das Spiel (Tenniszentrum Arsenal)...
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Fetching https://reservierung.dasspiel.at/?date=2026-01-26...
+2026-01-26 19:24:17 +01:00: Found 8 courts
+2026-01-26 19:24:17 +01:00: Total available FREE slots found: 1
+2026-01-26 19:24:17 +01:00: Found 1 slots from Das Spiel
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: 
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Scraping Post SV Wien...
+2026-01-26 19:24:17 +01:00: ============================================================
+2026-01-26 19:24:17 +01:00: Fetching https://buchen.postsv-wien.at/tennis.html...
+2026-01-26 19:24:17 +01:00: Note: This portal requires login for full access.
+2026-01-26 19:24:17 +01:00: Attempting login with provided credentials...
+2026-01-26 19:24:17 +01:00: Login successful!
+2026-01-26 19:24:17 +01:00: Successfully fetched booking page for 2026-01-26
+2026-01-26 19:24:17 +01:00: Found 0 slots in requested timeframe
+2026-01-26 19:24:17 +01:00: Found 0 slots from Post SV Wien
+2026-01-26 19:24:17 +01:00: 
