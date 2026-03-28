@@ -5606,3 +5606,1376 @@
 2026-03-27 18:51:38 +01:00: [2026-03-27 18:51:38 +0100] [1298263] [INFO] Booting worker with pid: 1298263
 2026-03-27 23:41:38 +01:00: [2026-03-27 23:41:38 +0100] [1210188] [WARNING] Invalid request from ip=194.165.16.161: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
 2026-03-27 23:53:03 +01:00: [2026-03-27 23:53:03 +0100] [1298263] [WARNING] Invalid request from ip=194.165.16.162: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [3048326] [INFO] Handling signal: int
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1210188] [INFO] Worker exiting (pid: 1210188)
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1298263] [INFO] Worker exiting (pid: 1298263)
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [3048326] [INFO] Shutting down: Master
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1319830] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1319830] [INFO] Listening at: http://0.0.0.0:5001 (1319830)
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1319830] [INFO] Using worker: sync
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1319832] [INFO] Booting worker with pid: 1319832
+2026-03-28 11:30:17 +01:00: [2026-03-28 11:30:17 +0100] [1319833] [INFO] Booting worker with pid: 1319833
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319832] [ERROR] Exception in worker process
+2026-03-28 11:30:18 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:18 +01:00:     worker.init_process()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:18 +01:00:     self.load_wsgi()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:18 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:18 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:18 +01:00:     self.callable = self.load()
+2026-03-28 11:30:18 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:18 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:18 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:18 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:18 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:18 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:18 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:18 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:18 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319833] [ERROR] Exception in worker process
+2026-03-28 11:30:18 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:18 +01:00:     worker.init_process()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:18 +01:00:     self.load_wsgi()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:18 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:18 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:18 +01:00:     self.callable = self.load()
+2026-03-28 11:30:18 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:18 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:18 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:18 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:18 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:18 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:18 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:18 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:18 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319833] [INFO] Worker exiting (pid: 1319833)
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319832] [INFO] Worker exiting (pid: 1319832)
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319830] [ERROR] Worker (pid:1319832) exited with code 3
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319830] [ERROR] Worker (pid:1319833) was sent SIGTERM!
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319830] [ERROR] Shutting down: Master
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319830] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319834] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319834] [INFO] Listening at: http://0.0.0.0:5001 (1319834)
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319834] [INFO] Using worker: sync
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319835] [INFO] Booting worker with pid: 1319835
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319836] [INFO] Booting worker with pid: 1319836
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319835] [ERROR] Exception in worker process
+2026-03-28 11:30:18 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:18 +01:00:     worker.init_process()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:18 +01:00:     self.load_wsgi()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:18 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:18 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:18 +01:00:     self.callable = self.load()
+2026-03-28 11:30:18 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:18 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:18 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:18 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:18 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:18 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:18 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:18 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:18 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319835] [INFO] Worker exiting (pid: 1319835)
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319836] [ERROR] Exception in worker process
+2026-03-28 11:30:18 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:18 +01:00:     worker.init_process()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:18 +01:00:     self.load_wsgi()
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:18 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:18 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:18 +01:00:     self.callable = self.load()
+2026-03-28 11:30:18 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:18 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:18 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:18 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:18 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:18 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:18 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:18 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:18 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:18 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:18 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:18 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:18 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:18 +01:00: [2026-03-28 11:30:18 +0100] [1319836] [INFO] Worker exiting (pid: 1319836)
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319834] [ERROR] Worker (pid:1319836) exited with code 3
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319834] [ERROR] Worker (pid:1319835) exited with code 3
+2026-03-28 11:30:19 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 208, in run
+2026-03-28 11:30:19 +01:00:     self.sleep()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 359, in sleep
+2026-03-28 11:30:19 +01:00:     ready = select.select([self.PIPE[0]], [], [], 1.0)
+2026-03-28 11:30:19 +01:00:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+2026-03-28 11:30:19 +01:00:     self.reap_workers()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+2026-03-28 11:30:19 +01:00:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2026-03-28 11:30:19 +01:00: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2026-03-28 11:30:19 +01:00: 
+2026-03-28 11:30:19 +01:00: During handling of the above exception, another exception occurred:
+2026-03-28 11:30:19 +01:00: 
+2026-03-28 11:30:19 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/bin/gunicorn", line 8, in <module>
+2026-03-28 11:30:19 +01:00:     sys.exit(run())
+2026-03-28 11:30:19 +01:00:              ^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+2026-03-28 11:30:19 +01:00:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 235, in run
+2026-03-28 11:30:19 +01:00:     super().run()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 71, in run
+2026-03-28 11:30:19 +01:00:     Arbiter(self).run()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 228, in run
+2026-03-28 11:30:19 +01:00:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 341, in halt
+2026-03-28 11:30:19 +01:00:     self.stop()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 395, in stop
+2026-03-28 11:30:19 +01:00:     time.sleep(0.1)
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+2026-03-28 11:30:19 +01:00:     self.reap_workers()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+2026-03-28 11:30:19 +01:00:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2026-03-28 11:30:19 +01:00: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [INFO] Listening at: http://0.0.0.0:5001 (1319837)
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [INFO] Using worker: sync
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319838] [INFO] Booting worker with pid: 1319838
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319839] [INFO] Booting worker with pid: 1319839
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319838] [ERROR] Exception in worker process
+2026-03-28 11:30:19 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:19 +01:00:     worker.init_process()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:19 +01:00:     self.load_wsgi()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:19 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:19 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:19 +01:00:     self.callable = self.load()
+2026-03-28 11:30:19 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:19 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:19 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:19 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:19 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:19 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:19 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:19 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:19 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:19 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:19 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:19 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:19 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:19 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319838] [INFO] Worker exiting (pid: 1319838)
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319839] [ERROR] Exception in worker process
+2026-03-28 11:30:19 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:19 +01:00:     worker.init_process()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:19 +01:00:     self.load_wsgi()
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:19 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:19 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:19 +01:00:     self.callable = self.load()
+2026-03-28 11:30:19 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:19 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:19 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:19 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:19 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:19 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:19 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:19 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:19 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:19 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:19 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:19 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:19 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:19 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:19 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:19 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319839] [INFO] Worker exiting (pid: 1319839)
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [ERROR] Worker (pid:1319838) exited with code 3
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [ERROR] Worker (pid:1319839) was sent SIGTERM!
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [ERROR] Shutting down: Master
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319837] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319846] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319846] [INFO] Listening at: http://0.0.0.0:5001 (1319846)
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319846] [INFO] Using worker: sync
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319851] [INFO] Booting worker with pid: 1319851
+2026-03-28 11:30:19 +01:00: [2026-03-28 11:30:19 +0100] [1319852] [INFO] Booting worker with pid: 1319852
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319851] [ERROR] Exception in worker process
+2026-03-28 11:30:20 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:20 +01:00:     worker.init_process()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:20 +01:00:     self.load_wsgi()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:20 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:20 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:20 +01:00:     self.callable = self.load()
+2026-03-28 11:30:20 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:20 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:20 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:20 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:20 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:20 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:20 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:20 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:20 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319851] [INFO] Worker exiting (pid: 1319851)
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319852] [ERROR] Exception in worker process
+2026-03-28 11:30:20 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:20 +01:00:     worker.init_process()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:20 +01:00:     self.load_wsgi()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:20 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:20 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:20 +01:00:     self.callable = self.load()
+2026-03-28 11:30:20 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:20 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:20 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:20 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:20 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:20 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:20 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:20 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:20 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319852] [INFO] Worker exiting (pid: 1319852)
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319846] [ERROR] Worker (pid:1319851) exited with code 3
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319846] [ERROR] Worker (pid:1319852) was sent SIGTERM!
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319846] [ERROR] Shutting down: Master
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319846] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319853] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319853] [INFO] Listening at: http://0.0.0.0:5001 (1319853)
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319853] [INFO] Using worker: sync
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319854] [INFO] Booting worker with pid: 1319854
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319855] [INFO] Booting worker with pid: 1319855
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319854] [ERROR] Exception in worker process
+2026-03-28 11:30:20 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:20 +01:00:     worker.init_process()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:20 +01:00:     self.load_wsgi()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:20 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:20 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:20 +01:00:     self.callable = self.load()
+2026-03-28 11:30:20 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:20 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:20 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:20 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:20 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:20 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:20 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:20 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:20 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319854] [INFO] Worker exiting (pid: 1319854)
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319855] [ERROR] Exception in worker process
+2026-03-28 11:30:20 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:20 +01:00:     worker.init_process()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:20 +01:00:     self.load_wsgi()
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:20 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:20 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:20 +01:00:     self.callable = self.load()
+2026-03-28 11:30:20 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:20 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:20 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:20 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:20 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:20 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:20 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:20 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:20 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:20 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:20 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:20 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:20 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319855] [INFO] Worker exiting (pid: 1319855)
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319853] [ERROR] Worker (pid:1319854) exited with code 3
+2026-03-28 11:30:20 +01:00: [2026-03-28 11:30:20 +0100] [1319853] [ERROR] Worker (pid:1319855) was sent SIGTERM!
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319853] [ERROR] Shutting down: Master
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319853] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [INFO] Listening at: http://0.0.0.0:5001 (1319856)
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [INFO] Using worker: sync
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319857] [INFO] Booting worker with pid: 1319857
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319859] [INFO] Booting worker with pid: 1319859
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319857] [ERROR] Exception in worker process
+2026-03-28 11:30:21 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:21 +01:00:     worker.init_process()
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:21 +01:00:     self.load_wsgi()
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:21 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:21 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:21 +01:00:     self.callable = self.load()
+2026-03-28 11:30:21 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:21 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:21 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:21 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:21 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:21 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:21 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:21 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:21 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:21 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:21 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:21 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:21 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:21 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319857] [INFO] Worker exiting (pid: 1319857)
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319859] [ERROR] Exception in worker process
+2026-03-28 11:30:21 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:21 +01:00:     worker.init_process()
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:21 +01:00:     self.load_wsgi()
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:21 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:21 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:21 +01:00:     self.callable = self.load()
+2026-03-28 11:30:21 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:21 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:21 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:21 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:21 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:21 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:21 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:21 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:21 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:21 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:21 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:21 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:21 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:21 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:21 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:21 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319859] [INFO] Worker exiting (pid: 1319859)
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [ERROR] Worker (pid:1319857) exited with code 3
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [ERROR] Worker (pid:1319859) was sent SIGTERM!
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [ERROR] Shutting down: Master
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319856] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319861] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319861] [INFO] Listening at: http://0.0.0.0:5001 (1319861)
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319861] [INFO] Using worker: sync
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319862] [INFO] Booting worker with pid: 1319862
+2026-03-28 11:30:21 +01:00: [2026-03-28 11:30:21 +0100] [1319863] [INFO] Booting worker with pid: 1319863
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319862] [ERROR] Exception in worker process
+2026-03-28 11:30:22 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:22 +01:00:     worker.init_process()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:22 +01:00:     self.load_wsgi()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:22 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:22 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:22 +01:00:     self.callable = self.load()
+2026-03-28 11:30:22 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:22 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:22 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:22 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:22 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:22 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:22 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:22 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:22 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319862] [INFO] Worker exiting (pid: 1319862)
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319863] [ERROR] Exception in worker process
+2026-03-28 11:30:22 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:22 +01:00:     worker.init_process()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:22 +01:00:     self.load_wsgi()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:22 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:22 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:22 +01:00:     self.callable = self.load()
+2026-03-28 11:30:22 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:22 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:22 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:22 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:22 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:22 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:22 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:22 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:22 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319863] [INFO] Worker exiting (pid: 1319863)
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319861] [ERROR] Worker (pid:1319862) exited with code 3
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319861] [ERROR] Worker (pid:1319863) was sent SIGTERM!
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319861] [ERROR] Shutting down: Master
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319861] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [INFO] Listening at: http://0.0.0.0:5001 (1319864)
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [INFO] Using worker: sync
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319865] [INFO] Booting worker with pid: 1319865
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319866] [INFO] Booting worker with pid: 1319866
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319865] [ERROR] Exception in worker process
+2026-03-28 11:30:22 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:22 +01:00:     worker.init_process()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:22 +01:00:     self.load_wsgi()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:22 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:22 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:22 +01:00:     self.callable = self.load()
+2026-03-28 11:30:22 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:22 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:22 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:22 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:22 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:22 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:22 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:22 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:22 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319865] [INFO] Worker exiting (pid: 1319865)
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319866] [ERROR] Exception in worker process
+2026-03-28 11:30:22 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:22 +01:00:     worker.init_process()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:22 +01:00:     self.load_wsgi()
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:22 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:22 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:22 +01:00:     self.callable = self.load()
+2026-03-28 11:30:22 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:22 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:22 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:22 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:22 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:22 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:22 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:22 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:22 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:22 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:22 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:22 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:22 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319866] [INFO] Worker exiting (pid: 1319866)
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [ERROR] Worker (pid:1319865) exited with code 3
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [ERROR] Worker (pid:1319866) was sent SIGTERM!
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [ERROR] Shutting down: Master
+2026-03-28 11:30:22 +01:00: [2026-03-28 11:30:22 +0100] [1319864] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [INFO] Listening at: http://0.0.0.0:5001 (1319867)
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [INFO] Using worker: sync
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319868] [INFO] Booting worker with pid: 1319868
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319869] [INFO] Booting worker with pid: 1319869
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319868] [ERROR] Exception in worker process
+2026-03-28 11:30:23 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:23 +01:00:     worker.init_process()
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:23 +01:00:     self.load_wsgi()
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:23 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:23 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:23 +01:00:     self.callable = self.load()
+2026-03-28 11:30:23 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:23 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:23 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:23 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:23 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:23 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:23 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:23 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:23 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:23 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:23 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319868] [INFO] Worker exiting (pid: 1319868)
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319869] [ERROR] Exception in worker process
+2026-03-28 11:30:23 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:23 +01:00:     worker.init_process()
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:23 +01:00:     self.load_wsgi()
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:23 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:23 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:23 +01:00:     self.callable = self.load()
+2026-03-28 11:30:23 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:23 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:23 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:23 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:23 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:23 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:23 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:23 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:23 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:23 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:23 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319869] [INFO] Worker exiting (pid: 1319869)
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [ERROR] Worker (pid:1319868) exited with code 3
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [ERROR] Worker (pid:1319869) was sent SIGTERM!
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [ERROR] Shutting down: Master
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319867] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319870] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319870] [INFO] Listening at: http://0.0.0.0:5001 (1319870)
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319870] [INFO] Using worker: sync
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319871] [INFO] Booting worker with pid: 1319871
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319872] [INFO] Booting worker with pid: 1319872
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319871] [ERROR] Exception in worker process
+2026-03-28 11:30:23 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:23 +01:00:     worker.init_process()
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:23 +01:00:     self.load_wsgi()
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:23 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:23 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:23 +01:00:     self.callable = self.load()
+2026-03-28 11:30:23 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:23 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:23 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:23 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:23 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:23 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:23 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:23 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:23 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:23 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:23 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:23 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:23 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:23 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:23 +01:00: [2026-03-28 11:30:23 +0100] [1319871] [INFO] Worker exiting (pid: 1319871)
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319870] [ERROR] Worker (pid:1319871) exited with code 3
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319872] [ERROR] Exception in worker process
+2026-03-28 11:30:24 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:24 +01:00:     worker.init_process()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:24 +01:00:     self.load_wsgi()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:24 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:24 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:24 +01:00:     self.callable = self.load()
+2026-03-28 11:30:24 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:24 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:24 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:24 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:24 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:24 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:24 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:24 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:24 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:24 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:24 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319872] [INFO] Worker exiting (pid: 1319872)
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319870] [ERROR] Worker (pid:1319872) exited with code 3
+2026-03-28 11:30:24 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 208, in run
+2026-03-28 11:30:24 +01:00:     self.sleep()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 359, in sleep
+2026-03-28 11:30:24 +01:00:     ready = select.select([self.PIPE[0]], [], [], 1.0)
+2026-03-28 11:30:24 +01:00:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+2026-03-28 11:30:24 +01:00:     self.reap_workers()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+2026-03-28 11:30:24 +01:00:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2026-03-28 11:30:24 +01:00: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2026-03-28 11:30:24 +01:00: 
+2026-03-28 11:30:24 +01:00: During handling of the above exception, another exception occurred:
+2026-03-28 11:30:24 +01:00: 
+2026-03-28 11:30:24 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/bin/gunicorn", line 8, in <module>
+2026-03-28 11:30:24 +01:00:     sys.exit(run())
+2026-03-28 11:30:24 +01:00:              ^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+2026-03-28 11:30:24 +01:00:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 235, in run
+2026-03-28 11:30:24 +01:00:     super().run()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 71, in run
+2026-03-28 11:30:24 +01:00:     Arbiter(self).run()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 228, in run
+2026-03-28 11:30:24 +01:00:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 341, in halt
+2026-03-28 11:30:24 +01:00:     self.stop()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 395, in stop
+2026-03-28 11:30:24 +01:00:     time.sleep(0.1)
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+2026-03-28 11:30:24 +01:00:     self.reap_workers()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+2026-03-28 11:30:24 +01:00:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2026-03-28 11:30:24 +01:00: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [INFO] Listening at: http://0.0.0.0:5001 (1319873)
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [INFO] Using worker: sync
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319874] [INFO] Booting worker with pid: 1319874
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319875] [INFO] Booting worker with pid: 1319875
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319874] [ERROR] Exception in worker process
+2026-03-28 11:30:24 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:24 +01:00:     worker.init_process()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:24 +01:00:     self.load_wsgi()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:24 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:24 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:24 +01:00:     self.callable = self.load()
+2026-03-28 11:30:24 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:24 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:24 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:24 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:24 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:24 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:24 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:24 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:24 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:24 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:24 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319874] [INFO] Worker exiting (pid: 1319874)
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319875] [ERROR] Exception in worker process
+2026-03-28 11:30:24 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:24 +01:00:     worker.init_process()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:24 +01:00:     self.load_wsgi()
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:24 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:24 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:24 +01:00:     self.callable = self.load()
+2026-03-28 11:30:24 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:24 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:24 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:24 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:24 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:24 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:24 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:24 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:24 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:24 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:24 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:24 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:24 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:24 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319875] [INFO] Worker exiting (pid: 1319875)
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [ERROR] Worker (pid:1319874) exited with code 3
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [ERROR] Worker (pid:1319875) was sent SIGTERM!
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [ERROR] Shutting down: Master
+2026-03-28 11:30:24 +01:00: [2026-03-28 11:30:24 +0100] [1319873] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:24 +0100] [1319876] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:24 +0100] [1319876] [INFO] Listening at: http://0.0.0.0:5001 (1319876)
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:24 +0100] [1319876] [INFO] Using worker: sync
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319878] [INFO] Booting worker with pid: 1319878
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319880] [INFO] Booting worker with pid: 1319880
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319880] [ERROR] Exception in worker process
+2026-03-28 11:30:25 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:25 +01:00:     worker.init_process()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:25 +01:00:     self.load_wsgi()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:25 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:25 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:25 +01:00:     self.callable = self.load()
+2026-03-28 11:30:25 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:25 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:25 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:25 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:25 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:25 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:25 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:25 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:25 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:25 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:25 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:25 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:25 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:25 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319880] [INFO] Worker exiting (pid: 1319880)
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319876] [ERROR] Worker (pid:1319880) exited with code 3
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319878] [ERROR] Exception in worker process
+2026-03-28 11:30:25 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:25 +01:00:     worker.init_process()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:25 +01:00:     self.load_wsgi()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:25 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:25 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:25 +01:00:     self.callable = self.load()
+2026-03-28 11:30:25 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:25 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:25 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:25 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:25 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:25 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:25 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:25 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:25 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:25 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:25 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:25 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:25 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:25 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:25 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319878] [INFO] Worker exiting (pid: 1319878)
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319876] [ERROR] Worker (pid:1319878) exited with code 3
+2026-03-28 11:30:25 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 208, in run
+2026-03-28 11:30:25 +01:00:     self.sleep()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 359, in sleep
+2026-03-28 11:30:25 +01:00:     ready = select.select([self.PIPE[0]], [], [], 1.0)
+2026-03-28 11:30:25 +01:00:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+2026-03-28 11:30:25 +01:00:     self.reap_workers()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+2026-03-28 11:30:25 +01:00:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2026-03-28 11:30:25 +01:00: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2026-03-28 11:30:25 +01:00: 
+2026-03-28 11:30:25 +01:00: During handling of the above exception, another exception occurred:
+2026-03-28 11:30:25 +01:00: 
+2026-03-28 11:30:25 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/bin/gunicorn", line 8, in <module>
+2026-03-28 11:30:25 +01:00:     sys.exit(run())
+2026-03-28 11:30:25 +01:00:              ^^^^^
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+2026-03-28 11:30:25 +01:00:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 235, in run
+2026-03-28 11:30:25 +01:00:     super().run()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 71, in run
+2026-03-28 11:30:25 +01:00:     Arbiter(self).run()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 228, in run
+2026-03-28 11:30:25 +01:00:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 341, in halt
+2026-03-28 11:30:25 +01:00:     self.stop()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 395, in stop
+2026-03-28 11:30:25 +01:00:     time.sleep(0.1)
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+2026-03-28 11:30:25 +01:00:     self.reap_workers()
+2026-03-28 11:30:25 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+2026-03-28 11:30:25 +01:00:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2026-03-28 11:30:25 +01:00: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319881] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319881] [INFO] Listening at: http://0.0.0.0:5001 (1319881)
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319881] [INFO] Using worker: sync
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319882] [INFO] Booting worker with pid: 1319882
+2026-03-28 11:30:25 +01:00: [2026-03-28 11:30:25 +0100] [1319899] [INFO] Booting worker with pid: 1319899
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319899] [ERROR] Exception in worker process
+2026-03-28 11:30:26 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:26 +01:00:     worker.init_process()
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:26 +01:00:     self.load_wsgi()
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:26 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:26 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:26 +01:00:     self.callable = self.load()
+2026-03-28 11:30:26 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:26 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:26 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:26 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:26 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:26 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:26 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:26 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:26 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:26 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:26 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319899] [INFO] Worker exiting (pid: 1319899)
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319882] [ERROR] Exception in worker process
+2026-03-28 11:30:26 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:26 +01:00:     worker.init_process()
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:26 +01:00:     self.load_wsgi()
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:26 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:26 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:26 +01:00:     self.callable = self.load()
+2026-03-28 11:30:26 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:26 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:26 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:26 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:26 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:26 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:26 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:26 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:26 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:26 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:26 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319882] [INFO] Worker exiting (pid: 1319882)
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319881] [ERROR] Worker (pid:1319899) exited with code 3
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319881] [ERROR] Worker (pid:1319882) was sent SIGTERM!
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319881] [ERROR] Shutting down: Master
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319881] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319900] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319900] [INFO] Listening at: http://0.0.0.0:5001 (1319900)
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319900] [INFO] Using worker: sync
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319901] [INFO] Booting worker with pid: 1319901
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319902] [INFO] Booting worker with pid: 1319902
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319902] [ERROR] Exception in worker process
+2026-03-28 11:30:26 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:26 +01:00:     worker.init_process()
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:26 +01:00:     self.load_wsgi()
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:26 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:26 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:26 +01:00:     self.callable = self.load()
+2026-03-28 11:30:26 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:26 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:26 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:26 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:26 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:26 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:26 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:26 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:26 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:26 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:26 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:26 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:26 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:26 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:26 +01:00: [2026-03-28 11:30:26 +0100] [1319902] [INFO] Worker exiting (pid: 1319902)
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319901] [ERROR] Exception in worker process
+2026-03-28 11:30:27 +01:00: Traceback (most recent call last):
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2026-03-28 11:30:27 +01:00:     worker.init_process()
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2026-03-28 11:30:27 +01:00:     self.load_wsgi()
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2026-03-28 11:30:27 +01:00:     self.wsgi = self.app.wsgi()
+2026-03-28 11:30:27 +01:00:                 ^^^^^^^^^^^^^^^
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2026-03-28 11:30:27 +01:00:     self.callable = self.load()
+2026-03-28 11:30:27 +01:00:                     ^^^^^^^^^^^
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2026-03-28 11:30:27 +01:00:     return self.load_wsgiapp()
+2026-03-28 11:30:27 +01:00:            ^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2026-03-28 11:30:27 +01:00:     return util.import_app(self.app_uri)
+2026-03-28 11:30:27 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2026-03-28 11:30:27 +01:00:     mod = importlib.import_module(module)
+2026-03-28 11:30:27 +01:00:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:27 +01:00:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-03-28 11:30:27 +01:00:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-28 11:30:27 +01:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-28 11:30:27 +01:00:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2026-03-28 11:30:27 +01:00:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2026-03-28 11:30:27 +01:00:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2026-03-28 11:30:27 +01:00:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2026-03-28 11:30:27 +01:00:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2026-03-28 11:30:27 +01:00:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/app.py", line 15, in <module>
+2026-03-28 11:30:27 +01:00:     from time_parser import time_parser_bp
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/time_parser/__init__.py", line 3, in <module>
+2026-03-28 11:30:27 +01:00:     from .parser import TimeParser
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/time_parser/parser.py", line 5, in <module>
+2026-03-28 11:30:27 +01:00:     from .normalizer import TextNormalizer
+2026-03-28 11:30:27 +01:00:   File "/opt/Tennis_Booking/time_parser/normalizer.py", line 3, in <module>
+2026-03-28 11:30:27 +01:00:     from rapidfuzz import fuzz, process
+2026-03-28 11:30:27 +01:00: ModuleNotFoundError: No module named 'rapidfuzz'
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319901] [INFO] Worker exiting (pid: 1319901)
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319900] [ERROR] Worker (pid:1319902) exited with code 3
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319900] [ERROR] Worker (pid:1319901) was sent SIGTERM!
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319900] [ERROR] Shutting down: Master
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319900] [ERROR] Reason: Worker failed to boot.
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319904] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319904] [INFO] Listening at: http://0.0.0.0:5001 (1319904)
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319904] [INFO] Using worker: sync
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319905] [INFO] Booting worker with pid: 1319905
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319906] [INFO] Booting worker with pid: 1319906
+2026-03-28 11:30:27 +01:00: [2026-03-28 11:30:27 +0100] [1319904] [INFO] Handling signal: int
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319905] [INFO] Worker exiting (pid: 1319905)
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319906] [INFO] Worker exiting (pid: 1319906)
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319904] [INFO] Shutting down: Master
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319921] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319921] [INFO] Listening at: http://0.0.0.0:5001 (1319921)
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319921] [INFO] Using worker: sync
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319923] [INFO] Booting worker with pid: 1319923
+2026-03-28 11:30:28 +01:00: [2026-03-28 11:30:28 +0100] [1319924] [INFO] Booting worker with pid: 1319924
+2026-03-28 11:50:51 +01:00: [2026-03-28 11:50:51 +0100] [1319921] [INFO] Handling signal: int
+2026-03-28 11:50:51 +01:00: [2026-03-28 11:50:51 +0100] [1319923] [INFO] Worker exiting (pid: 1319923)
+2026-03-28 11:50:51 +01:00: [2026-03-28 11:50:51 +0100] [1319924] [INFO] Worker exiting (pid: 1319924)
+2026-03-28 11:50:52 +01:00: [2026-03-28 11:50:52 +0100] [1319921] [INFO] Shutting down: Master
+2026-03-28 11:50:52 +01:00: [2026-03-28 11:50:52 +0100] [1320407] [INFO] Starting gunicorn 23.0.0
+2026-03-28 11:50:52 +01:00: [2026-03-28 11:50:52 +0100] [1320407] [INFO] Listening at: http://0.0.0.0:5001 (1320407)
+2026-03-28 11:50:52 +01:00: [2026-03-28 11:50:52 +0100] [1320407] [INFO] Using worker: sync
+2026-03-28 11:50:52 +01:00: [2026-03-28 11:50:52 +0100] [1320409] [INFO] Booting worker with pid: 1320409
+2026-03-28 11:50:52 +01:00: [2026-03-28 11:50:52 +0100] [1320410] [INFO] Booting worker with pid: 1320410
+2026-03-28 13:45:05 +01:00: [2026-03-28 13:44:35 +0100] [1320409] [WARNING] Invalid request from ip=18.116.101.220: Invalid HTTP request line: 'SSH-2.0-Go'

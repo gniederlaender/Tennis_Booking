@@ -200,8 +200,8 @@ class TimeframeParser:
                 f"{end_hour:02d}:{end_min}"
             )
 
-        # Default time range (9am - 9pm)
-        return ("09:00", "21:00")
+        # Default time range (7am - 9pm)
+        return ("07:00", "21:00")
 
     def format_datetime(self, date_obj, time_str):
         """Combine date and time into a datetime object."""

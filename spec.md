@@ -1,278 +1,154 @@
-# Tennis Zeitparser — Technische Spezifikation
+# Tennis Booking Finder — Technische Spezifikation
 
 ## 1. Projektübersicht
 
-Der Tennis Zeitparser ist ein eigenständiges Backend-Modul (Microservice), das natürlichsprachliche Datums- und Zeitangaben in strukturierte `TimeWindow`-Objekte umwandelt. Er wird als REST-Endpoint in die bestehende Tennis Booking App unter `/opt/Tennis_Booking/` integriert und ersetzt bzw. erweitert die bisherige Sucheingabe um Natural Language Verständnis auf Deutsch und Englisch.
+Der **Tennis Booking MCP Server** ist ein Adapter-Modul, das auf dem bestehenden Remote-Server neben der Flask-App läuft und Claude (via Model Context Protocol) direkten Zugriff auf die Tennis-Booking-Funktionen ermöglicht. Claude kann damit autonom Tennisplätze suchen, Buchungen durchführen und Trainer finden — gesteuert durch natürlichsprachliche Nutzeranfragen. Das Modul nutzt ausschließlich die bereits existierenden REST-Endpoints der Flask-App und fügt keinen eigenen Daten-Layer hinzu.
 
 ---
 
 ## 2. Zielgruppe & User Stories
 
-- Als **Tennisspieler** möchte ich „morgen früh" oder „next Sunday afternoon" eingeben, damit ich nicht in einem Kalender nach exakten Uhrzeiten suchen muss.
-- Als **Entwickler der Booking App** möchte ich einen sauberen API-Endpoint aufrufen, damit ich den Parser ohne Refactoring in die bestehende Suchlogik einbinden kann.
-- Als **Betreiber der Booking App** möchte ich, dass Tippfehler wie „morgrn" oder „Sontag" korrekt interpretiert werden, damit Nutzer keine Fehlermeldungen erhalten.
+- Als **anonymer Nutzer** möchte ich Claude fragen können *„Welche Tennisplätze sind am Freitag ab 18 Uhr frei?"*, damit ich ohne Account eine schnelle Übersicht erhalte.
+- Als **registrierter Nutzer** möchte ich Claude beauftragen *„Buch mir Samstag um 10 Uhr einen Platz im Arsenal"*, damit ich ohne Web-UI direkt über Claude buchen kann.
+- Als **Nutzer ohne Account** möchte ich von Claude klar informiert werden, dass für eine Buchung ein Account erforderlich ist und wie ich einen erstellen kann, damit ich nicht ins Leere laufe.
+- Als **interessierter Tennisspieler** möchte ich Claude fragen *„Welche Trainer sind nächste Woche verfügbar?"*, damit ich Trainer-Optionen erkunden kann ohne selbst eingeloggt zu sein.
 
 ---
 
-## 3. Features & Scope
+## 3. Features & Screens
 
-### Im Scope ✅
-| Feature | Beschreibung |
-|---|---|
-| Relative Datumsbegriffe | „morgen", „übermorgen", „am Wochenende", „nächsten Montag", „tomorrow", „next Friday" |
-| Tageszeit-Fenster | „früh", „vormittag", „mittag", „nachmittag", „abend" + englische Äquivalente |
-| Explizite Uhrzeiten | „um 10:00", „zwischen 10 und 13", „at 9am", „from 10 to 12" |
-| Tippfehler-Toleranz | Levenshtein-Distanz ≤ 2 auf bekannte Keywords |
-| Zweisprachigkeit | Deutsch + Englisch, gemischt erlaubt |
-| Confidence-Score | Gibt an wie sicher die Interpretation ist (0.0–1.0) |
+Da der MCP Server kein eigenes Frontend hat, beschreiben diese "Screens" die **drei Tool-Interfaces**, die Claude zur Verfügung stehen, sowie deren Verhalten.
 
-### Nicht im Scope ❌
-- Eigene UI / Demo-Screens
-- Platztypfilter (Halle/Freiplatz)
-- Spielerlevel-Erkennung
-- Authentifizierung des Endpoints
+### Tool 1: `search_courts` — Tennisplatz-Suche
+- **Beschreibung:** Sucht verfügbare Tennisplätze nach Datum, Uhrzeit und optional nach Standort/Anlage.
+- **Auth-Level:** Anonym — kein User erforderlich.
+- **Input-Parameter:** `date` (Datum), `time_from` (Startzeit), `time_to` (optional, Endzeit), `location` (optional, Anlagenname).
+- **Output:** Liste verfügbarer Plätze mit Zeitslot, Anlage und Platznummer.
+- **Claude-Verhalten:** Gibt Ergebnisse direkt zurück, kein Auth-Hinweis nötig.
 
----
+### Tool 2: `book_court` — Tennisplatz-Buchung
+- **Beschreibung:** Bucht einen spezifischen Platz für einen eingeloggten Nutzer.
+- **Auth-Level:** Registrierter User erforderlich — Claude kommuniziert dies aktiv.
+- **Input-Parameter:** `court_id`, `date`, `time_slot`, `user_token` (Bearer Token des eingeloggten Users).
+- **Output:** Buchungsbestätigung mit Referenznummer, oder strukturierte Fehlermeldung.
+- **Claude-Verhalten:** Wenn kein `user_token` vorhanden → Claude antwortet proaktiv mit *„Für eine Buchung benötigst du einen Account. Registriere dich hier: [Link]"* und ruft das Tool nicht auf.
 
-## 4. Grenzfall-Definitionen (verbindlich)
-
-### Tageszeiten-Fenster
-| Keyword (DE) | Keyword (EN) | Von | Bis |
-|---|---|---|---|
-| früh | early | 07:00 | 09:00 |
-| vormittag, morgens | morning | 09:00 | 12:00 |
-| mittag | noon, lunchtime | 12:00 | 14:00 |
-| nachmittag | afternoon | 14:00 | 18:00 |
-| abend | evening | 18:00 | 21:00 |
-| *(kein Tageszeit-Begriff)* | *(none)* | 07:00 | 21:00 |
-
-### Relative Datumsbegriffe
-| Eingabe | Regel |
-|---|---|
-| „morgen" / „tomorrow" | heute + 1 Tag |
-| „übermorgen" / „day after tomorrow" | heute + 2 Tage |
-| „heute" / „today" | aktuelles Datum, `from` = nächste volle Stunde |
-| „so bald wie möglich" / „asap" | heute, `from` = nächste volle Stunde |
-| „diesen Sonntag" / „this Sunday" | kommender Sonntag (≤ 6 Tage entfernt) |
-| „nächsten Sonntag" / „next Sunday" | Sonntag in 7–13 Tagen |
-| „am Wochenende" / „this weekend" | gibt **zwei** TimeWindow-Objekte zurück (Sa + So) |
-
-### Tippfehler-Beispiele
-| Eingabe | Korrektur |
-|---|---|
-| „morgrn" | „morgen" |
-| „Sontag" | „Sonntag" |
-| „nachmitag" | „nachmittag" |
-| „tomorrw" | „tomorrow" |
+### Tool 3: `find_trainers` — Trainer-Suche
+- **Beschreibung:** Listet verfügbare Tennis-Trainer mit Verfügbarkeiten.
+- **Auth-Level:** Generischer Service-User im Hintergrund — für den Aufrufer vollständig transparent.
+- **Input-Parameter:** `date` (optional), `specialization` (optional, z.B. `"Kinder"`, `"Erwachsene"`).
+- **Output:** Liste von Trainern mit Name, Verfügbarkeit und Kontaktinformation.
+- **Claude-Verhalten:** Antwortet wie bei einer öffentlichen Suche — kein Auth-Hinweis, da der Service-User intern verwendet wird.
 
 ---
 
-## 5. Banking API Integration
+## 4. Technische Architektur
 
-> **Nicht anwendbar.** Dieses Modul interagiert nicht mit der Banking API. Es ist ein reiner Text-zu-Zeit-Konverter für die Tennis Booking App.
+### Frontend
+- Kein dediziertes Frontend — die Schnittstelle ist **Claude Desktop / Claude.ai** mit eingetragenem MCP Server.
 
----
+### Backend
 
-## 6. API-Spezifikation
+**Bestehende Komponenten (unverändert):**
+- `app.py` — Flask-Applikation mit bestehenden REST-Endpoints (`/search`, `/book`, `/trainers`)
+- `scrapers_v2` — Scraping-Module
+- `booking` — Buchungslogik
 
-### Endpoint
+**Neue Komponente:**
+- `mcp_server.py` — MCP Server Modul (separater Prozess, eigenem Port, z.B. `8001`)
+  - Implementiert mit dem offiziellen `mcp` Python SDK
+  - Registriert die drei Tools (`search_courts`, `book_court`, `find_trainers`)
+  - Kommuniziert ausschließlich via HTTP mit der bestehenden Flask-API
 
-```
-POST /api/parse-time
-Content-Type: application/json
-```
-
-### Request
-
-```json
-{
-  "query": "morgen zwischen 10 und 13"
-}
-```
-
-### Response (Normalfall)
-
-```json
-{
-  "success": true,
-  "interpreted_as": "morgen, 10:00–13:00",
-  "confidence": 0.95,
-  "windows": [
-    {
-      "date": "2025-01-29",
-      "day_name": "Mittwoch",
-      "from": "10:00",
-      "to": "13:00"
-    }
-  ],
-  "corrections": {
-    "original": "morgen zwischen 10 und 13",
-    "normalized": "morgen zwischen 10 und 13"
-  }
-}
-```
-
-### Response (Wochenende → zwei Objekte)
-
-```json
-{
-  "success": true,
-  "interpreted_as": "Wochenende, ganzer Tag",
-  "confidence": 0.99,
-  "windows": [
-    {
-      "date": "2025-02-01",
-      "day_name": "Samstag",
-      "from": "07:00",
-      "to": "21:00"
-    },
-    {
-      "date": "2025-02-02",
-      "day_name": "Sonntag",
-      "from": "07:00",
-      "to": "21:00"
-    }
-  ],
-  "corrections": {}
-}
-```
-
-### Response (nicht erkannt)
-
-```json
-{
-  "success": false,
-  "interpreted_as": null,
-  "confidence": 0.0,
-  "windows": [],
-  "error": "Zeitangabe konnte nicht interpretiert werden.",
-  "hint": "Beispiele: 'morgen früh', 'next Sunday afternoon', 'between 10 and 12'"
-}
-```
-
----
-
-## 7. Technische Architektur
-
-### Stack
-
-- **Sprache:** Python 3.10+
-- **Framework:** Flask (bereits in der Booking App vorhanden, wird wiederverwendet)
-- **Abhängigkeiten:**
-  - `flask` — HTTP-Endpoint
-  - `python-dateutil` — robuste Datumsberechnung
-  - `Levenshtein` (oder `rapidfuzz`) — Tippfehler-Korrektur
-
-### Modulstruktur
-
-```
-/opt/Tennis_Booking/
-└── time_parser/
-    ├── __init__.py
-    ├── parser.py          # Kernlogik: Text → TimeWindow
-    ├── keywords.py        # DE/EN Keyword-Dictionaries
-    ├── normalizer.py      # Tippfehler-Korrektur via Levenshtein
-    ├── time_windows.py    # Tageszeit-Fenster Definitionen
-    └── routes.py          # Flask Blueprint: POST /api/parse-time
-```
+**Technologie-Stack:**
+- **Sprache:** Python 3.11+
+- **MCP Framework:** `mcp` SDK (Anthropic, Python)
+- **HTTP-Client:** `httpx` (async) für interne API-Aufrufe
+- **Prozessmanagement:** `systemd` Service oder `supervisor` — läuft parallel zu Flask
 
 ### Datenfluss
 
 ```
-User-Eingabe (Freitext)
+Nutzer (natürliche Sprache)
         │
         ▼
-[normalizer.py]
-  Kleinschreibung, Strip, Levenshtein-Korrektur auf bekannte Keywords
-        │
+   Claude Desktop
+        │  MCP Protocol (stdio oder SSE)
         ▼
-[parser.py] – Regelbasierter Ablauf:
-  1. Datum erkennen (relativ/absolut/Wochentag)
-  2. Tageszeit-Begriff erkennen ODER Uhrzeiten extrahieren
-  3. Zeitfenster berechnen (mit Grenzfall-Logik)
-  4. Confidence berechnen (wie viele Tokens erkannt?)
+  mcp_server.py  ←── Tool-Definitionen + System-Prompt-Instruktionen
         │
+        │  HTTP Request (intern, localhost)
         ▼
-[TimeWindow-Objekt(e)]
-  { date, day_name, from, to }
+   Flask app.py
         │
-        ▼
-[routes.py] – JSON Response an Booking App
-        │
-        ▼
-Booking App verwendet date/from/to für Platzverfügbarkeits-Query
+        ├── /search  → scrapers_v2
+        ├── /book    → booking (mit User-Token)
+        └── /trainers → booking (mit Service-User-Credentials)
 ```
 
-### Confidence-Berechnung (einfache Heuristik)
+**Auth-Fluss im Detail:**
 
-| Situation | Score |
+| Tool | Auth-Mechanismus |
 |---|---|
-| Datum + Zeitfenster beide erkannt | 0.90–1.00 |
-| Nur Datum erkannt, kein Zeitbegriff | 0.70 |
-| Datum via Tippfehler-Korrektur gefunden | −0.15 Abzug |
-| Nichts erkannt | 0.00 |
+| `search_courts` | Kein Auth-Header |
+| `book_court` | `Authorization: Bearer <user_token>` — Token wird von Claude als Tool-Parameter entgegengenommen |
+| `find_trainers` | Service-User-Credentials als **Umgebungsvariable** auf dem Server (`MCP_SERVICE_USER_TOKEN`) — nie an Claude exponiert |
+
+### System-Prompt / Tool-Beschreibungen
+
+Die Tool-Definitionen im MCP Server enthalten explizite Instruktionen für Claude:
+- `book_court` trägt die Beschreibung: *„Requires authenticated user. If no user_token is provided, inform the user that an account is required and do not call this tool."*
+- Diese Instruktionen sind Teil der Tool-Metadaten, nicht des globalen System-Prompts.
 
 ---
 
-## 8. Keyword-Dictionary (Auszug)
+## 5. Deployment
 
-```python
-# keywords.py
+### Server-Konfiguration
 
-RELATIVE_DATES = {
-    "heute": 0, "today": 0,
-    "morgen": 1, "tomorrow": 1,
-    "übermorgen": 2, "day after tomorrow": 2,
-}
+Der MCP Server läuft als **eigenständiger Prozess** auf dem bestehenden Remote-Server:
 
-WEEKDAYS_DE = ["montag","dienstag","mittwoch","donnerstag","freitag","samstag","sonntag"]
-WEEKDAYS_EN = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
-
-TIME_WINDOWS = {
-    "früh":        ("07:00", "09:00"),
-    "early":       ("07:00", "09:00"),
-    "vormittag":   ("09:00", "12:00"),
-    "morgens":     ("09:00", "12:00"),
-    "morning":     ("09:00", "12:00"),
-    "mittag":      ("12:00", "14:00"),
-    "noon":        ("12:00", "14:00"),
-    "lunchtime":   ("12:00", "14:00"),
-    "nachmittag":  ("14:00", "18:00"),
-    "afternoon":   ("14:00", "18:00"),
-    "abend":       ("18:00", "21:00"),
-    "evening":     ("18:00", "21:00"),
-}
-
-WEEKEND_TRIGGERS = ["wochenende", "weekend", "this weekend", "am wochenende"]
-ASAP_TRIGGERS    = ["asap", "so bald wie möglich", "sofort", "jetzt"]
+```
+/var/www/tennis-booking/
+├── app.py                  # Flask App (Port 5000, unverändert)
+├── mcp_server.py           # Neues MCP Modul (Port 8001)
+├── mcp_config.env          # Umgebungsvariablen (Service-User-Token etc.)
+├── scrapers_v2/
+└── booking/
 ```
 
----
+### Prozessmanagement
 
-## 9. Deployment
+`systemd`-Service für den MCP Server (`/etc/systemd/system/tennis-mcp.service`):
+- `ExecStart`: `python mcp_server.py`
+- `Restart=always`
+- `EnvironmentFile`: verweist auf `mcp_config.env`
+- Abhängigkeit: startet nach dem Flask-Service
 
-| Parameter | Wert |
-|---|---|
-| **Installationspfad** | `/opt/Tennis_Booking/time_parser/` |
-| **Einbindung** | Als Flask Blueprint in die bestehende `app.py` registrieren |
-| **Endpoint** | `POST /api/parse-time` |
-| **PM2 Prozessname** | Bestehender PM2-Prozess der Booking App — kein neuer Prozess nötig |
-| **Neue Abhängigkeiten** | `pip install rapidfuzz python-dateutil` → in `requirements.txt` eintragen |
+### Umgebungsvariablen (`mcp_config.env`)
 
-### Integration in bestehende `app.py`
-
-```python
-from time_parser.routes import time_parser_bp
-app.register_blueprint(time_parser_bp)
+```
+FLASK_API_BASE_URL=http://localhost:5000
+MCP_SERVICE_USER_TOKEN=<generischer-service-user-token>
+MCP_SERVER_PORT=8001
 ```
 
----
+### Claude Desktop Konfiguration
 
-## 10. Offene Punkte vor Entwicklungsstart
+Eintrag in `claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "tennis-booking": {
+      "url": "http://<server-ip>:8001/sse",
+      "transport": "sse"
+    }
+  }
+}
+```
 
-| # | Frage | Priorität |
-|---|---|---|
-| 1 | Welches Framework nutzt die bestehende Booking App? (Flask bestätigen) | 🔴 Hoch |
-| 2 | Gibt es bereits eine Suchanfrage-Struktur die `date/from/to` erwartet? | 🔴 Hoch |
-| 3 | Soll `interpreted_as` im UI der Booking App angezeigt werden? | 🟡 Mittel |
-| 4 | Wie soll mit völlig unverständlichen Eingaben umgegangen werden? (Fallback auf Kalender-Picker?) | 🟡 Mittel |
+### Sicherheit
+
+- Port `8001` wird **nicht öffentlich exponiert** — ausschließlich via SSH-Tunnel oder VPN erreichbar.
+- Der `MCP_SERVICE_USER_TOKEN` ist ausschließlich serverseitig in der Umgebungsvariable gespeichert und wird niemals an Claude oder den Endnutzer zurückgegeben.
+- Für Produktivbetrieb: Nginx Reverse Proxy mit TLS vor den MCP Server schalten.

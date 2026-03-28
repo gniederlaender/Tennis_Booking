@@ -245,18 +245,29 @@
     {
       "id": "task-20260328-111512",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Zeitfenster Update",
       "description": "Der Tennis Zeitparser ist ein eigenst\u00e4ndiges Backend-Modul (Microservice), das nat\u00fcrlichsprachliche Datums- und Zeitangaben in strukturierte TimeWindow-Objekte umwandelt. Er wird als REST-Endpoint in die bestehende Tennis Booking App unter /opt/Tennis_Booking/ integriert und ersetzt bzw. erweitert die bisherige Sucheingabe um Natural Language Verst\u00e4ndnis auf Deutsch und Englisch.\n\nBitte setze das Modul um auf Basis der spezifikation laut spez.md, aner unbedingt passe die Technologie an die Tech Stack der Tennis_Booking app an.",
-      "created_at": "2026-03-28T11:15:12.786991"
+      "created_at": "2026-03-28T11:15:12.786991",
+      "completion_notes": "Completed by agent in run 20260328_111520\n\u2717 Verification: FAILED - Unknown\nCommit: 9487ffb",
+      "completed_at": "2026-03-28T11:21:36.240723"
+    },
+    {
+      "id": "task-20260328-151144",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "MCp Server",
+      "description": "Bitte den mcp-server gem\u00e4\u00df spec.md umsetzen.\n\nDer Tennis Booking MCP Server ist ein Adapter-Modul, das auf dem bestehenden Remote-Server neben der Flask-App l\u00e4uft und Claude (via Model Context Protocol) direkten Zugriff auf die Tennis-Booking-Funktionen erm\u00f6glicht.\n",
+      "created_at": "2026-03-28T15:11:44.343264"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-03-28T11:15:12.787000",
+    "last_updated": "2026-03-28T15:11:44.343273",
     "phase": "development",
-    "phase_updated_at": "2026-03-28T11:12:58.917246"
+    "phase_updated_at": "2026-03-28T15:11:08.159965"
   }
 }
