@@ -12,6 +12,7 @@ from chat_engine import ChatEngine
 import config
 from database.db import init_db, close_db
 from auth import auth_bp, login_required
+from time_parser import time_parser_bp
 import uuid
 
 app = Flask(__name__)
@@ -29,6 +30,9 @@ app.wsgi_app = ProxyFix(
 
 # Register authentication blueprint
 app.register_blueprint(auth_bp)
+
+# Register time parser blueprint
+app.register_blueprint(time_parser_bp)
 
 # Register database teardown
 app.teardown_appcontext(close_db)

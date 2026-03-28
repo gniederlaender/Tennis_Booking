@@ -6,6 +6,9 @@ gunicorn==23.0.0
 selenium==4.16.0
 webdriver-manager==4.0.1
 
+# Time parser dependencies
+rapidfuzz==3.10.0
+
 # Authentication and database dependencies
 flask-login==0.6.3
 python-dotenv==1.0.0
