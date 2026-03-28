@@ -333,7 +333,7 @@ Just tell me what you'd like to do! For example:
 
             try {
                 // Send to API
-                const response = await fetch('/api/chat', {
+                const response = await fetch('{{ url_for("chat_message") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -427,7 +427,7 @@ Just tell me what you'd like to do! For example:
             }
 
             try {
-                await fetch('/api/chat/clear', {
+                await fetch('{{ url_for("clear_chat") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

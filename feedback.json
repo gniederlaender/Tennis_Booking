@@ -238,14 +238,25 @@
       "title": "Reverse proxy",
       "description": "I authorize you to adjust reverse proxy settings as proposed\n\n/opt/autonomous-dev-agent/reports/tennis_booking/2026-01-26_192310_report.md\n",
       "created_at": "2026-01-26T19:27:52.480667",
-      "completion_notes": "Created complete Apache reverse proxy configuration with automated setup script. Files created: apache-tennis-booking.conf (virtual host config), setup_apache_proxy.sh (automated setup), APACHE_PROXY_SETUP.md (comprehensive documentation), PROXY_README.md (quick reference), IMPLEMENTATION_SUMMARY_PROXY.md (implementation summary). Configuration forwards all routes including new chat endpoints (/chat, /api/chat, /api/chat/clear) from Apache port 80 to Flask app on localhost:5001. Includes security headers, logging, HTTPS template, and rollback procedures. Ready for deployment with: sudo bash /opt/Tennis_Booking/setup_apache_proxy.sh",
-      "completed_at": "2026-01-26T19:50:00.000000",
+      "completion_notes": "Completed by agent in run 20260126_192805\n\u2717 Verification: FAILED - Unknown\nCommit: 67003f7",
+      "completed_at": "2026-01-26T19:33:47.336025",
       "updated_at": "2026-01-26T19:50:00.000000"
+    },
+    {
+      "id": "task-20260328-111512",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Zeitfenster Update",
+      "description": "Der Tennis Zeitparser ist ein eigenst\u00e4ndiges Backend-Modul (Microservice), das nat\u00fcrlichsprachliche Datums- und Zeitangaben in strukturierte TimeWindow-Objekte umwandelt. Er wird als REST-Endpoint in die bestehende Tennis Booking App unter /opt/Tennis_Booking/ integriert und ersetzt bzw. erweitert die bisherige Sucheingabe um Natural Language Verst\u00e4ndnis auf Deutsch und Englisch.\n\nBitte setze das Modul um auf Basis der spezifikation laut spez.md, aner unbedingt passe die Technologie an die Tech Stack der Tennis_Booking app an.",
+      "created_at": "2026-03-28T11:15:12.786991"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-01-26T19:27:52.480676"
+    "last_updated": "2026-03-28T11:15:12.787000",
+    "phase": "development",
+    "phase_updated_at": "2026-03-28T11:12:58.917246"
   }
 }
