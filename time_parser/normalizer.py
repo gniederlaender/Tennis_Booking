@@ -44,8 +44,11 @@ class TextNormalizer:
         text = text.replace('\u00A0', ' ')
         text = text.replace('\u202F', ' ')
 
-        # Normalize multiple spaces to single space
+        # Remove German "Uhr" suffix (o'clock) for easier parsing
         import re
+        text = re.sub(r'\s+uhr\b', '', text)
+
+        # Normalize multiple spaces to single space
         text = re.sub(r'\s+', ' ', text)
 
         return text

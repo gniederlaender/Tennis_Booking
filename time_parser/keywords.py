@@ -89,5 +89,5 @@ ALL_KEYWORDS = (
     list(TIME_WINDOWS.keys()) +
     THIS_MODIFIERS +
     NEXT_MODIFIERS +
-    ["zwischen", "between", "und", "and", "um", "at", "von", "from", "bis", "to"]
+    ["zwischen", "between", "und", "and", "um", "at", "von", "from", "bis", "to", "uhr"]
 )
