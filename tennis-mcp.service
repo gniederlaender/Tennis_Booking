@@ -1,23 +1,15 @@
 [Unit]
-Description=Tennis Booking MCP Server
+Description=Tennis Booking MCP Server (HTTP/SSE)
 After=network.target
-# Start after Flask app if it's also managed by systemd
-# After=tennis-booking-flask.service
 
 [Service]
 Type=simple
 User=root
 WorkingDirectory=/opt/Tennis_Booking
 EnvironmentFile=/opt/Tennis_Booking/mcp_config.env
-
-# Activate virtual environment and run MCP server
 ExecStart=/opt/Tennis_Booking/venv/bin/python /opt/Tennis_Booking/mcp_server.py
-
-# Restart policy
 Restart=always
-RestartSec=10
-
-# Logging
+RestartSec=5
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=tennis-mcp

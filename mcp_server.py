@@ -1,34 +1,44 @@
-"""MCP Server for Tennis Booking Finder.
+"""MCP Server for Tennis Booking Finder (HTTP/SSE Transport).
 
 This module provides a Model Context Protocol (MCP) server that allows Claude
 to interact with the Tennis Booking Finder application. It exposes three tools:
 - search_courts: Search for available tennis courts
 - book_court: Book a tennis court (requires authentication)
 - find_trainers: Find available tennis trainers
+
+Runs as an HTTP server with SSE transport for easy deployment.
+Users simply add the URL to their Claude Desktop config.
 """
 
 import asyncio
-import json
 import os
+import secrets
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 import httpx
+import uvicorn
 from mcp.server import Server
-from mcp.server.stdio import stdio_server
+from mcp.server.sse import SseServerTransport
+from starlette.applications import Starlette
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
+from starlette.routing import Route, Mount
+from starlette.requests import Request
+from starlette.responses import JSONResponse, Response
 from mcp.types import (
     Tool,
     TextContent,
-    CallToolResult,
-    CallToolRequestParams,
 )
 
 # Configuration
 FLASK_API_BASE_URL = os.getenv("FLASK_API_BASE_URL", "http://localhost:5001")
 MCP_SERVICE_USER_TOKEN = os.getenv("MCP_SERVICE_USER_TOKEN", "")
+MCP_API_KEY = os.getenv("MCP_API_KEY", "")  # Optional API key for authentication
+MCP_SERVER_PORT = int(os.getenv("MCP_SERVER_PORT", "8765"))
 
 # Initialize MCP server
-app = Server("tennis-booking")
+mcp = Server("tennis-booking")
 
 
 def format_court_slots(slots: List[Dict]) -> str:
@@ -76,7 +86,7 @@ def format_trainers(trainers: List[Dict]) -> str:
     return "\n".join(result)
 
 
-@app.list_tools()
+@mcp.list_tools()
 async def list_tools() -> List[Tool]:
     """List available tools for Claude."""
     return [
@@ -171,7 +181,7 @@ async def list_tools() -> List[Tool]:
     ]
 
 
-@app.call_tool()
+@mcp.call_tool()
 async def call_tool(name: str, arguments: Any) -> List[TextContent]:
     """Handle tool calls from Claude."""
 
@@ -208,9 +218,6 @@ async def handle_search_courts(args: Dict[str, Any]) -> List[TextContent]:
 
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
-            # Note: Flask app requires authentication for /search endpoint
-            # For anonymous access, we would need to modify the Flask app
-            # or use the service user token
             headers = {}
             if MCP_SERVICE_USER_TOKEN:
                 headers["Authorization"] = f"Bearer {MCP_SERVICE_USER_TOKEN}"
@@ -250,7 +257,7 @@ async def handle_book_court(args: Dict[str, Any]) -> List[TextContent]:
         return [TextContent(
             type="text",
             text=(
-                "❌ Authentication required!\n\n"
+                "Authentication required!\n\n"
                 "To book a tennis court, you need to be logged in with a valid account. "
                 "Please register or log in to the Tennis Booking Finder application "
                 "to get an authentication token.\n\n"
@@ -276,7 +283,7 @@ async def handle_book_court(args: Dict[str, Any]) -> List[TextContent]:
             if response.status_code == 200:
                 data = response.json()
                 success_msg = (
-                    f"✅ Booking successful!\n\n"
+                    f"Booking successful!\n\n"
                     f"Venue: {venue}\n"
                     f"Court: {court_name}\n"
                     f"Date: {date}\n"
@@ -289,11 +296,11 @@ async def handle_book_court(args: Dict[str, Any]) -> List[TextContent]:
                 error_msg = error_data.get("error", response.text)
                 return [TextContent(
                     type="text",
-                    text=f"❌ Booking failed: {error_msg}"
+                    text=f"Booking failed: {error_msg}"
                 )]
 
     except Exception as e:
-        return [TextContent(type="text", text=f"❌ Error booking court: {str(e)}")]
+        return [TextContent(type="text", text=f"Error booking court: {str(e)}")]
 
 
 async def handle_find_trainers(args: Dict[str, Any]) -> List[TextContent]:
@@ -309,7 +316,6 @@ async def handle_find_trainers(args: Dict[str, Any]) -> List[TextContent]:
 
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
-            # Use service user token for trainer searches
             headers = {}
             if MCP_SERVICE_USER_TOKEN:
                 headers["Authorization"] = f"Bearer {MCP_SERVICE_USER_TOKEN}"
@@ -337,15 +343,104 @@ async def handle_find_trainers(args: Dict[str, Any]) -> List[TextContent]:
         return [TextContent(type="text", text=f"Error searching trainers: {str(e)}")]
 
 
-async def main():
-    """Main entry point for the MCP server."""
-    async with stdio_server() as (read_stream, write_stream):
-        await app.run(
-            read_stream,
-            write_stream,
-            app.create_initialization_options(),
+# --- HTTP/SSE Server Setup ---
+
+def check_api_key(request: Request) -> bool:
+    """Check if API key is valid (if configured)."""
+    if not MCP_API_KEY:
+        return True  # No API key configured, allow all
+
+    auth_header = request.headers.get("Authorization", "")
+    if auth_header.startswith("Bearer "):
+        provided_key = auth_header[7:]
+        return secrets.compare_digest(provided_key, MCP_API_KEY)
+    return False
+
+
+async def health_check(request: Request) -> JSONResponse:
+    """Health check endpoint."""
+    return JSONResponse({
+        "status": "healthy",
+        "server": "tennis-booking-mcp",
+        "version": "1.0.0",
+        "transport": "sse"
+    })
+
+
+# Create SSE transport
+sse = SseServerTransport("/messages/")
+
+
+async def handle_sse(request: Request) -> Response:
+    """Handle SSE connections from MCP clients."""
+    # Check API key if configured
+    if MCP_API_KEY and not check_api_key(request):
+        return JSONResponse(
+            {"error": "Unauthorized - Invalid or missing API key"},
+            status_code=401
         )
+
+    async with sse.connect_sse(
+        request.scope, request.receive, request._send
+    ) as streams:
+        await mcp.run(
+            streams[0],
+            streams[1],
+            mcp.create_initialization_options()
+        )
+    return Response()
+
+
+async def handle_messages(request: Request) -> Response:
+    """Handle POST messages from MCP clients."""
+    # Check API key if configured
+    if MCP_API_KEY and not check_api_key(request):
+        return JSONResponse(
+            {"error": "Unauthorized - Invalid or missing API key"},
+            status_code=401
+        )
+
+    await sse.handle_post_message(request.scope, request.receive, request._send)
+    return Response()
+
+
+# Create Starlette app with CORS middleware
+app = Starlette(
+    debug=False,
+    routes=[
+        Route("/health", health_check, methods=["GET"]),
+        Route("/sse", handle_sse, methods=["GET"]),
+        Route("/messages/", handle_messages, methods=["POST"]),
+    ],
+    middleware=[
+        Middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+    ]
+)
+
+
+def main():
+    """Main entry point for the MCP server."""
+    print(f"Starting Tennis Booking MCP Server on port {MCP_SERVER_PORT}")
+    print(f"SSE endpoint: http://0.0.0.0:{MCP_SERVER_PORT}/sse")
+    print(f"Health check: http://0.0.0.0:{MCP_SERVER_PORT}/health")
+    if MCP_API_KEY:
+        print("API key authentication: ENABLED")
+    else:
+        print("API key authentication: DISABLED (open access)")
+
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=MCP_SERVER_PORT,
+        log_level="info"
+    )
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
