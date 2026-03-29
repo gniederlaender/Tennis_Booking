@@ -256,18 +256,29 @@
     {
       "id": "task-20260328-151144",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "MCp Server",
       "description": "Bitte den mcp-server gem\u00e4\u00df spec.md umsetzen.\n\nDer Tennis Booking MCP Server ist ein Adapter-Modul, das auf dem bestehenden Remote-Server neben der Flask-App l\u00e4uft und Claude (via Model Context Protocol) direkten Zugriff auf die Tennis-Booking-Funktionen erm\u00f6glicht.\n",
-      "created_at": "2026-03-28T15:11:44.343264"
+      "created_at": "2026-03-28T15:11:44.343264",
+      "completion_notes": "Completed by agent in run 20260328_151233\n\u2717 Verification: FAILED - Unknown\nCommit: 989dd26",
+      "completed_at": "2026-03-28T15:15:34.564739"
+    },
+    {
+      "id": "task-20260329-124421",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Zeitfenster parsing review",
+      "description": "Zeitfenster parsing funktioniert auf Englisch ganz gut:\n- Tuesday at 8:00\n- Wednesday between 8:00 and 10:00\nFunktionieren gut.\n\nDeutsch funktioniert weniger bis gar nicht.\n- Dienstag\n- Dienstag um 8:00 Uhr\nWurde nicht erkannt\n\nBitte deutsches Zeitfenster parsing reviewen, testen und fixen",
+      "created_at": "2026-03-29T12:44:21.757520"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-03-28T15:11:44.343273",
+    "last_updated": "2026-03-29T12:44:21.757530",
     "phase": "development",
-    "phase_updated_at": "2026-03-28T15:11:08.159965"
+    "phase_updated_at": "2026-03-29T12:41:20.558869"
   }
 }
