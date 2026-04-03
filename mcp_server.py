@@ -203,9 +203,8 @@ async def handle_search_courts(args: Dict[str, Any]) -> List[TextContent]:
     location = args.get("location")
 
     # Build timeframe string for the Flask API
-    timeframe = f"{date} from {time_from}"
-    if time_to:
-        timeframe += f" to {time_to}"
+    # Parser expects format: "2026-03-30 10:00-12:00" (hyphen, no "from/to")
+    timeframe = f"{date} {time_from}-{time_to}"
 
     # Prepare locations filter
     locations = {"arsenal": True, "postsv": True}
@@ -367,8 +366,9 @@ async def health_check(request: Request) -> JSONResponse:
     })
 
 
-# Create SSE transport
-sse = SseServerTransport("/messages/")
+# Create SSE transport with /mcp prefix for reverse proxy
+MCP_PATH_PREFIX = os.getenv("MCP_PATH_PREFIX", "/mcp")
+sse = SseServerTransport(f"{MCP_PATH_PREFIX}/messages/")
 
 
 async def handle_sse(request: Request) -> Response:

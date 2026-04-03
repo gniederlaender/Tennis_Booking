@@ -267,18 +267,29 @@
     {
       "id": "task-20260329-124421",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Zeitfenster parsing review",
       "description": "Zeitfenster parsing funktioniert auf Englisch ganz gut:\n- Tuesday at 8:00\n- Wednesday between 8:00 and 10:00\nFunktionieren gut.\n\nDeutsch funktioniert weniger bis gar nicht.\n- Dienstag\n- Dienstag um 8:00 Uhr\nWurde nicht erkannt\n\nBitte deutsches Zeitfenster parsing reviewen, testen und fixen",
-      "created_at": "2026-03-29T12:44:21.757520"
+      "created_at": "2026-03-29T12:44:21.757520",
+      "completion_notes": "Completed by agent in run 20260329_124427\n\u2717 Verification: FAILED - Unknown\nCommit: dce1d20",
+      "completed_at": "2026-03-29T12:47:24.061115"
+    },
+    {
+      "id": "task-20260403-175211",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Erweiterung Tennis Booking",
+      "description": "Erweitern wir die Applikation mit einer Landing Page, Credential Manager und einem tollen Design, wie in spec.md beschrieben.",
+      "created_at": "2026-04-03T17:52:11.210319"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-03-29T12:44:21.757530",
+    "last_updated": "2026-04-03T17:52:11.210328",
     "phase": "development",
-    "phase_updated_at": "2026-03-29T12:41:20.558869"
+    "phase_updated_at": "2026-04-03T17:51:37.725049"
   }
 }
