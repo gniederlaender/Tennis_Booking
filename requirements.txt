@@ -18,3 +18,6 @@ email-validator==2.1.0
 # MCP Server dependencies
 mcp==1.0.0
 httpx==0.27.0
+
+# Date parsing with German support
+dateparser==1.2.0

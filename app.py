@@ -11,8 +11,9 @@ from trainer_finder import find_trainers
 from chat_engine import ChatEngine
 import config
 from database.db import init_db, close_db
-from auth import auth_bp, login_required
+from auth import auth_bp, login_required, current_user
 from time_parser import time_parser_bp
+from credential_manager import CredentialManager
 import uuid
 
 app = Flask(__name__)
@@ -38,13 +39,23 @@ app.register_blueprint(time_parser_bp)
 app.teardown_appcontext(close_db)
 
 @app.route('/')
+def landing():
+    """Landing page - public access."""
+    # If user is logged in, redirect to search
+    try:
+        if current_user():
+            return render_template('index.html')
+    except:
+        pass
+    return render_template('landing.html')
+
+@app.route('/search-page')
 @login_required
 def index():
     """Main search page."""
     return render_template('index.html')
 
 @app.route('/search', methods=['POST'])
-@login_required
 def search():
     """Handle search request."""
     try:
@@ -114,6 +125,7 @@ def search():
 def book():
     """Handle booking request."""
     try:
+        user = current_user()
         slot = request.json.get('slot', {})
 
         if not slot:
@@ -125,8 +137,8 @@ def book():
         if missing_fields:
             return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
 
-        # Attempt booking
-        success, message = book_court(slot)
+        # Attempt booking with user_id for credential manager
+        success, message = book_court(slot, user_id=user.id)
 
         if success:
             return jsonify({
@@ -234,6 +246,57 @@ def clear_chat():
 def health():
     """Health check endpoint."""
     return jsonify({'status': 'healthy'})
+
+@app.route('/credentials')
+@login_required
+def credentials_page():
+    """Credentials management page."""
+    user = current_user()
+    credential_mgr = CredentialManager()
+    portals = credential_mgr.get_all_portals_status(user.id)
+    return render_template('credentials.html', portals=portals)
+
+@app.route('/credentials/save', methods=['POST'])
+@login_required
+def save_credentials():
+    """Save portal credentials."""
+    try:
+        user = current_user()
+        data = request.json
+        portal_name = data.get('portal_name')
+        username = data.get('username')
+        password = data.get('password')
+
+        if not all([portal_name, username, password]):
+            return jsonify({'error': 'Alle Felder sind erforderlich'}), 400
+
+        credential_mgr = CredentialManager()
+        credential_mgr.save_credentials(user.id, portal_name, username, password)
+
+        return jsonify({'success': True, 'message': 'Zugangsdaten gespeichert'})
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
+
+@app.route('/credentials/delete', methods=['POST'])
+@login_required
+def delete_credentials():
+    """Delete portal credentials."""
+    try:
+        user = current_user()
+        data = request.json
+        portal_name = data.get('portal_name')
+
+        if not portal_name:
+            return jsonify({'error': 'Portal-Name erforderlich'}), 400
+
+        credential_mgr = CredentialManager()
+        credential_mgr.delete_credentials(user.id, portal_name)
+
+        return jsonify({'success': True, 'message': 'Zugangsdaten gelöscht'})
+    except Exception as e:
+        return jsonify({'error': f'Fehler beim Löschen: {str(e)}'}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=False)

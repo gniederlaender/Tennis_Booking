@@ -13,6 +13,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
+from credential_manager import CredentialManager
 
 
 class BookingHistory:
@@ -57,13 +58,28 @@ class DasSpielBooker:
     SIGNIN_URL = f"{URL}signin"
     BOOKING_URL = f"{URL}user/booking/rent"
 
-    def __init__(self):
+    def __init__(self, user_id=None):
         self.session = requests.Session()
+        self.user_id = user_id
         self.credentials = self._load_credentials()
         self.csrf_token = None
 
     def _load_credentials(self):
-        """Load credentials from file."""
+        """Load credentials from credential manager or fallback to file."""
+        # Try credential manager first if user_id provided
+        if self.user_id:
+            try:
+                credential_mgr = CredentialManager()
+                creds = credential_mgr.get_credentials(self.user_id, 'arsenal')
+                if creds:
+                    return {
+                        'username': creds['username'],
+                        'password': creds['password']
+                    }
+            except Exception as e:
+                print(f"Error loading credentials from manager: {e}")
+
+        # Fallback to credentials.json file
         if os.path.exists('credentials.json'):
             with open('credentials.json', 'r') as f:
                 data = json.load(f)
@@ -449,12 +465,27 @@ class PostSVBooker:
     URL = "https://buchen.postsv-wien.at/tennis.html"
     LOGIN_URL = "https://buchen.postsv-wien.at/login-tennis.html"
 
-    def __init__(self):
+    def __init__(self, user_id=None):
         self.session = requests.Session()
+        self.user_id = user_id
         self.credentials = self._load_credentials()
 
     def _load_credentials(self):
-        """Load credentials from file."""
+        """Load credentials from credential manager or fallback to file."""
+        # Try credential manager first if user_id provided
+        if self.user_id:
+            try:
+                credential_mgr = CredentialManager()
+                creds = credential_mgr.get_credentials(self.user_id, 'postsv')
+                if creds:
+                    return {
+                        'username': creds['username'],
+                        'password': creds['password']
+                    }
+            except Exception as e:
+                print(f"Error loading credentials from manager: {e}")
+
+        # Fallback to credentials.json file
         if os.path.exists('credentials.json'):
             with open('credentials.json', 'r') as f:
                 data = json.load(f)
@@ -577,12 +608,13 @@ class PostSVBooker:
             return False, f"Booking error: {str(e)}"
 
 
-def book_court(slot):
+def book_court(slot, user_id=None):
     """
     Book a court slot.
 
     Args:
         slot: Dict with slot information including venue
+        user_id: User ID for loading credentials from credential manager
 
     Returns:
         (success, message) tuple
@@ -592,10 +624,10 @@ def book_court(slot):
 
     try:
         if 'Das Spiel' in venue or 'Arsenal' in venue:
-            booker = DasSpielBooker()
+            booker = DasSpielBooker(user_id=user_id)
             success, message = booker.book_slot(slot)
         elif 'Post SV' in venue:
-            booker = PostSVBooker()
+            booker = PostSVBooker(user_id=user_id)
             success, message = booker.book_slot(slot)
         else:
             success = False

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Booking Finder - Alle Wiener Tennisplätze auf einen Blick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        /* Tennis court lines background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(232, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(232, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .logo-accent {
+            color: #E8FF00;
+            text-shadow: 0 0 20px rgba(232, 255, 0, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E8FF00;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #5a6c7d;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(232, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(232, 255, 0, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 18px 45px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2c3e50;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 40px;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .feature p {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2c3e50;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            box-shadow: 0 10px 30px rgba(232, 255, 0, 0.3);
+        }
+
+        .step h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .step p {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .cta p {
+            font-size: 20px;
+            color: #5a6c7d;
+            margin-bottom: 50px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #5a6c7d;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features h2,
+            .how-it-works h2,
+            .cta h2 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .glass-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                Tennis<span class="logo-accent">Finder</span>
+            </div>
+            <nav class="nav-links">
+                <a href="/login">Anmelden</a>
+                <a href="/register">Registrieren</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>
+                Alle Wiener Tennisplätze.<br>
+                <span class="highlight">Ein Zeitfenster.</span><br>
+                Sofort.
+            </h1>
+            <p>
+                Finde freie Tennisplätze bei Arsenal, Post SV und mehr –
+                ohne zwischen Portalen zu wechseln. Einfach. Schnell. Kostenlos.
+            </p>
+            <a href="/register" class="btn-primary">Platz finden</a>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Warum TennisFinder?</h2>
+            <div class="feature-grid">
+                <div class="glass-card feature">
+                    <div class="feature-icon">🎾</div>
+                    <h3>Mehrere Portale gleichzeitig</h3>
+                    <p>Durchsuche Arsenal, Post SV und weitere Anlagen mit einer einzigen Anfrage.</p>
+                </div>
+                <div class="glass-card feature">
+                    <div class="feature-icon">💬</div>
+                    <h3>Natürliche Sprache</h3>
+                    <p>Schreib einfach „nächsten Dienstag 18-20 Uhr" – keine komplizierten Formulare.</p>
+                </div>
+                <div class="glass-card feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Direkt buchen</h3>
+                    <p>Hinterlege deine Portal-Zugangsdaten einmalig und buche mit einem Klick.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <h2>So funktioniert's</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Zeitraum eingeben</h3>
+                    <p>Schreib in natürlicher Sprache wann du spielen möchtest</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Verfügbare Plätze sehen</h3>
+                    <p>Erhalte eine übersichtliche Liste aller freien Courts</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Buchen</h3>
+                    <p>Reserviere deinen Wunschplatz mit einem Klick</p>
+                </div>
+            </div>
+            <a href="/register" class="btn-secondary">Jetzt kostenlos ausprobieren</a>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
+                <h2>Bereit zum Spielen?</h2>
+                <p>Erstelle jetzt deinen kostenlosen Account und finde deinen nächsten Tennisplatz in Sekunden.</p>
+                <a href="/register" class="btn-primary">Kostenlos registrieren</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TennisFinder Wien. Made for tennis lovers.</p>
+        </div>
+    </footer>
+</body>
+</html>
