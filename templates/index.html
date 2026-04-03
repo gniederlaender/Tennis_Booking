@@ -3,127 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tennis Court Finder - Vienna</title>
+    <title>Platzsuche - TennisFinder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-               background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-               min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header { text-align: center; color: white; margin-bottom: 30px; position: relative; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .user-menu { position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 10px; }
-        .user-email { color: white; font-size: 14px; }
-        .logout-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; transition: background 0.3s; }
-        .logout-btn:hover { background: rgba(255,255,255,0.3); }
-        .search-box { background: white; border-radius: 12px; padding: 30px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .input-group { display: flex; gap: 10px; margin-bottom: 10px; }
-        input[type="text"] { flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 8px;
-                            font-size: 16px; transition: border 0.3s; }
-        input[type="text"]:focus { outline: none; border-color: #667eea; }
-        button { background: #667eea; color: white; border: none; padding: 15px 40px;
-                border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer;
-                transition: background 0.3s; }
-        button:hover { background: #5568d3; }
-        button:disabled { background: #ccc; cursor: not-allowed; }
-        .examples { color: #666; font-size: 14px; margin-top: 10px; }
-        .loading { text-align: center; padding: 40px; color: #667eea; display: none; }
-        .results { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                  display: none; }
-        .result-header { border-bottom: 2px solid #e0e0e0; padding-bottom: 15px; margin-bottom: 20px; }
-        .result-header h2 { color: #333; font-size: 1.8em; }
-        .result-info { color: #666; margin-top: 5px; }
-        .slot { background: #f8f9fa; border-left: 4px solid #667eea; padding: 15px;
-               margin-bottom: 15px; border-radius: 8px; transition: transform 0.2s; }
-        .slot:hover { transform: translateX(5px); }
-        .slot.preferred { background: #fff3cd; border-left-color: #ffc107; }
-        .slot.preferred::before { content: "⭐ PREFERRED"; display: block; color: #ff6b6b;
-                                 font-weight: bold; margin-bottom: 5px; }
-        .slot-venue { font-weight: bold; color: #667eea; font-size: 1.1em; margin-bottom: 5px; }
-        .slot-detail { color: #555; margin: 3px 0; }
-        .slot-time { font-size: 1.2em; font-weight: bold; color: #333; }
-        .slot-actions { margin-top: 10px; }
-        .book-btn { background: #28a745; color: white; border: none; padding: 8px 20px;
-                   border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer;
-                   transition: background 0.3s; }
-        .book-btn:hover { background: #218838; }
-        .book-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .success { background: #d4edda; color: #155724; padding: 15px; border-radius: 8px;
-                  border-left: 4px solid #28a745; margin-bottom: 20px; display: none; }
-        .error { background: #fee; color: #c00; padding: 15px; border-radius: 8px;
-                border-left: 4px solid #c00; margin-bottom: 20px; display: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Tennis court lines background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(232, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(232, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+        }
+
+        .logo a {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .logo-accent {
+            color: #E8FF00;
+            text-shadow: 0 0 20px rgba(232, 255, 0, 0.3);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-email {
+            color: #5a6c7d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn-primary {
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(232, 255, 0, 0.3);
+        }
+
+        .nav-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232, 255, 0, 0.4);
+        }
+
+        .nav-btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            color: #2c3e50;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* Search Box */
+        .search-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #E8FF00;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-input::placeholder {
+            color: #8a9bab;
+        }
+
+        .btn-search {
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 5px 15px rgba(232, 255, 0, 0.3);
+        }
+
+        .btn-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 255, 0, 0.4);
+        }
+
+        .btn-search:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .examples {
+            color: #5a6c7d;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Search Options */
+        .search-options {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .option-label {
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .toggle-group {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            color: #5a6c7d;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(232, 255, 0, 0.3);
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+
+        .checkbox-label input {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #E8FF00;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            display: none;
+        }
+
+        .loading h3 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .loading p {
+            color: #5a6c7d;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(232, 255, 0, 0.3);
+            border-top-color: #E8FF00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Messages */
+        .message {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 15px;
+        }
+
+        .message.success {
+            background: rgba(46, 204, 113, 0.15);
+            color: #27ae60;
+            border-left: 4px solid #27ae60;
+        }
+
+        .message.error {
+            background: rgba(231, 76, 60, 0.15);
+            color: #c0392b;
+            border-left: 4px solid #c0392b;
+        }
+
+        /* Results */
+        .results {
+            display: none;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .result-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .result-info {
+            color: #5a6c7d;
+            font-size: 14px;
+        }
+
+        /* Slot Cards */
+        .slot {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #E8FF00;
+            transition: all 0.3s ease;
+        }
+
+        .slot:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .slot.preferred {
+            background: rgba(232, 255, 0, 0.15);
+            border-left-color: #FFD700;
+        }
+
+        .slot.preferred::before {
+            content: "Empfohlen";
+            display: inline-block;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .slot-venue {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .slot-time {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .slot-detail {
+            color: #5a6c7d;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .slot-actions {
+            margin-top: 15px;
+        }
+
+        .book-btn {
+            padding: 12px 25px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .book-btn:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+
+        .book-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Trainer Slots */
+        .slot.trainer {
+            border-left-color: #27ae60;
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .slot.trainer:hover {
+            background: rgba(46, 204, 113, 0.2);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header h1 { font-size: 1.8em; }
-            .search-box, .results { padding: 20px; }
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .user-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .btn-search {
+                width: 100%;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header class="header">
+            <div class="logo">
+                <a href="{{ url_for('landing') }}">Tennis<span class="logo-accent">Finder</span></a>
+            </div>
             <div class="user-menu">
                 <span class="user-email" id="userEmail"></span>
-                <a href="{{ url_for('chat_interface') }}" class="logout-btn" style="background: rgba(102, 126, 234, 0.8);">💬 Chat Mode</a>
-                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+                <a href="{{ url_for('chat_interface') }}" class="nav-btn nav-btn-primary">Chat Mode</a>
+                <a href="{{ url_for('credentials_page') }}" class="nav-btn nav-btn-secondary">Zugangsdaten</a>
+                <a href="{{ url_for('auth.logout') }}" class="nav-btn nav-btn-secondary">Abmelden</a>
             </div>
-            <h1>🎾 Tennis Court Finder</h1>
-            <p>Find available tennis courts in Vienna</p>
-        </div>
+        </header>
 
-        <div class="search-box">
+        <div class="glass-card">
+            <h1 class="search-title">Tennisplatz suchen</h1>
             <div class="input-group">
-                <input type="text" id="timeframe" placeholder='Try: "tomorrow at 17:00" or "7.1.2026 between 15:00 and 18:00"'>
-                <button onclick="search()">Search</button>
+                <input type="text" id="timeframe" class="search-input"
+                       placeholder='z.B. "morgen 18-20 Uhr" oder "nächsten Samstag nachmittag"'>
+                <button onclick="search()" class="btn-search">Suchen</button>
             </div>
             <div class="examples">
-                Examples: "next Monday 6-8pm" • "at 17:00" • "between 15:00 and 18:00"
+                Beispiele: "morgen ab 17 Uhr" • "Dienstag 18-20 Uhr" • "am Wochenende vormittag"
             </div>
-            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
-                <div style="margin-bottom: 10px;">
-                    <label style="font-weight: 500; color: #333; margin-bottom: 8px; display: block;">Search for:</label>
-                    <div style="display: inline-flex; background: #f0f0f0; border-radius: 8px; padding: 4px;">
-                        <button type="button" id="searchModeCourt" onclick="setSearchMode('court')"
-                                style="padding: 10px 30px; border: none; border-radius: 6px; background: #667eea; color: white; font-weight: 500; cursor: pointer; transition: all 0.3s;">
-                            Court
-                        </button>
-                        <button type="button" id="searchModeTrainer" onclick="setSearchMode('trainer')"
-                                style="padding: 10px 30px; border: none; border-radius: 6px; background: transparent; color: #666; font-weight: 500; cursor: pointer; transition: all 0.3s;">
-                            Trainer
-                        </button>
-                    </div>
+
+            <div class="search-options">
+                <label class="option-label">Suchen nach:</label>
+                <div class="toggle-group">
+                    <button type="button" id="searchModeCourt" class="toggle-btn active" onclick="setSearchMode('court')">
+                        Platz
+                    </button>
+                    <button type="button" id="searchModeTrainer" class="toggle-btn" onclick="setSearchMode('trainer')">
+                        Trainer
+                    </button>
                 </div>
-                <div id="locationSelector" style="margin-top: 15px;">
-                    <label style="font-weight: 500; color: #333; margin-bottom: 8px; display: block;">Locations:</label>
-                    <div style="display: flex; gap: 15px;">
-                        <label style="display: flex; align-items: center; cursor: pointer;">
-                            <input type="checkbox" id="locationArsenal" value="arsenal" checked
-                                   style="width: 18px; height: 18px; margin-right: 8px; cursor: pointer;">
-                            <span style="color: #555;">Arsenal (Das Spiel)</span>
+
+                <div id="locationSelector">
+                    <label class="option-label">Standorte:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="locationArsenal" value="arsenal" checked>
+                            Arsenal (Das Spiel)
                         </label>
-                        <label style="display: flex; align-items: center; cursor: pointer;">
-                            <input type="checkbox" id="locationPostSV" value="postsv" checked
-                                   style="width: 18px; height: 18px; margin-right: 8px; cursor: pointer;">
-                            <span style="color: #555;">Post SV Wien</span>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="locationPostSV" value="postsv" checked>
+                            Post SV Wien
                         </label>
                     </div>
                 </div>
-                <div id="trainerNameField" style="display: none;">
-                    <input type="text" id="trainerName" placeholder="Trainer name (optional)" style="width: 100%;">
+
+                <div id="trainerNameField" style="display: none; margin-top: 15px;">
+                    <input type="text" id="trainerName" class="search-input" placeholder="Trainer-Name (optional)">
                 </div>
             </div>
         </div>
 
-        <div class="loading" id="loading">
-            <h3>🔍 Searching courts...</h3>
-            <p>This may take up to 60 seconds</p>
+        <div class="glass-card loading" id="loading">
+            <div class="spinner"></div>
+            <h3>Suche läuft...</h3>
+            <p>Das kann bis zu 60 Sekunden dauern</p>
         </div>
 
-        <div class="success" id="success"></div>
-        <div class="error" id="error"></div>
+        <div class="message success" id="success"></div>
+        <div class="message error" id="error"></div>
 
-        <div class="results" id="results">
+        <div class="glass-card results" id="results">
             <div class="result-header">
-                <h2>Available Courts</h2>
+                <h2 id="resultTitle">Verfügbare Plätze</h2>
                 <div class="result-info" id="result-info"></div>
             </div>
             <div id="slots"></div>
@@ -142,7 +530,6 @@
                     return;
                 }
 
-                // Display user email
                 if (data.user && data.user.email) {
                     document.getElementById('userEmail').textContent = data.user.email;
                 }
@@ -152,13 +539,10 @@
             }
         }
 
-        // Run auth check on page load
         checkAuth();
 
-        // Track current search mode (default: 'court')
         let searchMode = 'court';
 
-        // Function to set search mode and update UI
         function setSearchMode(mode) {
             searchMode = mode;
             const courtBtn = document.getElementById('searchModeCourt');
@@ -167,80 +551,59 @@
             const locationSelector = document.getElementById('locationSelector');
 
             if (mode === 'court') {
-                courtBtn.style.background = '#667eea';
-                courtBtn.style.color = 'white';
-                trainerBtn.style.background = 'transparent';
-                trainerBtn.style.color = '#666';
+                courtBtn.classList.add('active');
+                trainerBtn.classList.remove('active');
                 trainerNameField.style.display = 'none';
                 locationSelector.style.display = 'block';
             } else {
-                courtBtn.style.background = 'transparent';
-                courtBtn.style.color = '#666';
-                trainerBtn.style.background = '#667eea';
-                trainerBtn.style.color = 'white';
+                courtBtn.classList.remove('active');
+                trainerBtn.classList.add('active');
                 trainerNameField.style.display = 'block';
                 locationSelector.style.display = 'none';
             }
         }
 
-        // Normalize input text to handle mobile keyboard variations
         function normalizeInput(text) {
-            // Replace smart/curly quotes with straight quotes
-            text = text.replace(/[""]/g, '"');  // Curly double quotes
-            text = text.replace(/['']/g, "'");  // Curly single quotes
-            text = text.replace(/[„"]/g, '"');  // German quotes
-
-            // Replace various dash characters with standard hyphen
-            text = text.replace(/[–—−]/g, '-');  // En dash, em dash, minus sign
-
-            // Replace non-breaking spaces with regular spaces
+            text = text.replace(/[""]/g, '"');
+            text = text.replace(/['']/g, "'");
+            text = text.replace(/[„"]/g, '"');
+            text = text.replace(/[–—−]/g, '-');
             text = text.replace(/[\u00A0\u202F]/g, ' ');
-
-            // Normalize multiple spaces to single space
             text = text.replace(/\s+/g, ' ');
-
             return text;
         }
 
         async function search() {
             let timeframe = document.getElementById('timeframe').value.trim();
             if (!timeframe) {
-                document.getElementById('error').textContent = 'Please enter a timeframe';
+                document.getElementById('error').textContent = 'Bitte gib einen Zeitraum ein';
                 document.getElementById('error').style.display = 'block';
                 return;
             }
 
-            // Normalize input for mobile compatibility
             timeframe = normalizeInput(timeframe);
-
             const trainerName = document.getElementById('trainerName').value.trim();
 
-            // Show loading, hide results/errors
-            const loadingEl = document.getElementById('loading');
-            loadingEl.innerHTML = searchMode === 'court'
-                ? '<h3>🔍 Searching courts...</h3><p>This may take up to 60 seconds</p>'
-                : '<h3>🔍 Searching trainers...</h3><p>This may take up to 60 seconds</p>';
-            loadingEl.style.display = 'block';
+            document.getElementById('loading').style.display = 'block';
             document.getElementById('results').style.display = 'none';
             document.getElementById('error').style.display = 'none';
-            document.querySelector('button').disabled = true;
+            document.getElementById('success').style.display = 'none';
+            document.querySelector('.btn-search').disabled = true;
 
             try {
                 const requestData = {
                     timeframe,
                     searchMode: searchMode
                 };
+
                 if (searchMode === 'trainer' && trainerName) {
                     requestData.trainerName = trainerName;
                 }
 
-                // Get selected locations for court search
                 if (searchMode === 'court') {
-                    const arsenalChecked = document.getElementById('locationArsenal').checked;
-                    const postsvChecked = document.getElementById('locationPostSV').checked;
                     requestData.locations = {
-                        arsenal: arsenalChecked,
-                        postsv: postsvChecked
+                        arsenal: document.getElementById('locationArsenal').checked,
+                        postsv: document.getElementById('locationPostSV').checked
                     };
                 }
 
@@ -253,7 +616,7 @@
                 const data = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(data.error || 'Search failed');
+                    throw new Error(data.error || 'Suche fehlgeschlagen');
                 }
 
                 displayResults(data);
@@ -262,36 +625,27 @@
                 document.getElementById('error').style.display = 'block';
             } finally {
                 document.getElementById('loading').style.display = 'none';
-                document.querySelector('button').disabled = false;
+                document.querySelector('.btn-search').disabled = false;
             }
         }
 
-        // Store slots data globally for booking
         let currentSlots = [];
 
         function displayResults(data) {
-            const resultHeader = document.querySelector('.result-header h2');
-            const info = `${data.total} slot(s) found for ${data.timeframe.day}, ${data.timeframe.date} (${data.timeframe.start} - ${data.timeframe.end})`;
+            const resultTitle = document.getElementById('resultTitle');
+            const info = `${data.total} Ergebnis(se) für ${data.timeframe.day}, ${data.timeframe.date} (${data.timeframe.start} - ${data.timeframe.end})`;
             document.getElementById('result-info').textContent = info;
-
-            // Clear any previous results
             document.getElementById('slots').innerHTML = '';
 
-            // Display based on search mode
             if (data.searchMode === 'trainer') {
-                // Show trainer results only
-                resultHeader.textContent = 'Available Trainers';
-
+                resultTitle.textContent = 'Verfügbare Trainer';
                 if (data.trainers && data.trainers.length > 0) {
                     document.getElementById('slots').innerHTML = generateTrainerSlots(data.trainers);
                 } else {
-                    document.getElementById('slots').innerHTML = '<p>No trainers available</p>';
+                    document.getElementById('slots').innerHTML = '<p style="color: #5a6c7d; text-align: center; padding: 20px;">Keine Trainer verfügbar</p>';
                 }
             } else {
-                // Show court results only (default)
-                resultHeader.textContent = 'Available Courts';
-
-                // Store slots for access by booking function
+                resultTitle.textContent = 'Verfügbare Plätze';
                 currentSlots = data.slots;
 
                 const slotsHtml = data.slots.map((slot, idx) => {
@@ -299,19 +653,19 @@
                     return `
                         <div class="slot ${preferred}">
                             <div class="slot-venue">${slot.venue}</div>
-                            <div class="slot-time">⏰ ${slot.time}</div>
-                            <div class="slot-detail">📍 ${slot.court_name}</div>
-                            <div class="slot-detail">📅 ${slot.date} (${slot.day_of_week})</div>
-                            <div class="slot-detail">💰 ${slot.price}</div>
-                            <div class="slot-detail">📍 ${slot.location}</div>
+                            <div class="slot-time">${slot.time}</div>
+                            <div class="slot-detail">${slot.court_name}</div>
+                            <div class="slot-detail">${slot.date} (${slot.day_of_week})</div>
+                            <div class="slot-detail">${slot.price}</div>
+                            <div class="slot-detail">${slot.location}</div>
                             <div class="slot-actions">
-                                <button class="book-btn" onclick="bookSlotByIndex(${idx})">Book This Court</button>
+                                <button class="book-btn" onclick="bookSlotByIndex(${idx})">Jetzt buchen</button>
                             </div>
                         </div>
                     `;
                 }).join('');
 
-                document.getElementById('slots').innerHTML = slotsHtml || '<p>No courts available</p>';
+                document.getElementById('slots').innerHTML = slotsHtml || '<p style="color: #5a6c7d; text-align: center; padding: 20px;">Keine Plätze verfügbar</p>';
             }
 
             document.getElementById('results').style.display = 'block';
@@ -319,18 +673,18 @@
 
         function generateTrainerSlots(trainers) {
             return trainers.map(trainer => `
-                <div class="slot" style="background: #e8f5e9; border-left-color: #4caf50;">
-                    <div class="slot-venue">👨‍🏫 Trainer Session</div>
-                    <div class="slot-time">⏰ ${trainer.time_start} - ${trainer.time_end}</div>
-                    <div class="slot-detail">💰 €${trainer.price}</div>
-                    <div class="slot-detail">📍 ${trainer.court_name}</div>
-                    <div class="slot-detail">📅 ${trainer.date}</div>
-                    <div class="slot-detail" style="margin-top: 10px; font-weight: 500;">Available trainers:</div>
-                    <div style="margin-left: 20px;">
+                <div class="slot trainer">
+                    <div class="slot-venue">Trainer-Session</div>
+                    <div class="slot-time">${trainer.time_start} - ${trainer.time_end}</div>
+                    <div class="slot-detail">${trainer.price}</div>
+                    <div class="slot-detail">${trainer.court_name}</div>
+                    <div class="slot-detail">${trainer.date}</div>
+                    <div class="slot-detail" style="margin-top: 10px; font-weight: 500;">Verfügbare Trainer:</div>
+                    <div style="margin-left: 15px; margin-top: 5px;">
                         ${trainer.trainers.map(t => `
-                            <div style="margin: 5px 0;">
+                            <div style="margin: 5px 0; color: #2c3e50;">
                                 ✓ ${t.name}
-                                ${t.training_types ? ` (Types: ${t.training_types.join(', ')})` : ''}
+                                ${t.training_types ? ` (${t.training_types.join(', ')})` : ''}
                             </div>
                         `).join('')}
                     </div>
@@ -339,25 +693,20 @@
         }
 
         function bookSlotByIndex(index) {
-            // Get slot from stored data by index
             const slot = currentSlots[index];
             if (!slot) {
-                alert('Slot data not found');
+                alert('Slot nicht gefunden');
                 return;
             }
             bookSlot(slot);
         }
 
         async function bookSlot(slot) {
-            // Confirm booking
-            const confirmMsg = `Book ${slot.court_name} on ${slot.date} at ${slot.time}?`;
+            const confirmMsg = `${slot.court_name} am ${slot.date} um ${slot.time} buchen?`;
             if (!confirm(confirmMsg)) return;
 
-            // Hide previous messages
             document.getElementById('success').style.display = 'none';
             document.getElementById('error').style.display = 'none';
-
-            // Disable all booking buttons
             document.querySelectorAll('.book-btn').forEach(btn => btn.disabled = true);
 
             try {
@@ -370,15 +719,11 @@
                 const data = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(data.error || 'Booking failed');
+                    throw new Error(data.error || 'Buchung fehlgeschlagen');
                 }
 
-                // Show success message
-                const successMsg = `✓ ${data.message}`;
-                document.getElementById('success').textContent = successMsg;
+                document.getElementById('success').textContent = `✓ ${data.message}`;
                 document.getElementById('success').style.display = 'block';
-
-                // Scroll to success message
                 document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
 
             } catch (error) {
@@ -386,12 +731,10 @@
                 document.getElementById('error').style.display = 'block';
                 document.getElementById('error').scrollIntoView({ behavior: 'smooth' });
             } finally {
-                // Re-enable booking buttons
                 document.querySelectorAll('.book-btn').forEach(btn => btn.disabled = false);
             }
         }
 
-        // Enter key to search
         document.getElementById('timeframe').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') search();
         });

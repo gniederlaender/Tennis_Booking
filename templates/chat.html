@@ -1,79 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tennis Booking Assistant</title>
+    <title>Chat - TennisFinder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
             min-height: 100vh;
             padding: 20px;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .header h1 { font-size: 2em; margin-bottom: 5px; }
-        .header p { opacity: 0.9; font-size: 0.95em; }
-        .user-menu {
-            position: absolute;
+
+        /* Tennis court lines background */
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
-            right: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(232, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(232, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+
+        .logo a {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .logo-accent {
+            color: #E8FF00;
+            text-shadow: 0 0 20px rgba(232, 255, 0, 0.3);
+        }
+
+        .user-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        .mode-switch {
-            background: rgba(255,255,255,0.2);
-            padding: 6px 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            color: white;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-        .mode-switch:hover { background: rgba(255,255,255,0.3); }
-        .logout-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-        .logout-btn:hover { background: rgba(255,255,255,0.3); }
 
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn-primary {
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(232, 255, 0, 0.3);
+        }
+
+        .nav-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232, 255, 0, 0.4);
+        }
+
+        .nav-btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            color: #2c3e50;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Chat Container */
         .chat-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 200px);
+            height: calc(100vh - 150px);
             min-height: 500px;
-            max-height: 700px;
+            max-height: 750px;
         }
 
+        /* Chat Messages */
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .message {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
             animation: slideIn 0.3s ease;
         }
 
@@ -88,62 +144,63 @@
 
         .message-bubble {
             max-width: 70%;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-radius: 18px;
             word-wrap: break-word;
             white-space: pre-wrap;
+            line-height: 1.5;
         }
 
         .message.user .message-bubble {
-            background: #667eea;
-            color: white;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
             border-bottom-right-radius: 4px;
         }
 
         .message.assistant .message-bubble {
-            background: #f1f3f5;
-            color: #333;
+            background: rgba(255, 255, 255, 0.6);
+            color: #2c3e50;
             border-bottom-left-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .message-time {
-            font-size: 11px;
-            color: #999;
-            margin-top: 4px;
-        }
-
+        /* Suggestions */
         .suggestions {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 8px;
-            padding-left: 10px;
+            margin-top: 12px;
+            padding-left: 5px;
         }
 
         .suggestion-btn {
-            background: white;
-            border: 1px solid #667eea;
-            color: #667eea;
-            padding: 6px 12px;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(232, 255, 0, 0.5);
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
         }
 
         .suggestion-btn:hover {
-            background: #667eea;
-            color: white;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            border-color: #E8FF00;
         }
 
+        /* Typing Indicator */
         .typing-indicator {
             display: none;
             align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            background: #f1f3f5;
+            gap: 8px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 18px;
             width: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         .typing-indicator.show { display: flex; }
@@ -151,7 +208,7 @@
         .typing-dot {
             width: 8px;
             height: 8px;
-            background: #999;
+            background: #E8FF00;
             border-radius: 50%;
             animation: typing 1.4s infinite;
         }
@@ -161,101 +218,136 @@
 
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
+            30% { transform: translateY(-8px); }
         }
 
+        /* Chat Input */
         .chat-input-container {
             padding: 20px;
-            border-top: 1px solid #e0e0e0;
-            background: #fafafa;
-            border-radius: 0 0 12px 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0 0 20px 20px;
         }
 
         .chat-input-wrapper {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
         }
 
         .chat-input {
             flex: 1;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 24px;
+            padding: 14px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.5);
             font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            color: #2c3e50;
             outline: none;
-            transition: border 0.3s;
+            transition: all 0.3s;
         }
 
         .chat-input:focus {
-            border-color: #667eea;
+            border-color: #E8FF00;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .chat-input::placeholder {
+            color: #8a9bab;
         }
 
         .send-btn {
-            background: #667eea;
-            color: white;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
             border: none;
-            padding: 12px 24px;
-            border-radius: 24px;
+            padding: 14px 28px;
+            border-radius: 25px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 12px rgba(232, 255, 0, 0.3);
         }
 
         .send-btn:hover {
-            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232, 255, 0, 0.4);
         }
 
         .send-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .clear-btn {
             background: transparent;
-            border: 1px solid #ccc;
-            color: #666;
-            padding: 8px 16px;
-            border-radius: 18px;
+            border: 1px solid rgba(44, 62, 80, 0.3);
+            color: #5a6c7d;
+            padding: 10px 18px;
+            border-radius: 20px;
             font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
         }
 
         .clear-btn:hover {
-            border-color: #999;
-            color: #333;
+            border-color: #2c3e50;
+            color: #2c3e50;
         }
 
+        .input-footer {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .chat-container {
-                height: calc(100vh - 150px);
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
+
+            .user-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .chat-container {
+                height: calc(100vh - 180px);
+            }
+
             .message-bubble {
                 max-width: 85%;
             }
-            .user-menu {
-                position: static;
-                justify-content: center;
-                margin-bottom: 10px;
+
+            .chat-input-wrapper {
+                flex-direction: column;
             }
-            .header h1 {
-                font-size: 1.5em;
+
+            .chat-input, .send-btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="user-menu">
-                <a href="{{ url_for('index') }}" class="mode-switch">Classic Mode</a>
-                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+        <header class="header">
+            <div class="logo">
+                <a href="{{ url_for('landing') }}">Tennis<span class="logo-accent">Finder</span></a>
             </div>
-            <h1>🎾 Tennis Booking Assistant</h1>
-            <p>Chat with me to find and book tennis courts and trainers</p>
-        </div>
+            <div class="user-menu">
+                <a href="{{ url_for('index') }}" class="nav-btn nav-btn-primary">Klassische Suche</a>
+                <a href="{{ url_for('credentials_page') }}" class="nav-btn nav-btn-secondary">Zugangsdaten</a>
+                <a href="{{ url_for('auth.logout') }}" class="nav-btn nav-btn-secondary">Abmelden</a>
+            </div>
+        </header>
 
         <div class="chat-container">
             <div class="chat-messages" id="chatMessages">
@@ -263,22 +355,22 @@
                 <div class="message assistant">
                     <div>
                         <div class="message-bubble">
-                            <strong>Hi! I'm your tennis booking assistant. 🎾</strong>
+                            <strong>Hallo! Ich bin dein Tennis-Buchungsassistent.</strong>
 
-I can help you:
-• Find available tennis courts at Arsenal and Post SV
-• Search for trainers at Arsenal
-• Book courts and trainer sessions
+Ich kann dir helfen:
+• Freie Tennisplätze bei Arsenal und Post SV finden
+• Trainer bei Arsenal suchen
+• Plätze und Trainer-Sessions buchen
 
-Just tell me what you'd like to do! For example:
-- 'Find a court tomorrow at 6pm'
-- 'I need a trainer next Monday morning'
-- 'Show available courts this weekend'
+Sag mir einfach, was du brauchst! Zum Beispiel:
+- "Finde einen Platz morgen um 18 Uhr"
+- "Ich brauche einen Trainer nächsten Montag"
+- "Zeig mir freie Plätze am Wochenende"
                         </div>
                         <div class="suggestions" id="initialSuggestions">
-                            <button class="suggestion-btn" onclick="sendSuggestion('Find a court tomorrow at 6pm')">Find court tomorrow 6pm</button>
-                            <button class="suggestion-btn" onclick="sendSuggestion('Find a trainer')">Find a trainer</button>
-                            <button class="suggestion-btn" onclick="sendSuggestion('Help')">Help</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Finde einen Platz morgen um 18 Uhr')">Platz morgen 18 Uhr</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Suche einen Trainer')">Trainer suchen</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Hilfe')">Hilfe</button>
                         </div>
                     </div>
                 </div>
@@ -287,12 +379,12 @@ Just tell me what you'd like to do! For example:
             <div class="chat-input-container">
                 <div class="chat-input-wrapper">
                     <input type="text" id="chatInput" class="chat-input"
-                           placeholder="Type your message..."
+                           placeholder="Schreib deine Nachricht..."
                            onkeypress="handleKeyPress(event)">
-                    <button onclick="sendMessage()" id="sendBtn" class="send-btn">Send</button>
+                    <button onclick="sendMessage()" id="sendBtn" class="send-btn">Senden</button>
                 </div>
-                <div style="margin-top: 10px; text-align: center;">
-                    <button onclick="clearChat()" class="clear-btn">Clear conversation</button>
+                <div class="input-footer">
+                    <button onclick="clearChat()" class="clear-btn">Unterhaltung löschen</button>
                 </div>
             </div>
         </div>
@@ -318,21 +410,14 @@ Just tell me what you'd like to do! For example:
 
             if (!message) return;
 
-            // Add user message to chat
             addMessage('user', message);
-
-            // Clear input
             input.value = '';
-
-            // Show typing indicator
             showTyping();
 
-            // Disable send button
             const sendBtn = document.getElementById('sendBtn');
             sendBtn.disabled = true;
 
             try {
-                // Send to API
                 const response = await fetch('{{ url_for("chat_message") }}', {
                     method: 'POST',
                     headers: {
@@ -345,22 +430,17 @@ Just tell me what you'd like to do! For example:
                 });
 
                 const data = await response.json();
-
-                // Hide typing indicator
                 hideTyping();
 
                 if (data.error) {
                     addMessage('assistant', '❌ ' + data.error);
                 } else {
-                    // Update session ID
                     sessionId = data.session_id;
-
-                    // Add assistant response
                     addMessage('assistant', data.reply, data.suggestions);
                 }
             } catch (error) {
                 hideTyping();
-                addMessage('assistant', '❌ Sorry, something went wrong. Please try again.');
+                addMessage('assistant', '❌ Entschuldigung, etwas ist schiefgelaufen. Bitte versuche es erneut.');
                 console.error('Error:', error);
             } finally {
                 sendBtn.disabled = false;
@@ -372,9 +452,6 @@ Just tell me what you'd like to do! For example:
             const messagesDiv = document.getElementById('chatMessages');
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${role}`;
-
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
             let html = `
                 <div>
@@ -393,8 +470,6 @@ Just tell me what you'd like to do! For example:
 
             messageDiv.innerHTML = html;
             messagesDiv.appendChild(messageDiv);
-
-            // Scroll to bottom
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
 
@@ -422,7 +497,7 @@ Just tell me what you'd like to do! For example:
         }
 
         async function clearChat() {
-            if (!confirm('Clear conversation history?')) {
+            if (!confirm('Unterhaltung wirklich löschen?')) {
                 return;
             }
 
@@ -437,25 +512,23 @@ Just tell me what you'd like to do! For example:
                     })
                 });
 
-                // Clear messages
                 const messagesDiv = document.getElementById('chatMessages');
                 messagesDiv.innerHTML = `
                     <div class="message assistant">
                         <div>
                             <div class="message-bubble">
-                                <strong>Conversation cleared! 🎾</strong>
+                                <strong>Unterhaltung gelöscht!</strong>
 
-How can I help you find a court or trainer?
+Wie kann ich dir helfen, einen Platz oder Trainer zu finden?
                             </div>
                             <div class="suggestions">
-                                <button class="suggestion-btn" onclick="sendSuggestion('Find a court tomorrow at 6pm')">Find court tomorrow 6pm</button>
-                                <button class="suggestion-btn" onclick="sendSuggestion('Find a trainer')">Find a trainer</button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('Finde einen Platz morgen um 18 Uhr')">Platz morgen 18 Uhr</button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('Suche einen Trainer')">Trainer suchen</button>
                             </div>
                         </div>
                     </div>
                 `;
 
-                // Reset session
                 sessionId = null;
             } catch (error) {
                 console.error('Error clearing chat:', error);
@@ -468,7 +541,6 @@ How can I help you find a court or trainer?
             return div.innerHTML;
         }
 
-        // Focus input on load
         window.onload = function() {
             document.getElementById('chatInput').focus();
         };
