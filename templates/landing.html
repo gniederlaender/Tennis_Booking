@@ -318,8 +318,8 @@
                 Tennis<span class="logo-accent">Finder</span>
             </div>
             <nav class="nav-links">
-                <a href="/login">Anmelden</a>
-                <a href="/register">Registrieren</a>
+                <a href="{{ url_for('auth.login_page') }}">Anmelden</a>
+                <a href="{{ url_for('auth.register_page') }}">Registrieren</a>
             </nav>
         </header>
 
@@ -334,7 +334,7 @@
                 Finde freie Tennisplätze bei Arsenal, Post SV und mehr –
                 ohne zwischen Portalen zu wechseln. Einfach. Schnell. Kostenlos.
             </p>
-            <a href="/register" class="btn-primary">Platz finden</a>
+            <a href="{{ url_for('auth.register_page') }}" class="btn-primary">Platz finden</a>
         </section>
 
         <!-- Features Section -->
@@ -379,7 +379,7 @@
                     <p>Reserviere deinen Wunschplatz mit einem Klick</p>
                 </div>
             </div>
-            <a href="/register" class="btn-secondary">Jetzt kostenlos ausprobieren</a>
+            <a href="{{ url_for('auth.register_page') }}" class="btn-secondary">Jetzt kostenlos ausprobieren</a>
         </section>
 
         <!-- CTA Section -->
@@ -387,7 +387,7 @@
             <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
                 <h2>Bereit zum Spielen?</h2>
                 <p>Erstelle jetzt deinen kostenlosen Account und finde deinen nächsten Tennisplatz in Sekunden.</p>
-                <a href="/register" class="btn-primary">Kostenlos registrieren</a>
+                <a href="{{ url_for('auth.register_page') }}" class="btn-primary">Kostenlos registrieren</a>
             </div>
         </section>
     </div>
