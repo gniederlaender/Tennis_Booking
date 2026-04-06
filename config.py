@@ -47,3 +47,15 @@ PERMANENT_SESSION_LIFETIME = timedelta(days=int(os.getenv('PERMANENT_SESSION_LIF
 # Rate limiting
 MAX_LOGIN_ATTEMPTS = int(os.getenv('MAX_LOGIN_ATTEMPTS', '5'))
 LOGIN_RATE_LIMIT_WINDOW = int(os.getenv('LOGIN_RATE_LIMIT_WINDOW', '900'))  # 15 minutes in seconds
+
+# SMTP configuration for newsletter
+SMTP_HOST = os.getenv('SMTP_HOST', 'localhost')
+SMTP_PORT = int(os.getenv('SMTP_PORT', '587'))
+SMTP_USER = os.getenv('SMTP_USER', '')
+SMTP_PASSWORD = os.getenv('SMTP_PASSWORD', '')
+SMTP_FROM = os.getenv('SMTP_FROM', 'noreply@tennisfinder.at')
+SMTP_USE_TLS = os.getenv('SMTP_USE_TLS', 'True') == 'True'
+
+# Newsletter configuration
+NEWSLETTER_SEND_DAY = os.getenv('NEWSLETTER_SEND_DAY', 'monday')
+NEWSLETTER_SEND_TIME = os.getenv('NEWSLETTER_SEND_TIME', '08:00')

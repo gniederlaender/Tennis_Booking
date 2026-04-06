@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil & Einstellungen - TennisFinder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .logo-accent {
+            color: #E8FF00;
+            text-shadow: 0 0 20px rgba(232, 255, 0, 0.3);
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .section-desc {
+            color: #5a6c7d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+            color: #2c3e50;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(200, 200, 200, 0.5);
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+        }
+
+        .toggle input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+
+        .toggle-label {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .btn-primary {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(232, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(232, 255, 0, 0.4);
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+            color: #2e7d32;
+        }
+
+        .message.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.5);
+            color: #c62828;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .user-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .user-info-label {
+            font-weight: 500;
+            color: #5a6c7d;
+        }
+
+        .user-info-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                Tennis<span class="logo-accent">Finder</span>
+            </div>
+            <a href="{{ url_for('index') }}" class="nav-link">← Zurück zur Suche</a>
+        </div>
+
+        <div class="glass-card">
+            <h1>Profil & Einstellungen</h1>
+            <p class="section-desc">Verwalte deine Account-Einstellungen und Newsletter-Präferenzen.</p>
+
+            <h2>Account-Informationen</h2>
+            <div class="user-info">
+                <div class="user-info-item">
+                    <span class="user-info-label">E-Mail</span>
+                    <span class="user-info-value">{{ user.email }}</span>
+                </div>
+                {% if user.first_name %}
+                <div class="user-info-item">
+                    <span class="user-info-label">Name</span>
+                    <span class="user-info-value">{{ user.first_name }} {{ user.last_name or '' }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Newsletter-Einstellungen</h2>
+            <p class="section-desc">
+                Erhalte jeden Montag um 08:00 Uhr eine personalisierte E-Mail mit der Verfügbarkeit
+                für deinen Lieblings-Wochentag und deine bevorzugte Tageszeit.
+            </p>
+
+            <div id="message" class="message"></div>
+
+            <form id="newsletterForm">
+                <div class="form-group">
+                    <div class="toggle-container">
+                        <label class="toggle">
+                            <input type="checkbox" id="newsletterActive"
+                                   {% if newsletter.active %}checked{% endif %}>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="toggle-label">Newsletter aktivieren</span>
+                    </div>
+                </div>
+
+                <div id="newsletterSettings" style="{% if not newsletter.active %}opacity: 0.5; pointer-events: none;{% endif %}">
+                    <div class="form-group">
+                        <label for="weekday">Bevorzugter Wochentag</label>
+                        <select id="weekday" name="weekday">
+                            <option value="0" {% if newsletter.weekday == 0 %}selected{% endif %}>Montag</option>
+                            <option value="1" {% if newsletter.weekday == 1 %}selected{% endif %}>Dienstag</option>
+                            <option value="2" {% if newsletter.weekday == 2 %}selected{% endif %}>Mittwoch</option>
+                            <option value="3" {% if newsletter.weekday == 3 %}selected{% endif %}>Donnerstag</option>
+                            <option value="4" {% if newsletter.weekday == 4 %}selected{% endif %}>Freitag</option>
+                            <option value="5" {% if newsletter.weekday == 5 %}selected{% endif %}>Samstag</option>
+                            <option value="6" {% if newsletter.weekday == 6 %}selected{% endif %}>Sonntag</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeblock">Bevorzugte Tageszeit</label>
+                        <select id="timeblock" name="timeblock">
+                            <option value="morning" {% if newsletter.timeblock == 'morning' %}selected{% endif %}>
+                                Morgen (07:00 - 12:00 Uhr)
+                            </option>
+                            <option value="midday" {% if newsletter.timeblock == 'midday' %}selected{% endif %}>
+                                Mittag (12:00 - 17:00 Uhr)
+                            </option>
+                            <option value="evening" {% if newsletter.timeblock == 'evening' %}selected{% endif %}>
+                                Abend (17:00 - 22:00 Uhr)
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Einstellungen speichern</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const newsletterActive = document.getElementById('newsletterActive');
+        const newsletterSettings = document.getElementById('newsletterSettings');
+        const form = document.getElementById('newsletterForm');
+        const messageDiv = document.getElementById('message');
+
+        // Toggle settings visibility
+        newsletterActive.addEventListener('change', function() {
+            if (this.checked) {
+                newsletterSettings.style.opacity = '1';
+                newsletterSettings.style.pointerEvents = 'auto';
+            } else {
+                newsletterSettings.style.opacity = '0.5';
+                newsletterSettings.style.pointerEvents = 'none';
+            }
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const data = {
+                active: newsletterActive.checked,
+                weekday: parseInt(document.getElementById('weekday').value),
+                timeblock: document.getElementById('timeblock').value
+            };
+
+            try {
+                const response = await fetch('/profile/newsletter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage(result.message || 'Einstellungen gespeichert', 'success');
+                } else {
+                    showMessage(result.error || 'Fehler beim Speichern', 'error');
+                }
+            } catch (error) {
+                showMessage('Verbindungsfehler', 'error');
+            }
+        });
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + type;
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

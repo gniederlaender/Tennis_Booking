@@ -285,6 +285,132 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        /* Dashboard Matrix */
+        .dashboard {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .dashboard h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .timestamp {
+            font-size: 14px;
+            color: #5a6c7d;
+            margin-bottom: 30px;
+        }
+
+        .highlight-banner {
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            padding: 15px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #2c3e50;
+            box-shadow: 0 5px 20px rgba(232, 255, 0, 0.3);
+        }
+
+        .matrix-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .matrix {
+            display: grid;
+            grid-template-columns: 120px repeat(7, 1fr);
+            gap: 8px;
+            min-width: 600px;
+            margin: 0 auto;
+        }
+
+        .matrix-cell {
+            padding: 20px 10px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .matrix-header {
+            background: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .matrix-label {
+            background: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: left;
+            padding-left: 15px;
+            font-size: 14px;
+        }
+
+        .matrix-data {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            position: relative;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .matrix-data.green {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid rgba(76, 175, 80, 0.6);
+        }
+
+        .matrix-data.yellow {
+            background: rgba(255, 193, 7, 0.3);
+            border: 2px solid rgba(255, 193, 7, 0.6);
+        }
+
+        .matrix-data.red {
+            background: rgba(244, 67, 54, 0.3);
+            border: 2px solid rgba(244, 67, 54, 0.6);
+        }
+
+        .matrix-data:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .status-icon {
+            font-size: 24px;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 10;
+            margin-bottom: 5px;
+        }
+
+        .matrix-data:hover .tooltip {
+            opacity: 1;
+        }
+
+        .loading {
+            padding: 40px;
+            text-align: center;
+            color: #5a6c7d;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -307,6 +433,18 @@
 
             .glass-card {
                 padding: 30px 20px;
+            }
+
+            .matrix {
+                font-size: 12px;
+            }
+
+            .matrix-cell {
+                padding: 15px 5px;
+            }
+
+            .status-icon {
+                font-size: 18px;
             }
         }
     </style>
@@ -335,6 +473,25 @@
                 ohne zwischen Portalen zu wechseln. Einfach. Schnell. Kostenlos.
             </p>
             <a href="{{ url_for('auth.register_page') }}" class="btn-primary">Platz finden</a>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="dashboard">
+            <h2>Live-Verfügbarkeit diese Woche</h2>
+            <div class="timestamp" id="timestamp">Lade Daten...</div>
+
+            <div id="highlightBanner" class="highlight-banner" style="display: none;"></div>
+
+            <div class="glass-card">
+                <div id="dashboardLoading" class="loading">
+                    Lade Verfügbarkeitsdaten...
+                </div>
+                <div id="dashboardMatrix" class="matrix-container" style="display: none;">
+                    <div class="matrix" id="matrixGrid">
+                        <!-- Matrix will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Features Section -->
@@ -397,5 +554,101 @@
             <p>&copy; 2026 TennisFinder Wien. Made for tennis lovers.</p>
         </div>
     </footer>
+
+    <script>
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/api/dashboard/availability');
+                const result = await response.json();
+
+                if (result.timestamp && result.data) {
+                    displayDashboard(result);
+                } else {
+                    document.getElementById('dashboardLoading').textContent =
+                        result.message || 'Noch keine Daten verfügbar';
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                document.getElementById('dashboardLoading').textContent =
+                    'Fehler beim Laden der Daten';
+            }
+        }
+
+        function displayDashboard(result) {
+            const { timestamp, data } = result;
+            const timestampDiv = document.getElementById('timestamp');
+            const matrixGrid = document.getElementById('matrixGrid');
+            const dashboardLoading = document.getElementById('dashboardLoading');
+            const dashboardMatrix = document.getElementById('dashboardMatrix');
+
+            // Format timestamp
+            const date = new Date(timestamp);
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            timestampDiv.textContent = 'Stand: ' + date.toLocaleDateString('de-DE', options) + ' Uhr';
+
+            // Build matrix
+            const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+            const timeblocks = [
+                { key: 'morning', label: 'Morgen (07-12)' },
+                { key: 'midday', label: 'Mittag (12-17)' },
+                { key: 'evening', label: 'Abend (17-22)' }
+            ];
+
+            let html = '<div class="matrix-cell matrix-header"></div>';
+            weekdays.forEach(day => {
+                html += `<div class="matrix-cell matrix-header">${day}</div>`;
+            });
+
+            timeblocks.forEach(timeblock => {
+                html += `<div class="matrix-cell matrix-label">${timeblock.label}</div>`;
+
+                for (let weekday = 0; weekday < 7; weekday++) {
+                    const key = `${weekday}_${timeblock.key}`;
+                    const cellData = data[key] || { status: 'red', total: 0, arsenal: 0, postsv: 0 };
+
+                    const statusIcon = cellData.status === 'green' ? '🟢' :
+                                     cellData.status === 'yellow' ? '🟡' : '🔴';
+
+                    const tooltipText = `Arsenal: ${cellData.arsenal} frei | Post SV: ${cellData.postsv} frei`;
+
+                    html += `
+                        <div class="matrix-cell matrix-data ${cellData.status}">
+                            <span class="status-icon">${statusIcon}</span>
+                            <div class="tooltip">${tooltipText}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            matrixGrid.innerHTML = html;
+
+            // Show matrix, hide loading
+            dashboardLoading.style.display = 'none';
+            dashboardMatrix.style.display = 'block';
+
+            // Check for highlight banner (today's evening availability)
+            const today = new Date().getDay();
+            const todayWeekday = today === 0 ? 6 : today - 1; // Convert Sunday=0 to Sunday=6
+            const todayEveningKey = `${todayWeekday}_evening`;
+            const todayEvening = data[todayEveningKey];
+
+            if (todayEvening && todayEvening.total > 0) {
+                const banner = document.getElementById('highlightBanner');
+                banner.textContent = `Heute Abend noch ${todayEvening.total} ${todayEvening.total === 1 ? 'Platz' : 'Plätze'} verfügbar!`;
+                banner.style.display = 'block';
+            }
+        }
+
+        // Load dashboard on page load
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
 </body>
 </html>

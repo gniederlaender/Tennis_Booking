@@ -15,6 +15,11 @@ from auth import auth_bp, login_required, current_user
 from time_parser import time_parser_bp
 from credential_manager import CredentialManager
 import uuid
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config.SECRET_KEY
@@ -48,6 +53,78 @@ def landing():
     except:
         pass
     return render_template('landing.html')
+
+@app.route('/api/dashboard/availability')
+def dashboard_availability():
+    """Get availability data for public dashboard."""
+    try:
+        from database.db import get_db
+        db = get_db()
+        cursor = db.cursor()
+
+        # Get the most recent snapshot timestamp
+        cursor.execute('''
+            SELECT MAX(captured_at) FROM availability_snapshots
+        ''')
+        latest_timestamp = cursor.fetchone()[0]
+
+        if not latest_timestamp:
+            return jsonify({
+                'timestamp': None,
+                'data': {},
+                'message': 'No data available yet'
+            })
+
+        # Get latest snapshots for each location/weekday/timeblock combination
+        cursor.execute('''
+            SELECT location, weekday, timeblock, available_slots
+            FROM availability_snapshots
+            WHERE DATE(captured_at) = DATE(?)
+            ORDER BY captured_at DESC
+        ''', (latest_timestamp,))
+
+        snapshots = cursor.fetchall()
+
+        # Aggregate data by weekday and timeblock
+        data = {}
+        for location, weekday, timeblock, slots in snapshots:
+            key = f"{weekday}_{timeblock}"
+            if key not in data:
+                data[key] = {'arsenal': 0, 'postsv': 0}
+            data[key][location] = slots
+
+        # Calculate status (green/yellow/red) for each cell
+        matrix = {}
+        for weekday in range(7):  # 0=Monday to 6=Sunday
+            for timeblock in ['morning', 'midday', 'evening']:
+                key = f"{weekday}_{timeblock}"
+                arsenal_slots = data.get(key, {}).get('arsenal', 0)
+                postsv_slots = data.get(key, {}).get('postsv', 0)
+                total_slots = arsenal_slots + postsv_slots
+
+                # Determine status
+                if total_slots >= 3:
+                    status = 'green'
+                elif total_slots >= 1:
+                    status = 'yellow'
+                else:
+                    status = 'red'
+
+                matrix[key] = {
+                    'status': status,
+                    'total': total_slots,
+                    'arsenal': arsenal_slots,
+                    'postsv': postsv_slots
+                }
+
+        return jsonify({
+            'timestamp': latest_timestamp,
+            'data': matrix
+        })
+
+    except Exception as e:
+        logger.error(f"Dashboard availability error: {e}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/search-page')
 @login_required
@@ -89,11 +166,11 @@ def search():
         # Search based on mode: EITHER courts OR trainers
         if search_mode == 'trainer':
             # Search for trainers only
-            print(f"\n{'='*60}")
-            print("Searching for trainers...")
-            print(f"{'='*60}")
+            logger.info("=" * 60)
+            logger.info("TRAINER SEARCH: Starting trainer search...")
+            logger.info("=" * 60)
             trainers = find_trainers(date, start_time, end_time, trainer_name)
-            print(f"Found {len(trainers)} trainer slots\n")
+            logger.info(f"TRAINER SEARCH: Found {len(trainers)} trainer slots")
 
             response_data['trainers'] = trainers
             response_data['slots'] = []
@@ -297,6 +374,68 @@ def delete_credentials():
         return jsonify({'success': True, 'message': 'Zugangsdaten gelöscht'})
     except Exception as e:
         return jsonify({'error': f'Fehler beim Löschen: {str(e)}'}), 500
+
+@app.route('/profile')
+@login_required
+def profile():
+    """User profile and newsletter settings page."""
+    user = current_user()
+    from database.db import get_db
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute('''
+        SELECT newsletter_active, newsletter_weekday, newsletter_timeblock
+        FROM users WHERE id = ?
+    ''', (user.id,))
+    row = cursor.fetchone()
+
+    newsletter_settings = {
+        'active': bool(row[0]) if row and row[0] is not None else False,
+        'weekday': row[1] if row and row[1] is not None else 4,  # Default Friday
+        'timeblock': row[2] if row and row[2] else 'evening'  # Default evening
+    }
+
+    return render_template('profile.html', user=user, newsletter=newsletter_settings)
+
+@app.route('/profile/newsletter', methods=['POST'])
+@login_required
+def update_newsletter_settings():
+    """Update newsletter preferences."""
+    try:
+        user = current_user()
+        data = request.json
+
+        newsletter_active = data.get('active', False)
+        newsletter_weekday = data.get('weekday')
+        newsletter_timeblock = data.get('timeblock')
+
+        # Validate inputs
+        if newsletter_active:
+            if newsletter_weekday is None or not (0 <= newsletter_weekday <= 6):
+                return jsonify({'error': 'Ungültiger Wochentag'}), 400
+            if newsletter_timeblock not in ['morning', 'midday', 'evening']:
+                return jsonify({'error': 'Ungültige Tageszeit'}), 400
+
+        from database.db import get_db
+        db = get_db()
+        cursor = db.cursor()
+
+        cursor.execute('''
+            UPDATE users
+            SET newsletter_active = ?,
+                newsletter_weekday = ?,
+                newsletter_timeblock = ?
+            WHERE id = ?
+        ''', (newsletter_active, newsletter_weekday, newsletter_timeblock, user.id))
+
+        db.commit()
+
+        return jsonify({'success': True, 'message': 'Newsletter-Einstellungen gespeichert'})
+
+    except Exception as e:
+        logger.error(f"Newsletter settings error: {e}")
+        return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=False)

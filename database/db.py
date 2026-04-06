@@ -65,16 +65,43 @@ def init_db():
         )
     ''')
 
+    # Availability snapshots table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS availability_snapshots (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            captured_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            location TEXT NOT NULL,
+            weekday INTEGER NOT NULL,
+            timeblock TEXT NOT NULL,
+            available_slots INTEGER NOT NULL DEFAULT 0
+        )
+    ''')
+
     # Create indexes
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_portal_credentials_user_id ON portal_credentials(user_id)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_login_attempts_email ON login_attempts(email)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_login_attempts_ip ON login_attempts(ip_address)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_login_attempts_timestamp ON login_attempts(timestamp)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_snapshots_location_weekday_timeblock ON availability_snapshots(location, weekday, timeblock)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_snapshots_captured_at ON availability_snapshots(captured_at)')
+
+    # Add newsletter fields to users table if they don't exist
+    _add_column_if_not_exists(cursor, 'users', 'newsletter_active', 'BOOLEAN DEFAULT 0')
+    _add_column_if_not_exists(cursor, 'users', 'newsletter_weekday', 'INTEGER')
+    _add_column_if_not_exists(cursor, 'users', 'newsletter_timeblock', 'TEXT')
 
     db.commit()
     db.close()
     print("Database initialized successfully")
+
+def _add_column_if_not_exists(cursor, table, column, column_type):
+    """Add a column to a table if it doesn't exist."""
+    cursor.execute(f"PRAGMA table_info({table})")
+    columns = [row[1] for row in cursor.fetchall()]
+    if column not in columns:
+        cursor.execute(f"ALTER TABLE {table} ADD COLUMN {column} {column_type}")
+        print(f"Added column {column} to {table}")
 
 if __name__ == '__main__':
     init_db()
