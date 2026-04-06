@@ -278,18 +278,38 @@
     {
       "id": "task-20260403-175211",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Erweiterung Tennis Booking",
       "description": "Erweitern wir die Applikation mit einer Landing Page, Credential Manager und einem tollen Design, wie in spec.md beschrieben.",
-      "created_at": "2026-04-03T17:52:11.210319"
+      "created_at": "2026-04-03T17:52:11.210319",
+      "completion_notes": "Completed by agent in run 20260403_175217\n\u2717 Verification: FAILED - Unknown\nCommit: e36a662",
+      "completed_at": "2026-04-03T17:59:29.812007"
+    },
+    {
+      "id": "task-20260407-000305",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Erweiterung um Dashboard, Skript und Newsletter",
+      "description": "Siehe Spez.md",
+      "created_at": "2026-04-07T00:03:05.198721"
+    },
+    {
+      "id": "task-20260407-000403",
+      "type": "feature",
+      "status": "open",
+      "priority": "medium",
+      "title": "Update Readme.md",
+      "description": "Bitte erstelle ein detaillierte Readme.md am neuesten Stand, inkl DB Schema.",
+      "created_at": "2026-04-07T00:04:03.989192"
     }
   ],
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-04-03T17:52:11.210328",
+    "last_updated": "2026-04-07T00:04:03.989200",
     "phase": "development",
-    "phase_updated_at": "2026-04-03T17:51:37.725049"
+    "phase_updated_at": "2026-04-07T00:02:20.180374"
   }
 }

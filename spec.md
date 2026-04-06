@@ -1,125 +1,169 @@
-# Tennis Booking Finder — Technische Spezifikation
+# Tennis Booking Finder — Technische Spezifikation (Erweiterung)
 
 ## 1. Projektübersicht
 
-Tennis Booking Finder ist eine Webanwendung für Tennisspieler in Wien, die freie Plätze auf mehreren Buchungsportalen gleichzeitig durchsucht. Der Nutzer gibt einen Zeitraum in natürlicher deutscher Sprache ein und erhält sofort eine konsolidierte Übersicht aller verfügbaren Slots. Ein bestehendes MVP ist bereits in Produktion — diese Spezifikation beschreibt gezielte Erweiterungen ohne die bestehende Architektur zu ersetzen.
+Die bestehende Tennis Booking Finder App wird um drei miteinander verbundene Features erweitert: ein öffentliches Live-Dashboard auf der Landing Page, einen stündlichen Cron-Script zur Datenbeschaffung sowie einen personalisierten wöchentlichen Newsletter-Service. Diese drei Komponenten bilden eine kohärente Pipeline: der Cron-Script sammelt Daten, die sowohl das Dashboard als auch den Newsletter speisen.
 
 ---
 
 ## 2. Zielgruppe & User Stories
 
-- Als **Tennisspieler in Wien** möchte ich freie Plätze bei Arsenal und Post SV gleichzeitig suchen, damit ich nicht zwei Portale manuell prüfen muss.
-- Als **registrierter Nutzer** möchte ich meine Zugangsdaten für jedes Portal einmalig hinterlegen, damit die App automatisch in meinem Namen buchen kann.
-- Als **Erstbesucher der Landing Page** möchte ich in unter 5 Sekunden verstehen was die App tut, damit ich entscheide ob ich mich registriere.
-- Als **Nutzer** möchte ich meinen Wunschzeitraum auf Deutsch eingeben (z.B. „Dienstag 18-20 Uhr"), damit ich keine englischen Begriffe oder exakten Datumsformate kennen muss.
-- Als **wiederkehrender Nutzer** möchte ich Empfehlungen basierend auf meinen bisherigen Buchungen erhalten, damit ich bevorzugte Plätze schneller finde.
+- Als **nicht eingeloggter Besucher** möchte ich auf der Landing Page sofort sehen, wann in dieser Woche Plätze verfügbar sind, damit ich entscheiden kann, ob sich eine Registrierung lohnt.
+- Als **eingeloggter User** möchte ich meinen Lieblings-Wochentag und meine bevorzugte Tageszeit in meinem Profil hinterlegen, damit ich automatisch einen personalisierten Newsletter erhalte.
+- Als **Newsletter-Abonnent** möchte ich jeden Montag um 08:00 Uhr eine Email erhalten, die mir die Verfügbarkeit für meinen Favoriten-Block in der kommenden Woche zeigt, damit ich rechtzeitig reservieren kann.
+- Als **App-Betreiber** möchte ich, dass die Verfügbarkeitsdaten stündlich automatisch aktualisiert werden, damit Dashboard und Newsletter stets aktuelle Informationen liefern.
 
 ---
 
 ## 3. Features & Screens
 
-### 3.1 Landing Page *(neu)*
-Öffentlich zugänglich, kein Login erforderlich. Einmaliger Eindruck für Erstbesucher.
+### 3.1 Feature 1 — Öffentliches Live-Dashboard (`landing.html`)
 
-**Aufbau:**
-- **Hero Section:** Headline „Alle Wiener Tennisplätze. Ein Zeitfenster. Sofort." — großer Weißraum, subtile Tennisplatz-Linien als CSS-Hintergrundelement, ein primärer CTA-Button „Platz finden"
-- **Feature-Sektion:** Drei Icons mit je einem Satz — *Mehrere Portale gleichzeitig / Natürliche Sprache / Direkt buchen*
-- **How-it-works-Sektion:** Drei nummerierte Schritte — *Zeitraum eingeben → Verfügbare Plätze sehen → Buchen*
-- **Zweiter CTA:** „Jetzt kostenlos ausprobieren" mit Link zur Registrierung
+**Beschreibung:** Erweiterung der bestehenden Landing Page um eine Verfügbarkeits-Matrix als zentrales Element oberhalb des Fold. Für nicht eingeloggte Besucher sichtbar — ohne Login-Pflicht.
 
-**Design-System:**
-- Farbschema: Weiß/Hellgrau als Basis, Tennis-Gelb (`#E8FF00` oder ähnlich) als einziger Akzent
-- Typografie: Moderne Sans-Serif (z.B. Inter oder DM Sans), keine Serifen
-- UI-Elemente: Glassmorphism-Cards für Feature-Blöcke (weißer Hintergrund, `backdrop-filter`, subtiler Schatten)
-- Ton: Deutsch, direkt, kein Marketing-Sprech
+**Layout: 7×3 Matrix**
 
-### 3.2 Registrierung & Login *(bestehendes Feature — keine Änderung)*
-Bestehendes Flask-Login-System bleibt unverändert.
+| | Mo | Di | Mi | Do | Fr | Sa | So |
+|---|---|---|---|---|---|---|---|
+| Morgen (07–12 Uhr) | 🟢/🟡/🔴 | ... | | | | | |
+| Mittag (12–17 Uhr) | | | | | | | |
+| Abend (17–22 Uhr) | | | | | | | |
 
-### 3.3 Credential Manager *(neu)*
-Erreichbar über Nutzer-Profil nach Login.
+**Verhalten:**
+- Jede Zelle zeigt eine **aggregierte Ampel** für beide Standorte (Arsenal + PostSV)
+  - 🟢 Grün: Mindestens 3 freie Slots an diesem Block (beide Standorte kombiniert)
+  - 🟡 Gelb: 1–2 freie Slots
+  - 🔴 Rot: Keine Slots verfügbar
+- **Hover/Tap** auf eine Zelle öffnet ein Tooltip: `Arsenal 🟢 3 frei / PostSV 🔴 voll`
+- **Timestamp** prominent sichtbar: `Stand: Montag, 14. Juli 2025 — 10:00 Uhr`
+- **Highlight-Banner** (optional, über der Matrix): `Heute Abend noch 4 Plätze frei bei Arsenal`
+- Nicht eingeloggte User sehen **keine** konkreten Uhrzeiten oder Court-Details — das bleibt der Login-geschützten Ansicht vorbehalten (Conversion-Anreiz)
 
-- Liste aller angebundenen Portale (Arsenal, Post SV, zukünftige)
-- Pro Portal: Formular für Benutzername + Passwort
-- Statusanzeige: „Verbunden" / „Nicht konfiguriert" / „Fehler beim letzten Login"
-- Zugangsdaten werden verschlüsselt gespeichert (AES-256, Schlüssel pro Nutzer)
-- Klarer Hinweistext warum die App diese Daten benötigt (Vertrauensaufbau)
+---
 
-### 3.4 Suchinterface / Chat-Interface *(bestehendes Feature — Erweiterung)*
-Bestehendes Interface bleibt erhalten. Erweiterung: Zeitraum-Parser wird auf vollständige Deutsch-Unterstützung umgestellt.
+### 3.2 Feature 2 — Stündlicher Cron-Script (`cron/update_snapshots.py`)
 
-- Eingabe in natürlicher Sprache: „nächsten Dienstag 18-20 Uhr", „Samstag Nachmittag", „morgen ab 17 Uhr"
-- Alle deutschen Wochentage werden korrekt erkannt
-- Relative Ausdrücke (morgen, übermorgen, nächste Woche) werden aufgelöst
-- Parsed Zeitraum wird dem Nutzer vor der Suche zur Bestätigung angezeigt
+**Beschreibung:** Ein neues Python-Script, das stündlich ausgeführt wird, beide Standorte über die bestehenden Scraper abfragt und den aktuellen Stand in der Datenbank speichert.
 
-### 3.5 Ergebnisliste *(bestehendes Feature — keine Änderung)*
-Konsolidierte Anzeige aller verfügbaren Slots über alle angebundenen Portale.
+**Verhalten:**
+- Nutzt direkt die bestehende `scrapers_v2.py` — kein doppelter Code
+- Speichert pro Durchlauf einen **Snapshot** in einer neuen DB-Tabelle `availability_snapshots`
+- Wird via **System-Crontab** oder einem vergleichbaren Scheduler auf dem Server eingerichtet
+- Loggt Erfolg/Fehler in eine Datei `logs/cron.log`
 
-### 3.6 Buchung *(bestehendes Feature — Erweiterung)*
-Buchung nutzt ab sofort die im Credential Manager hinterlegten Zugangsdaten automatisch, anstatt den Nutzer bei jeder Buchung nach Login-Daten zu fragen.
+---
+
+### 3.3 Feature 3 — Personalisierter Newsletter
+
+**Beschreibung:** Eingeloggte User können einen Favoriten-Block (Wochentag + Tageszeit) in ihrem Profil hinterlegen. Jeden Montag um 08:00 Uhr erhalten alle Abonnenten eine personalisierte HTML-Email mit der Verfügbarkeit für ihren Block in der kommenden Woche.
+
+**User-Einstellungen (Profil-Screen, bestehend oder neu):**
+- Wochentag-Auswahl: Montag bis Sonntag (Dropdown)
+- Tageszeit-Auswahl: Morgen / Mittag / Abend (Dropdown)
+- Newsletter aktivieren: Ja / Nein (Toggle)
+
+**Email-Inhalt (HTML-Template):**
+1. **Header**: `Deine Tennis-Wochenvorschau 🎾`
+2. **Persönlicher Block**: `Freitag Abend — Verfügbarkeit diese Woche`
+3. **Mini-Ampel-Tabelle**: Zeigt für jeden Freitag Abend der kommenden Woche die Verfügbarkeit je Standort
+4. **CTA-Button**: `Jetzt Platz buchen →` mit vorausgefülltem Deep-Link zur App
+5. **Footer**: Link zu `Einstellungen ändern` und `Abmelden`
+
+**Versand:**
+- Jeden Montag 08:00 Uhr via eigenem Cron-Job (`cron/send_newsletter.py`)
+- Versand über bestehendes SMTP-Setup des Servers
 
 ---
 
 ## 4. Technische Architektur
 
 ### Frontend
-- **Technologie:** Bestehendes Flask-Template-System (Jinja2 + HTML/CSS/JS) bleibt erhalten
-- **Landing Page:** Neue statische HTML-Seite als Jinja2-Template, reines CSS ohne zusätzliche UI-Frameworks — kein Bootstrap-Overhead für diese eine Seite
-- **Glassmorphism-Effekte:** Reines CSS (`backdrop-filter: blur()`, `background: rgba()`, `box-shadow`)
-- **Keine neuen JavaScript-Frameworks** — bestehendes JS bleibt, Landing Page kommt ohne JS aus
+- **Technologie:** Jinja2 Templates (bestehend), HTML/CSS, minimales JavaScript für Hover-Tooltips auf der Matrix
+- **Betroffene Files:** `landing.html` (Erweiterung), ggf. neuer Partial `_dashboard_matrix.html`
 
 ### Backend
-- **Technologie:** Bestehendes Flask-Backend (`app.py`) wird erweitert, nicht ersetzt
-- **Neue Route:** `GET /` zeigt Landing Page (bisher vermutlich direkt Login oder Suche)
-- **Neues Modul:** `credential_manager.py` — verwaltet verschlüsselte Portal-Zugangsdaten pro Nutzer
-- **Patch:** `time_parser.py` (oder equivalent) — Austausch der bestehenden Parsing-Logik durch `dateparser`-Library mit expliziter Sprache Deutsch (`PREFER_LOCALE_DATE_ORDER`, `RETURN_AS_TIMEZONE_AWARE`)
-- **Bestehend:** `scrapers_v2.py` bleibt vollständig erhalten, erhält Zugangsdaten künftig vom Credential Manager
+- **Technologie:** Flask (bestehend), Python
+- **Neue Module:**
+  - `cron/update_snapshots.py` — Stündlicher Scraper-Runner
+  - `cron/send_newsletter.py` — Wöchentlicher Newsletter-Versand
+  - `templates/email/newsletter.html` — HTML-Email-Template
+- **Bestehende Module (wiederverwendet):**
+  - `scrapers_v2.py` — Scraping-Logik für beide Standorte
+  - `database/db.py` — DB-Verbindung und Initialisierung
+  - `config.py` — Zentrale Konfiguration (wird um SMTP-Vars erweitert)
 
-### Datenhaltung
-- **Bestehende Datenbank** (vermutlich SQLite) wird um eine Tabelle `user_credentials` erweitert:
-  ```
-  user_credentials (id, user_id, portal_name, encrypted_username, encrypted_password, last_verified_at)
-  ```
-- **Verschlüsselung:** `cryptography`-Library (Fernet/AES-256), Encryption-Key wird aus dem User-Passwort-Hash abgeleitet oder separat in Umgebungsvariablen gehalten
+### Datenbank
+- **Technologie:** SQLite (bestehend)
+- **Neue Tabellen:**
+
+  **`availability_snapshots`**
+  | Feld | Typ | Beschreibung |
+  |---|---|---|
+  | `id` | INTEGER PRIMARY KEY | |
+  | `captured_at` | DATETIME | Zeitpunkt des Snapshots |
+  | `location` | TEXT | `arsenal` oder `postsv` |
+  | `weekday` | INTEGER | 0=Mo bis 6=So |
+  | `timeblock` | TEXT | `morning`, `midday`, `evening` |
+  | `available_slots` | INTEGER | Anzahl freier Slots |
+
+- **Erweiterung bestehende User-Tabelle** (nach Analyse von `database/db.py`):
+  - `newsletter_active` BOOLEAN DEFAULT 0
+  - `newsletter_weekday` INTEGER (0=Mo bis 6=So)
+  - `newsletter_timeblock` TEXT (`morning`, `midday`, `evening`)
+
+  > ⚠️ **Entwicklungsregel #1**: Vor jeder DB-Änderung zuerst `database/db.py` und alle bestehenden Schema-Definitionen vollständig analysieren. Neue Felder und Tabellen müssen zur bestehenden Architektur und Migrationsstrategie passen. Keine Annahmen über bestehende Spaltennamen.
 
 ### Datenfluss
 
-**Suche:**
-Nutzer gibt Zeitraum auf Deutsch ein → `dateparser` löst Ausdruck in konkretes Datum/Uhrzeit auf → geparster Zeitraum wird dem Nutzer zur Bestätigung angezeigt → Bestätigung löst parallele Scraper-Aufrufe in `scrapers_v2.py` aus → Ergebnisse werden konsolidiert und als Liste zurückgegeben.
+```
+[Cron stündlich]
+scrapers_v2.py → update_snapshots.py → availability_snapshots (DB)
+                                               ↓
+                                    Flask Route /landing
+                                               ↓
+                                    landing.html (Matrix-Dashboard)
 
-**Buchung:**
-Nutzer wählt Slot → Backend liest verschlüsselte Zugangsdaten für das jeweilige Portal aus `user_credentials` → entschlüsselt zur Laufzeit → übergibt Credentials an den zuständigen Scraper in `scrapers_v2.py` → Buchung wird ausgeführt → Ergebnis (Bestätigung oder Fehler) wird dem Nutzer angezeigt → Zugangsdaten werden sofort aus dem Arbeitsspeicher verworfen.
-
-### Neue Abhängigkeiten
-| Library | Zweck | Begründung |
-|---|---|---|
-| `dateparser` | Deutsch-Zeitraum-Parsing | Ersetzt buggy Eigenimplementierung, unterstützt alle deutschen Wochentage und relative Ausdrücke |
-| `cryptography` | Fernet-Verschlüsselung | Verschlüsselung der Portal-Zugangsdaten in der Datenbank |
+[Cron montags 08:00]
+availability_snapshots (DB) + users (DB) → send_newsletter.py
+                                                    ↓
+                                         newsletter.html (Template)
+                                                    ↓
+                                           SMTP → User-Email
+```
 
 ---
 
 ## 5. Deployment
 
-### Bestehende Strategie
-Die bestehende Deployment-Konfiguration (Server, Hosting-Provider, Prozess-Manager) bleibt vollständig erhalten.
+### Umgebungsvariablen (`.env`)
 
-### Ergänzungen für neue Features
+```env
+# SMTP Konfiguration
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USER=
+SMTP_PASSWORD=
+SMTP_FROM=
 
-**Umgebungsvariablen (neu erforderlich):**
+# Newsletter Konfiguration
+NEWSLETTER_SEND_DAY=monday
+NEWSLETTER_SEND_TIME=08:00
 ```
-CREDENTIAL_ENCRYPTION_KEY=<32-Byte-Zufallsschlüssel, base64-encodiert>
+
+### Cron-Konfiguration (Server-Crontab)
+
+```bash
+# Stündlicher Snapshot-Update
+0 * * * * /path/to/venv/bin/python /path/to/app/cron/update_snapshots.py >> /path/to/app/logs/cron.log 2>&1
+
+# Wöchentlicher Newsletter (Montags 08:00 Uhr)
+0 8 * * 1 /path/to/venv/bin/python /path/to/app/cron/send_newsletter.py >> /path/to/app/logs/newsletter.log 2>&1
 ```
-Dieser Schlüssel muss vor dem ersten Start generiert und sicher im Hosting-Environment hinterlegt werden. Er darf nicht im Repository liegen.
 
-**Datenbank-Migration:**
-Beim Deploy wird ein einmaliges Migrationsskript `migrate_add_credentials.py` ausgeführt, das die Tabelle `user_credentials` zur bestehenden Datenbank hinzufügt. Bestehende Tabellen werden nicht verändert.
+### Logging
+- `logs/cron.log` — Protokoll des stündlichen Snapshot-Scripts (Erfolg, Fehler, Anzahl gespeicherter Einträge)
+- `logs/newsletter.log` — Protokoll des Newsletter-Versands (Anzahl versendeter Emails, fehlgeschlagene Zustellungen)
 
-**Rollout-Reihenfolge:**
-1. `dateparser`-Patch deployen und mit allen deutschen Wochentagen testen
-2. Credential Manager deployen (neue Tabelle + neue Route)
-3. Landing Page deployen (neue Route `GET /`, bestehende Routen unverändert)
-4. Buchungsflow auf automatische Credential-Nutzung umstellen
-
-**Testrollout:**
-Vor der Erweiterung auf weitere Tennisanlagen wird mit den bestehenden zwei Portalen (Arsenal, Post SV) verifiziert, dass Credential Manager und Zeitraum-Parsing stabil laufen.
+### Datenbankstrategie
+- Snapshots älter als **30 Tage** werden automatisch gelöscht (Cleanup-Funktion in `update_snapshots.py`), um die SQLite-Datei schlank zu halten.
+- Schema-Änderungen an der bestehenden User-Tabelle werden als **SQL-Migrationsskript** dokumentiert und versioniert.

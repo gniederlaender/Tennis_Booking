@@ -1,10 +1,14 @@
 """Trainer finder module for Das Spiel tennis center."""
 
 import json
+import logging
 import os
 import requests
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 class TrainerFinder:
@@ -27,13 +31,13 @@ class TrainerFinder:
                     data = json.load(f)
                     return data.get('dasspiel', {})
             except Exception as e:
-                print(f"Error loading credentials: {e}")
+                logger.error(f"Error loading credentials: {e}")
         return {}
 
     def _get_auth_token(self) -> Optional[str]:
         """Authenticate and get auth token."""
         if not self.credentials:
-            print("No credentials found for Das Spiel")
+            logger.warning("TRAINER: No credentials found for Das Spiel")
             return None
 
         try:
@@ -79,15 +83,21 @@ class TrainerFinder:
                 # If no specific token cookie, just use session cookies
                 return "authenticated"
             else:
-                print(f"Authentication failed: {response.status_code} - {response.text}")
+                logger.warning(f"TRAINER: Authentication failed: {response.status_code} - {response.text}")
                 return None
 
         except Exception as e:
-            print(f"Error during authentication: {e}")
+            logger.error(f"TRAINER: Error during authentication: {e}")
             return None
 
-    def _get_court_ids(self) -> List[str]:
-        """Get list of court IDs from Das Spiel."""
+    def _get_court_ids(self, single_court_only: bool = True) -> List[str]:
+        """
+        Get list of court IDs from Das Spiel.
+
+        Args:
+            single_court_only: If True, return only one court ID (optimized for trainer queries
+                              since trainer availability is court-independent)
+        """
         try:
             # Fetch the main page to get court data
             headers = {
@@ -106,10 +116,14 @@ class TrainerFinder:
 
                 # Extract court IDs (UUIDs)
                 court_ids = [court.get('uuid') for court in calendar_data if court.get('uuid')]
-                return court_ids[:5]  # Limit to first 5 courts to avoid overloading
+
+                if single_court_only and court_ids:
+                    # Trainer availability is court-independent, so we only need one court
+                    return court_ids[:1]
+                return court_ids[:5]  # Limit to first 5 courts if multiple needed
 
         except Exception as e:
-            print(f"Error getting court IDs: {e}")
+            logger.error(f"TRAINER: Error getting court IDs: {e}")
 
         # Return a default court ID from the example
         return ["3c3895e4-111f-4387-b815-7506ffe26607"]
@@ -135,18 +149,24 @@ class TrainerFinder:
         """
         # Authenticate first
         if not self._get_auth_token():
-            print("Authentication failed - cannot fetch trainer data")
+            logger.warning("TRAINER: Authentication failed - cannot fetch trainer data")
             return []
 
         all_trainer_slots = []
-        court_ids = self._get_court_ids()
+        # Trainer availability is court-independent, so we only need one court
+        # This reduces API requests from 35 to 7 per day (5x improvement)
+        court_ids = self._get_court_ids(single_court_only=True)
 
         # Parse start and end times
         start_hour = int(start_time.split(':')[0])
         end_hour = int(end_time.split(':')[0])
 
-        print(f"\nSearching for trainers on {date.strftime('%Y-%m-%d')} from {start_time} to {end_time}")
-        print(f"Checking {len(court_ids)} courts...")
+        # Calculate number of time slots
+        num_slots = len(range(start_hour, end_hour, 2))
+        total_requests = num_slots * len(court_ids)
+
+        logger.info(f"TRAINER: Searching for trainers on {date.strftime('%Y-%m-%d')} from {start_time} to {end_time}")
+        logger.info(f"TRAINER: Optimized: {total_requests} API requests (1 court × {num_slots} time slots)")
 
         # To avoid making too many requests, we'll check every 2 hours
         for hour in range(start_hour, end_hour, 2):
@@ -172,13 +192,13 @@ class TrainerFinder:
                         all_trainer_slots.extend(trainer_data)
 
                 except Exception as e:
-                    print(f"Error fetching trainer data for court {court_id} at {time_str}: {e}")
+                    logger.error(f"TRAINER: Error fetching trainer data for court {court_id} at {time_str}: {e}")
                     continue
 
         # Remove duplicates based on time_start, time_end, and trainer names
         unique_slots = self._deduplicate_slots(all_trainer_slots)
 
-        print(f"Found {len(unique_slots)} unique trainer slots")
+        logger.info(f"TRAINER: Found {len(unique_slots)} unique trainer slots")
         return unique_slots
 
     def _fetch_trainer_data(
@@ -241,7 +261,7 @@ class TrainerFinder:
             return processed_slots
 
         except Exception as e:
-            print(f"Error in _fetch_trainer_data: {e}")
+            logger.error(f"TRAINER: Error in _fetch_trainer_data: {e}")
             return []
 
     def _filter_by_trainer_name(self, trainer_slots: List[Dict], trainer_name: str) -> List[Dict]:

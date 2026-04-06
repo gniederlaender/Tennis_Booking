@@ -7154,3 +7154,285 @@
 2026-04-02 17:22:25 +02:00: [2026-04-02 17:22:25 +0200] [1370281] [WARNING] Invalid request from ip=139.162.186.99: Invalid HTTP Version: 'SIP/2.0'
 2026-04-02 21:54:07 +02:00: [2026-04-02 21:54:07 +0200] [1370281] [WARNING] Invalid request from ip=66.132.224.80: Invalid HTTP Version: (2, 0)
 2026-04-03 12:42:19 +02:00: [2026-04-03 12:42:19 +0200] [1476224] [WARNING] Invalid request from ip=3.131.220.121: Invalid HTTP request line: 'SSH-2.0-Go'
+2026-04-03 18:31:06 +02:00: [2026-04-03 18:31:06 +0200] [1359506] [INFO] Handling signal: int
+2026-04-03 18:31:06 +02:00: [2026-04-03 18:31:06 +0200] [1370281] [INFO] Worker exiting (pid: 1370281)
+2026-04-03 18:31:06 +02:00: [2026-04-03 18:31:06 +0200] [1476224] [INFO] Worker exiting (pid: 1476224)
+2026-04-03 18:31:07 +02:00: [2026-04-03 18:31:07 +0200] [1359506] [INFO] Shutting down: Master
+2026-04-03 18:31:07 +02:00: [2026-04-03 18:31:07 +0200] [1531282] [INFO] Starting gunicorn 23.0.0
+2026-04-03 18:31:07 +02:00: [2026-04-03 18:31:07 +0200] [1531282] [INFO] Listening at: http://0.0.0.0:5001 (1531282)
+2026-04-03 18:31:07 +02:00: [2026-04-03 18:31:07 +0200] [1531282] [INFO] Using worker: sync
+2026-04-03 18:31:07 +02:00: [2026-04-03 18:31:07 +0200] [1531290] [INFO] Booting worker with pid: 1531290
+2026-04-03 18:31:07 +02:00: [2026-04-03 18:31:07 +0200] [1531292] [INFO] Booting worker with pid: 1531292
+2026-04-03 18:39:00 +02:00: [2026-04-03 18:39:00 +0200] [1531282] [INFO] Handling signal: int
+2026-04-03 18:39:00 +02:00: [2026-04-03 18:39:00 +0200] [1531292] [INFO] Worker exiting (pid: 1531292)
+2026-04-03 18:39:00 +02:00: [2026-04-03 18:39:00 +0200] [1531290] [INFO] Worker exiting (pid: 1531290)
+2026-04-03 18:39:00 +02:00: [2026-04-03 18:39:00 +0200] [1531282] [INFO] Shutting down: Master
+2026-04-03 18:39:01 +02:00: [2026-04-03 18:39:01 +0200] [1531699] [INFO] Starting gunicorn 23.0.0
+2026-04-03 18:39:01 +02:00: [2026-04-03 18:39:01 +0200] [1531699] [INFO] Listening at: http://0.0.0.0:5001 (1531699)
+2026-04-03 18:39:01 +02:00: [2026-04-03 18:39:01 +0200] [1531699] [INFO] Using worker: sync
+2026-04-03 18:39:01 +02:00: [2026-04-03 18:39:01 +0200] [1531701] [INFO] Booting worker with pid: 1531701
+2026-04-03 18:39:01 +02:00: [2026-04-03 18:39:01 +0200] [1531702] [INFO] Booting worker with pid: 1531702
+2026-04-03 18:45:36 +02:00: [2026-04-03 18:45:36 +0200] [1531699] [INFO] Handling signal: int
+2026-04-03 18:45:36 +02:00: [2026-04-03 18:45:36 +0200] [1531701] [INFO] Worker exiting (pid: 1531701)
+2026-04-03 18:45:36 +02:00: [2026-04-03 18:45:36 +0200] [1531702] [INFO] Worker exiting (pid: 1531702)
+2026-04-03 18:45:37 +02:00: [2026-04-03 18:45:37 +0200] [1531699] [INFO] Shutting down: Master
+2026-04-03 18:45:37 +02:00: [2026-04-03 18:45:37 +0200] [1532313] [INFO] Starting gunicorn 23.0.0
+2026-04-03 18:45:37 +02:00: [2026-04-03 18:45:37 +0200] [1532313] [INFO] Listening at: http://0.0.0.0:5001 (1532313)
+2026-04-03 18:45:37 +02:00: [2026-04-03 18:45:37 +0200] [1532313] [INFO] Using worker: sync
+2026-04-03 18:45:37 +02:00: [2026-04-03 18:45:37 +0200] [1532315] [INFO] Booting worker with pid: 1532315
+2026-04-03 18:45:37 +02:00: [2026-04-03 18:45:37 +0200] [1532316] [INFO] Booting worker with pid: 1532316
+2026-04-03 19:05:54 +02:00: [2026-04-03 19:05:54 +0200] [1532313] [INFO] Handling signal: int
+2026-04-03 19:05:54 +02:00: [2026-04-03 19:05:54 +0200] [1532313] [INFO] Shutting down: Master
+2026-04-03 19:05:55 +02:00: [2026-04-03 19:05:55 +0200] [1533331] [INFO] Starting gunicorn 23.0.0
+2026-04-03 19:05:55 +02:00: [2026-04-03 19:05:55 +0200] [1533331] [INFO] Listening at: http://0.0.0.0:5001 (1533331)
+2026-04-03 19:05:55 +02:00: [2026-04-03 19:05:55 +0200] [1533331] [INFO] Using worker: sync
+2026-04-03 19:05:55 +02:00: [2026-04-03 19:05:55 +0200] [1533333] [INFO] Booting worker with pid: 1533333
+2026-04-03 19:05:55 +02:00: [2026-04-03 19:05:55 +0200] [1533334] [INFO] Booting worker with pid: 1533334
+2026-04-03 19:22:44 +02:00: [2026-04-03 19:22:44 +0200] [1533331] [CRITICAL] WORKER TIMEOUT (pid:1533334)
+2026-04-03 19:22:44 +02:00: [2026-04-03 19:22:44 +0200] [1533334] [ERROR] Error handling request (no URI read)
+2026-04-03 19:22:44 +02:00: Traceback (most recent call last):
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
+2026-04-03 19:22:44 +02:00:     req = next(parser)
+2026-04-03 19:22:44 +02:00:           ^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
+2026-04-03 19:22:44 +02:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+2026-04-03 19:22:44 +02:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
+2026-04-03 19:22:44 +02:00:     super().__init__(cfg, unreader, peer_addr)
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+2026-04-03 19:22:44 +02:00:     unused = self.parse(self.unreader)
+2026-04-03 19:22:44 +02:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
+2026-04-03 19:22:44 +02:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
+2026-04-03 19:22:44 +02:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
+2026-04-03 19:22:44 +02:00:     self.get_data(unreader, buf)
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
+2026-04-03 19:22:44 +02:00:     data = unreader.read()
+2026-04-03 19:22:44 +02:00:            ^^^^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
+2026-04-03 19:22:44 +02:00:     d = self.chunk()
+2026-04-03 19:22:44 +02:00:         ^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+2026-04-03 19:22:44 +02:00:     return self.sock.recv(self.mxchunk)
+2026-04-03 19:22:44 +02:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-03 19:22:44 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+2026-04-03 19:22:44 +02:00:     sys.exit(1)
+2026-04-03 19:22:44 +02:00: SystemExit: 1
+2026-04-03 19:22:44 +02:00: [2026-04-03 19:22:44 +0200] [1533334] [INFO] Worker exiting (pid: 1533334)
+2026-04-03 19:22:44 +02:00: [2026-04-03 19:22:44 +0200] [1533853] [INFO] Booting worker with pid: 1533853
+2026-04-03 22:47:38 +02:00: [2026-04-03 22:47:38 +0200] [1533333] [WARNING] Invalid request from ip=66.132.195.97: Invalid HTTP Version: (2, 0)
+2026-04-03 22:50:13 +02:00: [2026-04-03 22:50:13 +0200] [1533331] [INFO] Handling signal: int
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1533333] [INFO] Worker exiting (pid: 1533333)
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1533853] [INFO] Worker exiting (pid: 1533853)
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1533331] [INFO] Shutting down: Master
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1538558] [INFO] Starting gunicorn 23.0.0
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1538558] [INFO] Listening at: http://0.0.0.0:5001 (1538558)
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1538558] [INFO] Using worker: sync
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1538560] [INFO] Booting worker with pid: 1538560
+2026-04-03 22:50:14 +02:00: [2026-04-03 22:50:14 +0200] [1538561] [INFO] Booting worker with pid: 1538561
+2026-04-03 22:55:42 +02:00: /etc/timezone is deprecated in some distros, and no longer reliable. tzlocal is ignoring it, and you can likely delete it.
+2026-04-03 22:56:42 +02:00: /etc/timezone is deprecated in some distros, and no longer reliable. tzlocal is ignoring it, and you can likely delete it.
+2026-04-03 22:58:33 +02:00: BOOKING: Attempting API-based booking...
+2026-04-03 22:58:33 +02:00: BOOKING API: Starting booking for Platz 19 Outdoor at 17:00 on 2026-04-15
+2026-04-03 22:58:33 +02:00: BOOKING API: Login successful, CSRF token obtained
+2026-04-03 22:58:33 +02:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent
+2026-04-03 22:58:33 +02:00: BOOKING API: Payload: {'square_uuid': '47b7adc3-5969-432c-b1a8-66dc288e76e9', 'time_start': '17:00', 'time_end': '18:00', 'nof_players': 1, 'date': '2026-04-15', 'is_paid': False}
+2026-04-03 22:58:34 +02:00: BOOKING API: Response status: 200
+2026-04-03 22:58:34 +02:00: BOOKING API: Response text: {"status":1,"uuid":"803bc282-7640-4b7e-92bc-cd9497d138e6","is_queue":false}
+2026-04-03 22:58:34 +02:00: BOOKING API: JSON response: {'status': 1, 'uuid': '803bc282-7640-4b7e-92bc-cd9497d138e6', 'is_queue': False}
+2026-04-03 22:58:34 +02:00: BOOKING API: Success confirmed
+2026-04-03 22:58:53 +02:00: BOOKING: Attempting API-based booking...
+2026-04-03 22:58:53 +02:00: BOOKING API: Starting booking for Platz 19 Outdoor at 18:00 on 2026-04-15
+2026-04-03 22:58:53 +02:00: BOOKING API: Login successful, CSRF token obtained
+2026-04-03 22:58:53 +02:00: BOOKING API: Sending POST to https://reservierung.dasspiel.at/user/booking/rent
+2026-04-03 22:58:53 +02:00: BOOKING API: Payload: {'square_uuid': '47b7adc3-5969-432c-b1a8-66dc288e76e9', 'time_start': '18:00', 'time_end': '19:00', 'nof_players': 1, 'date': '2026-04-15', 'is_paid': False}
+2026-04-03 22:58:54 +02:00: BOOKING API: Response status: 200
+2026-04-03 22:58:54 +02:00: BOOKING API: Response text: {"status":1,"uuid":"d3739085-ad9b-4238-b881-c0070caac69c","is_queue":false}
+2026-04-03 22:58:54 +02:00: BOOKING API: JSON response: {'status': 1, 'uuid': 'd3739085-ad9b-4238-b881-c0070caac69c', 'is_queue': False}
+2026-04-03 22:58:54 +02:00: BOOKING API: Success confirmed
+2026-04-04 07:54:47 +02:00: [2026-04-04 07:54:47 +0200] [1538561] [WARNING] Invalid request from ip=121.199.173.72: Invalid HTTP request line: ''
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1538558] [INFO] Handling signal: int
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1538561] [INFO] Worker exiting (pid: 1538561)
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1538560] [INFO] Worker exiting (pid: 1538560)
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1538558] [INFO] Shutting down: Master
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1562041] [INFO] Starting gunicorn 23.0.0
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1562041] [INFO] Listening at: http://0.0.0.0:5001 (1562041)
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1562041] [INFO] Using worker: sync
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1562043] [INFO] Booting worker with pid: 1562043
+2026-04-04 10:18:08 +02:00: [2026-04-04 10:18:08 +0200] [1562044] [INFO] Booting worker with pid: 1562044
+2026-04-04 10:28:40 +02:00: [2026-04-04 10:28:40 +0200] [1562041] [INFO] Handling signal: int
+2026-04-04 10:28:40 +02:00: [2026-04-04 10:28:40 +0200] [1562044] [INFO] Worker exiting (pid: 1562044)
+2026-04-04 10:28:40 +02:00: [2026-04-04 10:28:40 +0200] [1562043] [INFO] Worker exiting (pid: 1562043)
+2026-04-04 10:28:40 +02:00: [2026-04-04 10:28:40 +0200] [1562041] [INFO] Shutting down: Master
+2026-04-04 10:28:41 +02:00: [2026-04-04 10:28:41 +0200] [1562598] [INFO] Starting gunicorn 23.0.0
+2026-04-04 10:28:41 +02:00: [2026-04-04 10:28:41 +0200] [1562598] [INFO] Listening at: http://0.0.0.0:5001 (1562598)
+2026-04-04 10:28:41 +02:00: [2026-04-04 10:28:41 +0200] [1562598] [INFO] Using worker: sync
+2026-04-04 10:28:41 +02:00: [2026-04-04 10:28:41 +0200] [1562599] [INFO] Booting worker with pid: 1562599
+2026-04-04 10:28:41 +02:00: [2026-04-04 10:28:41 +0200] [1562601] [INFO] Booting worker with pid: 1562601
+2026-04-04 10:31:40 +02:00: [2026-04-04 10:31:40 +0200] [1562598] [INFO] Handling signal: int
+2026-04-04 10:31:40 +02:00: [2026-04-04 10:31:40 +0200] [1562599] [INFO] Worker exiting (pid: 1562599)
+2026-04-04 10:31:40 +02:00: [2026-04-04 10:31:40 +0200] [1562601] [INFO] Worker exiting (pid: 1562601)
+2026-04-04 10:31:41 +02:00: [2026-04-04 10:31:41 +0200] [1562598] [INFO] Shutting down: Master
+2026-04-04 10:31:41 +02:00: [2026-04-04 10:31:41 +0200] [1562800] [INFO] Starting gunicorn 23.0.0
+2026-04-04 10:31:41 +02:00: [2026-04-04 10:31:41 +0200] [1562800] [INFO] Listening at: http://0.0.0.0:5001 (1562800)
+2026-04-04 10:31:41 +02:00: [2026-04-04 10:31:41 +0200] [1562800] [INFO] Using worker: sync
+2026-04-04 10:31:41 +02:00: [2026-04-04 10:31:41 +0200] [1562801] [INFO] Booting worker with pid: 1562801
+2026-04-04 10:31:41 +02:00: [2026-04-04 10:31:41 +0200] [1562803] [INFO] Booting worker with pid: 1562803
+2026-04-04 10:40:04 +02:00: INFO:app:============================================================
+2026-04-04 10:40:04 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:40:04 +02:00: INFO:app:============================================================
+2026-04-04 10:40:04 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-08 from 07:00 to 21:00
+2026-04-04 10:40:04 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:40:10 +02:00: INFO:trainer_finder:TRAINER: Found 2 unique trainer slots
+2026-04-04 10:40:10 +02:00: INFO:app:TRAINER SEARCH: Found 2 trainer slots
+2026-04-04 10:50:51 +02:00: INFO:app:============================================================
+2026-04-04 10:50:51 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:50:51 +02:00: INFO:app:============================================================
+2026-04-04 10:50:51 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-09 from 09:00 to 10:00
+2026-04-04 10:50:51 +02:00: INFO:trainer_finder:TRAINER: Optimized: 1 API requests (1 court × 1 time slots)
+2026-04-04 10:50:51 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:50:51 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:51:00 +02:00: INFO:app:============================================================
+2026-04-04 10:51:00 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:51:00 +02:00: INFO:app:============================================================
+2026-04-04 10:51:01 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-09 from 09:00 to 10:00
+2026-04-04 10:51:01 +02:00: INFO:trainer_finder:TRAINER: Optimized: 1 API requests (1 court × 1 time slots)
+2026-04-04 10:51:01 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:51:01 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:51:15 +02:00: INFO:app:============================================================
+2026-04-04 10:51:15 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:51:15 +02:00: INFO:app:============================================================
+2026-04-04 10:51:16 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-09 from 07:00 to 21:00
+2026-04-04 10:51:16 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:51:19 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:51:19 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:51:27 +02:00: INFO:app:============================================================
+2026-04-04 10:51:27 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:51:27 +02:00: INFO:app:============================================================
+2026-04-04 10:51:28 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-10 from 07:00 to 21:00
+2026-04-04 10:51:28 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:51:31 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:51:31 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:51:44 +02:00: INFO:app:============================================================
+2026-04-04 10:51:44 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:51:44 +02:00: INFO:app:============================================================
+2026-04-04 10:51:45 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-10 from 07:00 to 21:00
+2026-04-04 10:51:45 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:51:48 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:51:48 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:51:57 +02:00: INFO:app:============================================================
+2026-04-04 10:51:57 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:51:57 +02:00: INFO:app:============================================================
+2026-04-04 10:51:58 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-06 from 07:00 to 21:00
+2026-04-04 10:51:58 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:52:02 +02:00: INFO:trainer_finder:TRAINER: Found 2 unique trainer slots
+2026-04-04 10:52:02 +02:00: INFO:app:TRAINER SEARCH: Found 2 trainer slots
+2026-04-04 10:52:33 +02:00: INFO:app:============================================================
+2026-04-04 10:52:33 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:52:33 +02:00: INFO:app:============================================================
+2026-04-04 10:52:34 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-11 from 07:00 to 21:00
+2026-04-04 10:52:34 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:52:37 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:52:37 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:53:08 +02:00: INFO:app:============================================================
+2026-04-04 10:53:08 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:53:08 +02:00: INFO:app:============================================================
+2026-04-04 10:53:08 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-04 from 07:00 to 21:00
+2026-04-04 10:53:08 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:53:12 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:53:12 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:53:24 +02:00: INFO:app:============================================================
+2026-04-04 10:53:24 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:53:24 +02:00: INFO:app:============================================================
+2026-04-04 10:53:24 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-04 from 07:00 to 21:00
+2026-04-04 10:53:24 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:53:28 +02:00: INFO:trainer_finder:TRAINER: Found 0 unique trainer slots
+2026-04-04 10:53:28 +02:00: INFO:app:TRAINER SEARCH: Found 0 trainer slots
+2026-04-04 10:53:35 +02:00: INFO:app:============================================================
+2026-04-04 10:53:35 +02:00: INFO:app:TRAINER SEARCH: Starting trainer search...
+2026-04-04 10:53:35 +02:00: INFO:app:============================================================
+2026-04-04 10:53:35 +02:00: INFO:trainer_finder:TRAINER: Searching for trainers on 2026-04-05 from 07:00 to 21:00
+2026-04-04 10:53:35 +02:00: INFO:trainer_finder:TRAINER: Optimized: 7 API requests (1 court × 7 time slots)
+2026-04-04 10:53:42 +02:00: INFO:trainer_finder:TRAINER: Found 6 unique trainer slots
+2026-04-04 10:53:42 +02:00: INFO:app:TRAINER SEARCH: Found 6 trainer slots
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1562800] [INFO] Handling signal: int
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1562803] [INFO] Worker exiting (pid: 1562803)
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1562801] [INFO] Worker exiting (pid: 1562801)
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1562800] [INFO] Shutting down: Master
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1565128] [INFO] Starting gunicorn 23.0.0
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1565128] [INFO] Listening at: http://0.0.0.0:5001 (1565128)
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1565128] [INFO] Using worker: sync
+2026-04-04 11:27:13 +02:00: [2026-04-04 11:27:13 +0200] [1565129] [INFO] Booting worker with pid: 1565129
+2026-04-04 11:27:14 +02:00: [2026-04-04 11:27:14 +0200] [1565131] [INFO] Booting worker with pid: 1565131
+2026-04-04 12:42:24 +02:00: [2026-04-04 12:42:24 +0200] [1565131] [WARNING] Invalid request from ip=18.116.101.220: Invalid HTTP request line: 'SSH-2.0-Go'
+2026-04-04 23:55:39 +02:00: [2026-04-04 23:55:39 +0200] [1565129] [WARNING] Invalid request from ip=66.132.172.130: Invalid HTTP Version: (2, 0)
+2026-04-05 11:31:41 +02:00: [2026-04-05 11:31:41 +0200] [1565128] [CRITICAL] WORKER TIMEOUT (pid:1565131)
+2026-04-05 11:31:41 +02:00: [2026-04-05 11:31:41 +0200] [1565131] [ERROR] Error handling request (no URI read)
+2026-04-05 11:31:41 +02:00: Traceback (most recent call last):
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
+2026-04-05 11:31:41 +02:00:     req = next(parser)
+2026-04-05 11:31:41 +02:00:           ^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
+2026-04-05 11:31:41 +02:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+2026-04-05 11:31:41 +02:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
+2026-04-05 11:31:41 +02:00:     super().__init__(cfg, unreader, peer_addr)
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+2026-04-05 11:31:41 +02:00:     unused = self.parse(self.unreader)
+2026-04-05 11:31:41 +02:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
+2026-04-05 11:31:41 +02:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
+2026-04-05 11:31:41 +02:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
+2026-04-05 11:31:41 +02:00:     self.get_data(unreader, buf)
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
+2026-04-05 11:31:41 +02:00:     data = unreader.read()
+2026-04-05 11:31:41 +02:00:            ^^^^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
+2026-04-05 11:31:41 +02:00:     d = self.chunk()
+2026-04-05 11:31:41 +02:00:         ^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+2026-04-05 11:31:41 +02:00:     return self.sock.recv(self.mxchunk)
+2026-04-05 11:31:41 +02:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05 11:31:41 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+2026-04-05 11:31:41 +02:00:     sys.exit(1)
+2026-04-05 11:31:41 +02:00: SystemExit: 1
+2026-04-05 11:31:41 +02:00: [2026-04-05 11:31:41 +0200] [1565131] [INFO] Worker exiting (pid: 1565131)
+2026-04-05 11:31:41 +02:00: [2026-04-05 11:31:41 +0200] [1605055] [INFO] Booting worker with pid: 1605055
+2026-04-05 17:49:18 +02:00: [2026-04-05 17:49:18 +0200] [1565129] [WARNING] Invalid request from ip=194.165.16.166: Invalid HTTP request line: '\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr'
+2026-04-06 00:56:54 +02:00: [2026-04-06 00:56:54 +0200] [1605055] [WARNING] Invalid request from ip=66.132.195.109: Invalid HTTP Version: (2, 0)
+2026-04-06 11:25:52 +02:00: [2026-04-06 11:25:52 +0200] [1565129] [WARNING] Invalid request from ip=16.58.56.214: Invalid HTTP request line: 'SSH-2.0-Go'
+2026-04-06 20:54:40 +02:00: [2026-04-06 20:54:40 +0200] [1565128] [CRITICAL] WORKER TIMEOUT (pid:1605055)
+2026-04-06 20:54:40 +02:00: [2026-04-06 20:54:40 +0200] [1605055] [ERROR] Error handling request (no URI read)
+2026-04-06 20:54:40 +02:00: Traceback (most recent call last):
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/sync.py", line 133, in handle
+2026-04-06 20:54:40 +02:00:     req = next(parser)
+2026-04-06 20:54:40 +02:00:           ^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/parser.py", line 41, in __next__
+2026-04-06 20:54:40 +02:00:     self.mesg = self.mesg_class(self.cfg, self.unreader, self.source_addr, self.req_count)
+2026-04-06 20:54:40 +02:00:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 259, in __init__
+2026-04-06 20:54:40 +02:00:     super().__init__(cfg, unreader, peer_addr)
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 60, in __init__
+2026-04-06 20:54:40 +02:00:     unused = self.parse(self.unreader)
+2026-04-06 20:54:40 +02:00:              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 274, in parse
+2026-04-06 20:54:40 +02:00:     line, rbuf = self.read_line(unreader, buf, self.limit_request_line)
+2026-04-06 20:54:40 +02:00:                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 326, in read_line
+2026-04-06 20:54:40 +02:00:     self.get_data(unreader, buf)
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/message.py", line 262, in get_data
+2026-04-06 20:54:40 +02:00:     data = unreader.read()
+2026-04-06 20:54:40 +02:00:            ^^^^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 36, in read
+2026-04-06 20:54:40 +02:00:     d = self.chunk()
+2026-04-06 20:54:40 +02:00:         ^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/http/unreader.py", line 63, in chunk
+2026-04-06 20:54:40 +02:00:     return self.sock.recv(self.mxchunk)
+2026-04-06 20:54:40 +02:00:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-06 20:54:40 +02:00:   File "/opt/Tennis_Booking/venv/lib/python3.12/site-packages/gunicorn/workers/base.py", line 204, in handle_abort
+2026-04-06 20:54:40 +02:00:     sys.exit(1)
+2026-04-06 20:54:40 +02:00: SystemExit: 1
+2026-04-06 20:54:40 +02:00: [2026-04-06 20:54:40 +0200] [1605055] [INFO] Worker exiting (pid: 1605055)
+2026-04-06 20:54:40 +02:00: [2026-04-06 20:54:40 +0200] [1649297] [INFO] Booting worker with pid: 1649297
