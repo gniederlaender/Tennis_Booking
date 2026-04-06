@@ -289,11 +289,13 @@
     {
       "id": "task-20260407-000305",
       "type": "feature",
-      "status": "open",
+      "status": "done",
       "priority": "medium",
       "title": "Erweiterung um Dashboard, Skript und Newsletter",
       "description": "Siehe Spez.md",
-      "created_at": "2026-04-07T00:03:05.198721"
+      "created_at": "2026-04-07T00:03:05.198721",
+      "completion_notes": "Completed by agent in run 20260407_005109\n\u2717 Verification: FAILED - Unknown\nCommit: 6d6f89c",
+      "completed_at": "2026-04-07T01:00:04.840132"
     },
     {
       "id": "task-20260407-000403",
@@ -308,7 +310,7 @@
   "metadata": {
     "project": "Tennis_Booking",
     "version": "1.0",
-    "last_updated": "2026-04-07T00:04:03.989200",
+    "last_updated": "2026-04-07T01:00:04.840142",
     "phase": "development",
     "phase_updated_at": "2026-04-07T00:02:20.180374"
   }
