@@ -342,7 +342,7 @@
             };
 
             try {
-                const response = await fetch('/profile/newsletter', {
+                const response = await fetch('{{ url_for("update_newsletter_settings") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
