@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="tileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dde83a;stop-opacity:1" />
+      <stop offset="49%" style="stop-color:#d6e030;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c8d428;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bec91f;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="49%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e0e0e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1" />
+    </linearGradient>
+
+    <clipPath id="iconClip">
+      <rect x="0" y="0" width="512" height="512" rx="112" ry="112"/>
+    </clipPath>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="112" ry="112" fill="url(#tileGrad)"/>
+  <rect x="254" y="0" width="2" height="512" fill="#b8c41e" opacity="0.2" clip-path="url(#iconClip)"/>
+  <circle cx="256" cy="256" r="168" fill="url(#ringGrad)" clip-path="url(#iconClip)"/>
+  <circle cx="256" cy="256" r="120" fill="url(#tileGrad)" clip-path="url(#iconClip)"/>
+</svg>

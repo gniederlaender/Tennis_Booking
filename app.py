@@ -56,15 +56,21 @@ def landing():
 
 @app.route('/api/dashboard/availability')
 def dashboard_availability():
-    """Get availability data for public dashboard."""
+    """Get availability data for public dashboard - today only with booking trends."""
     try:
         from database.db import get_db
+        from datetime import datetime
         db = get_db()
         cursor = db.cursor()
 
-        # Get the most recent snapshot timestamp
+        # Get today's weekday (0=Monday, 6=Sunday)
+        today = datetime.now()
+        today_weekday = today.weekday()
+
+        # Get the most recent snapshot timestamp for today
         cursor.execute('''
             SELECT MAX(captured_at) FROM availability_snapshots
+            WHERE DATE(captured_at) = DATE('now', 'localtime')
         ''')
         latest_timestamp = cursor.fetchone()[0]
 
@@ -75,50 +81,77 @@ def dashboard_availability():
                 'message': 'No data available yet'
             })
 
-        # Get latest snapshots for each location/weekday/timeblock combination
+        # Get latest snapshots for today's weekday only
         cursor.execute('''
-            SELECT location, weekday, timeblock, available_slots
+            SELECT location, timeblock, available_slots
             FROM availability_snapshots
-            WHERE DATE(captured_at) = DATE(?)
+            WHERE DATE(captured_at) = DATE('now', 'localtime')
+              AND weekday = ?
             ORDER BY captured_at DESC
-        ''', (latest_timestamp,))
+        ''', (today_weekday,))
 
         snapshots = cursor.fetchall()
 
-        # Aggregate data by weekday and timeblock
-        data = {}
-        for location, weekday, timeblock, slots in snapshots:
-            key = f"{weekday}_{timeblock}"
-            if key not in data:
-                data[key] = {'arsenal': 0, 'postsv': 0}
-            data[key][location] = slots
+        # Get current availability (most recent per location/timeblock)
+        current_data = {}
+        seen = set()
+        for location, timeblock, slots in snapshots:
+            key = f"{location}_{timeblock}"
+            if key not in seen:
+                seen.add(key)
+                if timeblock not in current_data:
+                    current_data[timeblock] = {'arsenal': 0, 'postsv': 0}
+                current_data[timeblock][location] = slots
 
-        # Calculate status (green/yellow/red) for each cell
+        # Get earliest morning snapshot for today to calculate "booked since morning"
+        cursor.execute('''
+            SELECT location, timeblock, available_slots, MIN(captured_at)
+            FROM availability_snapshots
+            WHERE DATE(captured_at) = DATE('now', 'localtime')
+              AND weekday = ?
+            GROUP BY location, timeblock
+        ''', (today_weekday,))
+
+        morning_snapshots = cursor.fetchall()
+        morning_data = {}
+        for location, timeblock, slots, _ in morning_snapshots:
+            if timeblock not in morning_data:
+                morning_data[timeblock] = {'arsenal': 0, 'postsv': 0}
+            morning_data[timeblock][location] = slots
+
+        # Build response data for today only
         matrix = {}
-        for weekday in range(7):  # 0=Monday to 6=Sunday
-            for timeblock in ['morning', 'midday', 'evening']:
-                key = f"{weekday}_{timeblock}"
-                arsenal_slots = data.get(key, {}).get('arsenal', 0)
-                postsv_slots = data.get(key, {}).get('postsv', 0)
-                total_slots = arsenal_slots + postsv_slots
+        for timeblock in ['morning', 'midday', 'evening']:
+            arsenal_current = current_data.get(timeblock, {}).get('arsenal', 0)
+            postsv_current = current_data.get(timeblock, {}).get('postsv', 0)
+            total_current = arsenal_current + postsv_current
 
-                # Determine status
-                if total_slots >= 3:
-                    status = 'green'
-                elif total_slots >= 1:
-                    status = 'yellow'
-                else:
-                    status = 'red'
+            arsenal_morning = morning_data.get(timeblock, {}).get('arsenal', 0)
+            postsv_morning = morning_data.get(timeblock, {}).get('postsv', 0)
+            total_morning = arsenal_morning + postsv_morning
 
-                matrix[key] = {
-                    'status': status,
-                    'total': total_slots,
-                    'arsenal': arsenal_slots,
-                    'postsv': postsv_slots
-                }
+            # Booked since morning = morning slots - current slots (positive = slots were booked)
+            booked_since_morning = total_morning - total_current
+
+            # Determine status
+            if total_current >= 3:
+                status = 'green'
+            elif total_current >= 1:
+                status = 'yellow'
+            else:
+                status = 'red'
+
+            matrix[timeblock] = {
+                'status': status,
+                'total': total_current,
+                'arsenal': arsenal_current,
+                'postsv': postsv_current,
+                'booked_since_morning': max(0, booked_since_morning)
+            }
 
         return jsonify({
             'timestamp': latest_timestamp,
+            'weekday': today_weekday,
             'data': matrix
         })
 

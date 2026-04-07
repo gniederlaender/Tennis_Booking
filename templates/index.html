@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Platzsuche - TennisFinder</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='tennis-booking-icon.svg') }}">
+    <link rel="icon" type="image/png" sizes="180x180" href="{{ url_for('static', filename='tennis-booking-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='tennis-booking-icon.png') }}">
+    <meta name="theme-color" content="#2E7D32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -416,6 +420,183 @@
             background: rgba(46, 204, 113, 0.2);
         }
 
+        /* Today's Availability Dashboard */
+        .dashboard-section {
+            margin-top: 30px;
+        }
+
+        .dashboard-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .dashboard-subtitle {
+            font-size: 14px;
+            color: #5a6c7d;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .dashboard-timestamp {
+            font-size: 12px;
+            color: #8899a6;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .availability-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .availability-table th,
+        .availability-table td {
+            padding: 12px 10px;
+            text-align: center;
+        }
+
+        .availability-table thead th {
+            background: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            font-size: 12px;
+            color: #5a6c7d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .availability-table thead th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .availability-table thead th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .availability-table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        .availability-table tbody tr:hover {
+            transform: scale(1.01);
+        }
+
+        .availability-table tbody td {
+            background: rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .availability-table tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 10px;
+        }
+
+        .availability-table tbody tr:last-child td:last-child {
+            border-radius: 0 0 10px 0;
+        }
+
+        .timeblock-label {
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: left !important;
+            font-size: 13px;
+        }
+
+        .timeblock-hours {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            color: #8899a6;
+            margin-top: 2px;
+        }
+
+        .availability-cell {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .availability-cell.green {
+            background: rgba(76, 175, 80, 0.25) !important;
+        }
+
+        .availability-cell.yellow {
+            background: rgba(255, 193, 7, 0.25) !important;
+        }
+
+        .availability-cell.red {
+            background: rgba(244, 67, 54, 0.25) !important;
+        }
+
+        .slot-count {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1;
+        }
+
+        .slot-label {
+            font-size: 10px;
+            color: #5a6c7d;
+            margin-top: 3px;
+        }
+
+        .booked-count {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e74c3c;
+        }
+
+        .booked-label {
+            font-size: 9px;
+            color: #8899a6;
+            margin-top: 2px;
+        }
+
+        .no-bookings {
+            color: #27ae60;
+        }
+
+        .dashboard-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 100;
+        }
+
+        .dashboard-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .availability-cell:hover .dashboard-tooltip,
+        .availability-cell:focus .dashboard-tooltip {
+            opacity: 1;
+        }
+
+        .dashboard-loading {
+            text-align: center;
+            padding: 20px;
+            color: #5a6c7d;
+            font-size: 13px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -440,6 +621,29 @@
             .checkbox-group {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .availability-table th,
+            .availability-table td {
+                padding: 10px 6px;
+            }
+
+            .slot-count {
+                font-size: 18px;
+            }
+
+            .timeblock-label {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slot-count {
+                font-size: 16px;
+            }
+
+            .booked-count {
+                font-size: 12px;
             }
         }
     </style>
@@ -497,6 +701,31 @@
 
                 <div id="trainerNameField" style="display: none; margin-top: 15px;">
                     <input type="text" id="trainerName" class="search-input" placeholder="Trainer-Name (optional)">
+                </div>
+            </div>
+
+            <!-- Today's Availability Dashboard -->
+            <div class="dashboard-section">
+                <h3>Verfügbarkeit Heute</h3>
+                <div class="dashboard-subtitle" id="todayLabel">Lade...</div>
+                <div class="dashboard-timestamp" id="timestamp">Lade Daten...</div>
+
+                <div id="dashboardLoading" class="dashboard-loading">
+                    Lade Verfügbarkeitsdaten...
+                </div>
+                <div id="dashboardTable" style="display: none;">
+                    <table class="availability-table">
+                        <thead>
+                            <tr>
+                                <th>Tageszeit</th>
+                                <th>Frei</th>
+                                <th>Gebucht heute</th>
+                            </tr>
+                        </thead>
+                        <tbody id="availabilityBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -739,6 +968,89 @@
         document.getElementById('timeframe').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') search();
         });
+
+        // Dashboard functionality
+        async function loadDashboard() {
+            try {
+                const response = await fetch('{{ url_for("dashboard_availability") }}');
+                const result = await response.json();
+
+                if (result.timestamp && result.data) {
+                    displayDashboard(result);
+                } else {
+                    document.getElementById('dashboardLoading').textContent =
+                        result.message || 'Noch keine Daten verfügbar';
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                document.getElementById('dashboardLoading').textContent =
+                    'Fehler beim Laden der Daten';
+            }
+        }
+
+        function displayDashboard(result) {
+            const { timestamp, weekday, data } = result;
+            const timestampDiv = document.getElementById('timestamp');
+            const todayLabel = document.getElementById('todayLabel');
+            const availabilityBody = document.getElementById('availabilityBody');
+            const dashboardLoading = document.getElementById('dashboardLoading');
+            const dashboardTable = document.getElementById('dashboardTable');
+
+            // Format today's date
+            const weekdayNames = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+            todayLabel.textContent = `${weekdayNames[weekday]}, ${dateStr}`;
+
+            // Format timestamp
+            const tsDate = new Date(timestamp);
+            const timeStr = tsDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+            timestampDiv.textContent = `Stand: ${timeStr} Uhr`;
+
+            // Build table rows
+            const timeblocks = [
+                { key: 'morning', label: 'Morgen', hours: '07:00 – 12:00' },
+                { key: 'midday', label: 'Mittag', hours: '12:00 – 17:00' },
+                { key: 'evening', label: 'Abend', hours: '17:00 – 22:00' }
+            ];
+
+            let html = '';
+
+            timeblocks.forEach(block => {
+                const cellData = data[block.key] || { status: 'red', total: 0, arsenal: 0, postsv: 0, booked_since_morning: 0 };
+                const tooltipText = `Arsenal: ${cellData.arsenal} frei<br>Post SV: ${cellData.postsv} frei`;
+
+                const bookedDisplay = cellData.booked_since_morning > 0
+                    ? `<span class="booked-count">-${cellData.booked_since_morning}</span><div class="booked-label">seit heute früh</div>`
+                    : `<span class="booked-count no-bookings">—</span><div class="booked-label">keine Änderung</div>`;
+
+                html += `
+                    <tr>
+                        <td class="timeblock-label">
+                            ${block.label}
+                            <span class="timeblock-hours">${block.hours}</span>
+                        </td>
+                        <td class="availability-cell ${cellData.status}" tabindex="0">
+                            <div class="slot-count">${cellData.total}</div>
+                            <div class="slot-label">Plätze frei</div>
+                            <div class="dashboard-tooltip">${tooltipText}</div>
+                        </td>
+                        <td>
+                            ${bookedDisplay}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            availabilityBody.innerHTML = html;
+
+            // Show table, hide loading
+            dashboardLoading.style.display = 'none';
+            dashboardTable.style.display = 'block';
+        }
+
+        // Load dashboard on page load
+        loadDashboard();
     </script>
 </body>
 </html>
