@@ -137,14 +137,18 @@ def update_snapshots():
             # Aggregate by location, weekday, and timeblock
             aggregated = aggregate_slots_by_block(slots)
 
-            # Save aggregated data
-            for (location, weekday, timeblock), count in aggregated.items():
-                save_snapshot(db, location, weekday, timeblock, count)
-                total_slots_saved += 1
-                logger.debug(
-                    f"Saved: {location} - {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][weekday]} "
-                    f"{timeblock} - {count} slots"
-                )
+            # Save aggregated data - ensure ALL combinations are saved (even 0 slots)
+            weekday = date.weekday()
+            for location in ['arsenal', 'postsv']:
+                for timeblock in ['morning', 'midday', 'evening']:
+                    key = (location, weekday, timeblock)
+                    count = aggregated.get(key, 0)  # Default to 0 if no slots
+                    save_snapshot(db, location, weekday, timeblock, count)
+                    total_slots_saved += 1
+                    logger.debug(
+                        f"Saved: {location} - {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][weekday]} "
+                        f"{timeblock} - {count} slots"
+                    )
 
         # Commit all changes
         db.commit()
