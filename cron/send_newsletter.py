@@ -48,84 +48,145 @@ def get_newsletter_subscribers(db):
     ''')
     return cursor.fetchall()
 
-def get_weekly_availability(db, weekday, timeblock):
+def get_today_availability(db):
     """
-    Get availability for the next 4 occurrences of the specified weekday.
-    Returns list of {date, arsenal, postsv, total, status_icon}
+    Get today's availability for all timeblocks.
+    Returns dict with {morning, midday, evening} data including booked_since_morning.
     """
-    today = datetime.now().date()
-    current_weekday = today.weekday()
+    cursor = db.cursor()
+    today_weekday = datetime.now().weekday()
 
-    # Calculate dates for next 4 occurrences
-    dates = []
-    days_ahead = (weekday - current_weekday) % 7
-    if days_ahead == 0:
-        days_ahead = 7  # Start from next week if today is the target weekday
+    # Get latest snapshots for today
+    cursor.execute('''
+        SELECT location, timeblock, available_slots
+        FROM availability_snapshots
+        WHERE DATE(captured_at) = DATE('now', 'localtime')
+          AND weekday = ?
+        ORDER BY captured_at DESC
+    ''', (today_weekday,))
 
-    for i in range(4):
-        target_date = today + timedelta(days=days_ahead + (i * 7))
-        dates.append(target_date)
+    snapshots = cursor.fetchall()
 
-    # Fetch availability for these dates
-    availability_data = []
+    # Get current availability (most recent per location/timeblock)
+    current_data = {}
+    seen = set()
+    for location, timeblock, slots in snapshots:
+        key = f"{location}_{timeblock}"
+        if key not in seen:
+            seen.add(key)
+            if timeblock not in current_data:
+                current_data[timeblock] = {'arsenal': 0, 'postsv': 0}
+            current_data[timeblock][location] = slots
 
-    for date in dates:
-        cursor = db.cursor()
+    # Get earliest morning snapshot for today to calculate "booked since morning"
+    cursor.execute('''
+        SELECT location, timeblock, available_slots, MIN(captured_at)
+        FROM availability_snapshots
+        WHERE DATE(captured_at) = DATE('now', 'localtime')
+          AND weekday = ?
+        GROUP BY location, timeblock
+    ''', (today_weekday,))
 
-        # Get arsenal availability
-        cursor.execute('''
-            SELECT available_slots FROM availability_snapshots
-            WHERE location = 'arsenal'
-            AND weekday = ?
-            AND timeblock = ?
-            AND DATE(captured_at) = (
-                SELECT MAX(DATE(captured_at))
-                FROM availability_snapshots
-            )
-            ORDER BY captured_at DESC
-            LIMIT 1
-        ''', (weekday, timeblock))
-        arsenal_row = cursor.fetchone()
-        arsenal_slots = arsenal_row[0] if arsenal_row else 0
+    morning_snapshots = cursor.fetchall()
+    morning_data = {}
+    for location, timeblock, slots, _ in morning_snapshots:
+        if timeblock not in morning_data:
+            morning_data[timeblock] = {'arsenal': 0, 'postsv': 0}
+        morning_data[timeblock][location] = slots
 
-        # Get postsv availability
-        cursor.execute('''
-            SELECT available_slots FROM availability_snapshots
-            WHERE location = 'postsv'
-            AND weekday = ?
-            AND timeblock = ?
-            AND DATE(captured_at) = (
-                SELECT MAX(DATE(captured_at))
-                FROM availability_snapshots
-            )
-            ORDER BY captured_at DESC
-            LIMIT 1
-        ''', (weekday, timeblock))
-        postsv_row = cursor.fetchone()
-        postsv_slots = postsv_row[0] if postsv_row else 0
+    # Build response data
+    result = {}
+    for timeblock in ['morning', 'midday', 'evening']:
+        arsenal_current = current_data.get(timeblock, {}).get('arsenal', 0)
+        postsv_current = current_data.get(timeblock, {}).get('postsv', 0)
+        total_current = arsenal_current + postsv_current
 
-        total_slots = arsenal_slots + postsv_slots
+        arsenal_morning = morning_data.get(timeblock, {}).get('arsenal', 0)
+        postsv_morning = morning_data.get(timeblock, {}).get('postsv', 0)
+        total_morning = arsenal_morning + postsv_morning
 
-        # Determine status icon
-        if total_slots >= 3:
-            status_icon = '🟢'
-        elif total_slots >= 1:
-            status_icon = '🟡'
+        booked_since_morning = max(0, total_morning - total_current)
+
+        # Determine status
+        if total_current >= 3:
+            status = 'green'
+        elif total_current >= 1:
+            status = 'yellow'
         else:
-            status_icon = '🔴'
+            status = 'red'
 
-        availability_data.append({
-            'date': date,
-            'date_formatted': date.strftime('%d.%m.%Y (%A)'),
-            'arsenal': arsenal_slots,
-            'postsv': postsv_slots,
-            'total': total_slots,
-            'status_icon': status_icon
-        })
+        result[timeblock] = {
+            'total': total_current,
+            'arsenal': arsenal_current,
+            'postsv': postsv_current,
+            'booked_since_morning': booked_since_morning,
+            'status': status
+        }
 
-    return availability_data
+    return result
 
-def render_email_template(user, weekly_availability, weekday_name, timeblock_name):
+def get_user_preference_availability(db, weekday, timeblock):
+    """
+    Get availability for user's preferred weekday/timeblock for next week.
+    Returns {arsenal, postsv, total, booked_since_morning, status}
+    """
+    cursor = db.cursor()
+
+    # Get latest snapshot for this weekday/timeblock
+    cursor.execute('''
+        SELECT location, available_slots
+        FROM availability_snapshots
+        WHERE weekday = ?
+          AND timeblock = ?
+          AND DATE(captured_at) = DATE('now', 'localtime')
+        ORDER BY captured_at DESC
+    ''', (weekday, timeblock))
+
+    snapshots = cursor.fetchall()
+
+    current_data = {'arsenal': 0, 'postsv': 0}
+    seen = set()
+    for location, slots in snapshots:
+        if location not in seen:
+            seen.add(location)
+            current_data[location] = slots
+
+    # Get morning snapshot
+    cursor.execute('''
+        SELECT location, available_slots, MIN(captured_at)
+        FROM availability_snapshots
+        WHERE weekday = ?
+          AND timeblock = ?
+          AND DATE(captured_at) = DATE('now', 'localtime')
+        GROUP BY location
+    ''', (weekday, timeblock))
+
+    morning_snapshots = cursor.fetchall()
+    morning_data = {'arsenal': 0, 'postsv': 0}
+    for location, slots, _ in morning_snapshots:
+        morning_data[location] = slots
+
+    total_current = current_data['arsenal'] + current_data['postsv']
+    total_morning = morning_data['arsenal'] + morning_data['postsv']
+    booked_since_morning = max(0, total_morning - total_current)
+
+    # Determine status
+    if total_current >= 3:
+        status = 'green'
+    elif total_current >= 1:
+        status = 'yellow'
+    else:
+        status = 'red'
+
+    return {
+        'arsenal': current_data['arsenal'],
+        'postsv': current_data['postsv'],
+        'total': total_current,
+        'booked_since_morning': booked_since_morning,
+        'status': status
+    }
+
+def render_email_template(user, today_data, preference_data, weekday_name, timeblock_name):
     """Render the newsletter email template."""
     # Read template
     template_path = os.path.join(
@@ -139,35 +200,71 @@ def render_email_template(user, weekly_availability, weekday_name, timeblock_nam
     # Simple template rendering (replace Jinja2 placeholders)
     user_name = user[2] if user[2] else user[1].split('@')[0]
 
-    # Build availability rows
-    availability_rows = ''
-    for avail in weekly_availability:
-        availability_rows += f'''
+    # Build today's availability rows
+    timeblock_labels = {
+        'morning': ('Morgen', '07:00 - 12:00 Uhr'),
+        'midday': ('Mittag', '12:00 - 17:00 Uhr'),
+        'evening': ('Abend', '17:00 - 22:00 Uhr')
+    }
+
+    today_rows = ''
+    for timeblock_key in ['morning', 'midday', 'evening']:
+        data = today_data.get(timeblock_key, {})
+        label, hours = timeblock_labels[timeblock_key]
+
+        # Status background color
+        bg_color = {
+            'green': 'rgba(76, 175, 80, 0.15)',
+            'yellow': 'rgba(255, 193, 7, 0.15)',
+            'red': 'rgba(244, 67, 54, 0.15)'
+        }.get(data.get('status', 'red'), 'rgba(255, 255, 255, 0.3)')
+
+        booked = data.get('booked_since_morning', 0)
+        booked_display = f'<span style="font-size: 14px; font-weight: 600; color: #e74c3c;">-{booked}</span><div style="font-size: 9px; color: #8899a6; margin-top: 2px;">seit heute früh</div>' if booked > 0 else '<span style="font-size: 14px; font-weight: 600; color: #27ae60;">—</span><div style="font-size: 9px; color: #8899a6; margin-top: 2px;">keine Änderung</div>'
+
+        today_rows += f'''
                                 <tr>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; color: #2c3e50;">
-                                        {avail['date_formatted']}
+                                    <td style="padding: 14px 10px; border-bottom: 1px solid #e0e0e0; color: #2c3e50; font-weight: 600;">
+                                        {label}<br>
+                                        <span style="font-size: 11px; font-weight: 400; color: #8899a6;">{hours}</span>
                                     </td>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #5a6c7d;">
-                                        {avail['arsenal']} Plätze
+                                    <td style="padding: 14px 10px; border-bottom: 1px solid #e0e0e0; text-align: center; background-color: {bg_color};">
+                                        <div style="font-size: 22px; font-weight: 700; color: #2c3e50; line-height: 1;">{data.get('total', 0)}</div>
+                                        <div style="font-size: 10px; color: #5a6c7d; margin-top: 3px;">Plätze frei</div>
                                     </td>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #5a6c7d;">
-                                        {avail['postsv']} Plätze
-                                    </td>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center;">
-                                        <span style="font-size: 20px;">{avail['status_icon']}</span>
+                                    <td style="padding: 14px 10px; border-bottom: 1px solid #e0e0e0; text-align: center;">
+                                        {booked_display}
                                     </td>
                                 </tr>
         '''
+
+    # Build preference row style and data
+    pref_bg_color = {
+        'green': 'background-color: rgba(76, 175, 80, 0.15);',
+        'yellow': 'background-color: rgba(255, 193, 7, 0.15);',
+        'red': 'background-color: rgba(244, 67, 54, 0.15);'
+    }.get(preference_data.get('status', 'red'), '')
+
+    pref_booked = preference_data.get('booked_since_morning', 0)
+    pref_booked_display = f'<span style="font-size: 14px; font-weight: 600; color: #e74c3c;">-{pref_booked}</span><div style="font-size: 9px; color: #8899a6; margin-top: 2px;">seit heute früh</div>' if pref_booked > 0 else '<span style="font-size: 14px; font-weight: 600; color: #27ae60;">—</span><div style="font-size: 9px; color: #8899a6; margin-top: 2px;">keine Änderung</div>'
+
+    timeblock_hours_map = {
+        'morning': '07:00 - 12:00 Uhr',
+        'midday': '12:00 - 17:00 Uhr',
+        'evening': '17:00 - 22:00 Uhr'
+    }
 
     # Replace placeholders
     html = template.replace('{{ user_name }}', user_name)
     html = html.replace('{{ weekday_name }}', weekday_name)
     html = html.replace('{{ timeblock_name }}', timeblock_name)
-    html = html.replace('{% for availability in weekly_availability %}', '')
-    html = html.replace('{% endfor %}', '')
-    html = html.replace('                                <tr>', availability_rows, 1)
+    html = html.replace('{{ today_rows }}', today_rows)
+    html = html.replace('{{ preference_row_style }}', pref_bg_color)
+    html = html.replace('{{ preference_total }}', str(preference_data.get('total', 0)))
+    html = html.replace('{{ preference_booked_display }}', pref_booked_display)
+    html = html.replace('{{ timeblock_hours }}', timeblock_hours_map.get(user[5], ''))
 
-    # Add URLs (replace with actual base URL from config if available)
+    # Add URLs
     base_url = os.getenv('BASE_URL', 'http://localhost:5001')
     html = html.replace('{{ booking_url }}', f'{base_url}/search-page')
     html = html.replace('{{ settings_url }}', f'{base_url}/profile')
@@ -232,8 +329,11 @@ def send_newsletters():
             logger.info(f"Processing newsletter for {email}")
 
             try:
-                # Get availability data for this user's preferences
-                weekly_availability = get_weekly_availability(db, weekday, timeblock)
+                # Get today's availability data
+                today_data = get_today_availability(db)
+
+                # Get user preference availability for next week
+                preference_data = get_user_preference_availability(db, weekday, timeblock)
 
                 weekday_name = WEEKDAY_NAMES[weekday]
                 timeblock_name = TIMEBLOCK_NAMES[timeblock]
@@ -241,7 +341,8 @@ def send_newsletters():
                 # Render email
                 html_content = render_email_template(
                     user,
-                    weekly_availability,
+                    today_data,
+                    preference_data,
                     weekday_name,
                     timeblock_name
                 )

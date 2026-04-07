@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deine Tennis-Wochenvorschau</title>
+    <title>Deine Tennis-Verfügbarkeitsübersicht</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Arial', sans-serif; background-color: #f5f7fa;">
     <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f7fa; padding: 40px 0;">
@@ -12,81 +12,83 @@
                 <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden;">
                     <!-- Header -->
                     <tr>
-                        <td style="background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%); padding: 40px; text-align: center;">
-                            <h1 style="margin: 0; color: #2c3e50; font-size: 32px; font-weight: 700;">
-                                Deine Tennis-Wochenvorschau 🎾
+                        <td style="background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%); padding: 30px; text-align: center;">
+                            <h1 style="margin: 0; color: #2c3e50; font-size: 28px; font-weight: 700;">
+                                🎾 Tennis Verfügbarkeit
                             </h1>
                         </td>
                     </tr>
 
                     <!-- Content -->
                     <tr>
-                        <td style="padding: 40px;">
-                            <p style="color: #2c3e50; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                        <td style="padding: 30px;">
+                            <p style="color: #2c3e50; font-size: 16px; line-height: 1.6; margin: 0 0 10px 0;">
                                 Hallo {{ user_name }},
                             </p>
 
-                            <p style="color: #5a6c7d; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;">
-                                hier ist deine personalisierte Verfügbarkeitsübersicht für
-                                <strong style="color: #2c3e50;">{{ weekday_name }} {{ timeblock_name }}</strong>
-                                in der kommenden Woche:
+                            <p style="color: #5a6c7d; font-size: 16px; line-height: 1.6; margin: 0 0 25px 0;">
+                                hier ist deine personalisierte Verfügbarkeitsübersicht.
                             </p>
 
-                            <!-- Availability Table -->
-                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px; border-collapse: collapse;">
+                            <!-- Today Section -->
+                            <h2 style="color: #2c3e50; font-size: 20px; font-weight: 600; margin: 0 0 15px 0;">
+                                Heute:
+                            </h2>
+
+                            <!-- Today's Availability Table -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px; border-collapse: collapse; border-radius: 10px; overflow: hidden;">
                                 <tr>
-                                    <th style="background-color: #f5f7fa; padding: 15px; text-align: left; border-bottom: 2px solid #E8FF00; color: #2c3e50; font-weight: 600;">
-                                        Datum
+                                    <th style="background-color: rgba(255, 255, 255, 0.5); padding: 12px 10px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #5a6c7d; font-weight: 600; font-size: 12px; text-transform: uppercase;">
+                                        Tageszeit
                                     </th>
-                                    <th style="background-color: #f5f7fa; padding: 15px; text-align: center; border-bottom: 2px solid #E8FF00; color: #2c3e50; font-weight: 600;">
-                                        Arsenal
+                                    <th style="background-color: rgba(255, 255, 255, 0.5); padding: 12px 10px; text-align: center; border-bottom: 2px solid #e0e0e0; color: #5a6c7d; font-weight: 600; font-size: 12px; text-transform: uppercase;">
+                                        Frei
                                     </th>
-                                    <th style="background-color: #f5f7fa; padding: 15px; text-align: center; border-bottom: 2px solid #E8FF00; color: #2c3e50; font-weight: 600;">
-                                        Post SV
-                                    </th>
-                                    <th style="background-color: #f5f7fa; padding: 15px; text-align: center; border-bottom: 2px solid #E8FF00; color: #2c3e50; font-weight: 600;">
-                                        Status
+                                    <th style="background-color: rgba(255, 255, 255, 0.5); padding: 12px 10px; text-align: center; border-bottom: 2px solid #e0e0e0; color: #5a6c7d; font-weight: 600; font-size: 12px; text-transform: uppercase;">
+                                        Gebucht heute
                                     </th>
                                 </tr>
-                                {% for availability in weekly_availability %}
-                                <tr>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; color: #2c3e50;">
-                                        {{ availability.date_formatted }}
-                                    </td>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #5a6c7d;">
-                                        {{ availability.arsenal }} Plätze
-                                    </td>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center; color: #5a6c7d;">
-                                        {{ availability.postsv }} Plätze
-                                    </td>
-                                    <td style="padding: 15px; border-bottom: 1px solid #e0e0e0; text-align: center;">
-                                        <span style="font-size: 20px;">{{ availability.status_icon }}</span>
-                                    </td>
-                                </tr>
-                                {% endfor %}
+                                {{ today_rows }}
                             </table>
 
-                            <!-- Legend -->
-                            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-                                <p style="margin: 0 0 10px 0; color: #5a6c7d; font-size: 14px; font-weight: 600;">
-                                    Legende:
-                                </p>
-                                <p style="margin: 0 0 5px 0; color: #5a6c7d; font-size: 14px;">
-                                    🟢 Viele Plätze verfügbar (3+)
-                                </p>
-                                <p style="margin: 0 0 5px 0; color: #5a6c7d; font-size: 14px;">
-                                    🟡 Wenige Plätze verfügbar (1-2)
-                                </p>
-                                <p style="margin: 0; color: #5a6c7d; font-size: 14px;">
-                                    🔴 Keine Plätze verfügbar
-                                </p>
-                            </div>
+                            <!-- User Preference Section -->
+                            <h2 style="color: #2c3e50; font-size: 20px; font-weight: 600; margin: 0 0 15px 0;">
+                                Für {{ weekday_name }} {{ timeblock_name }} in der kommenden Woche:
+                            </h2>
+
+                            <!-- Weekly Preference Table -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px; border-collapse: collapse; border-radius: 10px; overflow: hidden;">
+                                <tr>
+                                    <th style="background-color: rgba(255, 255, 255, 0.5); padding: 12px 10px; text-align: left; border-bottom: 2px solid #e0e0e0; color: #5a6c7d; font-weight: 600; font-size: 12px; text-transform: uppercase;">
+                                        Zeitfenster
+                                    </th>
+                                    <th style="background-color: rgba(255, 255, 255, 0.5); padding: 12px 10px; text-align: center; border-bottom: 2px solid #e0e0e0; color: #5a6c7d; font-weight: 600; font-size: 12px; text-transform: uppercase;">
+                                        Plätze frei
+                                    </th>
+                                    <th style="background-color: rgba(255, 255, 255, 0.5); padding: 12px 10px; text-align: center; border-bottom: 2px solid #e0e0e0; color: #5a6c7d; font-weight: 600; font-size: 12px; text-transform: uppercase;">
+                                        Seit heute früh
+                                    </th>
+                                </tr>
+                                <tr style="{{ preference_row_style }}">
+                                    <td style="padding: 14px 10px; border-bottom: 1px solid #e0e0e0; color: #2c3e50; font-weight: 600;">
+                                        {{ weekday_name }} {{ timeblock_name }}<br>
+                                        <span style="font-size: 11px; font-weight: 400; color: #8899a6;">{{ timeblock_hours }}</span>
+                                    </td>
+                                    <td style="padding: 14px 10px; border-bottom: 1px solid #e0e0e0; text-align: center;">
+                                        <div style="font-size: 22px; font-weight: 700; color: #2c3e50; line-height: 1;">{{ preference_total }}</div>
+                                        <div style="font-size: 10px; color: #5a6c7d; margin-top: 3px;">Plätze frei</div>
+                                    </td>
+                                    <td style="padding: 14px 10px; border-bottom: 1px solid #e0e0e0; text-align: center;">
+                                        {{ preference_booked_display }}
+                                    </td>
+                                </tr>
+                            </table>
 
                             <!-- CTA Button -->
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td align="center" style="padding: 20px 0;">
-                                        <a href="{{ booking_url }}" style="display: inline-block; padding: 18px 45px; background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%); color: #2c3e50; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 18px; box-shadow: 0 10px 30px rgba(232, 255, 0, 0.3);">
+                                        <a href="{{ booking_url }}" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%); color: #2c3e50; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 16px; box-shadow: 0 8px 24px rgba(232, 255, 0, 0.3);">
                                             Jetzt Platz buchen →
                                         </a>
                                     </td>
@@ -97,8 +99,8 @@
 
                     <!-- Footer -->
                     <tr>
-                        <td style="background-color: #f5f7fa; padding: 30px; text-align: center; border-top: 1px solid #e0e0e0;">
-                            <p style="margin: 0 0 10px 0; color: #5a6c7d; font-size: 14px;">
+                        <td style="background-color: #f5f7fa; padding: 25px; text-align: center; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0 0 8px 0; color: #5a6c7d; font-size: 13px;">
                                 <a href="{{ settings_url }}" style="color: #5a6c7d; text-decoration: underline;">Einstellungen ändern</a>
                                 |
                                 <a href="{{ unsubscribe_url }}" style="color: #5a6c7d; text-decoration: underline;">Abmelden</a>
