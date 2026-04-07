@@ -333,8 +333,18 @@ def scrape_all_portals(date, start_time, end_time, locations=None):
         print("="*60)
         dasspiel = DasSpielScraperV2()
         dasspiel_results = dasspiel.scrape(date, start_time, end_time)
-        all_results.extend(dasspiel_results)
-        print(f"Found {len(dasspiel_results)} slots from Das Spiel\n")
+
+        # Filter out "Warteliste" courts
+        filtered_results = [
+            slot for slot in dasspiel_results
+            if 'Warteliste' not in slot.get('court_name', '')
+        ]
+        excluded_count = len(dasspiel_results) - len(filtered_results)
+        if excluded_count > 0:
+            print(f"Filtered out {excluded_count} Warteliste slot(s)")
+
+        all_results.extend(filtered_results)
+        print(f"Found {len(filtered_results)} slots from Das Spiel\n")
     else:
         print("\n" + "="*60)
         print("Skipping Das Spiel (Arsenal) - not selected")
