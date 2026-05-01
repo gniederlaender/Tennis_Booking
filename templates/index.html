@@ -420,6 +420,134 @@
             background: rgba(46, 204, 113, 0.2);
         }
 
+        /* Time Slot Grouping */
+        .time-slot-group {
+            margin-bottom: 30px;
+        }
+
+        .time-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 5px;
+        }
+
+        .time-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .court-count {
+            font-size: 14px;
+            font-weight: 500;
+            color: #5a6c7d;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        /* Horizontal Carousel Container */
+        .carousel-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 10px 5px 15px 5px;
+            margin: 0 -5px;
+
+            /* Custom scrollbar styling */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(232, 255, 0, 0.5) rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .carousel-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb {
+            background: rgba(232, 255, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(232, 255, 0, 0.7);
+        }
+
+        /* Individual Slot Cards in Carousel */
+        .slot-card {
+            flex: 0 0 300px;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid #E8FF00;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slot-card:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .slot-card.preferred {
+            background: rgba(232, 255, 0, 0.15);
+            border-left-color: #FFD700;
+        }
+
+        .slot-card.preferred::before {
+            content: "⭐ Empfohlen";
+            display: inline-block;
+            background: linear-gradient(135deg, #E8FF00 0%, #FFD700 100%);
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .slot-card .slot-venue {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .slot-card .slot-court-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .slot-card .slot-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .slot-card .slot-detail {
+            color: #5a6c7d;
+            font-size: 13px;
+        }
+
+        .slot-card .slot-actions {
+            margin-top: auto;
+        }
+
         /* Today's Availability Dashboard */
         .dashboard-section {
             margin-top: 30px;
@@ -696,6 +824,20 @@
             .timeblock-label {
                 font-size: 12px;
             }
+
+            .slot-card {
+                flex: 0 0 260px;
+                min-width: 260px;
+                padding: 16px;
+            }
+
+            .time-value {
+                font-size: 18px;
+            }
+
+            .court-count {
+                font-size: 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -705,6 +847,20 @@
 
             .booked-count {
                 font-size: 12px;
+            }
+
+            .slot-card {
+                flex: 0 0 240px;
+                min-width: 240px;
+                padding: 14px;
+            }
+
+            .slot-card .slot-venue {
+                font-size: 13px;
+            }
+
+            .slot-card .slot-court-name {
+                font-size: 16px;
             }
         }
     </style>
@@ -937,6 +1093,29 @@
 
         let currentSlots = [];
 
+        function groupSlotsByTimeAndVenue(slots) {
+            // Group by time first, maintaining venue order within each time
+            const grouped = {};
+
+            slots.forEach(slot => {
+                const time = slot.time;
+                if (!grouped[time]) {
+                    grouped[time] = {
+                        time: time,
+                        slots: []
+                    };
+                }
+                grouped[time].slots.push(slot);
+            });
+
+            // Convert to sorted array (by time)
+            return Object.values(grouped).sort((a, b) => {
+                const timeA = a.time.split(':').map(Number);
+                const timeB = b.time.split(':').map(Number);
+                return (timeA[0] * 60 + timeA[1]) - (timeB[0] * 60 + timeB[1]);
+            });
+        }
+
         function displayResults(data) {
             const resultTitle = document.getElementById('resultTitle');
             const info = `${data.total} Ergebnis(se) für ${data.timeframe.day}, ${data.timeframe.date} (${data.timeframe.start} - ${data.timeframe.end})`;
@@ -954,24 +1133,56 @@
                 resultTitle.textContent = 'Verfügbare Plätze';
                 currentSlots = data.slots;
 
-                const slotsHtml = data.slots.map((slot, idx) => {
-                    const preferred = idx === data.preferred_index ? 'preferred' : '';
-                    return `
-                        <div class="slot ${preferred}">
-                            <div class="slot-venue">${slot.venue}</div>
-                            <div class="slot-time">${slot.time}</div>
-                            <div class="slot-detail">${slot.court_name}</div>
-                            <div class="slot-detail">${slot.date} (${slot.day_of_week})</div>
-                            <div class="slot-detail">${slot.price}</div>
-                            <div class="slot-detail">${slot.location}</div>
-                            <div class="slot-actions">
-                                <button class="book-btn" onclick="bookSlotByIndex(${idx})">Jetzt buchen</button>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
+                if (!data.slots || data.slots.length === 0) {
+                    document.getElementById('slots').innerHTML = '<p style="color: #5a6c7d; text-align: center; padding: 20px;">Keine Plätze verfügbar</p>';
+                } else {
+                    // Gruppiere nach Zeit
+                    const groupedByTime = groupSlotsByTimeAndVenue(currentSlots);
 
-                document.getElementById('slots').innerHTML = slotsHtml || '<p style="color: #5a6c7d; text-align: center; padding: 20px;">Keine Plätze verfügbar</p>';
+                    // Rendere gruppierte Slots
+                    let slotsHtml = '';
+
+                    groupedByTime.forEach(timeGroup => {
+                        const timeLabel = timeGroup.time;
+                        const slotsAtTime = timeGroup.slots;
+
+                        slotsHtml += `
+                            <div class="time-slot-group">
+                                <div class="time-label">
+                                    <span class="time-value">${timeLabel} Uhr</span>
+                                    <span class="court-count">${slotsAtTime.length} Platz${slotsAtTime.length !== 1 ? 'ätze' : ''}</span>
+                                </div>
+                                <div class="carousel-container">
+                                    ${slotsAtTime.map((slot, localIdx) => {
+                                        // Find global index for booking
+                                        const globalIdx = currentSlots.indexOf(slot);
+                                        const isPreferred = globalIdx === data.preferred_index;
+
+                                        return `
+                                            <div class="slot-card ${isPreferred ? 'preferred' : ''}">
+                                                <div class="slot-venue">${slot.venue}</div>
+                                                <div class="slot-court-name">${slot.court_name}</div>
+                                                <div class="slot-details">
+                                                    ${slot.court_type ? `<div class="slot-detail">${slot.court_type}</div>` : ''}
+                                                    ${slot.indoor_outdoor ? `<div class="slot-detail">${slot.indoor_outdoor}</div>` : ''}
+                                                    ${slot.duration ? `<div class="slot-detail">${slot.duration}</div>` : ''}
+                                                    ${slot.price ? `<div class="slot-detail">${slot.price}</div>` : ''}
+                                                </div>
+                                                <div class="slot-actions">
+                                                    <button class="book-btn" onclick="bookSlotByIndex(${globalIdx})">
+                                                        Jetzt buchen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    document.getElementById('slots').innerHTML = slotsHtml;
+                }
             }
 
             document.getElementById('results').style.display = 'block';
