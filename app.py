@@ -159,6 +159,73 @@ def dashboard_availability():
         logger.error(f"Dashboard availability error: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/favorite-trainers-availability')
+@login_required
+def favorite_trainers_availability():
+    """Get availability for user's favorite trainers for next 5 days."""
+    try:
+        user = current_user()
+        from database.db import get_db
+        from datetime import datetime, timedelta
+
+        db = get_db()
+        cursor = db.cursor()
+
+        # Get user's favorite trainers
+        cursor.execute('''
+            SELECT favorite_trainer_1, favorite_trainer_2
+            FROM users WHERE id = ?
+        ''', (user.id,))
+        row = cursor.fetchone()
+
+        if not row or (not row[0] and not row[1]):
+            return jsonify({'trainers': []})
+
+        trainer_names = [t for t in [row[0], row[1]] if t]
+
+        # Get trainer availability for next 5 days
+        placeholders = ','.join(['?' for _ in trainer_names])
+        cursor.execute(f'''
+            SELECT trainer_name, date, time_start, time_end, price
+            FROM trainer_availability_snapshots
+            WHERE trainer_name IN ({placeholders})
+              AND date >= date('now')
+              AND date <= date('now', '+5 days')
+              AND captured_at >= datetime('now', '-48 hours')
+            ORDER BY trainer_name, date, time_start
+        ''', trainer_names)
+
+        rows = cursor.fetchall()
+
+        # Organize by trainer → date → slots
+        result = {}
+        for trainer_name, date, time_start, time_end, price in rows:
+            if trainer_name not in result:
+                result[trainer_name] = {}
+            if date not in result[trainer_name]:
+                result[trainer_name][date] = []
+
+            result[trainer_name][date].append({
+                'time_start': time_start,
+                'time_end': time_end,
+                'price': price,
+                'time_window': f"{time_start}-{time_end}"
+            })
+
+        # Convert to list format for frontend
+        trainers_list = []
+        for trainer_name, dates_dict in result.items():
+            trainers_list.append({
+                'name': trainer_name,
+                'dates': dates_dict
+            })
+
+        return jsonify({'trainers': trainers_list})
+
+    except Exception as e:
+        logger.error(f"Favorite trainers availability error: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/search-page')
 @login_required
 def index():
@@ -221,7 +288,7 @@ def search():
                 if preferred_slot:
                     preferred = slots.index(preferred_slot)
 
-            response_data['slots'] = slots[:20]  # Top 20
+            response_data['slots'] = slots[:50]  # Top 50
             response_data['total'] = len(slots)
             response_data['preferred_index'] = preferred
 
@@ -417,8 +484,10 @@ def profile():
     db = get_db()
     cursor = db.cursor()
 
+    # Get newsletter settings
     cursor.execute('''
-        SELECT newsletter_active, newsletter_weekday, newsletter_timeblock
+        SELECT newsletter_active, newsletter_weekday, newsletter_timeblock,
+               favorite_trainer_1, favorite_trainer_2
         FROM users WHERE id = ?
     ''', (user.id,))
     row = cursor.fetchone()
@@ -429,7 +498,25 @@ def profile():
         'timeblock': row[2] if row and row[2] else 'evening'  # Default evening
     }
 
-    return render_template('profile.html', user=user, newsletter=newsletter_settings)
+    favorite_trainers = {
+        'trainer1': row[3] if row and row[3] else None,
+        'trainer2': row[4] if row and row[4] else None
+    }
+
+    # Get list of all trainers from database (not just currently available ones)
+    # This ensures favorite trainers remain in the dropdown even on days without availability
+    cursor.execute('''
+        SELECT DISTINCT trainer_name
+        FROM trainer_availability_snapshots
+        ORDER BY trainer_name
+    ''')
+    available_trainers = [row[0] for row in cursor.fetchall()]
+
+    return render_template('profile.html',
+                         user=user,
+                         newsletter=newsletter_settings,
+                         favorite_trainers=favorite_trainers,
+                         available_trainers=available_trainers)
 
 @app.route('/profile/newsletter', methods=['POST'])
 @login_required
@@ -468,6 +555,46 @@ def update_newsletter_settings():
 
     except Exception as e:
         logger.error(f"Newsletter settings error: {e}")
+        return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
+
+@app.route('/profile/trainers', methods=['POST'])
+@login_required
+def update_favorite_trainers():
+    """Update favorite trainer preferences."""
+    try:
+        user = current_user()
+        data = request.json
+
+        favorite_trainer_1 = data.get('favoriteTrainer1', None)
+        favorite_trainer_2 = data.get('favoriteTrainer2', None)
+
+        # Empty string should be treated as None
+        if favorite_trainer_1 == '':
+            favorite_trainer_1 = None
+        if favorite_trainer_2 == '':
+            favorite_trainer_2 = None
+
+        # Validate: trainers should be different
+        if favorite_trainer_1 and favorite_trainer_2 and favorite_trainer_1 == favorite_trainer_2:
+            return jsonify({'error': 'Bitte wähle zwei verschiedene Trainer aus'}), 400
+
+        from database.db import get_db
+        db = get_db()
+        cursor = db.cursor()
+
+        cursor.execute('''
+            UPDATE users
+            SET favorite_trainer_1 = ?,
+                favorite_trainer_2 = ?
+            WHERE id = ?
+        ''', (favorite_trainer_1, favorite_trainer_2, user.id))
+
+        db.commit()
+
+        return jsonify({'success': True, 'message': 'Lieblings-Trainer gespeichert'})
+
+    except Exception as e:
+        logger.error(f"Favorite trainers update error: {e}")
         return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
 
 if __name__ == '__main__':

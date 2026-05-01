@@ -300,6 +300,117 @@ class TimeframeParser:
     def _extract_time_range(self, text):
         """Extract time range from text with German and English support."""
 
+        # IMPORTANT: Check specific patterns FIRST (nach/vor/zwischen) before generic time patterns
+        # This ensures "nach 13:00" is interpreted as "after 13:00" not just "13:00"
+
+        # Check for "zwischen X und Y" (German) or "between X and Y" (English)
+        between_pattern = r'(?:zwischen|between)\s+(\d{1,2}):?(\d{2})?\s+(?:und|and)\s+(\d{1,2}):?(\d{2})?'
+        between_match = re.search(between_pattern, text)
+        if between_match:
+            groups = between_match.groups()
+            start_hour = int(groups[0])
+            start_min = groups[1] if groups[1] else "00"
+            end_hour = int(groups[2])
+            end_min = groups[3] if groups[3] else "00"
+            return (
+                f"{start_hour:02d}:{start_min}",
+                f"{end_hour:02d}:{end_min}"
+            )
+
+        # Check for "nach X" / "after X" (from X until end of day)
+        # First try numeric time format
+        after_pattern = r'(?:nach|after)\s+(\d{1,2}):?(\d{2})?'
+        after_match = re.search(after_pattern, text)
+        if after_match:
+            start_hour = int(after_match.group(1))
+            start_min = after_match.group(2) if after_match.group(2) else "00"
+            return (
+                f"{start_hour:02d}:{start_min}",
+                "21:00"  # End of day
+            )
+
+        # Then try time-of-day keywords (e.g., "nach dem vormittag", "after noon")
+        for window_name, (window_start, window_end) in {**self.GERMAN_TIME_WINDOWS, **self.ENGLISH_TIME_WINDOWS}.items():
+            # Match with optional "dem/der/den" (German articles)
+            if re.search(r'(?:nach|after)\s+(?:de[mnrs])?\s*' + re.escape(window_name) + r'\b', text):
+                return (
+                    window_end,  # Start from end of the time window
+                    "21:00"  # Until end of day
+                )
+
+        # Check for "vor X" / "before X" (from start of day until X)
+        # First try numeric time format
+        before_pattern = r'(?:vor|before)\s+(\d{1,2}):?(\d{2})?'
+        before_match = re.search(before_pattern, text)
+        if before_match:
+            end_hour = int(before_match.group(1))
+            end_min = before_match.group(2) if before_match.group(2) else "00"
+            return (
+                "07:00",  # Start of day
+                f"{end_hour:02d}:{end_min}"
+            )
+
+        # Then try time-of-day keywords (e.g., "vor dem abend", "before noon")
+        for window_name, (window_start, window_end) in {**self.GERMAN_TIME_WINDOWS, **self.ENGLISH_TIME_WINDOWS}.items():
+            # Match with optional "dem/der/den" (German articles)
+            if re.search(r'(?:vor|before)\s+(?:de[mnrs])?\s*' + re.escape(window_name) + r'\b', text):
+                return (
+                    "07:00",  # Start of day
+                    window_start  # Until start of the time window
+                )
+
+        # Check for "ab HH:MM" or "from HH:MM" (open-ended)
+        from_pattern = r'(?:ab|from)\s+(\d{1,2}):?(\d{2})?'
+        from_match = re.search(from_pattern, text)
+        if from_match:
+            start_hour = int(from_match.group(1))
+            start_min = from_match.group(2) if from_match.group(2) else "00"
+            return (
+                f"{start_hour:02d}:{start_min}",
+                "21:00"  # Default end time
+            )
+
+        # Pattern for time ranges like "10-13", "15:00-18:00", "6pm-8pm"
+        time_range_patterns = [
+            # HH:MM-HH:MM (24-hour format)
+            r'(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})',
+            # H am/pm - H am/pm
+            r'(\d{1,2})\s*(am|pm)\s*-\s*(\d{1,2})\s*(am|pm)',
+            # H-H format with optional "uhr"
+            r'(\d{1,2})\s*-\s*(\d{1,2})(?:\s*uhr)?(?:\s|$)',
+        ]
+
+        for pattern in time_range_patterns:
+            match = re.search(pattern, text)
+            if match:
+                groups = match.groups()
+
+                if len(groups) == 4 and groups[1] and groups[1].isdigit():
+                    # HH:MM-HH:MM
+                    start_hour, start_min, end_hour, end_min = groups
+                    return (
+                        f"{int(start_hour):02d}:{int(start_min):02d}",
+                        f"{int(end_hour):02d}:{int(end_min):02d}"
+                    )
+                elif len(groups) == 4 and groups[1] in ('am', 'pm'):
+                    # H am/pm - H am/pm
+                    start_hour = int(groups[0])
+                    start_period = groups[1]
+                    end_hour = int(groups[2])
+                    end_period = groups[3]
+
+                    if start_period == 'pm' and start_hour != 12:
+                        start_hour += 12
+                    if end_period == 'pm' and end_hour != 12:
+                        end_hour += 12
+
+                    return (f"{start_hour:02d}:00", f"{end_hour:02d}:00")
+                elif len(groups) == 2:
+                    # Simple H-H format
+                    start_hour = int(groups[0])
+                    end_hour = int(groups[1])
+                    return (f"{start_hour:02d}:00", f"{end_hour:02d}:00")
+
         # Check for explicit time with "um X Uhr" or "X Uhr" pattern (German)
         uhr_patterns = [
             r'(\d{1,2}):(\d{2})\s*uhr',  # 9:00 Uhr
@@ -320,7 +431,6 @@ class TimeframeParser:
                 return (start, end)
 
         # Check for standalone HH:MM pattern (not part of date like YYYY-MM-DD)
-        # This must come before other patterns to catch "9:00" without qualifiers
         standalone_time_pattern = r'(?<!\d[-.])(?<!\d)\b(\d{1,2}):(\d{2})\b(?!\s*[-.]?\d)'
         standalone_match = re.search(standalone_time_pattern, text)
         if standalone_match:
@@ -379,81 +489,20 @@ class TimeframeParser:
             return (start, end)
 
         # Check for German time windows
+        # Skip if keyword appears right after nach/vor (with optional article)
         for window_name, (start, end) in self.GERMAN_TIME_WINDOWS.items():
+            if re.search(r'(?:nach|vor)\s+(?:de[mnrs])?\s*' + re.escape(window_name) + r'\b', text):
+                continue  # Skip, already handled above
             if window_name in text:
                 return (start, end)
 
         # Check for English time windows
+        # Skip if keyword appears right after after/before
         for window_name, (start, end) in self.ENGLISH_TIME_WINDOWS.items():
+            if re.search(r'(?:after|before)\s+' + re.escape(window_name) + r'\b', text):
+                continue  # Skip, already handled above
             if window_name in text:
                 return (start, end)
-
-        # Pattern for time ranges like "10-13", "15:00-18:00", "6pm-8pm"
-        time_range_patterns = [
-            # HH:MM-HH:MM (24-hour format)
-            r'(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})',
-            # H am/pm - H am/pm
-            r'(\d{1,2})\s*(am|pm)\s*-\s*(\d{1,2})\s*(am|pm)',
-            # H-H format with optional "uhr"
-            r'(\d{1,2})\s*-\s*(\d{1,2})(?:\s*uhr)?(?:\s|$)',
-        ]
-
-        for pattern in time_range_patterns:
-            match = re.search(pattern, text)
-            if match:
-                groups = match.groups()
-
-                if len(groups) == 4 and groups[1] and groups[1].isdigit():
-                    # HH:MM-HH:MM
-                    start_hour, start_min, end_hour, end_min = groups
-                    return (
-                        f"{int(start_hour):02d}:{int(start_min):02d}",
-                        f"{int(end_hour):02d}:{int(end_min):02d}"
-                    )
-                elif len(groups) == 4 and groups[1] in ('am', 'pm'):
-                    # H am/pm - H am/pm
-                    start_hour = int(groups[0])
-                    start_period = groups[1]
-                    end_hour = int(groups[2])
-                    end_period = groups[3]
-
-                    if start_period == 'pm' and start_hour != 12:
-                        start_hour += 12
-                    if end_period == 'pm' and end_hour != 12:
-                        end_hour += 12
-
-                    return (f"{start_hour:02d}:00", f"{end_hour:02d}:00")
-                elif len(groups) == 2:
-                    # Simple H-H format
-                    start_hour = int(groups[0])
-                    end_hour = int(groups[1])
-                    return (f"{start_hour:02d}:00", f"{end_hour:02d}:00")
-
-        # Check for "zwischen X und Y" (German) or "between X and Y" (English)
-        between_pattern = r'(?:zwischen|between)\s+(\d{1,2}):?(\d{2})?\s+(?:und|and)\s+(\d{1,2}):?(\d{2})?'
-        between_match = re.search(between_pattern, text)
-        if between_match:
-            groups = between_match.groups()
-            start_hour = int(groups[0])
-            start_min = groups[1] if groups[1] else "00"
-            end_hour = int(groups[2])
-            end_min = groups[3] if groups[3] else "00"
-
-            return (
-                f"{start_hour:02d}:{start_min}",
-                f"{end_hour:02d}:{end_min}"
-            )
-
-        # Check for "ab HH:MM" or "from HH:MM" (open-ended)
-        from_pattern = r'(?:ab|from)\s+(\d{1,2}):?(\d{2})?'
-        from_match = re.search(from_pattern, text)
-        if from_match:
-            start_hour = int(from_match.group(1))
-            start_min = from_match.group(2) if from_match.group(2) else "00"
-            return (
-                f"{start_hour:02d}:{start_min}",
-                "21:00"  # Default end time
-            )
 
         # Default time range (7am - 9pm)
         return ("07:00", "21:00")

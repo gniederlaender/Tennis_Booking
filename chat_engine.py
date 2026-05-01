@@ -31,35 +31,41 @@ class ChatEngine:
         # Detect intent
         intent = 'unknown'
 
-        # Greeting
-        if any(word in msg_lower for word in ['hi', 'hello', 'hey', 'start']):
+        # Help (German + English) - Check FIRST to avoid "hi" in "hilfe" matching greeting
+        if any(word in msg_lower for word in ['help', 'what can you', 'how do', 'hilfe', 'was kannst du']) or msg_lower == 'wie':
+            intent = 'help'
+
+        # Greeting (German + English)
+        elif any(word in msg_lower for word in ['hi', 'hello', 'hey', 'start', 'hallo', 'servus', 'grüß', 'moin']):
             intent = 'greeting'
 
-        # Search intents
-        elif any(word in msg_lower for word in ['find', 'search', 'show', 'available', 'look for', 'i want', 'need']):
-            if 'trainer' in msg_lower:
+        # Search intents (German + English)
+        elif any(word in msg_lower for word in [
+            'find', 'search', 'show', 'available', 'look for', 'i want', 'need',
+            'finde', 'suche', 'zeige', 'verfügbar', 'ich will', 'ich möchte', 'brauche', 'ich brauche'
+        ]):
+            if any(word in msg_lower for word in ['trainer', 'coach', 'lehrer']):
                 intent = 'search_trainer'
             else:
                 intent = 'search_court'
 
-        # Booking intents
-        elif any(word in msg_lower for word in ['book', 'reserve', 'take', "i'll take"]):
+        # Booking intents (German + English)
+        elif any(word in msg_lower for word in ['book', 'reserve', 'take', "i'll take", 'buche', 'reserviere', 'nehme', 'ich nehme']):
             intent = 'book'
 
-        # History/Info
-        elif any(word in msg_lower for word in ['history', 'bookings', 'booked', 'my bookings', 'what did i']):
+        # History/Info (German + English)
+        elif any(word in msg_lower for word in [
+            'history', 'bookings', 'booked', 'my bookings', 'what did i',
+            'historie', 'buchungen', 'gebucht', 'meine buchungen'
+        ]):
             intent = 'history'
 
-        # Help
-        elif any(word in msg_lower for word in ['help', 'what can you', 'how do']):
-            intent = 'help'
-
-        # Thanks
-        elif any(word in msg_lower for word in ['thanks', 'thank you', 'great', 'perfect']):
+        # Thanks (German + English)
+        elif any(word in msg_lower for word in ['thanks', 'thank you', 'great', 'perfect', 'danke', 'super', 'perfekt', 'klasse']):
             intent = 'thanks'
 
-        # Cancel
-        elif any(word in msg_lower for word in ['cancel', 'never mind', 'nevermind', 'stop']):
+        # Cancel (German + English)
+        elif any(word in msg_lower for word in ['cancel', 'never mind', 'nevermind', 'stop', 'abbrechen', 'vergiss es', 'egal', 'stopp']):
             intent = 'cancel'
 
         # Extract entities
@@ -156,7 +162,7 @@ class ChatEngine:
         # Route to appropriate handler
         if intent == 'greeting':
             response['reply'] = self._handle_greeting(context)
-            response['suggestions'] = ['Find a court', 'Find a trainer', 'Show my bookings']
+            response['suggestions'] = ['Morgen 18 Uhr', 'Freitag nachmittag', 'Trainer suchen']
 
         elif intent == 'search_court':
             return self._handle_search_court(entities, context)
@@ -168,64 +174,113 @@ class ChatEngine:
             return self._handle_booking(entities, context)
 
         elif intent == 'history':
-            response['reply'] = "Looking at your booking history...\n\nBooking history feature coming soon! For now, you can search for courts and book them directly."
-            response['suggestions'] = ['Find a court', 'Find a trainer']
+            response['reply'] = "Schaue nach deinen Buchungen...\n\nBuchungs-Historie kommt bald! Aktuell kannst du nach Plätzen suchen und diese direkt buchen."
+            response['suggestions'] = ['Platz suchen', 'Trainer suchen']
 
         elif intent == 'help':
             response['reply'] = self._handle_help()
-            response['suggestions'] = ['Find court tomorrow 6pm', 'Show trainers', 'Find a court']
+            response['suggestions'] = ['Morgen 18 Uhr', 'Freitag nachmittag', 'Trainer suchen']
 
         elif intent == 'thanks':
-            response['reply'] = "You're welcome! Anything else I can help you with? 🎾"
-            response['suggestions'] = ['Find another court', 'Show my bookings']
+            response['reply'] = "Gerne! Kann ich dir noch bei etwas helfen? 🎾"
+            response['suggestions'] = ['Anderen Platz suchen', 'Meine Buchungen']
 
         elif intent == 'cancel':
-            response['reply'] = "No problem! Let me know if you need anything else."
+            response['reply'] = "Kein Problem! Sag Bescheid, wenn du etwas brauchst."
             response['context']['state'] = 'IDLE'
             response['context']['last_results'] = []
-            response['suggestions'] = ['Find a court', 'Find a trainer']
+            response['suggestions'] = ['Platz suchen', 'Trainer suchen']
 
         else:
             response['reply'] = self._handle_unknown(message, context)
-            response['suggestions'] = ['Find court tomorrow 6pm', 'Find trainer', 'Help']
+            response['suggestions'] = ['Morgen 18 Uhr', 'Freitag nachmittag', 'Hilfe']
 
         return response
 
     def _handle_greeting(self, context):
         """Handle greeting messages."""
-        return ("Hi! I'm your tennis booking assistant. 🎾\n\n"
-                "I can help you:\n"
-                "• Find available tennis courts at Arsenal and Post SV\n"
-                "• Search for trainers at Arsenal\n"
-                "• Book courts and trainer sessions\n\n"
-                "Just tell me what you'd like to do! For example:\n"
-                "- 'Find a court tomorrow at 6pm'\n"
-                "- 'I need a trainer next Monday morning'\n"
-                "- 'Show available courts this weekend'")
+        return ("Hi! Ich bin dein Tennis Buchungs-Assistent. 🎾\n\n"
+                "Ich kann dir helfen:\n"
+                "• Verfügbare Plätze bei Arsenal und Post SV finden\n"
+                "• Trainer bei Arsenal suchen\n"
+                "• Plätze und Training buchen\n\n"
+                "Sag mir einfach, was du möchtest! Zum Beispiel:\n"
+                "- 'morgen um 18 Uhr'\n"
+                "- 'Freitag nachmittag'\n"
+                "- 'nächsten Montag ab 17 Uhr'")
 
     def _handle_help(self):
         """Handle help requests."""
-        return ("Here's what you can ask me:\n\n"
-                "**Search for courts:**\n"
-                "• 'Find a court tomorrow at 18:00'\n"
-                "• 'Show available courts next Monday evening'\n"
-                "• 'I want to play tennis this Friday 6pm'\n\n"
-                "**Search for trainers:**\n"
-                "• 'Find a trainer tomorrow morning'\n"
-                "• 'I need trainer Tobias on Friday'\n\n"
-                "**Book:**\n"
-                "• 'Book option 1'\n"
-                "• 'I'll take the first one'\n"
-                "• 'Reserve number 2'\n\n"
-                "Just ask naturally and I'll understand! 🎾")
+        return ("Das kannst du mich fragen:\n\n"
+                "**Plätze suchen:**\n"
+                "• 'morgen um 18 Uhr'\n"
+                "• 'Freitag nachmittag'\n"
+                "• 'nächsten Montag ab 17 Uhr'\n"
+                "• 'übermorgen zwischen 15 und 18 Uhr'\n"
+                "• 'in 3 Tagen um 19 Uhr'\n\n"
+                "**Trainer suchen:**\n"
+                "• 'Trainer morgen vormittag'\n"
+                "• 'Trainer Tobias am Freitag'\n\n"
+                "**Buchen:**\n"
+                "• 'buche Option 1'\n"
+                "• 'ich nehme den ersten'\n\n"
+                "Frag einfach natürlich und ich verstehe dich! 🎾")
 
     def _handle_unknown(self, message, context):
-        """Handle unknown intents."""
-        return ("I'm not sure what you mean. Try asking me to:\n"
-                "• Find a court (e.g., 'tomorrow at 6pm')\n"
-                "• Find a trainer (e.g., 'next Monday morning')\n"
-                "• Book a court (e.g., 'book option 1')\n\n"
-                "Or just say 'help' to see examples!")
+        """Handle unknown intents with intelligent fallback to time parsing."""
+        # Try to parse as time expression first
+        try:
+            parsed = self.timeframe_parser.parse(message)
+            date = parsed.get('date')
+            start_time = parsed.get('start_time')
+            end_time = parsed.get('end_time')
+
+            # If we successfully parsed a meaningful time (not just default values)
+            # AND the date is not just today with default time range
+            if date and start_time and end_time:
+                # Check if this is a meaningful parse (not just defaults)
+                is_meaningful = False
+
+                # It's meaningful if:
+                # - Time is not the default 07:00-21:00 range
+                if start_time != "07:00" or end_time != "21:00":
+                    is_meaningful = True
+                # - Or date is in the future
+                elif date > self.timeframe_parser.today:
+                    is_meaningful = True
+                # - Or message contains time/date keywords
+                elif any(word in message.lower() for word in [
+                    'uhr', 'morgen', 'übermorgen', 'montag', 'dienstag', 'mittwoch',
+                    'donnerstag', 'freitag', 'samstag', 'sonntag', 'wochenende',
+                    'vormittag', 'nachmittag', 'abend', 'mittag', 'heute',
+                    'nächste', 'tagen', 'monday', 'tuesday', 'wednesday',
+                    'thursday', 'friday', 'saturday', 'sunday', 'tomorrow',
+                    'weekend', 'morning', 'afternoon', 'evening', 'noon'
+                ]):
+                    is_meaningful = True
+
+                if is_meaningful:
+                    # Assume user wants to search for courts
+                    entities = {
+                        'date': date,
+                        'start_time': start_time,
+                        'end_time': end_time,
+                        'location': {'arsenal': True, 'postsv': True},
+                        'trainer_name': None,
+                        'slot_reference': None
+                    }
+                    # Redirect to court search handler
+                    return self._handle_search_court(entities, context)
+        except:
+            # If parsing fails, fall through to error message
+            pass
+
+        # Default error message with German support
+        return ("Das habe ich nicht verstanden. Du kannst mich fragen:\n"
+                "• Nach Plätzen suchen (z.B. 'morgen um 18 Uhr' oder 'Freitag nachmittag')\n"
+                "• Nach Trainern suchen (z.B. 'nächsten Montag vormittag')\n"
+                "• Einen Platz buchen (z.B. 'buche Option 1')\n\n"
+                "Oder sage einfach 'Hilfe' für Beispiele!")
 
     def _handle_search_court(self, entities, context):
         """Handle court search requests."""
@@ -237,14 +292,15 @@ class ChatEngine:
         # Check if we have required info
         if not date or not start_time:
             return {
-                'reply': ("I'd be happy to search for courts! When would you like to play?\n\n"
-                          "For example, you can say:\n"
-                          "• 'tomorrow at 18:00'\n"
-                          "• 'next Friday evening'\n"
-                          "• '7.1.2026 between 15:00 and 18:00'"),
+                'reply': ("Gerne suche ich Plätze für dich! Wann möchtest du spielen?\n\n"
+                          "Du kannst zum Beispiel sagen:\n"
+                          "• 'morgen um 18 Uhr'\n"
+                          "• 'Freitag nachmittag'\n"
+                          "• 'nächsten Montag ab 17 Uhr'\n"
+                          "• 'übermorgen zwischen 15 und 18 Uhr'"),
                 'action': 'clarification_needed',
                 'results': [],
-                'suggestions': ['Tomorrow at 18:00', 'Next Monday 6pm', 'This weekend'],
+                'suggestions': ['Morgen 18 Uhr', 'Freitag nachmittag', 'Nächsten Montag'],
                 'context': context
             }
 
@@ -305,12 +361,12 @@ class ChatEngine:
                 'end_time': end_time,
                 'locations': locations
             }
-            new_context['last_results'] = slots[:20]  # Store top 20
+            new_context['last_results'] = slots[:50]  # Store top 50
 
             return {
                 'reply': reply,
                 'action': 'search_results',
-                'results': slots[:20],
+                'results': slots[:50],
                 'suggestions': suggestions,
                 'context': new_context
             }
@@ -334,14 +390,14 @@ class ChatEngine:
         # Check if we have required info
         if not date or not start_time:
             return {
-                'reply': ("I'd be happy to search for trainers! When would you like a training session?\n\n"
-                          "For example:\n"
-                          "• 'tomorrow morning'\n"
-                          "• 'next Monday at 10:00'\n"
-                          "• 'Friday afternoon'"),
+                'reply': ("Gerne suche ich Trainer für dich! Wann möchtest du trainieren?\n\n"
+                          "Zum Beispiel:\n"
+                          "• 'morgen vormittag'\n"
+                          "• 'nächsten Montag um 10 Uhr'\n"
+                          "• 'Freitag nachmittag'"),
                 'action': 'clarification_needed',
                 'results': [],
-                'suggestions': ['Tomorrow morning', 'Next Monday 9am', 'This Friday'],
+                'suggestions': ['Morgen vormittag', 'Nächsten Montag 9 Uhr', 'Freitag'],
                 'context': context
             }
 
@@ -391,12 +447,12 @@ class ChatEngine:
                 'end_time': end_time,
                 'trainer_name': trainer_name
             }
-            new_context['last_results'] = trainers[:20]
+            new_context['last_results'] = trainers[:50]
 
             return {
                 'reply': reply,
                 'action': 'search_results',
-                'results': trainers[:20],
+                'results': trainers[:50],
                 'suggestions': suggestions,
                 'context': new_context
             }

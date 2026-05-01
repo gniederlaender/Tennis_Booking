@@ -220,10 +220,8 @@ class TimeParser:
         Returns:
             Tuple of (from_time, to_time, confidence, description)
         """
-        # Check for time-of-day keywords first
-        for keyword, (from_time, to_time) in TIME_WINDOWS.items():
-            if keyword in text:
-                return (from_time, to_time, 1.0, keyword)
+        # Check specific time patterns FIRST (before generic keywords)
+        # This ensures "after 18" takes precedence over "afternoon"
 
         # Check for "zwischen X und Y" / "between X and Y"
         between_pattern = r'zwischen\s+(\d{1,2}):?(\d{2})?\s+und\s+(\d{1,2}):?(\d{2})?'
@@ -243,6 +241,58 @@ class TimeParser:
             to_time = f"{to_hour:02d}:{to_min}"
             desc = f"{from_time}–{to_time}"
             return (from_time, to_time, 1.0, desc)
+
+        # Check for "nach X" / "after X" (from X until end of day)
+        # First try time format (e.g., "after 18:30")
+        after_pattern = r'(?:nach|after)\s+(\d{1,2}):?(\d{2})?'
+        match = re.search(after_pattern, text)
+        if match:
+            hour = int(match.group(1))
+            minute = match.group(2) if match.group(2) else "00"
+            from_time = f"{hour:02d}:{minute}"
+            to_time = DEFAULT_TIME_WINDOW[1]  # End of day (21:00)
+            desc = f"ab {from_time}" if 'nach' in text else f"after {from_time}"
+            return (from_time, to_time, 1.0, desc)
+
+        # Then try time-of-day keywords (e.g., "after noon", "nach vormittag", "nach dem abend")
+        for keyword, (kw_from, kw_to) in TIME_WINDOWS.items():
+            # Match with optional "dem/der/den" (German articles)
+            if re.search(r'(?:nach|after)\s+(?:de[mnrs])?\s*' + re.escape(keyword) + r'\b', text):
+                from_time = kw_to  # Use end of the keyword time window
+                to_time = DEFAULT_TIME_WINDOW[1]  # End of day (21:00)
+                desc = f"nach {keyword}" if 'nach' in text else f"after {keyword}"
+                return (from_time, to_time, 1.0, desc)
+
+        # Check for "vor X" / "before X" (from start of day until X)
+        # First try time format (e.g., "before 15:30")
+        before_pattern = r'(?:vor|before)\s+(\d{1,2}):?(\d{2})?'
+        match = re.search(before_pattern, text)
+        if match:
+            hour = int(match.group(1))
+            minute = match.group(2) if match.group(2) else "00"
+            from_time = DEFAULT_TIME_WINDOW[0]  # Start of day (07:00)
+            to_time = f"{hour:02d}:{minute}"
+            desc = f"bis {to_time}" if 'vor' in text else f"before {to_time}"
+            return (from_time, to_time, 1.0, desc)
+
+        # Then try time-of-day keywords (e.g., "before noon", "vor abend", "vor dem nachmittag")
+        for keyword, (kw_from, kw_to) in TIME_WINDOWS.items():
+            # Match with optional "dem/der/den" (German articles)
+            if re.search(r'(?:vor|before)\s+(?:de[mnrs])?\s*' + re.escape(keyword) + r'\b', text):
+                from_time = DEFAULT_TIME_WINDOW[0]  # Start of day (07:00)
+                to_time = kw_from  # Use start of the keyword time window
+                desc = f"bis {keyword}" if 'vor' in text else f"before {keyword}"
+                return (from_time, to_time, 1.0, desc)
+
+        # Check for time-of-day keywords (now AFTER specific patterns)
+        # Avoid matching keywords that are part of "before/after/vor/nach X" phrases
+        for keyword, (from_time, to_time) in TIME_WINDOWS.items():
+            # Skip if keyword appears right after before/after/vor/nach (with optional article)
+            if re.search(r'(?:before|after|vor|nach)\s+(?:de[mnrs])?\s*' + re.escape(keyword) + r'\b', text):
+                continue
+            # Check if keyword exists in text
+            if keyword in text:
+                return (from_time, to_time, 1.0, keyword)
 
         # Check for "um X" / "at X"
         at_pattern = r'(?:um|at)\s+(\d{1,2}):?(\d{2})?'

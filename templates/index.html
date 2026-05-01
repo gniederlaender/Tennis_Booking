@@ -597,6 +597,67 @@
             font-size: 13px;
         }
 
+        /* Trainer Availability Styles */
+        .trainer-section {
+            margin-top: 40px;
+        }
+
+        .trainer-card {
+            border: 2px solid #E8FF00;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(232, 255, 0, 0.05);
+        }
+
+        .trainer-card h4 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .trainer-date-group {
+            margin-bottom: 12px;
+        }
+
+        .trainer-date-label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .trainer-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .trainer-slot {
+            padding: 8px 12px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .trainer-slot-time {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .trainer-slot-price {
+            color: #5a6c7d;
+            font-size: 13px;
+            margin-left: 4px;
+        }
+
+        .trainer-empty {
+            color: #8899a6;
+            font-size: 14px;
+            font-style: italic;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -656,7 +717,8 @@
             </div>
             <div class="user-menu">
                 <span class="user-email" id="userEmail"></span>
-                <a href="{{ url_for('chat_interface') }}" class="nav-btn nav-btn-primary">Chat Mode</a>
+                <!-- Chat Mode button hidden as requested -->
+                <!-- <a href="{{ url_for('chat_interface') }}" class="nav-btn nav-btn-primary">Chat Mode</a> -->
                 <a href="{{ url_for('credentials_page') }}" class="nav-btn nav-btn-secondary">Zugangsdaten</a>
                 <a href="{{ url_for('profile') }}" class="nav-btn nav-btn-secondary">Profil</a>
                 <a href="{{ url_for('auth.logout') }}" class="nav-btn nav-btn-secondary">Abmelden</a>
@@ -704,6 +766,26 @@
                 </div>
             </div>
 
+            <!-- Loading Animation - Placed here for immediate visibility (above dashboard) -->
+            <div class="loading" id="loading" style="margin-top: 20px;">
+                <div class="spinner"></div>
+                <h3>Suche läuft...</h3>
+                <p>Das kann bis zu 60 Sekunden dauern</p>
+            </div>
+
+            <!-- Success/Error Messages - Placed here for immediate visibility -->
+            <div class="message success" id="success" style="margin-top: 20px;"></div>
+            <div class="message error" id="error" style="margin-top: 20px;"></div>
+
+            <!-- Search Results - Placed here for immediate visibility (above dashboard) -->
+            <div class="results" id="results" style="display: none; margin-top: 30px;">
+                <div class="result-header">
+                    <h2 id="resultTitle">Verfügbare Plätze</h2>
+                    <div class="result-info" id="result-info"></div>
+                </div>
+                <div id="slots"></div>
+            </div>
+
             <!-- Today's Availability Dashboard -->
             <div class="dashboard-section">
                 <h3>Verfügbarkeit Heute</h3>
@@ -728,23 +810,17 @@
                     </table>
                 </div>
             </div>
-        </div>
 
-        <div class="glass-card loading" id="loading">
-            <div class="spinner"></div>
-            <h3>Suche läuft...</h3>
-            <p>Das kann bis zu 60 Sekunden dauern</p>
-        </div>
+            <!-- Favorite Trainers Availability -->
+            <div class="trainer-section" id="trainerSection" style="display: none;">
+                <h3>Deine Lieblings-Trainer - Nächste 5 Tage</h3>
+                <div class="dashboard-subtitle">Aktuelle Verfügbarkeit deiner Lieblings-Trainer</div>
 
-        <div class="message success" id="success"></div>
-        <div class="message error" id="error"></div>
-
-        <div class="glass-card results" id="results">
-            <div class="result-header">
-                <h2 id="resultTitle">Verfügbare Plätze</h2>
-                <div class="result-info" id="result-info"></div>
+                <div id="trainerLoading" class="dashboard-loading">
+                    Lade Trainer-Verfügbarkeit...
+                </div>
+                <div id="trainerContent" style="display: none;"></div>
             </div>
-            <div id="slots"></div>
         </div>
     </div>
 
@@ -1049,8 +1125,86 @@
             dashboardTable.style.display = 'block';
         }
 
-        // Load dashboard on page load
+        // Load trainer availability
+        async function loadTrainerAvailability() {
+            try {
+                const response = await fetch('{{ url_for("favorite_trainers_availability") }}');
+                const data = await response.json();
+
+                const trainerSection = document.getElementById('trainerSection');
+                const trainerLoading = document.getElementById('trainerLoading');
+                const trainerContent = document.getElementById('trainerContent');
+
+                if (data.trainers && data.trainers.length > 0) {
+                    // Show trainer section
+                    trainerSection.style.display = 'block';
+
+                    // Build HTML
+                    let html = '';
+                    data.trainers.forEach((trainer, idx) => {
+                        html += `
+                            <div class="trainer-card">
+                                <h4>🎾 Trainer #${idx + 1}: ${trainer.name}</h4>
+                        `;
+
+                        const dates = Object.keys(trainer.dates).sort();
+
+                        if (dates.length === 0) {
+                            html += '<div class="trainer-empty">Keine Verfügbarkeit in den nächsten 5 Tagen</div>';
+                        } else {
+                            dates.forEach(date => {
+                                const slots = trainer.dates[date];
+
+                                // Format date
+                                const dateObj = new Date(date + 'T00:00:00');
+                                const dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+                                const monthNames = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+                                const dayName = dayNames[dateObj.getDay()];
+                                const formattedDate = `${dayName}, ${dateObj.getDate()}. ${monthNames[dateObj.getMonth()]}`;
+
+                                html += `
+                                    <div class="trainer-date-group">
+                                        <div class="trainer-date-label">📅 ${formattedDate}</div>
+                                        <div class="trainer-slots">
+                                `;
+
+                                slots.forEach(slot => {
+                                    html += `
+                                        <div class="trainer-slot">
+                                            <span class="trainer-slot-time">✓ ${slot.time_window}</span>
+                                            <span class="trainer-slot-price">(€${slot.price})</span>
+                                        </div>
+                                    `;
+                                });
+
+                                html += `
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+
+                        html += '</div>';
+                    });
+
+                    trainerContent.innerHTML = html;
+                    trainerLoading.style.display = 'none';
+                    trainerContent.style.display = 'block';
+                } else {
+                    // No favorite trainers set - hide section
+                    trainerSection.style.display = 'none';
+                }
+
+            } catch (error) {
+                console.error('Error loading trainer availability:', error);
+                // Hide section on error
+                document.getElementById('trainerSection').style.display = 'none';
+            }
+        }
+
+        // Load dashboard and trainer availability on page load
         loadDashboard();
+        loadTrainerAvailability();
     </script>
 </body>
 </html>

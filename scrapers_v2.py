@@ -91,6 +91,7 @@ class DasSpielScraperV2:
                                    court_start, court_end, timeblock, booked_times):
         """Generate available time slots for a court."""
         slots = []
+        now = datetime.now()
 
         # Parse times
         user_start_hour, user_start_min = map(int, user_start.split(':'))
@@ -111,6 +112,11 @@ class DasSpielScraperV2:
 
         while current < end_datetime:
             time_str = current.strftime('%H:%M')
+
+            # Skip past time slots for today
+            if date == now.date() and current < now:
+                current += timedelta(minutes=timeblock)
+                continue
 
             # Check if this slot is not booked
             if time_str not in booked_times:
@@ -266,6 +272,11 @@ class PostSVScraperV2:
 
                                                 # Filter by user's requested timeframe
                                                 if self._is_in_timeframe(time_str, start_time, end_time):
+                                                    # Skip past time slots for today
+                                                    slot_datetime = datetime.combine(date, datetime.strptime(time_str, '%H:%M').time())
+                                                    if date == datetime.now().date() and slot_datetime < datetime.now():
+                                                        continue
+
                                                     # Extract price from title
                                                     title = link.get('title', '')
                                                     price_match = re.search(r'€\s*([\d,]+)', title)
@@ -363,5 +374,28 @@ def scrape_all_portals(date, start_time, end_time, locations=None):
         print("\n" + "="*60)
         print("Skipping Post SV Wien - not selected")
         print("="*60)
+
+    # Sort results by:
+    # 1. Venue (Arsenal first, then Post SV)
+    # 2. Time (ascending)
+    def sort_key(slot):
+        venue = slot.get('venue', '')
+        time_str = slot.get('time', '00:00')
+
+        # Venue priority: Arsenal (Das Spiel) = 0, Post SV = 1
+        venue_priority = 0 if 'Das Spiel' in venue or 'Arsenal' in venue else 1
+
+        # Convert time to comparable format (handle "HH:MM-HH:MM" format)
+        try:
+            start_time = time_str.split('-')[0].strip()
+            # Convert to minutes for easier sorting
+            hours, minutes = map(int, start_time.split(':'))
+            time_minutes = hours * 60 + minutes
+        except:
+            time_minutes = 0
+
+        return (venue_priority, time_minutes)
+
+    all_results.sort(key=sort_key)
 
     return all_results
