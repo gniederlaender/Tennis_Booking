@@ -100,7 +100,7 @@ def dashboard_availability():
             if key not in seen:
                 seen.add(key)
                 if timeblock not in current_data:
-                    current_data[timeblock] = {'arsenal': 0, 'postsv': 0}
+                    current_data[timeblock] = {'arsenal': 0, 'postsv': 0, 'tc_gudrun': 0}
                 current_data[timeblock][location] = slots
 
         # Get earliest morning snapshot for today to calculate "booked since morning"
@@ -116,7 +116,7 @@ def dashboard_availability():
         morning_data = {}
         for location, timeblock, slots, _ in morning_snapshots:
             if timeblock not in morning_data:
-                morning_data[timeblock] = {'arsenal': 0, 'postsv': 0}
+                morning_data[timeblock] = {'arsenal': 0, 'postsv': 0, 'tc_gudrun': 0}
             morning_data[timeblock][location] = slots
 
         # Build response data for today only
@@ -124,11 +124,13 @@ def dashboard_availability():
         for timeblock in ['morning', 'midday', 'evening']:
             arsenal_current = current_data.get(timeblock, {}).get('arsenal', 0)
             postsv_current = current_data.get(timeblock, {}).get('postsv', 0)
-            total_current = arsenal_current + postsv_current
+            tc_gudrun_current = current_data.get(timeblock, {}).get('tc_gudrun', 0)
+            total_current = arsenal_current + postsv_current + tc_gudrun_current
 
             arsenal_morning = morning_data.get(timeblock, {}).get('arsenal', 0)
             postsv_morning = morning_data.get(timeblock, {}).get('postsv', 0)
-            total_morning = arsenal_morning + postsv_morning
+            tc_gudrun_morning = morning_data.get(timeblock, {}).get('tc_gudrun', 0)
+            total_morning = arsenal_morning + postsv_morning + tc_gudrun_morning
 
             # Booked since morning = morning slots - current slots (positive = slots were booked)
             booked_since_morning = total_morning - total_current
@@ -146,6 +148,7 @@ def dashboard_availability():
                 'total': total_current,
                 'arsenal': arsenal_current,
                 'postsv': postsv_current,
+                'tc_gudrun': tc_gudrun_current,
                 'booked_since_morning': max(0, booked_since_morning)
             }
 
@@ -431,6 +434,22 @@ def credentials_page():
     user = current_user()
     credential_mgr = CredentialManager()
     portals = credential_mgr.get_all_portals_status(user.id)
+
+    # Enhance portals with health status
+    from credential_validator import CredentialValidator
+    validator = CredentialValidator()
+
+    for portal in portals:
+        health = validator.get_health_status(user.id, portal['portal_key'])
+        if health:
+            portal['health_status'] = health.get('status', 'untested')
+            portal['last_verified_at'] = health.get('last_verified_at')
+            portal['last_error_message'] = health.get('last_error_message')
+        else:
+            portal['health_status'] = 'untested'
+            portal['last_verified_at'] = None
+            portal['last_error_message'] = None
+
     return render_template('credentials.html', portals=portals)
 
 @app.route('/credentials/save', methods=['POST'])
@@ -448,7 +467,38 @@ def save_credentials():
             return jsonify({'error': 'Alle Felder sind erforderlich'}), 400
 
         credential_mgr = CredentialManager()
+
+        # Get old username for audit log
+        old_creds = credential_mgr.get_credentials(user.id, portal_name)
+        old_username = old_creds.get('username') if old_creds else None
+
+        # Save credentials
         credential_mgr.save_credentials(user.id, portal_name, username, password)
+
+        # Audit log
+        from database.db import get_db
+        db = get_db()
+        cursor = db.cursor()
+
+        # Get credential_id
+        cursor.execute('''
+            SELECT id FROM portal_credentials
+            WHERE user_id = ? AND portal_name = ?
+        ''', (user.id, portal_name))
+        cred_row = cursor.fetchone()
+        credential_id = cred_row[0] if cred_row else None
+
+        # Log the change
+        cursor.execute('''
+            INSERT INTO credential_change_audit
+            (credential_id, user_id, portal_name, action, username_before, username_after,
+             ip_address, verification_status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (credential_id, user.id, portal_name,
+              'updated' if old_username else 'created',
+              old_username, username,
+              request.remote_addr, 'pending'))
+        db.commit()
 
         return jsonify({'success': True, 'message': 'Zugangsdaten gespeichert'})
     except ValueError as e:
@@ -475,6 +525,151 @@ def delete_credentials():
     except Exception as e:
         return jsonify({'error': f'Fehler beim Löschen: {str(e)}'}), 500
 
+@app.route('/api/credentials/verify/<portal_name>', methods=['POST'])
+@login_required
+def verify_portal_credentials(portal_name):
+    """Manually verify portal credentials (Test Now button)."""
+    try:
+        user = current_user()
+
+        if portal_name not in ['arsenal', 'postsv', 'tc_gudrun']:
+            return jsonify({'error': 'Ungültiger Portal-Name'}), 400
+
+        # Rate limiting: max 5 verification attempts per hour
+        from database.db import get_db
+        from datetime import datetime, timedelta
+        db = get_db()
+        cursor = db.cursor()
+
+        one_hour_ago = (datetime.now() - timedelta(hours=1)).isoformat()
+
+        cursor.execute('''
+            SELECT COUNT(*) FROM credential_verification_log
+            WHERE user_id = ? AND portal_name = ?
+              AND verification_type = 'manual'
+              AND verified_at > ?
+        ''', (user.id, portal_name, one_hour_ago))
+
+        count = cursor.fetchone()[0]
+
+        if count >= 5:
+            return jsonify({
+                'error': 'Zu viele Verifikations-Versuche. Bitte versuche es in einer Stunde erneut.',
+                'success': False,
+                'status': 'rate_limited'
+            }), 429
+
+        credential_mgr = CredentialManager()
+        success, message, status_dict = credential_mgr.verify_credentials(
+            user.id, portal_name,
+            verification_type='manual',
+            triggered_by='user'
+        )
+
+        response_data = {
+            'success': success,
+            'message': message,
+            'status': status_dict.get('status'),
+            'response_time_ms': status_dict.get('response_time_ms'),
+            'portal_name': portal_name
+        }
+
+        # Log the response for debugging
+        app.logger.info(f"Verification API response for {portal_name}: {response_data}")
+
+        return jsonify(response_data)
+
+    except Exception as e:
+        app.logger.error(f"Verification API exception: {str(e)}")
+        return jsonify({'error': f'Fehler bei der Verifikation: {str(e)}'}), 500
+
+@app.route('/api/credentials/update_and_verify', methods=['POST'])
+@login_required
+def update_and_verify_credentials():
+    """Update credentials and verify them before saving (Guided Update Workflow)."""
+    try:
+        user = current_user()
+        data = request.json
+        portal_name = data.get('portal_name')
+        username = data.get('username')
+        password = data.get('password')
+
+        if not all([portal_name, username, password]):
+            return jsonify({'error': 'Alle Felder sind erforderlich'}), 400
+
+        if portal_name not in ['arsenal', 'postsv', 'tc_gudrun']:
+            return jsonify({'error': 'Ungültiger Portal-Name'}), 400
+
+        credential_mgr = CredentialManager()
+
+        # First, save credentials (they will be encrypted)
+        credential_mgr.save_credentials(user.id, portal_name, username, password)
+
+        # Then verify them
+        success, message, status_dict = credential_mgr.verify_credentials(
+            user.id, portal_name,
+            verification_type='post_update',
+            triggered_by='user'
+        )
+
+        if not success and status_dict.get('status') == 'failed':
+            # Credentials failed verification
+            # Note: We don't rollback the save - user can fix it later
+            return jsonify({
+                'success': False,
+                'message': f'Zugangsdaten gespeichert, aber Verifikation fehlgeschlagen: {message}',
+                'status': status_dict.get('status'),
+                'verified': False
+            }), 200
+
+        return jsonify({
+            'success': True,
+            'message': f'Zugangsdaten gespeichert und erfolgreich verifiziert!',
+            'status': status_dict.get('status'),
+            'response_time_ms': status_dict.get('response_time_ms'),
+            'verified': True
+        })
+
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
+
+@app.route('/api/credentials/health/<portal_name>', methods=['GET'])
+@login_required
+def get_credential_health(portal_name):
+    """Get health status for a specific portal's credentials."""
+    try:
+        user = current_user()
+
+        if portal_name not in ['arsenal', 'postsv', 'tc_gudrun']:
+            return jsonify({'error': 'Ungültiger Portal-Name'}), 400
+
+        from credential_validator import CredentialValidator
+        validator = CredentialValidator()
+
+        health_status = validator.get_health_status(user.id, portal_name)
+
+        if not health_status:
+            return jsonify({
+                'portal_name': portal_name,
+                'status': 'untested',
+                'message': 'Noch nicht getestet'
+            })
+
+        return jsonify({
+            'portal_name': portal_name,
+            'status': health_status.get('status'),
+            'last_verified_at': health_status.get('last_verified_at'),
+            'last_success_at': health_status.get('last_success_at'),
+            'consecutive_failures': health_status.get('consecutive_failures'),
+            'last_error_message': health_status.get('last_error_message'),
+            'username': health_status.get('username')
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'Fehler beim Abrufen: {str(e)}'}), 500
+
 @app.route('/profile')
 @login_required
 def profile():
@@ -484,10 +679,11 @@ def profile():
     db = get_db()
     cursor = db.cursor()
 
-    # Get newsletter settings
+    # Get newsletter settings and credential alert settings
     cursor.execute('''
         SELECT newsletter_active, newsletter_weekday, newsletter_timeblock,
-               favorite_trainer_1, favorite_trainer_2
+               favorite_trainer_1, favorite_trainer_2,
+               credential_alerts_enabled, credential_alert_mode
         FROM users WHERE id = ?
     ''', (user.id,))
     row = cursor.fetchone()
@@ -503,6 +699,12 @@ def profile():
         'trainer2': row[4] if row and row[4] else None
     }
 
+    # Credential alert settings (with defaults if NULL)
+    credential_alert_settings = {
+        'enabled': bool(row[5]) if row and row[5] is not None else True,  # Default enabled
+        'mode': row[6] if row and row[6] else 'immediate'  # Default immediate
+    }
+
     # Get list of all trainers from database (not just currently available ones)
     # This ensures favorite trainers remain in the dropdown even on days without availability
     cursor.execute('''
@@ -516,7 +718,8 @@ def profile():
                          user=user,
                          newsletter=newsletter_settings,
                          favorite_trainers=favorite_trainers,
-                         available_trainers=available_trainers)
+                         available_trainers=available_trainers,
+                         credential_alerts=credential_alert_settings)
 
 @app.route('/profile/newsletter', methods=['POST'])
 @login_required
@@ -595,6 +798,40 @@ def update_favorite_trainers():
 
     except Exception as e:
         logger.error(f"Favorite trainers update error: {e}")
+        return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
+
+@app.route('/profile/credential-alerts', methods=['POST'])
+@login_required
+def update_credential_alert_settings():
+    """Update credential alert preferences."""
+    try:
+        user = current_user()
+        data = request.json
+
+        alerts_enabled = data.get('enabled', True)
+        alert_mode = data.get('mode', 'immediate')
+
+        # Validate mode
+        if alert_mode not in ['immediate', 'daily_digest', 'disabled']:
+            return jsonify({'error': 'Ungültiger Benachrichtigungsmodus'}), 400
+
+        from database.db import get_db
+        db = get_db()
+        cursor = db.cursor()
+
+        cursor.execute('''
+            UPDATE users
+            SET credential_alerts_enabled = ?,
+                credential_alert_mode = ?
+            WHERE id = ?
+        ''', (alerts_enabled, alert_mode, user.id))
+
+        db.commit()
+
+        return jsonify({'success': True, 'message': 'Benachrichtigungseinstellungen gespeichert'})
+
+    except Exception as e:
+        logger.error(f"Credential alert settings update error: {e}")
         return jsonify({'error': f'Fehler beim Speichern: {str(e)}'}), 500
 
 if __name__ == '__main__':

@@ -20,7 +20,8 @@ class CredentialManager:
     # Available portals
     PORTALS = {
         'arsenal': 'Das Spiel Arsenal',
-        'postsv': 'Post SV Wien'
+        'postsv': 'Post SV Wien',
+        'tc_gudrun': 'TC Gudrun'
     }
 
     def __init__(self):
@@ -70,9 +71,21 @@ class CredentialManager:
         # Get existing credentials or create new
         creds = PortalCredentials.get_by_user_and_portal(user_id, portal_name)
 
+        from datetime import datetime
+        now = datetime.now().isoformat()
+
         if creds:
             creds.username = username
             creds.password_encrypted = encrypted_password
+            # Update password_changed_at timestamp
+            db = get_db()
+            cursor = db.cursor()
+            cursor.execute('''
+                UPDATE portal_credentials
+                SET password_changed_at = ?
+                WHERE user_id = ? AND portal_name = ?
+            ''', (now, user_id, portal_name))
+            db.commit()
         else:
             creds = PortalCredentials(
                 user_id=user_id,
@@ -95,6 +108,7 @@ class CredentialManager:
             return None
 
         return {
+            'id': creds.id,
             'username': creds.username,
             'password': self.decrypt_password(creds.password_encrypted),
             'portal_name': portal_name
@@ -154,16 +168,53 @@ class CredentialManager:
         db.commit()
         return True
 
-    def verify_credentials(self, user_id, portal_name):
+    def verify_credentials(self, user_id, portal_name, verification_type='manual', triggered_by='user'):
         """
         Verify if credentials are valid by attempting login.
-        Returns (success, message).
+
+        Args:
+            user_id: User ID
+            portal_name: Portal name ('arsenal', 'postsv', 'tc_gudrun')
+            verification_type: Type of verification ('manual', 'auto', 'post_update')
+            triggered_by: Who triggered verification ('user', 'cron', 'system')
+
+        Returns:
+            Tuple of (success, message, status_dict)
+            - success: True if credentials are valid
+            - message: User-friendly message
+            - status_dict: Dict with detailed status info (status, response_time_ms, error_code)
         """
+        # Import here to avoid circular dependency
+        from credential_validator import CredentialValidator
+
         creds = self.get_credentials(user_id, portal_name)
 
         if not creds:
-            return False, "Keine Zugangsdaten hinterlegt"
+            return False, "Keine Zugangsdaten hinterlegt", {'status': 'untested', 'response_time_ms': 0, 'error_code': 'NO_CREDENTIALS'}
 
-        # TODO: Implement actual portal login verification
-        # For now, just check if credentials exist
-        return True, "Zugangsdaten hinterlegt"
+        # Use CredentialValidator to test actual login
+        validator = CredentialValidator()
+        success, status, error_msg, response_time_ms = validator.verify_credentials(
+            user_id, portal_name,
+            save_result=True,
+            verification_type=verification_type,
+            triggered_by=triggered_by
+        )
+
+        # Prepare user-friendly message
+        if success:
+            message = f"Zugangsdaten erfolgreich verifiziert ({response_time_ms}ms)"
+        else:
+            if status == 'warning':
+                message = f"Portal vorübergehend nicht erreichbar: {error_msg}"
+            else:
+                message = f"Verifikation fehlgeschlagen: {error_msg}"
+
+        status_dict = {
+            'status': status,
+            'response_time_ms': response_time_ms,
+            'error_code': error_msg,
+            'last_verified_at': 'now'
+        }
+
+        return success, message, status_dict
