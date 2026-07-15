@@ -1124,7 +1124,9 @@
 
             if (data.searchMode === 'trainer') {
                 resultTitle.textContent = 'Verfügbare Trainer';
-                if (data.trainers && data.trainers.length > 0) {
+                if (data.trainer_availability && data.trainer_availability.length > 0) {
+                    document.getElementById('slots').innerHTML = generateTrainerAvailability(data.trainer_availability);
+                } else if (data.trainers && data.trainers.length > 0) {
                     document.getElementById('slots').innerHTML = generateTrainerSlots(data.trainers);
                 } else {
                     document.getElementById('slots').innerHTML = '<p style="color: #5a6c7d; text-align: center; padding: 20px;">Keine Trainer verfügbar</p>';
@@ -1186,6 +1188,24 @@
             }
 
             document.getElementById('results').style.display = 'block';
+        }
+
+        function generateTrainerAvailability(trainerAvailability) {
+            return trainerAvailability.map(trainer => `
+                <div class="slot trainer">
+                    <div class="slot-venue">🎾 ${trainer.name}</div>
+                    <div class="slot-detail" style="margin-top: 8px; font-weight: 500;">Verfügbare Stunden:</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                        ${trainer.available_hours.map(hour => `
+                            <div style="background: rgba(76, 175, 80, 0.15); border: 1px solid rgba(76, 175, 80, 0.4); border-radius: 8px; padding: 6px 12px; color: #2c3e50;">
+                                <strong>${hour.time_start} - ${hour.time_end}</strong>
+                                ${hour.price ? `<span style="color: #5a6c7d;"> · €${hour.price}</span>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="slot-detail" style="margin-top: 10px;">${trainer.available_hours[0]?.venue || ''}</div>
+                </div>
+            `).join('');
         }
 
         function generateTrainerSlots(trainers) {

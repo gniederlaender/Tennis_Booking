@@ -7,7 +7,7 @@ from timeframe_parser import TimeframeParser
 from scrapers_v2 import scrape_all_portals
 from preference_engine import PreferenceEngine
 from booking import book_court
-from trainer_finder import find_trainers
+from trainer_finder import find_trainers, build_trainer_availability
 from chat_engine import ChatEngine
 import config
 from database.db import init_db, close_db
@@ -273,9 +273,10 @@ def search():
             logger.info("TRAINER SEARCH: Starting trainer search...")
             logger.info("=" * 60)
             trainers = find_trainers(date, start_time, end_time, trainer_name)
-            logger.info(f"TRAINER SEARCH: Found {len(trainers)} trainer slots")
+            logger.info(f"TRAINER SEARCH: Found {len(trainers)} hourly trainer slots")
 
             response_data['trainers'] = trainers
+            response_data['trainer_availability'] = build_trainer_availability(trainers)
             response_data['slots'] = []
             response_data['total'] = len(trainers)
             response_data['preferred_index'] = None

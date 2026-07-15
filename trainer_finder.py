@@ -138,6 +138,11 @@ class TrainerFinder:
         """
         Find available trainers for the given date and time range.
 
+        The booking API only returns sessions that start exactly at the
+        requested time_start, so every hour in the range must be queried —
+        sampling (e.g. every 2 hours) silently drops trainers who are only
+        free during the skipped hours.
+
         Args:
             date: Date to search for trainers
             start_time: Start time (HH:MM format)
@@ -145,7 +150,7 @@ class TrainerFinder:
             trainer_name: Optional specific trainer name to filter by
 
         Returns:
-            List of trainer availability slots
+            List of hourly trainer availability slots, sorted by start time
         """
         # Authenticate first
         if not self._get_auth_token():
@@ -154,22 +159,23 @@ class TrainerFinder:
 
         all_trainer_slots = []
         # Trainer availability is court-independent, so we only need one court
-        # This reduces API requests from 35 to 7 per day (5x improvement)
         court_ids = self._get_court_ids(single_court_only=True)
 
         # Parse start and end times
         start_hour = int(start_time.split(':')[0])
         end_hour = int(end_time.split(':')[0])
+        # A range like 16:00-17:00 means one bookable hour (16:00-17:00),
+        # but guard against degenerate input (start == end)
+        if end_hour <= start_hour:
+            end_hour = start_hour + 1
 
-        # Calculate number of time slots
-        num_slots = len(range(start_hour, end_hour, 2))
-        total_requests = num_slots * len(court_ids)
+        hours = list(range(start_hour, end_hour))
+        total_requests = len(hours) * len(court_ids)
 
         logger.info(f"TRAINER: Searching for trainers on {date.strftime('%Y-%m-%d')} from {start_time} to {end_time}")
-        logger.info(f"TRAINER: Optimized: {total_requests} API requests (1 court × {num_slots} time slots)")
+        logger.info(f"TRAINER: {total_requests} API requests (1 court × {len(hours)} hourly slots)")
 
-        # To avoid making too many requests, we'll check every 2 hours
-        for hour in range(start_hour, end_hour, 2):
+        for hour in hours:
             time_str = f"{hour:02d}:00"
 
             for court_id in court_ids:
@@ -195,10 +201,11 @@ class TrainerFinder:
                     logger.error(f"TRAINER: Error fetching trainer data for court {court_id} at {time_str}: {e}")
                     continue
 
-        # Remove duplicates based on time_start, time_end, and trainer names
+        # Remove duplicates and sort chronologically
         unique_slots = self._deduplicate_slots(all_trainer_slots)
+        unique_slots.sort(key=lambda s: (s.get('date', ''), s.get('time_start', '')))
 
-        logger.info(f"TRAINER: Found {len(unique_slots)} unique trainer slots")
+        logger.info(f"TRAINER: Found {len(unique_slots)} unique hourly trainer slots")
         return unique_slots
 
     def _fetch_trainer_data(
@@ -242,23 +249,29 @@ class TrainerFinder:
             trainer_data = booking_data.get('trainer_data', [])
             square_name = booking_data.get('square_name', 'Unknown Court')
 
-            # Process trainer data
-            processed_slots = []
-            for slot in trainer_data:
-                trainers_list = slot.get('trainers', [])
-                if trainers_list:  # Only include if trainers are available
-                    processed_slots.append({
-                        'date': date.strftime('%Y-%m-%d'),
-                        'day_of_week': date.strftime('%A'),
-                        'time_start': slot.get('time_start'),
-                        'time_end': slot.get('time_end'),
-                        'price': slot.get('price'),
-                        'court_name': square_name,
-                        'trainers': trainers_list,
-                        'venue': 'Tenniszentrum Arsenal (Das Spiel)'
-                    })
+            # The API returns one entry per bookable duration (e.g. 16:00-17:00,
+            # 16:00-18:00, 16:00-19:00), all starting at the requested time and
+            # all listing the same trainers. For an hourly availability list we
+            # only need the shortest (1-hour) entry per requested start time.
+            candidates = [
+                slot for slot in trainer_data
+                if slot.get('trainers') and slot.get('time_start') == time_start
+            ]
+            if not candidates:
+                return []
 
-            return processed_slots
+            hourly_slot = min(candidates, key=lambda s: s.get('time_end') or '99:99')
+
+            return [{
+                'date': date.strftime('%Y-%m-%d'),
+                'day_of_week': date.strftime('%A'),
+                'time_start': hourly_slot.get('time_start'),
+                'time_end': hourly_slot.get('time_end'),
+                'price': hourly_slot.get('price'),
+                'court_name': square_name,
+                'trainers': hourly_slot.get('trainers', []),
+                'venue': 'Tenniszentrum Arsenal (Das Spiel)'
+            }]
 
         except Exception as e:
             logger.error(f"TRAINER: Error in _fetch_trainer_data: {e}")
@@ -285,23 +298,82 @@ class TrainerFinder:
         return filtered_slots
 
     def _deduplicate_slots(self, slots: List[Dict]) -> List[Dict]:
-        """Remove duplicate trainer slots."""
-        seen = set()
-        unique_slots = []
+        """Merge slots covering the same hour (e.g. from multiple courts),
+        combining their trainer lists."""
+        merged = {}
 
         for slot in slots:
-            # Create a unique key based on time window
-            key = (
-                slot['time_start'],
-                slot['time_end'],
-                tuple(sorted([t['name'] for t in slot.get('trainers', [])]))
-            )
+            key = (slot.get('date'), slot['time_start'], slot['time_end'])
 
-            if key not in seen:
-                seen.add(key)
-                unique_slots.append(slot)
+            if key not in merged:
+                merged[key] = slot
+            else:
+                # Same hour already seen - merge in any new trainers
+                existing = merged[key]
+                known_uuids = {t.get('uuid') for t in existing.get('trainers', [])}
+                for trainer in slot.get('trainers', []):
+                    if trainer.get('uuid') not in known_uuids:
+                        existing['trainers'].append(trainer)
+                        known_uuids.add(trainer.get('uuid'))
 
-        return unique_slots
+        return list(merged.values())
+
+
+def build_trainer_availability(slots: List[Dict]) -> List[Dict]:
+    """
+    Transform hourly slot data into a per-trainer hourly availability list.
+
+    Args:
+        slots: Hourly slots as returned by find_trainers()
+
+    Returns:
+        List of trainers, each with their available hours:
+        [
+            {
+                'name': 'FANNI',
+                'uuid': '...',
+                'training_types': [1, 2, 3],
+                'available_hours': [
+                    {'date': '2026-07-17', 'day_of_week': 'Friday',
+                     'time_start': '16:00', 'time_end': '17:00',
+                     'price': 66, 'court_name': 'Platz 5 HALLE',
+                     'venue': 'Tenniszentrum Arsenal (Das Spiel)'},
+                    ...
+                ]
+            },
+            ...
+        ]
+    """
+    trainers = {}
+
+    for slot in slots:
+        hour_info = {
+            'date': slot.get('date'),
+            'day_of_week': slot.get('day_of_week'),
+            'time_start': slot.get('time_start'),
+            'time_end': slot.get('time_end'),
+            'price': slot.get('price'),
+            'court_name': slot.get('court_name'),
+            'venue': slot.get('venue')
+        }
+
+        for trainer in slot.get('trainers', []):
+            key = trainer.get('uuid') or trainer.get('name')
+            if key not in trainers:
+                trainers[key] = {
+                    'name': trainer.get('name'),
+                    'uuid': trainer.get('uuid'),
+                    'training_types': trainer.get('training_types', []),
+                    'available_hours': []
+                }
+            trainers[key]['available_hours'].append(hour_info)
+
+    result = list(trainers.values())
+    for trainer in result:
+        trainer['available_hours'].sort(key=lambda h: (h.get('date') or '', h.get('time_start') or ''))
+    result.sort(key=lambda t: t.get('name') or '')
+
+    return result
 
 
 def find_trainers(date: datetime, start_time: str, end_time: str, trainer_name: Optional[str] = None) -> List[Dict]:
@@ -315,7 +387,7 @@ def find_trainers(date: datetime, start_time: str, end_time: str, trainer_name: 
         trainer_name: Optional trainer name filter
 
     Returns:
-        List of available trainer slots
+        List of available hourly trainer slots
     """
     finder = TrainerFinder()
     return finder.find_trainers(date, start_time, end_time, trainer_name)
