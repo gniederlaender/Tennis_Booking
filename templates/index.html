@@ -914,6 +914,10 @@
                             <input type="checkbox" id="locationPostSV" value="postsv" checked>
                             Post SV Wien
                         </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="locationTCGudrun" value="tc_gudrun" checked>
+                            TC Gudrun
+                        </label>
                     </div>
                 </div>
 
@@ -1065,7 +1069,8 @@
                 if (searchMode === 'court') {
                     requestData.locations = {
                         arsenal: document.getElementById('locationArsenal').checked,
-                        postsv: document.getElementById('locationPostSV').checked
+                        postsv: document.getElementById('locationPostSV').checked,
+                        tc_gudrun: document.getElementById('locationTCGudrun').checked
                     };
                 }
 
@@ -1324,8 +1329,8 @@
             let html = '';
 
             timeblocks.forEach(block => {
-                const cellData = data[block.key] || { status: 'red', total: 0, arsenal: 0, postsv: 0, booked_since_morning: 0 };
-                const tooltipText = `Arsenal: ${cellData.arsenal} frei<br>Post SV: ${cellData.postsv} frei`;
+                const cellData = data[block.key] || { status: 'red', total: 0, arsenal: 0, postsv: 0, tc_gudrun: 0, booked_since_morning: 0 };
+                const tooltipText = `Arsenal: ${cellData.arsenal} frei<br>Post SV: ${cellData.postsv} frei<br>TC Gudrun: ${cellData.tc_gudrun || 0} frei`;
 
                 const bookedDisplay = cellData.booked_since_morning > 0
                     ? `<span class="booked-count">-${cellData.booked_since_morning}</span><div class="booked-label">seit heute früh</div>`

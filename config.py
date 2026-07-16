@@ -15,6 +15,10 @@ PORTALS = {
     "postsv": {
         "name": "Post SV Wien",
         "url": "https://buchen.postsv-wien.at/tennis.html"
+    },
+    "tc_gudrun": {
+        "name": "TC Gudrun",
+        "url": "https://booking.rs-academy.eu/public/"
     }
 }
 

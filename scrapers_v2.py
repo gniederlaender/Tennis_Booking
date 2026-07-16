@@ -3,6 +3,7 @@
 import json
 import re
 from datetime import datetime, timedelta
+from urllib.parse import urlparse, parse_qs
 import requests
 from bs4 import BeautifulSoup
 
@@ -138,6 +139,96 @@ class DasSpielScraperV2:
             current += timedelta(minutes=timeblock)
 
         return slots
+
+
+class TCGudrunScraperV2:
+    """Scraper for TC Gudrun (RS Academy) booking.rs-academy.eu using requests."""
+
+    URL = "https://booking.rs-academy.eu/public/"
+
+    def scrape(self, date, start_time, end_time):
+        """Scrape TC Gudrun booking portal."""
+        results = []
+
+        try:
+            # Build URL with date parameter
+            url = f"{self.URL}?date={date.strftime('%Y-%m-%d')}"
+            print(f"Fetching {url}...")
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            }
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+
+            # Parse HTML
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            # Find all slot links containing "/public/square?"
+            slot_links = soup.find_all('a', href=re.compile(r'/public/square\?'))
+
+            print(f"Found {len(slot_links)} total slot links")
+
+            for link in slot_links:
+                # Only process available ("Frei") slots
+                link_text = link.text.strip()
+                if link_text != 'Frei':
+                    continue
+
+                # Parse URL parameters
+                href = link.get('href', '')
+                parsed = urlparse(href)
+                params = parse_qs(parsed.query)
+
+                if not params:
+                    continue
+
+                # Extract slot information
+                time_start = params.get('ts', [''])[0]  # e.g., '15:00'
+                time_end = params.get('te', [''])[0]    # e.g., '16:00'
+                court_id = params.get('s', [''])[0]     # e.g., '13'
+
+                if not all([time_start, time_end, court_id]):
+                    continue
+
+                # Filter by requested time range
+                if not self._is_in_timeframe(time_start, start_time, end_time):
+                    continue
+
+                # Build result dictionary
+                results.append({
+                    'venue': 'TC Gudrun',
+                    'date': date.strftime('%Y-%m-%d'),
+                    'day_of_week': date.strftime('%A'),
+                    'time': time_start,
+                    'court_name': f'Platz {court_id}',
+                    'square_id': court_id,
+                    'court_type': 'Tennis',
+                    'indoor_outdoor': 'Outdoor',  # TC Gudrun has outdoor courts
+                    'duration': '60 min',
+                    'location': 'Laimäckergasse 1A, 1100 Wien',
+                    'price': 'N/A'
+                })
+
+            print(f"Found {len(results)} available slots in requested time range")
+            return results
+
+        except requests.exceptions.RequestException as e:
+            print(f"Request error scraping TC Gudrun: {e}")
+            return []
+        except Exception as e:
+            print(f"Error scraping TC Gudrun: {e}")
+            return []
+
+    def _is_in_timeframe(self, slot_time, start_time, end_time):
+        """Check if slot time is within requested range."""
+        try:
+            slot_hour = int(slot_time.split(':')[0])
+            start_hour = int(start_time.split(':')[0])
+            end_hour = int(end_time.split(':')[0])
+            return start_hour <= slot_hour < end_hour
+        except:
+            return False
 
 
 class PostSVScraperV2:
@@ -333,9 +424,9 @@ def scrape_all_portals(date, start_time, end_time, locations=None):
     """Scrape all configured portals and return combined results."""
     all_results = []
 
-    # Default to both locations if not specified
+    # Default to all locations if not specified
     if locations is None:
-        locations = {'arsenal': True, 'postsv': True}
+        locations = {'arsenal': True, 'postsv': True, 'tc_gudrun': True}
 
     # Das Spiel (Arsenal)
     if locations.get('arsenal', True):
@@ -375,15 +466,36 @@ def scrape_all_portals(date, start_time, end_time, locations=None):
         print("Skipping Post SV Wien - not selected")
         print("="*60)
 
+    # TC Gudrun
+    if locations.get('tc_gudrun', True):
+        print("\n" + "="*60)
+        print("Scraping TC Gudrun...")
+        print("="*60)
+        tc_gudrun = TCGudrunScraperV2()
+        tc_gudrun_results = tc_gudrun.scrape(date, start_time, end_time)
+        all_results.extend(tc_gudrun_results)
+        print(f"Found {len(tc_gudrun_results)} slots from TC Gudrun\n")
+    else:
+        print("\n" + "="*60)
+        print("Skipping TC Gudrun - not selected")
+        print("="*60)
+
     # Sort results by:
-    # 1. Venue (Arsenal first, then Post SV)
+    # 1. Venue (Arsenal first, then Post SV, then TC Gudrun)
     # 2. Time (ascending)
     def sort_key(slot):
         venue = slot.get('venue', '')
         time_str = slot.get('time', '00:00')
 
-        # Venue priority: Arsenal (Das Spiel) = 0, Post SV = 1
-        venue_priority = 0 if 'Das Spiel' in venue or 'Arsenal' in venue else 1
+        # Venue priority: Arsenal (Das Spiel) = 0, Post SV = 1, TC Gudrun = 2
+        if 'Das Spiel' in venue or 'Arsenal' in venue:
+            venue_priority = 0
+        elif 'Post SV' in venue:
+            venue_priority = 1
+        elif 'Gudrun' in venue:
+            venue_priority = 2
+        else:
+            venue_priority = 3
 
         # Convert time to comparable format (handle "HH:MM-HH:MM" format)
         try:
