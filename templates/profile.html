@@ -312,6 +312,43 @@
                 <button type="submit" class="btn-primary">Einstellungen speichern</button>
             </form>
         </div>
+
+        <div class="glass-card">
+            <h2>Lieblingstrainer</h2>
+            <p class="section-desc">
+                Wähle bis zu 2 Lieblingstrainer aus. Du erhältst im Newsletter auch ihre aktuelle Verfügbarkeit.
+            </p>
+
+            <div id="trainerMessage" class="message"></div>
+
+            <form id="trainerForm">
+                <div class="form-group">
+                    <label for="favoriteTrainer1">Lieblingstrainer 1</label>
+                    <select id="favoriteTrainer1" name="favoriteTrainer1">
+                        <option value="">Kein Trainer ausgewählt</option>
+                        {% for trainer in available_trainers %}
+                        <option value="{{ trainer }}" {% if favorite_trainers.trainer1 == trainer %}selected{% endif %}>
+                            {{ trainer }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="favoriteTrainer2">Lieblingstrainer 2</label>
+                    <select id="favoriteTrainer2" name="favoriteTrainer2">
+                        <option value="">Kein Trainer ausgewählt</option>
+                        {% for trainer in available_trainers %}
+                        <option value="{{ trainer }}" {% if favorite_trainers.trainer2 == trainer %}selected{% endif %}>
+                            {{ trainer }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Lieblingstrainer speichern</button>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -369,6 +406,49 @@
 
             setTimeout(() => {
                 messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Handle trainer form submission
+        const trainerForm = document.getElementById('trainerForm');
+        const trainerMessageDiv = document.getElementById('trainerMessage');
+
+        trainerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const data = {
+                favoriteTrainer1: document.getElementById('favoriteTrainer1').value || null,
+                favoriteTrainer2: document.getElementById('favoriteTrainer2').value || null
+            };
+
+            try {
+                const response = await fetch('{{ url_for("update_favorite_trainers") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showTrainerMessage(result.message || 'Lieblingstrainer gespeichert', 'success');
+                } else {
+                    showTrainerMessage(result.error || 'Fehler beim Speichern', 'error');
+                }
+            } catch (error) {
+                showTrainerMessage('Verbindungsfehler', 'error');
+            }
+        });
+
+        function showTrainerMessage(text, type) {
+            trainerMessageDiv.textContent = text;
+            trainerMessageDiv.className = 'message ' + type;
+            trainerMessageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                trainerMessageDiv.style.display = 'none';
             }, 5000);
         }
     </script>
